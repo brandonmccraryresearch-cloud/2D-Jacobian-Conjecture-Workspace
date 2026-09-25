@@ -1,0 +1,14 @@
+PASS shape position; deg m = 35
+PASS Jacobian det nonzero at all 35 points
+fibre over factor 2 deg 1 mult 1 : dim 0  vdim 10  max N 4  time 1
+fibre over factor 3 deg 1 mult 1 : dim 0  vdim 10  max N 4  time 0
+fibre over factor 4 deg 1 mult 1 : dim 0  vdim 10  max N 4  time 0
+fibre over factor 5 deg 1 mult 1 : dim 0  vdim 10  max N 4  time 0
+fibre over factor 6 deg 1 mult 1 : dim 0  vdim 10  max N 4  time 0
+fibre over factor 7 deg 1 mult 1 : dim 0  vdim 10  max N 4  time 0
+fibre over factor 8 deg 1 mult 1 : dim 0  vdim 10  max N 4  time 0
+fibre over factor 9 deg 7 mult 1 : dim 0  vdim 10  max N 4  time 1
+fibre over factor 10 deg 21 mult 1 : dim 0  vdim 10  max N 4  time 0
+total degree of factors: 35
+NFAIL 0
+OVERALL: PASS p = 536870909

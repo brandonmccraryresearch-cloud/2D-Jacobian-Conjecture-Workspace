@@ -1,0 +1,1 @@
+R reconstructed from 124 primes (stable with 62 ), max bits: 269

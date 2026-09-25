@@ -1,0 +1,7 @@
+lam = 1
+monomials of [P,Q] - lam*x^2 with nonzero coefficient mod Rr: []
+a_8_14 nonzero in K5: True
+b_12_21 nonzero in K5: True
+support of P lies on (0,0) + {(i,2i-2)}: True  max x-degree 8
+support of Q lies on (0,0) + {(k,2k-3)}: True  max x-degree 12
+PASS: [P,Q] = x^2 exactly; N(P) = conv{(0,0),(1,0),(8,14)}, N(Q) = conv{(0,0),(2,1),(12,21)}

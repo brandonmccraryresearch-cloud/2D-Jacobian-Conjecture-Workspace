@@ -1,0 +1,4 @@
+< "e5_alpha.sing";
+int t0 = rtimer; ideal G = std(C); "Q: dim", dim(G), "vdim", vdim(G), "size", size(G), "time", rtimer-t0;
+write(":w e5_alpha_Q_std.txt", G);
+quit;

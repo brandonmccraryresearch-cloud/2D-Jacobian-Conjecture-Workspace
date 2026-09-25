@@ -1,0 +1,9 @@
+control A: E5 point verified in Python; nonzero shifts: 75 of 75
+first failing var: a_1_1
+control A (planted): std==<1>? 0  dim 0  #vars failing cone test 1
+control A (planted): planted point residual is zero? 1
+first failing var: a_1_2
+control B (no weight-0 block): std==<1>? 0  dim 2  #vars failing cone test 1
+control B (no weight-0 block): planted point residual is zero? 0
+control C (real system): std==<1>? 0  dim 0  #vars failing cone test 0
+control C (real system): planted point residual is zero? 0

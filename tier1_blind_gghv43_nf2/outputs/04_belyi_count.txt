@@ -1,0 +1,6 @@
+self-test (orthogonality for n <= 8): PASS
+n=3 sanity: N = 6 (expected 6: ordered pairs of distinct transpositions)
+n = 21: chi(1) = hook-length formula for all 792 partitions; column orthogonality for C0, C1, C2 (squares = z_C, and all cross sums between C0, C1, C2, 1^21 vanish): PASS
+n = 21: #partitions = 792
+N (triples with product 1) = 255454710858547200000
+N / 21! = 5  remainder 0

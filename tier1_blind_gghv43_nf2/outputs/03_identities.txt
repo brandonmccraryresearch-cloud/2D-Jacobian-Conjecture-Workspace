@@ -1,0 +1,6 @@
+(I1a) [x*alpha(t), x^2*y*beta(t)] = x^2*E(t): OK
+(I1b) weight -4 block of generator == coefficients of [P_-2,Q_-3]-lam*x^2: 17 equations, OK
+(I2) x^2-equation: a_1_0*b_2_1 - lam = 0: OK
+(I3) (t*beta^2/alpha^3)' = beta*E/alpha^4: OK
+(I4) normalisation rank 3; residual Y-weights w+2 (P), w+3 (Q): OK
+(I5) phi maps GGHV cases a),b) polygons to the brief's polygons; Jac(phi) = -x^2: OK
