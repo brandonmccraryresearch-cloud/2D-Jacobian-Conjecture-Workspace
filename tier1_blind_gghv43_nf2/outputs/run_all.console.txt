@@ -1,0 +1,53 @@
+== lattice points / system size
+   exit=0 -> outputs/01_gen_system.txt
+N(P) points: [(0, 0), (1, 0), (1, 1), (1, 2), (2, 2), (2, 3), (2, 4), (3, 4), (3, 5), (3, 6), (4, 6), (4, 7), (4, 8), (5, 8), (5, 9), (5, 10), (6, 10), (6, 11), (6, 12), (7, 12), (7, 13), (7, 14), (8, 14), (8, 15), (8, 16)]
+N(Q) points: [(0, 0), (1, 1), (1, 2), (2, 1), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (3, 5), (3, 6), (4, 5), (4, 6), (4, 7), (4, 8), (5, 7), (5, 8), (5, 9), (5, 10), (6, 9), (6, 10), (6, 11), (6, 12), (7, 11), (7, 12), (7, 13), (7, 14), (8, 13), (8, 14), (8, 15), (8, 16), (9, 15), (9, 16), (9, 17), (9, 18), (10, 17), (10, 18), (10, 19), (10, 20), (11, 19), (11, 20), (11, 21), (11, 22), (12, 21), (12, 22), (12, 23), (12, 24)]
+== weight blocks
+   exit=0 -> outputs/02_weights.txt
+bracket weight  -4: #eqs= 17  P-weights used [-2]  Q-weights used [-3]
+target monomial (2, 0) has weight -4
+== symbolic identities (I1)-(I5)
+   exit=0 -> outputs/03_identities.txt
+(I4) normalisation rank 3; residual Y-weights w+2 (P), w+3 (Q): OK
+(I5) phi maps GGHV cases a),b) polygons to the brief's polygons; Jac(phi) = -x^2: OK
+== Frobenius/Murnaghan-Nakayama count
+   exit=0 -> outputs/04_belyi_count.txt
+N (triples with product 1) = 255454710858547200000
+N / 21! = 5  remainder 0
+== certificate, Singular, p=32003
+   exit=0 -> outputs/05_cert_singular_p32003.txt
+NFAIL 0
+OVERALL: PASS p = 32003
+== certificate, Singular, p=536870909
+   exit=0 -> outputs/06_cert_singular_p536870909.txt
+NFAIL 0
+OVERALL: PASS p = 536870909
+== planted / negative controls
+   exit=0 -> outputs/07_planted_controls.txt
+control C (real system): std==<1>? 0  dim 0  #vars failing cone test 0
+control C (real system): planted point residual is zero? 0
+== E5 lex bases mod 124 primes
+== candidate quintic R (CRT)
+   exit=0 -> outputs/09_make_R.txt
+R reconstructed from 124 primes (stable with 62 ), max bits: 269
+== explicit E5 solution over K5 (exact)
+   exit=0 -> outputs/13_e5_exact_K5.txt
+lam = 1    a_8_14 = 38091354056913439826730530997349571916326149522524749218571860463219329664/930206660129096433749475266122359445351031352517661885125550567798599734193335611*x^4 + (-99196362661811887568094595512520927061635078997619327908217427264016147968/930206660129096433749475266122359445351031352517661885125550567798599734193335611)*x^3 + 330463845892243517019896878071386300101126939914921066806649929166392606464/930206660129096433749475266122359445351031352517661885125550567798599734193335611*x^2 + (-364163207376347068831121008237845147451532454403442608765650380506147866112/930206660129096433749475266122359445351031352517661885125550567798599734193335611)*x + 587985697653650203066919462433643852598998530789582860440276756960997106688/930206660129096433749475266122359445351031352517661885125550567798599734193335611
+EXACT VERIFICATION PASSED: an explicit solution of the weight -4 block over K5 with a_8_14 != 0
+== direct bracket check of the partial solution
+   exit=0 -> outputs/14_partial_solution.txt
+support of Q lies on (0,0) + {(k,2k-3)}: True  max x-degree 12
+PASS: [P,Q] = x^2 exactly; N(P) = conv{(0,0),(1,0),(8,14)}, N(Q) = conv{(0,0),(2,1),(12,21)}
+== certificate, msolve, p=30011
+   exit=0 -> outputs/15_cert_msolve_p30011.txt
+NFAIL 0
+OVERALL: PASS p = 30011 points = 5
+== msolve control
+   exit=0 -> outputs/16_msolve_control.txt
+real_full      (76 equations): EMPTY   msolve: [-1]:
+OVERALL: PASS
+== certificate, Macaulay2, p=32003 (slow)
+   exit=0 -> outputs/17_cert_m2_p32003.txt
+
+OVERALL: PASS p = 32003
+done: /tmp/claude-0/-home-user-2D-Jacobian-Conjecture-Workspace/80a198a2-ca86-5505-a8f8-9f0bd5b1a819/scratchpad/deliver/run_20260925T215903Z

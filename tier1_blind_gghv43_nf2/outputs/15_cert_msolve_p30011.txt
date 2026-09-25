@@ -1,0 +1,9 @@
+p = 30011: deg m = 35, F_p-rational roots: 5
+all rational E5 points verified against the weight -4 equations (pure Python)
+point 0 (a_2_2 = 24846): 51/51 variables forced to 0
+point 1 (a_2_2 = 24744): 51/51 variables forced to 0
+point 2 (a_2_2 = 23938): 51/51 variables forced to 0
+point 3 (a_2_2 = 7115): 51/51 variables forced to 0
+point 4 (a_2_2 = 2691): 51/51 variables forced to 0
+NFAIL 0
+OVERALL: PASS p = 30011 points = 5

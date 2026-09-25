@@ -1,0 +1,7 @@
+P weights: [-2, -1, 0]  Q weights: [-3, -2, -1, 0]
+bracket weight   0: #eqs= 19  P-weights used [-1, 0]  Q-weights used [-1, 0]
+bracket weight  -1: #eqs= 19  P-weights used [-2, -1, 0]  Q-weights used [-2, -1, 0]
+bracket weight  -2: #eqs= 19  P-weights used [-2, -1, 0]  Q-weights used [-3, -2, -1]
+bracket weight  -3: #eqs= 18  P-weights used [-2, -1]  Q-weights used [-3, -2]
+bracket weight  -4: #eqs= 17  P-weights used [-2]  Q-weights used [-3]
+target monomial (2, 0) has weight -4

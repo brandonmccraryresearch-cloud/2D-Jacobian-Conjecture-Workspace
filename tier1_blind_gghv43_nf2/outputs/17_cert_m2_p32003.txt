@@ -1,0 +1,17 @@
+eliminant degree 35
+sum of factor degrees 35
+fibre factor deg 1 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 1 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 2 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 2 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 2 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 2 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 2 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 2 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 3 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 6 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 6 mult 1: dim 0 degree 10 all u^4 in J: true
+fibre factor deg 6 mult 1: dim 0 degree 10 all u^4 in J: true
+NFAIL 0
+
+OVERALL: PASS p = 32003

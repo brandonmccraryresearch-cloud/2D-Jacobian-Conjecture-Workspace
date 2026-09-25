@@ -1,0 +1,30 @@
+// e5_alpha.sing -- weight -4 block in reduced form, over Q.
+// f2 = t*alpha(t), g3 = t^2*beta(t) (t = x*y^2); a_{i,2i-2} = alpha_{i-1}, b_{k,2k-3} = beta_{k-2}.
+// Normalisation alpha_0 = beta_0 = 1 (a_1_0 = b_2_1 = 1, hence lam = 1) and alpha_7 = 1 (a_8_14 = 1).
+// Coefficient of t^k in  alpha*beta + 2t*alpha*beta' - 3t*alpha'*beta - 1  is
+//   sum_{i+j=k} (1 + 2j - 3i) alpha_i beta_j   (k>=1).
+// For k = 1..10 this is solved for beta_k (pivot 1+2k, a unit over Q);
+// k = 11..16 give the constraints C11..C16; k = 17 vanishes identically (1+20-21 = 0).
+LIB "general.lib";
+ring R = 0, (al1,al2,al3,al4,al5,al6), dp;
+poly al0 = 1; poly al7 = 1;
+list A = al0, al1, al2, al3, al4, al5, al6, al7;   // A[i+1] = alpha_i
+list B = poly(1);                                   // B[j+1] = beta_j
+int k, i, j; poly s;
+for (k = 1; k <= 10; k++) {
+  s = 0;
+  for (i = 1; i <= k and i <= 7; i++) {   // i>=1, j=k-i>=0, j<k
+    j = k - i;
+    s = s + (1 + 2*j - 3*i) * A[i+1] * B[j+1];
+  }
+  B[k+1] = -s / (1 + 2*k);
+}
+ideal C;
+for (k = 11; k <= 17; k++) {
+  s = 0;
+  for (i = 0; i <= 7; i++) {
+    j = k - i;
+    if (j >= 0 and j <= 10) { s = s + (1 + 2*j - 3*i) * A[i+1] * B[j+1]; }
+  }
+  if (k <= 16) { C[k-10] = s; } else { "t^17 coefficient (must be 0):"; s; }
+}
