@@ -1,0 +1,27 @@
+name: jacobian-conjecture-2d
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core Python and scientific computing
+  - python=3.11
+  - numpy
+  - scipy
+  - matplotlib
+  - jupyter
+  - jupyterlab
+  - sympy
+  - pip
+  
+  # Singular CAS
+  - singular
+  
+  # Additional tools
+  - git
+  - make
+  
+  # Lean 4 (via conda-forge)
+  - elan
+
+pip:
+  - # Add any pip-specific packages here
