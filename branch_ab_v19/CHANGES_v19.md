@@ -137,3 +137,8 @@ reproducibility appendix names the artifact commit.
 ## 12. Lemma 6.6 polish + PDF rebuild (this commit)
 - Lemma 6.6: "its five specializations at the five roots of R (over a splitting field of R)".
 - PDF rebuilt with permanent TeX Live installation (~/texlive): 31 pages, 0 errors, 0 undefined references.
+
+## 13. Lemma 9.2 Remark 9.3 citation + Remark title fix (this commit)
+- Lemma 9.2 proof: "(the S = a6^7 parametrization; Remark~\ref{rem:import})" — cites the derivation remark for K5 ≅ Q(rho^7).
+- Remark 9.3 title: "$W$" -> "$\mathcal{W}$" (eliminant, not the §7.3 matrix).
+- PDF rebuilt: 31pp, 0 errors, 0 undefined refs, 0 overfull boxes.

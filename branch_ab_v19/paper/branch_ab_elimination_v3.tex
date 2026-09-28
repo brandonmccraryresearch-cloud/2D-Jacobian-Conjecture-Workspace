@@ -880,14 +880,14 @@ Let $\rho\in\overline{\mathbb{Q}}$ be any root of $\mathcal{W}$, and put $K=\mat
 \end{lemma}
 
 \begin{proof}
-By Lemma~\ref{lem:basechange}, the exact rank and ideal identities over $K_5$ persist under every characteristic-zero field extension. Since $K_5\cong\mathbb{Q}(\rho^7)$ for every root $\rho$ of $\mathcal{W}$ (the $S=a_6^7$ parametrization), the obstruction holds over $\mathbb{Q}(\rho)$, hence over every characteristic-zero field containing such a root. The ingredients are the exact characteristic-$0$ computations (scripts \filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}):
+By Lemma~\ref{lem:basechange}, the exact rank and ideal identities over $K_5$ persist under every characteristic-zero field extension. Since $K_5\cong\mathbb{Q}(\rho^7)$ for every root $\rho$ of $\mathcal{W}$ (the $S=a_6^7$ parametrization; Remark~\ref{rem:import}), the obstruction holds over $\mathbb{Q}(\rho)$, hence over every characteristic-zero field containing such a root. The ingredients are the exact characteristic-$0$ computations (scripts \filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}):
 \begin{enumerate}[nosep]
 \item[(i)] \emph{Exact characteristic-$0$ ranks.} The ranks are computed exactly over the quintic field $K_5=\mathbb{Q}[w]/(w^5-w^4+3w^3+3w^2+26)$ (script \filename{exact\_ranks\_K5.py}): $E_4=17$, $E_3=18$, $E_2=12$.
 \item[(ii)] \emph{Exact descent over $K_5$.} The entire $E_4\to E_3\to E_2\to35$-minor pipeline is redone exactly over $K_5$ (script \filename{exact\_obstruction\_K5.py}, $\sim$1~s): $E_3$ is solvable for every $t$, the left nullity of $E_2$ is $7$, and the $35$ minors span \emph{all} binary quintics (the $35\times6$ coefficient matrix has rank~$6$ over $K_5$). Hence the only common zero is $t=0$. End-to-end residuals against the original bracket equations vanish exactly. The $t=0$ case is excluded by the vertex $(12,24)$ argument, which is valid in every characteristic other than $2$ and $3$ (it uses $2\ne0$ and $12\ne0$; see \S8.3). The Lean formalization (\texttt{no\_completion\_K5}, listing~\ref{lst:main}, via \texttt{main\_theorem\_of\_chart}, listing~\ref{lst:chart}) quantifies over all roots of $R$ and all torus parameters, covering all top-layer solutions by Proposition~6.1, whose $m=7$ classification is formalized (\texttt{chartClassification\_holds}, \S\ref{sec:chartproof}).
 \end{enumerate}
 \end{proof}
 
-\begin{remark}[On the derivation of $W$]\label{rem:import}
+\begin{remark}[On the derivation of $\mathcal{W}$]\label{rem:import}
 The polynomial $\mathcal{W}$ was originally imported from the reference data (see \filename{W\_IMPORT\_DISCLOSURE.md}). It is now \emph{independently derived}: the minimal polynomial of $a_6^7$, computed from the exactly verified top-layer point over $K_5$, equals the quintic $V$ (hence $\mathcal{W}(a_6)=V(a_6^7)$) coefficient for coefficient (script \texttt{compare\_V.gp}). The import caveat in \filename{W\_IMPORT\_DISCLOSURE.md} is retired for $\mathcal{W}$ itself. The mod-$101$ reduction matches the independently computed elimination up to scalar $54$ as a cross-check.
 \end{remark}
 
