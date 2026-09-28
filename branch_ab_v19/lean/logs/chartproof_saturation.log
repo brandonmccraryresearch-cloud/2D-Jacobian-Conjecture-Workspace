@@ -1,0 +1,18 @@
+# certgen/chartproof/saturation_check.py -- 2026-09-27, Singular for x86_64-Linux version 4.3.2 (4330, 64 bit) Apr  1 2024 04:44:00
+# Context for Step 2 of the proof of Theorem 6.5 (paper Section 6.4). Not used by the proof or by Lean.
+# Singular over Q, weights y_i -> i; script written to certgen/chartproof/saturation_Q.sing.
+
+R1 1
+R2 1
+R3dim 1
+R3gens 6 weights 4 5 5 6 6 7
+R4 5
+R5 0
+PASS  R1 (S11..S16) in (g)
+PASS  R2 (g):y7 == (g)
+PASS  R3 dim (g) == 1
+PASS  R3 minimal generators: 6, weights 4 5 5 6 6 7
+PASS  R4 vdim in chart y1 = 1 == 5
+PASS  R5 dim (g, y1) == 0
+PASS: over Q, (S11..S16) : y7^inf = (S11..S16) : y7^3 = (g), a complete intersection with 5 solutions, all with y1 != 0
+wall clock: 0m39.060s

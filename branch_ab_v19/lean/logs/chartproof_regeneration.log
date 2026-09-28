@@ -1,0 +1,44 @@
+# ChartProof regeneration check -- v17 (2026-09-27)
+# Command: bash lean/certgen/chartproof/regenerate_chartproof.sh   (python3 3.11.15, sympy 1.14.0, python-flint 0.9.0)
+# Reruns gens6.py -> cp_stage2.py -> cp_data.py -> gen_v2.py -> gen_final.py in a scratch copy and cmp's
+# the 4 data files and the 11 generated modules against the shipped ones. The last line is the
+# driver's wall clock and the peak RSS of the python processes (sampled every 2 s).
+
+weight 4: total relations 1, from lower 0, chosen new -> total chosen 1
+weight 5: total relations 3, from lower 1, chosen new -> total chosen 3
+weight 6: total relations 6, from lower 4, chosen new -> total chosen 5
+weight 7: total relations 10, from lower 9, chosen new -> total chosen 6
+5 (-2431/18240)*y1^4 + (1027/1710)*y1^2*y2 + (-41/60)*y1*y3 + (-143/380)*y2^2 + (1)*y4
+5 (-3738317/46630080)*y1^5 + (16882087/34972560)*y1^3*y2 + (-2277881/5828760)*y1^2*y3 + (-115021/161910)*y1*y2^2 + (1)*y2*y3
+5 (-1154351/25313472)*y1^5 + (3833107/18985104)*y1^3*y2 + (-24449/166536)*y1^2*y3 + (-6512/43947)*y1*y2^2 + (1)*y5
+6 (-740761013029/10605079094400)*y1^6 + (754440973541/1988452330200)*y1^4*y2 + (-137816863/918029700)*y1^3*y3 + (-3827878261/8182931400)*y1^2*y2^2 + (-289/12635)*y2^3 + (1)*y3^2
+6 (-4206749569/4242031637760)*y1^6 + (-8589189473/1590761864160)*y1^4*y2 + (-7454351/734423760)*y1^3*y3 + (440013827/9819517680)*y1^2*y2^2 + (-253/5054)*y2^3 + (1)*y6
+6 (4539711243127/16353031963564800)*y1^7 + (-13373800868041/6132386986336800)*y1^5*y2 + (-81661753/707800898700)*y1^4*y3 + (214713769679/37854240656400)*y1^3*y2^2 + (-92333/19483170)*y1*y2^3 + (1)*y7
+g4 certificate verified: True terms: 341
+g5a certificate verified: True terms: 421
+g5b certificate verified: True terms: 451
+g6a certificate verified: True terms: 559
+g6b certificate verified: True terms: 564
+g7 certificate verified: True terms: 694
+deg Res: 5  m irreducible: True
+m(theta2) = 0 at Lean point: True
+theta_i = q_i(theta2) verified at Lean point for i=2..7
+Upsilon_i(theta2) = Lean-slice y_i verified for i=1..7 (normalization S10^2 = y7^3 reproduces the Lean slice)
+R(omega(t)) = 0 mod m: True
+Y_i(omega(t)) = Upsilon_i(t) mod m verified
+sizes: m 5 max digits in Ups: 657
+Defs: 6746 bytes
+Stage1: 118820 bytes
+Stage2_g4: 524926 bytes
+Stage2_g5a: 762122 bytes
+Stage2_g5b: 803731 bytes
+Stage2_g6a: 1033322 bytes
+Stage2_g6b: 1024578 bytes
+Stage2_g7: 1667965 bytes
+Stage3: 341115 bytes
+Stage4: 127766 bytes
+identities verified: 105
+Final written: /tmp/tmp.MyLhcD0uwO/out/Final.lean 68443 bytes; 111 step theorems referenced
+PASS: regenerated ChartProof data and all 11 generated Lean modules are byte-identical to the shipped ones
+EXIT 0
+WALL 380s PEAK_RSS_MB(python, sampled every 2 s) 547
