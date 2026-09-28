@@ -1,6 +1,4 @@
-90474cdb650990fbc0beb35576d131d7f9d87b6a066f94bde4a5127070d4b57c  ./.gitignore
 ba7c6209f5307902e7e08a2d263ded7354645f0915c4983ec42513c91e16bb26  ./BUILD_STATUS.md
-087701eccb9bafd56ca1ee087c56fccd01db9d8563356fcaafa413ac207160e7  ./README.md
 886c61ba2798d9b3a88662abaef511737ca168cd4387f517b2e1c90db2ab75f6  ./correspondence_guide/CORRESPONDENCE_GUIDE.md
 e6886fab3eee930de8c3f53b217b16c9cb3087bf69b16b4cf978ec06ae26e321  ./figures/fig1_newton_polygons.png
 93bdb35402ca44eec2081c3b9bd0b54678dc3c5fb2bb065fefaee75970ac6d4f  ./figures/fig2_layer_descent.png
@@ -119,7 +117,6 @@ b39aca01e731800898138a4106a12c9adcec1399018f2ced378dc2c72d602c7d  ./lean/Jacobia
 bc5915ccfa7532ca27894aedb7bdf40c41b13620f91974155770ea463046dabf  ./lean/Jacobian/Descent/Span/span_t2.lean
 89510f01b919c58f9ede34765ca37d576901996b7ec5a45c13287c66f139fff6  ./lean/MD5SUMS
 f8acc4633bf5254f37336653fa6125707bd5c75c43f655e5f313038ba453ecf0  ./lean/MERGE_README.md
-84e579a13f90cfd60fbea4d99b5c41b39a1285e22c5426468f5e82eac0e72651  ./lean/README.md
 10383f0b5c7c1ecd99f1a2d654f1e9f6b881db16e286bcf5dcfb928619657c59  ./lean/certgen/README_descent.md
 b9bb4ab6614e93416933679fa2789e4391e38758994ae1fa389f9bfc80baebf7  ./lean/certgen/cert.json
 2620586d67604ec283764b444a348f3d5b28bcffa6b7999213f62dbf50cd3f63  ./lean/certgen/chart_a1_0_Q.sing
@@ -219,7 +216,6 @@ e6886fab3eee930de8c3f53b217b16c9cb3087bf69b16b4cf978ec06ae26e321  ./paper/figure
 f36c2c01c60efc529c17edc47d87e794f88548a9991fff88850b92b48810da57  ./paper/figures/fig3_top_layer.png
 3888412275fb5973f5fd7752a170fcbecf4e3f15715d99de96ce90f9f9c2f091  ./paper/v17_patch.py
 9485982dbfea557fb8c0242207b5afafe46c45d17e2d1522595a85b01468eb01  ./scripts/C1_layer_reduction.sing
-fa804d083e09000a17acb1b7fb04cc76b44614531f0662303486562fc4b7b3df  ./scripts/README.md
 d43698b7acdb1ce782a4785e78aedb32d8a5c022810b9b840a19e291665f43f7  ./scripts/a816_full.sing
 ac9c59f3728a4dfcff2533a6034e89608cd2a3f35a6cef3efe5b9bac51b4b917  ./scripts/audit_chart_v8_rerun.py
 a64f77e1493859c505b1a8e5d30e4fd2e3df0954b7e361f7574a6e666d29ac95  ./scripts/belyi_count.py
