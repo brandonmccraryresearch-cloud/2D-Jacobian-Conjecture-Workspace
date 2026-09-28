@@ -212,9 +212,9 @@ a0247668e8bca587be42b91c8ece0abd  ./logs/regeneration_check.log
 7ba28b90062c6861c4308d854af97639  ./logs/verify_from_scratch.log
 9dbb87071d8491159fce3213a7563300  ./logs/verify_with_classification.log
 e01d756eab4192dfa5168ac83be6837e  ./paper/branch_ab_elimination_v3.aux
-c4fa48d925b87764676dba05b6cf3376  ./paper/branch_ab_elimination_v3.log
+3dc9fe8f30670bf6e7beee1d8fe62e30  ./paper/branch_ab_elimination_v3.log
 a3e97f889aebd1d8cb9efbfe2276a064  ./paper/branch_ab_elimination_v3.out
-6cec551dda0d1e65effcdd2374b94c1a  ./paper/branch_ab_elimination_v3.pdf
+5805a2d9b5d366db3376e4ddd6bc7f40  ./paper/branch_ab_elimination_v3.pdf
 c664550f17e359a46c1be80f821d5eda  ./paper/branch_ab_elimination_v3.tex
 5b83257a2a153c4c5c245e48a17e1c81  ./paper/branch_ab_elimination_v3.toc
 8d0f21f26062c6a846cfb5ba45e72392  ./paper/figures/fig1_newton_polygons.png
