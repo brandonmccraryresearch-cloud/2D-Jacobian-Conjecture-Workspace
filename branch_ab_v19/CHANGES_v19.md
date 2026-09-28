@@ -38,7 +38,7 @@ reproducibility appendix names the artifact commit.
   admits a compatible lower-layer deformation — the E2 compatibility minors
   generate (t1,t2)^5, so the deformation cone is {0}.
 - The Newton filtration interpretation is stated explicitly in the layer
-  reduction: the five E_i are the associated graded components of [P,Q]=x^2.
+  reduction: the five E_i are the homogeneous components of [P,Q]=x^2 with respect to the Y-weight grading.
 
 ## 3. Paper — new lemmas and explicit arguments
 - Lemma (characteristic-zero transfer): every F-valued solution of the
@@ -120,5 +120,4 @@ reproducibility appendix names the artifact commit.
 - Lean: `lake build` under Lean 4.34.0 (see BUILD_STATUS.md for the build
   record); `#print axioms` on `main_theorem` reports only propext,
   Classical.choice, Quot.sound.
-- Manifest: all entries verify under MD5 and SHA-256 (see §10 of this
-  file's verification record in BUILD_STATUS.md).
+- Manifest: all entries verify under MD5 and SHA-256 (see the verification record in BUILD_STATUS.md).

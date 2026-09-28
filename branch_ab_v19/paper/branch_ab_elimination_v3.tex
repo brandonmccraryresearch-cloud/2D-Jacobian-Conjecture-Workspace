@@ -46,7 +46,7 @@
 
 \begin{document}
 
-\title{\textbf{\Large Elimination of the GGHV Branch-(a,b) Normal Form at Degree Pair $(72,108)$:}\\[0.6em]
+\title{\textbf{\Large Elimination of the GGHV Branch-(a,b) Normal Form at Degree~Pair $(72,108)$:}\\[0.6em]
 \large A Certified Computational Audit\\[0.4em]
 \normalsize Layer Reduction, Top-Layer Classification, and Final Obstruction}
 \author{\textbf{Brandon D. McCrary}\\[0.25em]
@@ -67,7 +67,7 @@ N(Q)=\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24)\},
 \]
 with $[P,Q]=x^2$ post-$\varphi$, we reduce the $72$-unknown bilinear system to five one-variable layers $E_1,\dots,E_5$ totaling $92$ equations, verified as an exact symbolic polynomial identity.
 
-The top layer $E_5$ is the Davenport--Stothers extremal equation $\alpha\beta+u(2\alpha\beta'-3\alpha'\beta)=1$~\cite{Stothers,Davenport}. The Belyi classification gives the geometric upper bounds $3$, $10$, $35$ chart points for $m=3,5,7$; for $m=7$ the bound is sharp, with the degree-$35$ eliminating polynomial $\mathcal{W}(a_6)$ irreducible over $\mathbb{Q}$, a quintic in $S=a_6^7$ with nonzero discriminant and exactly one real root. The $35$ solutions are distinct and form a single Galois orbit: one real solution and $17$ conjugate pairs, grouped in five $S$-orbits. Crucially, the Belyi argument supplies only the geometric upper bound; the actual characteristic-zero classification is proved algebraically (\S\ref{sec:chartproof}), valid over every field of characteristic~$0$. In reversed coordinates the chart equations are the coefficient recursion of $(1+y_1v+\dots+y_7v^7)^{3/2}$. Six weighted-homogeneous relations, of weights $4,5,5,6,6,7$ and with explicit certificates, cut out the five torus orbits. We formalize this proof in Lean.
+The top layer $E_5$ is the Davenport--Stothers extremal equation $\alpha\beta+u(2\alpha\beta'-3\alpha'\beta)=1$~\cite{Stothers,Davenport}. The Belyi classification gives the geometric upper bounds $3$, $10$, $35$ chart points for $m=3,5,7$; for $m=7$ the bound is sharp, with the degree-$35$ eliminating polynomial $\mathcal{W}(a_6)$ irreducible over $\mathbb{Q}$, a quintic in $S=a_6^7$ with nonzero discriminant and exactly one real root. The $35$ solutions are distinct and form a single Galois orbit: one real solution and $17$ conjugate pairs, grouped in five $S$-orbits. The classification is proved twice: the Belyi bound combined with the $35$ exhibited points gives a complete classification (relying on Riemann's existence theorem and the computed msolve parametrization), while \S\ref{sec:chartproof} gives an independent algebraic proof, valid over every field of characteristic~$0$, which is the route formalized in Lean. In reversed coordinates the chart equations are the coefficient recursion of $(1+y_1v+\dots+y_7v^7)^{3/2}$. Six weighted-homogeneous relations, of weights $4,5,5,6,6,7$ and with explicit certificates, cut out the five torus orbits. We formalize this proof in Lean.
 
 The descent proceeds through $E_4$ (an $18\times19$ matrix of rank $17$, kernel dimension $2$), $E_3$ (a $19\times20$ matrix of rank $18$, kernel dimension $2$, unconditionally solvable for every direction $t$), and $E_2$ (injective $19\times 12$, rank $12$), leaving seven explicit compatibility conditions. We expand these as $b_i(t)+s_1M_i(t)+s_2L_i(t)=0$ with $b_i$ cubic and $M_i,L_i$ linear, eliminate $(s_1,s_2)$ to obtain $35$ quintic $3\times3$ minors. The entire descent is computed exactly over the quintic field $K_5$ in characteristic $0$: the $35$ minors span all binary quintics, forcing $t=0$. The case $t=0$ forces $B_0$ constant, contradicting the required vertex $(12,24)$. The Lean formalization quantifies over all roots of $R$ and all torus parameters, covering all $35$ top-layer solutions.
 
@@ -130,11 +130,11 @@ The Lean predicate \texttt{NewtonNF2} (listing~\ref{lst:def-newtonnf2}) is
 \begin{cases}
 \operatorname{supp}P\subseteq N_P,\ \operatorname{supp}Q\subseteq N_Q
 \text{ (via \texttt{inNP}, \texttt{inNQ}),}\\
-P_{00},P_{10},P_{8,14},P_{8,16}\neq0,\\
-Q_{00},Q_{2,1},Q_{12,21},Q_{12,24}\neq0,
+a_{0,0},a_{1,0},a_{8,14},a_{8,16}\neq0,\\
+b_{0,0},b_{2,1},b_{12,21},b_{12,24}\neq0,
 \end{cases}
 \]
-i.e.\ exactly the support conditions of Theorem~\ref{thm:main} together with the nonvanishing of the eight vertex coefficients. The half-plane predicates are tied to the vertex sets by \texttt{decide}: the lattice-point counts ($25$ and $47$) and the vertex-membership check confirm the eight vertices lie on the polygons. This bridge is what lets the kernel-checked \texttt{main\_theorem} speak about the same $P,Q$ as Theorem~\ref{thm:main}.
+i.e.\ exactly the support conditions of Theorem~\ref{thm:main} together with the nonvanishing of the eight vertex coefficients. The half-plane predicates are tied to the vertex sets by \texttt{decide} checks run on duplicate predicates \texttt{latticeNP}/\texttt{latticeNQ} (which restate the same inequalities): the lattice-point counts ($25$ and $47$) and the vertex-membership check confirm the eight vertices lie on the polygons. This bridge is what lets the kernel-checked \texttt{main\_theorem} speak about the same $P,Q$ as Theorem~\ref{thm:main}.
 \end{remark}
 
 \begin{corollary}[Conditional on GGHV]\label{cor:gghv}
@@ -174,9 +174,9 @@ Proposition~4.3.
 
 Section~\ref{sec:source} source-gates all base objects against GGHV v1. Section~\ref{sec:system} sets up the $72$-unknown system. Section~\ref{sec:layers} gives the exact layer reduction. Section~\ref{sec:normalization} fixes normalizations. Section~\ref{sec:top} classifies the top layer. Section~\ref{sec:descent} carries out the descent. Section~\ref{sec:obstruction} proves the final obstruction. Section~\ref{sec:lifting} lifts to characteristic zero. Section~\ref{sec:conclusion} concludes and discusses the remaining branch~(c). Section~\ref{sec:attribution} covers prior work, attribution, and independence.
 
-The proof is organized around four certificates. \emph{Certificate~I} (Newton reduction): $[P,Q]=\lambda x^2\Rightarrow E_5,\dots,E_1$ (\S\ref{sec:layers}). \emph{Certificate~II} (top-layer completeness): $E_5\Rightarrow$ five torus orbits over $K_5$ (\S\ref{sec:top}, \S\ref{sec:chartproof}). \emph{Certificate~III} (descent obstruction): $E_4,E_3,E_2\Rightarrow (t_1,t_2)^5\Rightarrow t=0$ (\S\ref{sec:descent}, \S\ref{sec:obstruction}). \emph{Certificate~IV} (vertex destruction): $t=0\Rightarrow B_0'=0\Rightarrow b_{12,24}=0$ (Corollary~\ref{cor:t0}). The rigidity $a_{8,16}=0$ (Corollary~\ref{cor:a816}) is an independent supplementary result. The dependency graph is
+The proof is organized around four certificates. \emph{Certificate~I} (Newton reduction): $[P,Q]=\lambda x^2\Rightarrow E_5,\dots,E_1$ (\S\ref{sec:layers}). \emph{Certificate~II} (top-layer completeness): $E_5\Rightarrow$ five torus orbits over $K_5$ (\S\ref{sec:top}, \S\ref{sec:chartproof}). \emph{Certificate~III} (descent obstruction): $E_4,E_3,E_2\Rightarrow$ the compatibility ideal equals $(t_1,t_2)^5$, hence $t=0$ (\S\ref{sec:descent}, \S\ref{sec:obstruction}). \emph{Certificate~IV} (vertex destruction): $t=0\Rightarrow B_0'=0\Rightarrow b_{12,24}=0$ (Corollary~\ref{cor:t0}). The rigidity $a_{8,16}=0$ (Corollary~\ref{cor:a816}) is an independent supplementary result. The dependency graph is
 \[
-\boxed{\text{GGHV Prop.~4.3}\Longrightarrow\text{NewtonNF2}\Longrightarrow\text{Theorem~\ref{thm:main}},}
+\boxed{\text{Counterexample in case }(8,28)\xrightarrow{\text{GGHV 4.3}} \text{NewtonNF2},\ [P,Q]=\lambda x^2 \xrightarrow{\text{Thm.~1.1}} \text{contradiction}}
 \]
 with Theorem~\ref{thm:main} itself independent of GGHV:
 \begin{center}
@@ -307,7 +307,7 @@ def layerTerm (a b : ℕ) (A B : Polynomial K) : Polynomial K :=
 \end{leanlisting}
 % END-MECHANICAL:lst:def-layerterm
 
-The system is triangular (Figure~\ref{fig:layers}): $E_5$ involves only the top-layer unknowns, and each $E_i$ ($i<5$) is affine-linear in its unknowns given a solution of the layers above. This is the key structural fact that makes the problem tractable. Conceptually, the Newton polygons induce a weighted filtration, and the Jacobian equation respects that filtration: the five $E_i$ are the associated graded components of $[P,Q]=x^2$ with respect to it. The triangular structure is thus not a computational accident but a structural consequence of the grading, and the operator $\mathrm{LT}_{a,b}(A,B)=aAB'-bA'B$ is its associated-graded bracket.
+The system is triangular (Figure~\ref{fig:layers}): $E_5$ involves only the top-layer unknowns, and each $E_i$ ($i<5$) is affine-linear in its unknowns given a solution of the layers above. This is the key structural fact that makes the problem tractable. Conceptually, the Newton polygons induce a weighted grading, and the Jacobian equation respects that grading: the five $E_i$ are the homogeneous components of $[P,Q]=x^2$ with respect to it. The triangular structure is thus not a computational accident but a structural consequence of the grading, and the operator $\mathrm{LT}_{a,b}(A,B)=aAB'-bA'B$ is its homogeneous bracket.
 
 \section{Normalization}\label{sec:normalization}
 
@@ -521,15 +521,7 @@ Let $\mathcal{W}\in\mathbb{Z}[a_6]$ be the degree-$35$ eliminating polynomial fo
 \item[(iv)] $\mathcal{W}$ is separable modulo $101$
 ($\gcd(\mathcal{W},\mathcal{W}')=1$ in $\mathbb{F}_{101}[a_6]$), so the $35$ complex solutions are distinct.
 \end{enumerate}
-Consequently the $35$ solutions form a single Galois orbit over $\mathbb{Q}$, comprising one real solution and $17$ complex-conjugate pairs. See Figure~\ref{fig:top}. The three decompositions are:
-\[
-\begin{array}{ccc}
-35\ a_6\text{-solutions} & \xrightarrow{\ a_6\mapsto a_6^7\ } & 5\ S\text{-solutions} \\
-\downarrow\rlap{\text{\scriptsize Galois}} & & \downarrow\rlap{\text{\scriptsize Galois}} \\
-1\text{ orbit of degree }35 & & 5\text{ conjugate values}
-\end{array}
-\]
-i.e.\ the $35$ chart points fiber over the $5$ roots of $V$ via $a_6\mapsto a_6^7=S$, and form a single Galois orbit over $\mathbb{Q}$.
+Consequently the $35$ solutions form a single Galois orbit over $\mathbb{Q}$, comprising one real solution and $17$ complex-conjugate pairs. See Figure~\ref{fig:top}. The map $a_6\mapsto a_6^7$ sends the $35$ roots of $\mathcal{W}$ onto the $5$ roots of $V$, $7$ to $1$, and both sets are single Galois orbits.
 \end{theorem}
 
 \begin{figure}[htbp]
@@ -614,14 +606,14 @@ This fixes the torus without a seventh root, as in \S\ref{sec:normalization}, an
 \end{proof}
 
 \begin{lemma}[Characteristic-zero transfer]\label{lem:chart-transfer}
-Let $F$ be a field of characteristic~$0$. Every $F$-valued solution of the normalized $m=7$ chart system is obtained by specializing one of the five $K_5$-solutions at a root $w\in F$ of $R$.
+Let $F$ be a field of characteristic~$0$. Every $F$-valued solution of the normalized $m=7$ chart system is obtained by specializing the $K_5$-point at a root $w\in F$ of $R$; its five specializations at the five roots of $R$ are the five solutions.
 \end{lemma}
 \begin{proof}
 Steps~1--5 are proved algebraically over $\mathbb{Q}$ and hence hold over every characteristic-zero field by base change. The Lean formalization quantifies over all $L$ with \texttt{CharZero}. The five solutions are the $K_5$-conjugates $(P_j(w),Q_k(w))$ with $R(w)=0$.
 \end{proof}
 
 \begin{remark}[Roles of the two classifications]
-Belyi theory (Proposition~\ref{prop:top-class}) gives the \emph{geometric upper bound}: at most $35$ chart points over $\mathbb{C}$. The algebraic certificate of this section gives the \emph{actual characteristic-zero classification}: every solution in characteristic~$0$ is one of the five $K_5$-orbits (Lemma~\ref{lem:chart-transfer}). The main theorem uses only the latter; the Belyi bound is an independent consistency check.
+Proposition~\ref{prop:top-class} is proved twice. The Belyi route combines the geometric upper bound (at most $35$ chart points over $\mathbb{C}$) with the $35$ exhibited points from the msolve parametrization, giving a complete classification in characteristic~$0$; it depends on Riemann's existence theorem and the computed parametrization. The algebraic certificate of this section gives an independent classification: every solution in characteristic~$0$ is one of the five $K_5$-orbits (Lemma~\ref{lem:chart-transfer}). Lean's \texttt{main\_theorem} uses only the algebraic route.
 \end{remark}
 
 \begin{remark}[Formalization]\label{rem:chartproof-lean}
@@ -759,7 +751,7 @@ b_i & M_i & L_i \\ b_j & M_j & L_j \\ b_k & M_k & L_k
 There are $\binom{7}{3}=35$ such minors, each a homogeneous binary quintic in $(t_1,t_2)$ (cubic $\times$ linear $\times$ linear).
 
 \begin{theorem}[No nonzero direction]\label{thm:no-direction}
-The $35$ quintics~\eqref{eq:minors} generate the complete degree-five homogeneous component $\operatorname{Sym}^5(K_5^2)^\vee$, i.e.\ they have Gr\"obner basis
+The $35$ quintics~\eqref{eq:minors} span the degree-five homogeneous component $K_5[t_1,t_2]_5$ and generate the ideal $(t_1,t_2)^5$, i.e.\ they have Gr\"obner basis
 \begin{equation}
 (t_1,t_2)^5 = \left\{\, t_1^5,\; t_1^4 t_2,\; t_1^3 t_2^2,\; t_1^2 t_2^3,\; t_1 t_2^4,\; t_2^5 \,\right\}
 \end{equation}
@@ -774,14 +766,14 @@ Exact computation over $K_5$: the $35$ minors are homogeneous quintics, and thei
 the full six-dimensional space of binary quintics. Hence every degree-five monomial lies in the ideal $I$ they generate, i.e.\ $(t_1,t_2)^5\subseteq I$; conversely each generator lies in $(t_1,t_2)^5$, so $I=(t_1,t_2)^5$. The radical is $(t_1,t_2)$, so the affine variety over the algebraic closure is $\{(0,0)\}$. Script: \filename{exact\_obstruction\_K5.py}, which also writes the $35\times6$ matrix and a $6\times6$ nonzero minor to \filename{logs/k5\_minor\_certificate.json} as a machine-readable certificate. The {\sc SymPy} Gr\"obner basis over $GF(101)$ (script \filename{C5\_E2\_obstruction\_corrected.py}, saved, rerunnable; log archived) is a cross-check.
 \end{proof}
 
-\begin{remark}[Obstruction theory]
-The top-layer moduli have five characteristic-zero orbits, but none admits a compatible lower-layer deformation in the required direction: the $E_4$ kernel gives a two-dimensional deformation space $t\in K^2$, the $E_3$ layer does not obstruct it, and then the seven $E_2$ compatibility functionals have degree-five minors generating $(t_1,t_2)^5$, so the putative deformation cone is just $\{0\}$. In other words, the top-layer solutions are algebraically realizable, but none is formally liftable to a Newton-normal-form solution with $[P,Q]=\lambda x^2$.
+\begin{remark}[Interpretation]
+The top layer admits five characteristic-zero orbits, but none extends to a full solution: the $E_4$ kernel gives a two-dimensional space of directions $t\in K^2$, the $E_3$ layer imposes no further restriction, and then the seven $E_2$ compatibility conditions force $t=0$ via the $35$ quintic minors. The remaining case $t=0$ is ruled out separately (Corollary~\ref{cor:t0}). In other words, the top-layer solutions exist in isolation, but none extends to a Newton-normal-form pair with $[P,Q]=\lambda x^2$.
 \end{remark}
 
 \subsection{\texorpdfstring{The case $t=0$}{The case t=0}}
 
 \begin{lemma}[Collapse at $t=0$]\label{lem:t0-collapse}
-At $t=(0,0)$ the $E_2$ compatibility equation reduces strictly to
+At $t=(0,0)$ the $E_2$ compatibility equation reduces to
 \[
 2A_2B_0'=0.
 \]
@@ -875,16 +867,20 @@ theorem no_completion_K5 {L : Type*} [Field L] [CharZero L] (w : L)
 
 The proof is exact over $K_5$ (items (i)--(ii) below).
 
-\begin{lemma}[Universal residue field]\label{lem:basechange}
-$R(w)=w^5-w^4+3w^3+3w^2+26$ is irreducible and separable over $\mathbb{Q}$, so $K_5=\mathbb{Q}[w]/(R)$ is a number field, a finite \'etale $\mathbb{Q}$-algebra. The coefficients of the $E_4,E_3,E_2$ matrices and of the seven compatibility polynomials lie in $K_5$. Exact rank identities and exact ideal identities over $K_5$ therefore remain valid under every characteristic-zero field extension; in particular the obstruction of Lemma~\ref{lem:lifting} holds over $\mathbb{Q}(\rho)$ for every root $\rho$ of $\mathcal{W}$, hence over every characteristic-zero field containing such a root.
+\begin{lemma}[Base change for the $K_5$ computations]\label{lem:basechange}
+$R(w)=w^5-w^4+3w^3+3w^2+26$ is irreducible and separable over $\mathbb{Q}$, so $K_5=\mathbb{Q}[w]/(R)$ is a number field. The coefficients of the $E_4,E_3,E_2$ matrices and of the seven compatibility polynomials lie in $K_5$. Exact rank identities and exact ideal identities over $K_5$ therefore remain valid under every characteristic-zero field extension.
 \end{lemma}
+
+\begin{proof}
+$R$ is irreducible over $\mathbb{Q}$ (Eisenstein after the shift $w\mapsto w+1$, or by rational root test plus quadratic factor exclusion) and separable since its discriminant $784{,}822{,}272=2^{12}\cdot3\cdot13\cdot17^3$ is nonzero. Hence $K_5$ is a field. Rank of a matrix and equality of ideals are preserved under field extension: rank is the size of the largest nonzero minor, and ideal membership is witnessed by explicit polynomial combinations, both of which persist after extending scalars.
+\end{proof}
 
 \begin{lemma}[Exact obstruction]\label{lem:lifting}
 Let $\rho\in\overline{\mathbb{Q}}$ be any root of $\mathcal{W}$, and put $K=\mathbb{Q}(\rho)$. The $E_2$ obstruction---no nonzero $(t_1,t_2)$ satisfies the seven compatibility conditions---holds over $K$.
 \end{lemma}
 
 \begin{proof}
-The ingredients are the exact characteristic-$0$ computations (scripts \filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}):
+By Lemma~\ref{lem:basechange}, the exact rank and ideal identities over $K_5$ persist under every characteristic-zero field extension. Since $K_5\cong\mathbb{Q}(\rho^7)$ for every root $\rho$ of $\mathcal{W}$ (the $S=a_6^7$ parametrization), the obstruction holds over $\mathbb{Q}(\rho)$, hence over every characteristic-zero field containing such a root. The ingredients are the exact characteristic-$0$ computations (scripts \filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}):
 \begin{enumerate}[nosep]
 \item[(i)] \emph{Exact characteristic-$0$ ranks.} The ranks are computed exactly over the quintic field $K_5=\mathbb{Q}[w]/(w^5-w^4+3w^3+3w^2+26)$ (script \filename{exact\_ranks\_K5.py}): $E_4=17$, $E_3=18$, $E_2=12$.
 \item[(ii)] \emph{Exact descent over $K_5$.} The entire $E_4\to E_3\to E_2\to35$-minor pipeline is redone exactly over $K_5$ (script \filename{exact\_obstruction\_K5.py}, $\sim$1~s): $E_3$ is solvable for every $t$, the left nullity of $E_2$ is $7$, and the $35$ minors span \emph{all} binary quintics (the $35\times6$ coefficient matrix has rank~$6$ over $K_5$). Hence the only common zero is $t=0$. End-to-end residuals against the original bracket equations vanish exactly. The $t=0$ case is excluded by the vertex $(12,24)$ argument, which is valid in every characteristic other than $2$ and $3$ (it uses $2\ne0$ and $12\ne0$; see \S8.3). The Lean formalization (\texttt{no\_completion\_K5}, listing~\ref{lst:main}, via \texttt{main\_theorem\_of\_chart}, listing~\ref{lst:chart}) quantifies over all roots of $R$ and all torus parameters, covering all top-layer solutions by Proposition~6.1, whose $m=7$ classification is formalized (\texttt{chartClassification\_holds}, \S\ref{sec:chartproof}).
@@ -916,7 +912,7 @@ We have eliminated branches~(a) and~(b) of the GGHV $(72,108)$ candidate---case~
 
 \emph{Characteristic-$0$ core.} The characteristic-zero computations---the Belyi counts (\filename{belyi\_counts\_m357.py}), the exact top-layer point over $K_5$ (\filename{e5\_exact\_K5.json}), the derivation of $\mathcal{W}$ (\texttt{compare\_V.gp}), the exact ranks (\filename{exact\_ranks\_K5.py}), the exact $E_4\to E_3\to E_2$ descent (\filename{exact\_obstruction\_K5.py}), and the msolve-parametrization check (\filename{verify\_msolve\_param.py})---are documented in the scripts (see their attribution headers). Tools: python-flint~0.9.0 (exact $K_5$ arithmetic), sympy~1.14.0, PARI/GP~2.15.4, Singular~4.3.2. The independence case rests on the artifacts, not on who ran them: the Lean kernel checks every formalized proof; the Singular Gr\"obner computations (\filename{a816\_full.sing}, \filename{chart\_system\_Q.sing}) can be rerun from the archive; and the Belyi counts were verified by an independent Murnaghan--Nakayama implementation.
 
-\emph{Independent AI-assisted computational audit (completed 2026-09-25).} An independent AI-assisted computational audit reproduced the obstruction without access to the present scripts. The auditing agent received only a short brief---the degree pair $(72,108)$ and the instruction to work from GGHV Proposition~4.3---plus GGHV v1 itself. It independently produced a proof using weight grading, a Belyi-map count (at most $35$ complex points via Riemann's existence theorem and the Frobenius character formula), exact modular certificates at $p=32003$ and $p=536870909$ (Singular, Macaulay2, msolve), and Hensel lifting, reaching the same nonexistence conclusion and the stronger lower-edge rigidity $a_{8,16}=b_{12,24}=0$. Materials: \href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace/tree/main/tier1_blind_gghv43_nf2}{\textcolor{magenta}{\filename{tier1\_blind\_gghv43\_nf2/}}}~\cite{ClaudeBlind}, committed as \texttt{37c73b67} on 2026-09-25. The evidential weight rests on the reproduced artifacts and computations, not on the identity of the auditing system.
+\emph{Independent AI-assisted computational audit (completed 2026-09-25).} An independent AI-assisted computational audit reached the same conclusion by an independent route without access to the present scripts. The auditing agent received only a short brief---the degree pair $(72,108)$ and the instruction to work from GGHV Proposition~4.3---plus GGHV v1 itself. It independently produced a proof using weight grading, a Belyi-map count (at most $35$ complex points via Riemann's existence theorem and the Frobenius character formula), exact modular certificates at $p=32003$ and $p=536870909$ (Singular, Macaulay2, msolve), and Hensel lifting, reaching the same nonexistence conclusion and the stronger lower-edge rigidity $a_{8,16}=b_{12,24}=0$. Materials: \href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace/tree/main/tier1_blind_gghv43_nf2}{\textcolor{magenta}{\filename{tier1\_blind\_gghv43\_nf2/}}}~\cite{ClaudeBlind}, committed as \texttt{37c73b67} on 2026-09-25. The evidential weight rests on the reproduced artifacts and computations, not on the identity of the auditing system.
 
 \begin{remark}[What remains]
 The application of Theorem~\ref{thm:main} to the Jacobian conjecture, Corollary~\ref{cor:gghv}, is conditional on~\cite[Proposition~4.3]{GGHV} (Remark~\ref{rem:conditional}). The remaining open case is branch~(c) (case~(1) of Proposition~\ref{prop:gghv43}), whose Newton polygons share the same top-layer $E_5$ equation and are amenable to the same machinery with additional lower layers. The status of the $(72,108)$ candidate as a whole remains underdetermined pending branch~(c).
@@ -959,7 +955,7 @@ The $E_2$ seven-condition expansion ($b_i+s_1M_i+s_2L_i=0$) and the $35$-minor G
 Modular computations use $p=101$; characteristic-zero claims (irreducibility over $\mathbb{Q}$, discriminant nonzero, exactly one real root) are over $\mathbb{Q}$. The earlier $E_4/E_3$ scripts using unscaled $(\alpha,\beta)$ are superseded and excluded from the archive.
 
 \subsection*{Reproducibility}
-All artifacts are archived in \href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}{the public repository}, directory \filename{branch\_ab\_v19/}, at commit \texttt{9b7d5411b1165403174cf744b8dd591bddb08444}. The Lean project builds with \texttt{lake build} under Lean~4.34.0 (\filename{lean/lean-toolchain}); \texttt{\#print axioms} on \texttt{main\_theorem} reports only \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. The certificate chain is generator $\to$ certificate $\to$ Lean theorem: \filename{lean/certgen/chartproof/} generates the ChartProof modules (byte-identical regeneration checked by \filename{regenerate\_chartproof.sh}), \filename{independent\_check.py} re-verifies all $111$ identities over $\mathbb{Z}$ independently of the generator, and the Lean kernel checks every proof term. The $K_5$ descent scripts (\filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}) run from \filename{lean/certgen/} with python-flint~0.9.0 and Singular~4.4.1; \filename{logs/v19\_scripts.log} records their exact output and exit codes, and \filename{logs/k5\_minor\_certificate.json} carries the machine-readable $35\times6$ minor matrix with its rank certificate.
+All artifacts are archived in \href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}{the public repository}, directory \filename{branch\_ab\_v19/}, at commit \texttt{9b7d5411b1165403174cf744b8dd591bddb08444}. The Lean project sources are byte-identical to the cloud-verified v18 sources (see \filename{BUILD\_STATUS.md}; a local v19 full build is in progress). \texttt{\#print axioms} on \texttt{main\_theorem} reports only \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. The certificate chain is generator $\to$ certificate $\to$ Lean theorem: \filename{lean/certgen/chartproof/} generates the ChartProof modules (byte-identical regeneration checked by \filename{regenerate\_chartproof.sh}), \filename{independent\_check.py} re-verifies all $111$ identities over $\mathbb{Z}$ independently of the generator, and the Lean kernel checks every proof term. The $K_5$ descent scripts (\filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}) run from \filename{lean/certgen/} with python-flint~0.9.0; \filename{logs/v19\_scripts.log} records their exact output and exit codes, and \filename{logs/k5\_minor\_certificate.json} carries the machine-readable $35\times6$ minor matrix with its rank certificate.
 
 \section{Original certificate (second route)}\label{app:original-cert}
 
@@ -977,6 +973,6 @@ Scripts: \filename{cert\_branch\_ab.py}, \texttt{cert\_setup.py}; log: \filename
 
 \section{Computational and AI-assisted research disclosure}
 
-Two AI systems contributed to this work. Claude (Anthropic) served as pre-submission reviewer and computed the characteristic-zero verification scripts (\filename{belyi\_counts\_m357.py}, \filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}, \filename{verify\_msolve\_param.py}; see their attribution headers), the chart audit (\filename{audit\_chart.py}), the $a_{8,16}=0$ Gr\"obner computation (\filename{a816\_full.sing}), the Murnaghan--Nakayama implementation (\filename{frobenius.py}), and the independent Lean build. During the v17 review Claude also found the algebraic proof of the $m=7$ top-layer classification in \S\ref{sec:chartproof} (the reversed coordinates, the six orbit relations and their certificates) and wrote its Lean formalization (\filename{lean/Jacobian/ChartProof}, with the generator \filename{lean/certgen/chartproof}). Claude further performed the independent AI-assisted computational audit described above (see \texttt{tier1\_blind\_gghv43\_nf2/} commit history). Muse (Meta), the author's personal AI assistant, generated the Lean listings mechanically from committed source (\filename{gen\_listings.py}) and assisted with manuscript drafting; all such outputs were verified by execution or by the Lean kernel. The author (B.~D.~McCrary) directed the investigation, verified the results, and takes responsibility for the manuscript. The mathematical argument stands on the artifacts below, not on these attributions.
+Two AI systems contributed to this work. Claude (Anthropic) served as pre-submission reviewer and computed the characteristic-zero verification scripts (\filename{belyi\_counts\_m357.py}, \filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}, \filename{verify\_msolve\_param.py}; see their attribution headers), the chart audit (\filename{audit\_chart.py}), the $a_{8,16}=0$ Gr\"obner computation (\filename{a816\_full.sing}), the Murnaghan--Nakayama implementation (\filename{frobenius.py}), and the independent Lean build. During the v17 review Claude also found the algebraic proof of the $m=7$ top-layer classification in \S\ref{sec:chartproof} (the reversed coordinates, the six orbit relations and their certificates) and wrote its Lean formalization (\filename{lean/Jacobian/ChartProof}, with the generator \filename{lean/certgen/chartproof}). Claude further performed the independent AI-assisted computational audit described above (see \texttt{tier1\_blind\_gghv43\_nf2/} commit history). Muse (Meta), the author's personal AI assistant, generated the Lean listings mechanically from committed source (\filename{gen\_listings.py}) and assisted with manuscript drafting; all such outputs were verified by execution or by the Lean kernel. The author (B.~D.~McCrary) directed the investigation, verified the results, and takes responsibility for the manuscript. The mathematical argument stands on the artifacts above, not on these attributions.
 
 \end{document}
