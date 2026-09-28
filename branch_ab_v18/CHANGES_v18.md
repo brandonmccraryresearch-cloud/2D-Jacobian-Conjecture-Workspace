@@ -13,8 +13,7 @@ This tree is `branch_ab_v18/`; the published v17 tree is preserved unchanged as
   stated eliminant up to a nonzero rational factor; each eliminant is
   irreducible and separable over ℚ, so all d roots are realized
   (Galois-stable), giving exactly d solutions.
-- The fixes-only bundle `branch_ab_v18_fixes_only.zip` contains
-  `v18_source_changes.diff` with the exact .tex change.
+- Exact change: `diff -r branch_ab_v17/paper/branch_ab_elimination_v3.tex branch_ab_v18/paper/branch_ab_elimination_v3.tex`.
 
 ## 2. New script: exact m=3, m=5 solution counts
 - `branch_ab_v18/scripts/e5_exact_counts_m35.py` (new)
@@ -39,8 +38,7 @@ This tree is `branch_ab_v18/`; the published v17 tree is preserved unchanged as
 - A second, cubic homogeneous planted control
   (δᵢ·(t₁/t₀₁)³) tests the final rank-6 step: the planted minors stay
   homogeneous and the 35-minor rank drops 6 → 5 at t0. Verified: exit 0.
-- The fixes-only bundle `branch_ab_v18_fixes_only.zip` contains
-  `v18_source_changes.diff` with the exact change.
+- Exact change: `diff -r` the corresponding file under `branch_ab_v17/` vs `branch_ab_v18/`.
 
 ## 4. Promised E3 check in exact_ranks_K5.py
 - `branch_ab_v18/scripts/exact_ranks_K5.py`
@@ -49,8 +47,7 @@ This tree is `branch_ab_v18/`; the published v17 tree is preserved unchanged as
   Jacobian kills the quadratic E3 inhomogeneity K(t) identically in t, so E3 is
   solvable for every t in characteristic 0. Verified: exit 0; see
   `logs/v18_scripts.log`.
-- The fixes-only bundle `branch_ab_v18_fixes_only.zip` contains
-  `v18_source_changes.diff` with the exact change.
+- Exact change: `diff -r` the corresponding file under `branch_ab_v17/` vs `branch_ab_v18/`.
 
 ## 5. Documentation
 - `branch_ab_v18/scripts/README.md` — documents the new/changed scripts.
@@ -59,9 +56,11 @@ This tree is `branch_ab_v18/`; the published v17 tree is preserved unchanged as
 - `branch_ab_v18/logs/v18_scripts.log` — recorded stdout and exit codes of the
   three v18 script runs.
 
-## Verification (from clean extraction of branch_ab_final_v18_0.zip)
-- 235/235 checksums pass; all three scripts exit 0; 111/111 identities pass;
-  paper PDF contains the new proof text.
+## Verification (from clean extraction of branch_ab_final_v18_2.zip)
+- 236/236 checksums pass (md5 and sha256); all three scripts exit 0;
+  111/111 identities pass; paper PDF contains the new proof text.
+  The full v17-to-v18 change set is reproducible with
+  `diff -r branch_ab_v17 branch_ab_v18`.
 
 ## 6. Title block — source link (2026-09-28)
 - `branch_ab_v18/paper/branch_ab_elimination_v3.tex` (and recompiled `.pdf`)
@@ -76,7 +75,7 @@ This tree is `branch_ab_v18/`; the published v17 tree is preserved unchanged as
   README: 14/14 controls are 3 unmodified ACCEPT, 9 perturbed REJECT (expected
   Lean error), 2 sorry copies flagged; `audits/` describes the HLRE v5.0 audit
   (external review, filed unchanged) and the errata as a response, not an
-  independent review; checksum scope is 235 shipped bundle files.
+  independent review; checksum scope is 236 shipped bundle files.
 - `branch_ab_v18/logs/v18_scripts.log` — new (see §5).
 - `branch_ab_v18/scripts/exact_obstruction_K5.py` — the cubic control now
   asserts rank 5 before printing the "6 → 5" confirmation line.

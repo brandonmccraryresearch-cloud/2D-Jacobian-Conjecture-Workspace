@@ -1,3 +1,12 @@
+# v18 script runs -- 2026-09-28
+# python 3.12.14, python-flint 0.9.0, Singular 4.4.1 (conda-forge)
+# run from branch_ab_v18/lean/certgen:
+#   SINGULAR=<path>/Singular python3 ../../scripts/e5_exact_counts_m35.py
+#   python3 ../../scripts/exact_obstruction_K5.py
+#   python3 ../../scripts/exact_ranks_K5.py
+# "exit=N" lines record each script's exit status.
+# The script-output sections below are byte-reproducible by re-running the commands above.
+
 === e5_exact_counts_m35.py ===
 m=3: vdim=3 (expect 3), eliminant degree 3, proportional to stated: True, irreducible: True, separable: True => EXACT count 3: True
 m=5: vdim=10 (expect 10), eliminant degree 10, proportional to stated: True, irreducible: True, separable: True => EXACT count 10: True

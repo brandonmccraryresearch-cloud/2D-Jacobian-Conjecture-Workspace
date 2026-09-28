@@ -1,5 +1,5 @@
 72379baefc36faa40de9ebfb8e8efd9f  ./BUILD_STATUS.md
-853976b262ae6c6aadd70cd847d0eccc  ./CHANGES_v18.md
+b26d69c1eb363fff056f685ce1ed230e  ./CHANGES_v18.md
 7547f76b36a35b1a3a57df99c248d0fa  ./correspondence_guide/CORRESPONDENCE_GUIDE.md
 8d0f21f26062c6a846cfb5ba45e72392  ./figures/fig1_newton_polygons.png
 3b55143e65acaec806b763a4dfb13ae8  ./figures/fig2_layer_descent.png
@@ -205,7 +205,7 @@ a0247668e8bca587be42b91c8ece0abd  ./logs/regeneration_check.log
 55994012dc06b7027659f2128170ee85  ./logs/regeneration_check_v17.log
 5791d9ca17951c908c06c603d1ea770d  ./logs/run_all_first_pass.log
 6d71c9783a0157730e829371c0daf9c2  ./logs/run_all_with_chart.log
-ae7919e92612613726107898c855a292  ./logs/v18_scripts.log
+39125ed78a74b8bd2da150753fcfab40  ./logs/v18_scripts.log
 7ba28b90062c6861c4308d854af97639  ./logs/verify_from_scratch.log
 9dbb87071d8491159fce3213a7563300  ./logs/verify_with_classification.log
 8ff3da287ac89b9a3e11ea5df8f94f52  ./paper/branch_ab_elimination_v3.aux
