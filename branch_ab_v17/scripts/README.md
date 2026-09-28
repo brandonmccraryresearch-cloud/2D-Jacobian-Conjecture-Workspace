@@ -31,8 +31,9 @@ Most scripts run directly from here:
 
 These scripts expect to be run with `lean/certgen/` as the working directory:
 
-- `exact_ranks_K5.py` — E4/E3/E2 ranks over K5
-- `exact_obstruction_K5.py` — Full descent pipeline over K5
+- `exact_ranks_K5.py` — E4/E3/E2 ranks over K5, plus the E3-everywhere-solvability check
+- `exact_obstruction_K5.py` — Full descent pipeline over K5, with planted known-good control
+- `e5_exact_counts_m35.py` — Exact E5 solution counts for m=3,5 (vdim + irreducible eliminant; needs Singular)
 
 Example:
 ```bash

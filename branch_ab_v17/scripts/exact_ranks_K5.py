@@ -78,3 +78,71 @@ for name, W_, U in [("E4", -3, A1B2), ("E3", -2, A0B1), ("E2", -1, B0)]:
     rows = jacobian(W_, U)
     r, _ = rowspace_rank(rows)
     print(f"{name}: {len(rows)} x {len(U)} over K5 (char 0, exact): rank {r}")
+
+# E3 solvable for every t (as promised in the docstring): the E3 system is
+# M3 x + K(t) = 0 with K(t) the bilinear part in (A1,B2), quadratic in t.
+# M3 is 19x20 of rank 18, so a single left null vector w; E3 is solvable for
+# every t iff w kills K(t) identically in t.
+def nullspace(M, ncols):
+    M = [r[:] for r in M]
+    piv, r = [], 0
+    for c in range(ncols):
+        i = next((i for i in range(r, len(M)) if M[i][c] != 0), None)
+        if i is None:
+            continue
+        M[r], M[i] = M[i], M[r]
+        iv = inv(M[r][c])
+        M[r] = [(x * iv) % Rr for x in M[r]]
+        for j in range(len(M)):
+            if j != r and M[j][c] != 0:
+                f = M[j][c]
+                M[j] = [(M[j][l] - f * M[r][l]) % Rr for l in range(ncols)]
+        piv.append(c); r += 1
+    basis = []
+    for f in [c for c in range(ncols) if c not in piv]:
+        v = [fmpq_poly([0])] * ncols; v[f] = fmpq_poly([1])
+        for i, pc in enumerate(piv):
+            v[pc] = (-M[i][f]) % Rr
+        basis.append(v)
+    return basis
+
+def qadd(a, b):
+    c = dict(a)
+    for k, v in b.items():
+        c[k] = (c.get(k, fmpq_poly([0])) + v) % Rr
+    return {k: v for k, v in c.items() if v != 0}
+def qmul(a, b):
+    c = {}
+    for (e1, e2), v1 in a.items():
+        for (f1, f2), v2 in b.items():
+            k = (e1 + f1, e2 + f2)
+            c[k] = (c.get(k, fmpq_poly([0])) + v1 * v2) % Rr
+    return {k: v for k, v in c.items() if v != 0}
+
+M4 = jacobian(-3, A1B2)
+k4 = nullspace(M4, len(A1B2))
+assert len(k4) == 2, "E4 kernel is not 2-dimensional"
+tval = {u: {(1, 0): k4[0][i], (0, 1): k4[1][i]} for i, u in enumerate(A1B2)}
+Kt = []
+for k in sorted(eqs):
+    if w(k) != -2:
+        continue
+    acc = {}
+    for c, pv, qv in eqs[k]:
+        if pv in tval and qv in tval:
+            prod = qmul(tval[pv], tval[qv])
+            acc = qadd(acc, {kk: (vv * fmpq_poly([c])) % Rr for kk, vv in prod.items()})
+    Kt.append(acc)
+M3 = jacobian(-2, A0B1)
+MT = [[M3[i][j] for i in range(len(M3))] for j in range(len(A0B1))]
+wl = nullspace(MT, len(M3))
+assert len(wl) == 1, "E3 left nullspace is not 1-dimensional"
+wv = wl[0]
+# w . K(t) as a quadratic: sum over equations i of wv[i] * Kt[i]
+acc = {}
+for i, q in enumerate(Kt):
+    for kk, vv in q.items():
+        acc = qadd(acc, {kk: (vv * wv[i]) % Rr})
+e3_solvable = (acc == {})
+print(f"E3 solvable for every t in characteristic 0: left null vector kills K(t) identically: {e3_solvable}")
+assert e3_solvable

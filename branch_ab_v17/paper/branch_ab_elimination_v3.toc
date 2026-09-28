@@ -13,18 +13,18 @@
 \contentsline {subsection}{\numberline {6.1}The Davenport--Stothers equation}{9}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Classification}{10}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Irreducibility and reality}{16}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}An algebraic proof of the top-layer classification for $m=7$, and its formalization}{16}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Descent}{20}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Layer $E_4$}{20}{subsection.7.1}%
+\contentsline {subsection}{\numberline {6.4}An algebraic proof of the top-layer classification for $m=7$, and its formalization}{18}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Descent}{21}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Layer $E_4$}{21}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7.2}Layer $E_3$}{21}{subsection.7.2}%
 \contentsline {subsection}{\numberline {7.3}Layer $E_2$}{21}{subsection.7.3}%
 \contentsline {section}{\numberline {8}The final obstruction}{22}{section.8}%
 \contentsline {subsection}{\numberline {8.1}Explicit form of the seven conditions}{22}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Elimination of $(s_1,s_2)$}{22}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.2}Elimination of $(s_1,s_2)$}{23}{subsection.8.2}%
 \contentsline {subsection}{\numberline {8.3}The case $t=0$}{23}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Proof of the main theorem}{23}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.4}Proof of the main theorem}{24}{subsection.8.4}%
 \contentsline {section}{\numberline {9}Exact characteristic-$0$ descent}{25}{section.9}%
-\contentsline {section}{\numberline {10}Conclusion}{25}{section.10}%
+\contentsline {section}{\numberline {10}Conclusion}{26}{section.10}%
 \contentsline {section}{\numberline {11}Prior work, attribution, and independence}{26}{section.11}%
-\contentsline {section}{\numberline {A}Computational archive}{27}{appendix.A}%
+\contentsline {section}{\numberline {A}Computational archive}{28}{appendix.A}%
 \contentsline {section}{\numberline {B}Original certificate (second route)}{28}{appendix.B}%
