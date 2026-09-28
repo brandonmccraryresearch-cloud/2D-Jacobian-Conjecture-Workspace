@@ -2,11 +2,11 @@
 
 **Target Artifact:** Elimination of Branch (a,b) in the Degree (8, 28) Case of the Two-Dimensional Jacobian Conjecture (v17_bundle / branch_ab_elimination_v3)
 **Methodological Protocol:** Hyper-Literal Reverse Engineering Specification (HLRE v5.0)
-**Primary Mathematical Claim Under Audit:** For polynomials P, Q ∈ ℂ[x,y] satisfying the Poisson bracket identity [P, Q] = P_x Q_y - P_y Q_x = λx² (λ ≠ 0), with supports bounded by the GGHV normal form (2) Newton polygons:
+**Primary Mathematical Claim Under Audit:** For polynomials $P, Q \in \mathbb{C}[x,y]$ satisfying the Poisson bracket identity $[P, Q] = P_x Q_y - P_y Q_x = \lambda x^2$ ($\lambda \neq 0$), with supports bounded by the GGHV normal form (2) Newton polygons:
 
-supp(P) ⊆ conv{(0,0), (1,0), (8,14), (8,16)}, supp(Q) ⊆ conv{(0,0), (2,1), (12,21), (12,24)}
+$$\operatorname{supp}(P) \subseteq \operatorname{conv}\{(0,0), (1,0), (8,14), (8,16)\}, \quad \operatorname{supp}(Q) \subseteq \operatorname{conv}\{(0,0), (2,1), (12,21), (12,24)\}$$
 
-and vertex non-vanishing constraints a_{1,0} · a_{8,14} · b_{12,24} ≠ 0, no algebraic solution exists over ℂ.
+and vertex non-vanishing constraints $a_{1,0} \cdot a_{8,14} \cdot b_{12,24} \neq 0$, no algebraic solution exists over $\mathbb{C}$.
 
 ## 1. Executive Summary & Epistemic Verdict
 
@@ -18,7 +18,7 @@ and vertex non-vanishing constraints a_{1,0} · a_{8,14} · b_{12,24} ≠ 0, no 
 | Computational Gates | G1–G7 Verified (Exact Arithmetic, Dessin Control, Bilinear Ranks) | Fully Passed |
 | Independence Level | Level I3 / I4 (Multi-CAS replication: Python/FLINT/msolve, Singular, Lean 4 kernel) | High Multi-Tool Corroboration |
 
-**Core Finding:** The artifact establishes a mathematically rigorous, machine-checked elimination of GGHV normal form (2) [Branch (a,b)]. The reduction to the top-layer differential relation αβ + u(2αβ′ − 3α′β) = 1, the degree balance forcing deg β = 10, the algebraic classification yielding exactly 35 roots (5 Galois orbits of size 7, precisely 1 real), and the linear obstruction at layer E₂ are verified.
+**Core Finding.** The artifact establishes a mathematically rigorous, machine-checked elimination of GGHV normal form (2) [Branch (a,b)]. The reduction to the top-layer differential relation $\alpha\beta + u(2\alpha\beta' - 3\alpha'\beta) = 1$, the degree balance forcing $\deg\beta = 10$, the algebraic classification yielding exactly 35 roots (5 Galois orbits of size 7, precisely 1 real), and the linear obstruction at layer $E_2$ are verified.
 
 However, from the strict perspective of HLRE v5.0, several critical scope constraints, potential failure modes, and structural dependencies require formal governance before the result is integrated into the broader Jacobian Conjecture literature.
 
@@ -27,51 +27,186 @@ However, from the strict perspective of HLRE v5.0, several critical scope constr
 Under HLRE v5.0, claims cannot inherit evidentiary status across hierarchical layers without satisfying distinct validation criteria:
 
 - **[Layer 4: Ontological / Global Mathematical Status]** "The 2D Jacobian Conjecture is closer to resolution / Normal form (2) counterexamples are impossible." Evidential Burden: Structural stability under coordinate changes, relation to Branch (c), asymptotic degrees.
-- **[Layer 3: Candidate Elimination Mechanism (Proof Pipeline)]** "Newton polygon grading u = xy² decouples bracket into affine-linear descent E₅ → E₄ → E₃ → E₂." Evidential Burden: Exact rank preservation, dimension of kernel, non-emptiness of compatibility varieties.
-- **[Layer 2: Descriptive Regularity]** "deg α = 7 forces deg β = 10; eliminating polynomial in α₆ is an irreducible quintic in α₆⁷." Evidential Burden: Exact polynomial factorization over ℚ, discriminant analysis, Belyi map branch data.
-- **[Layer 1: Observed Signal]** "Monomial lattice counts: |N(P)| = 25, |N(Q)| = 47; 70 free coefficients; msolve/Singular/Lean zero sets." Evidential Burden: Coordinate-free lattice point enumeration, character matrix determinant non-zero.
+- **[Layer 3: Candidate Elimination Mechanism (Proof Pipeline)]** "Newton polygon grading $u = xy^2$ decouples bracket into affine-linear descent $E_5 \to E_4 \to E_3 \to E_2$." Evidential Burden: Exact rank preservation, dimension of kernel, non-emptiness of compatibility varieties.
+- **[Layer 2: Descriptive Regularity]** "$\deg\alpha = 7$ forces $\deg\beta = 10$; eliminating polynomial in $\alpha_6$ is an irreducible quintic in $\alpha_6^7$." Evidential Burden: Exact polynomial factorization over $\mathbb{Q}$, discriminant analysis, Belyi map branch data.
+- **[Layer 1: Observed Signal]** "Monomial lattice counts: $|N(P)| = 25$, $|N(Q)| = 47$; 70 free coefficients; msolve/Singular/Lean zero sets." Evidential Burden: Coordinate-free lattice point enumeration, character matrix determinant non-zero.
 
 ## 3. Gated Workflow Audit (Gates 1–7)
 
-**Gate 1: Claim Registration & Boundary Definition.** Target: the polynomial ideal I_ab ⊂ ℚ[a_{i,j}, b_{k,l}] generated by the 92 bilinear relations from [P,Q] = x² on the declared Newton polygons, localized at S = (a_{1,0}·a_{8,14}·b_{12,24})^∞. Source: GGHV (arXiv:2204.14178), Proposition 4.3. Development pipeline: Python (sympy, flint), msolve 0.6.5, Macaulay2 1.22. Validation pipeline: independent Singular scripts, Lean 4 (v17_bundle/lean/) with Mathlib.
+### Gate 1: Claim Registration & Boundary Definition
 
-**Gate 2: Evidence Adequacy & Empirical Stripping.** Stripped of legacy terminology: intersection of a quadric variety with an open affine torus in ℂ⁷⁰. N(P) has exactly 25 lattice points; N(Q) has exactly 47. Total 72 raw variables; constant terms a_{0,0}, b_{0,0} decouple, leaving 70 load-bearing variables. Status: PASSED.
+Target Observable / Object: The polynomial ideal $I_{ab} \subset \mathbb{Q}[a_{i,j}, b_{k,l}]$ generated by the 92 bilinear relations arising from $[P, Q] = x^2$ on the declared Newton polygons, localized at the multiplicative set $S = (a_{1,0} \cdot a_{8,14} \cdot b_{12,24})^\infty$.
 
-**Gate 3: Candidate-Family Coverage & Strategy Decomposition.** Primary: graded layer reduction along w = (2,−1) via u = xy². Alternatives considered and rejected: direct global Gröbner basis (doubly-exponential blowup; msolve exhausts memory), homotopy continuation (ill-conditioning near singular locus; rejected under HLRE G3), tropical pre-varieties (insufficient interior constraints). Status: PASSED.
+Source Citation: Guàrdia, Ginés, Hernández, Valenzuela (GGHV, arXiv:2204.14178), Proposition 4.3.
 
-**Gate 4: Parameter-Informed Postulation & Novelty Budget.** Scaling gauge: det(M_char) = −14 ≠ 0, so gauge fixing a_{1,0} = 1, a_{8,14} = 1, λ = 1 is globally non-degenerate over ℂ* (up to 14-fold cyclic cover). Auxiliary hypotheses: 0. Status: PASSED (Constraint-Led).
+Development vs. Validation Boundary:
 
-**Gate 5: Formal Mechanism Specification (C1–C5).** E₅: 2A₂B₃′ − 3A₂′B₃ = u² → αβ + u(2αβ′ − 3α′β) = 1, deg α = 7 ⇒ deg β = 10, 35 isolated solutions (quintic resolvent in α₆⁷). E₄: 19×19, rank 17, kernel ≅ ℙ¹. E₃: 19×20, rank 18, compatibility vanishes identically. E₂: 19 equations, 12 unknowns, rank 12 (injective); 7 surplus conditions on t admit no nonzero solution; t = 0 ⇒ b_{12,24} = 0, contradiction. Status: PASSED.
+- Development Pipeline: Python (sympy, flint), msolve 0.6.5, Macaulay2 1.22.
+- Validation Pipeline: Independent Singular script suite, Lean 4 (v17_bundle/lean/) with Mathlib formalization.
 
-**Gate 6: Independent Prediction & Validation (I4).** Modular checks of the degree-35 resolvent at p = 1,000,000,009 (7 simple roots) and p = 1,000,000,021 (2 simple roots); independently re-verified in SymPy. Status: PASSED.
+### Gate 2: Evidence Adequacy & Empirical Stripping
 
-**Gate 7: Replication & Claim Grading.** Grade A (Machine-Checked Mathematical Theorem) for: GGHV Proposition 4.3 ⟹ Normal Form (2) has no solution over ℂ.
+Stripping all legacy terminology, the problem is an intersection of a quadric variety with an open affine torus in $\mathbb{C}^{70}$.
 
-## 4. Framing Audit & Closure Discipline
+Lattice Points Check:
 
-1. **Right question?** "Does a pair (P,Q) in GGHV normal form (2) with [P,Q] = x² exist?" — settles algebraic solvability; does not address rational boundary extensions of GGHV's φ.
-2. **Routine formalism?** Davenport–Stothers/Belyi theory: 35 = C(7,4) solutions is structural (dessins), not computational accident; m = 1→1, 3→3, 5→10 match Belyi tree counts.
-3. **Right object?** Vertices (1,0), (8,14), (12,24) genuine; vertex constraints preserved through descent.
-4. **Reopening conditions:** t = 0 admissible (disproven); hidden degenerate case in GGHV Prop 4.3; characteristic dividing resultant minors (impossible over ℂ).
+- $N(P) = \operatorname{conv}\{(0,0), (1,0), (8,14), (8,16)\}$ contains exactly 25 lattice points.
+- $N(Q) = \operatorname{conv}\{(0,0), (2,1), (12,21), (12,24)\}$ contains exactly 47 lattice points.
 
-## 5. Computational Validity Gates (G1–G7)
+Total raw variables: 25 + 47 = 72. Constant terms $a_{0,0}$, $b_{0,0}$ decouple completely from $[P, Q]$, leaving 70 load-bearing variables.
 
-All PASSED: positive controls at m = 3, 5; linear descent validated on trivial Keller pairs; no floating point in rank checks (exact ℚ + modular arithmetic); grading covers exact convex hulls; E₃ compatibility proven identically zero algebraically; four independent implementations (msolve, Singular, Python/FLINT, Lean 4 kernel); GGHV polygon counts (25, 47) and λx² coefficient replicated.
+Status: **PASSED.**
 
-## 6. Constructive Critiques & Vulnerabilities
+### Gate 3: Candidate-Family Coverage & Strategy Decomposition
 
-1. **Belyi under-exploitation:** the 35 solutions should be presented via dessins d'enfants (35 trivalent trees with 7 edges) to lift the result from CAS computation to geometric theorem.
-2. **E₃ "identically zero" degeneracy:** highlight the Poisson–Jacobi algebraic reason odd-weight compatibility must vanish, pre-empting referee skepticism about lucky cancellations.
-3. **Scope discipline:** enforce "Elimination of Branch (a,b) ⇏ resolution of the (8,28) case"; Branch (c) (normal form (1)) remains open and is not touched by the u = xy² grading.
+Primary Strategy: Graded layer reduction along the grading vector $w = (2, -1)$ via the coordinate $u = x y^2$.
 
-## 7. Dependency Ledger
+$$x^i y^j = u^i y^{-(2i - j)} = u^i y^{-k}.$$
 
-Jacobian Conjecture (n=2) ⇒ Open. Degree (8,28) counterexample →[GGHV 4.3] Branch (a,b) [NF2] ∨ Branch (c) [NF1]. Branch (a,b) →[w=(2,−1)] E₅→E₄→E₃→E₂. E₅ →[Davenport/Belyi] 35 roots. E₄ →[rank 17/19] ℙ¹ family. E₃ →[rank 18/20] no obstruction. E₂ →[rank 12] no t ≠ 0; t = 0 contradicts vertex condition. **Branch (a,b) rigorously ELIMINATED.**
+$$P = \sum_{k=0}^2 y^{-k} A_k(u), \quad Q = \sum_{l=0}^3 y^{-l} B_l(u).$$
 
-## 8. Recommendations for Publication
+Alternative / Omitted Families Considered:
 
-- Keep Tier 1/Tier 2 replication logs timestamped and independent (Level I4).
-- Document lakefile.toml + lean-toolchain (pinned Lean v4.34.0) for one-command reproduction (`lake build`).
-- Epistemic verb discipline: "GGHV normal form (2) admits no polynomial solution over ℂ under [P,Q] = x²" — not "the conjecture has no counterexamples of this type."
+- Direct Global Gröbner Basis: Fails due to doubly-exponential degree growth in 70 variables (msolve exhausts memory on 68 variables over $\mathbb{F}_p$).
+- Homotopy Continuation / Numerical Algebraic Geometry: Rejected under HLRE Gate G3 due to ill-conditioning near the singular locus and kernel rank collapse under finite precision.
+- Tropical Pre-varieties: Captures degree bounds but insufficiently constrains the interior destructive cancellations.
 
-*Audit received 2026-09-27. Filed as an independent review document; it is not part of the formal proof artifact.*
+Status: **PASSED.**
+
+### Gate 4: Parameter-Informed Postulation & Novelty Budget
+
+Novelty Budget Audit:
+
+Scaling Gauge Selection (C2): The scaling group $\mathbb{C}^* \times \mathbb{C}^*$ acts on $(x,y)$, inducing actions on $(P, Q)$. The 4-character matrix associated with $\{[P,Q], a_{1,0}, a_{8,14}, a_{8,16}\}$:
+
+$$M_{\text{char}} = \begin{pmatrix} 1 & 1 & 3 & 1 \\ 1 & 0 & 1 & 0 \\ 1 & 0 & 8 & 14 \\ 1 & 0 & 8 & 16 \end{pmatrix} \quad \det(M_{\text{char}}) = -14 \neq 0$$
+
+Because $\det \neq 0$, the gauge fixing $a_{1,0} = 1$, $a_{8,14} = 1$, $\lambda = 1$ is globally non-degenerate over $\mathbb{C}^*$ (up to a 14-fold cyclic covering).
+
+Auxiliary Hypothesis Count: 0. No empirical fitting or uncounted parameters are introduced.
+
+Status: **PASSED** (Constraint-Led).
+
+### Gate 5: Formal Mechanism Specification (Checkpoints C1–C5)
+
+The 5-stage cascade operates as an exact algebraic elimination mechanism:
+
+- **[Level 5: Top Layer $E_5$]** $2 A_2 B_3' - 3 A_2' B_3 = u^2$. Set $A_2 = u\,\alpha(u)$, $B_3 = u^2\,\beta(u)$ → $\alpha\beta + u(2\alpha\beta' - 3\alpha'\beta) = 1$ → $\deg\alpha = 7 \Rightarrow \deg\beta = 10$ → Dim 0, 35 isolated solutions (1 real, 17 conjugate pairs) → Resolvent: $9374377445732\,S^5 + \cdots - 1888043347611739526396142670327809715470336 = 0$ ($S = \alpha_6^7$).
+- **[Level 4: Layer $E_4$ Descent]** Affine linear in $(A_1, B_2)$. System: 19 equations, 19 unknowns. Matrix Rank: 17 → Kernel Dimension = 2. Parametrized by free projective vector $t \in \mathbb{P}^1$.
+- **[Level 3: Layer $E_3$ Descent]** Affine linear in $(A_0', B_1)$. System: 19 equations, 20 unknowns. Matrix Rank: 18 → Kernel Dimension = 2. Solvability Compatibility: Condition vanishes identically for all $t$!
+- **[Level 2: Layer $E_2$ Obstruction]** Affine linear in $B_0'$ (12 unknowns). Matrix Rank: 12 (strictly injective!). Total equations in $E_2$: 19. Surplus Compatibility Constraints: 19 − 12 = 7 conditions in kernel parameter $t$. Resultant: No nonzero $t \in \mathbb{C}$ satisfies all 7 conditions simultaneously. Boundary Check: $t = 0$ forces $B_0' = 0$ → $B_0(u) = \text{const}$ → $b_{12,24} = 0$ (Contradiction).
+
+Status: **PASSED.**
+
+### Gate 6: Independent Prediction & Validation (Level I4)
+
+Modular Validation: The degree-35 resolvent in $\alpha_6$ was checked against certified modular prime reductions:
+
+- At $p = 1{,}000{,}000{,}009$: Exactly 7 simple roots (including $710{,}839{,}210$ and $641{,}965{,}893$).
+- At $p = 1{,}000{,}000{,}021$: Exactly 2 simple roots ($604{,}112{,}689$ and $219{,}329{,}297$).
+
+Independent SymPy Verification executed during audit: Both roots evaluate to $0 \pmod p$ exactly.
+
+Status: **PASSED.**
+
+### Gate 7: Replication & Claim Grading
+
+The Lean 4 files under v17_bundle/lean/Jacobian/ construct formal proofs of the layers.
+
+Assigned Grade: **Grade A (Machine-Checked Mathematical Theorem)** for the conditional statement: $\text{GGHV Proposition 4.3} \implies \text{Normal Form (2) has no solution over } \mathbb{C}$.
+
+## 4. Framing Audit & Closure Discipline (Negative-Result Validation)
+
+Because the artifact asserts an elimination / negative result ("No solution exists"), HLRE v5.0 mandates the four-part Framing Audit:
+
+**1. Am I asking the right question?**
+
+Audited Question: "Does there exist a pair of polynomials $(P, Q)$ matching GGHV normal form (2) whose bracket is $x^2$?"
+
+Goal Served: Deciding whether the degree (8, 28) branch in GGHV can produce a counterexample to the 2D Jacobian Conjecture.
+
+Critique: The question directly settles the algebraic solvability of the variety. However, it does not address whether the coordinate transformation $\varphi(x) = x^{-1}$, $\varphi(y) = x^4 y$ introduced by GGHV could fail to capture non-polynomial rational boundary extensions.
+
+**2. Is there a formalism in which this is routine?**
+
+Identification of Adjacent Formalisms:
+
+- Davenport–Stothers / Belyi Map Theory: The top-layer differential relation $\alpha\beta + u(2\alpha\beta' - 3\alpha'\beta) = 1$ is intimately related to clean Belyi functions and Davenport pairs. The solution count $N = 35$ corresponds precisely to the combinatorial sequence:
+$$N(k) = \frac{1}{2}\binom{2k}{k} = \binom{2k-1}{k} \quad \text{for } k=4\ (m = 2k-1 = 7) \implies \binom{7}{4} = 35$$
+The earlier validation checkpoints $m=1 \to 1$, $m=3 \to 3$, $m=5 \to 10$ match the Catalan-related Belyi tree counts. In the theory of dessins d'enfants, this count is structural and topological, rather than a computational accident.
+- Differential Galois Theory of Poisson Modules: The solvability of linear descent equations $E_4$, $E_3$, $E_2$ reflects the vanishing of higher extension groups $\operatorname{Ext}^1$ in graded Poisson algebras.
+
+**3. Am I testing the right object?**
+
+Verification of the Object:
+
+- Vertices of $N(P)$: $(1,0)$ and $(8,14)$ are genuine extremal vertices.
+- Vertex of $N(Q)$: $(12,24)$ is an extremal vertex.
+- The vertex constraints $a_{1,0} \neq 0$, $a_{8,14} \neq 0$, $b_{12,24} \neq 0$ are preserved across the layer descent.
+
+**4. What would have to be true for this route to be open?**
+
+Normal form (2) could only reopen if:
+
+- The kernel parameter $t = 0$ were admissible (rigorously disproven: $t=0 \implies B_0'(u) \equiv 0 \implies b_{12,24} = 0$, violating the vertex condition).
+- GGHV Proposition 4.3 itself contained an unstated degenerate edge case in its Newton polygon reduction.
+- A prime factor dividing the resultant minors coincided with the characteristic of the field (over $\mathbb{C}$, the resultant in $\mathbb{Q}$ has no zeroes, so this cannot happen).
+
+## 5. Computational Validity Gates Audit (G1–G7)
+
+| Gate | Description | Audit Verification | Status |
+|---|---|---|---|
+| G1: Control Before Negative | Run identical machinery on known positive cases. | Validated on smaller degrees: $m=3 \to 3$ solutions, $m=5 \to 10$ solutions. Solvable linear systems checked before declaring $E_2$ overdetermined. | PASSED |
+| G2: Validity of Test Object | Apply test to known-good candidate. | Linear descent verified on trivial Keller pairs where bracket cancellation completes. | PASSED |
+| G3: Numerical Hygiene | No floating point in load-bearing rank checks. | Double precision was explicitly rejected after observing false rank collapse. All ranks computed via exact Gaussian elimination over $\mathbb{Q}$ and finite field modular arithmetic. | PASSED |
+| G4: Regime Check | Parameter space fully covered. | Graded decomposition $u = xy^2$ covers the exact integer convex hulls without truncation. | PASSED |
+| G5: Convergence Check | Verify non-triviality of comparisons. | $E_3$ compatibility condition proven identically zero algebraically, not through numerical residual thresholds. | PASSED |
+| G6: Independent Route | Dual implementation with zero shared code. | Independent verification across msolve (C), Singular (C++), Python/FLINT, and Lean 4 kernel. | PASSED |
+| G7: Anchor to the Known | Reproduce established benchmarks. | GGHV polygon counts (25 and 47) and leading bracket coefficient matching $\lambda x^2$ replicated exactly. | PASSED |
+
+## 6. Constructive Technical Critiques & Vulnerability Analysis
+
+While the algebraic proof of the elimination of Branch (a,b) is sound and verified, a constructive audit reveals three primary technical vulnerabilities that should be addressed in the final manuscript:
+
+**Critique 1: Topological / Belyi Conceptual Under-Exploitation**
+
+Vulnerability: The derivation of the 35 top-layer solutions relies heavily on computerized Gröbner basis elimination yielding the 35th-degree polynomial in $\alpha_6$ (a quintic in $\alpha_6^7$).
+
+Constructive Remedy: Incorporate the Grothendieck dessin d'enfant / Belyi tree classification. The relation $\alpha\beta + u(2\alpha\beta' - 3\alpha'\beta) = 1$ is a Riccati-type differential equation equivalent to the existence of a rational map $\mathbb{P}^1 \to \mathbb{P}^1$ ramified over at most three points $\{0, 1, \infty\}$. Demonstrating that the 35 solutions correspond to the 35 isomorphism classes of trivalent trees with 7 edges elevates the result from a brute-force CAS calculation to an intrinsic geometric theorem.
+
+**Critique 2: The $E_3$ "Identically Zero" Degeneracy Warning**
+
+Vulnerability: In Checkpoint C4, the affine linear operator for $E_3$ has 19 equations on 20 unknowns with rank 18. The single compatibility condition on the kernel parameter $t \in \mathbb{P}^1$ turns out to be identically zero. In earlier floating-point runs, this term manifested as numerical noise ($O(10^{-14})$), which could easily have been misinterpreted as a premature obstruction at $E_3$.
+
+Constructive Remedy: Explicitly highlight the exact algebraic cofactor identity explaining why $E_3$ cannot obstruct: the Poisson Jacobi identity $[\cdot, [P, Q]] + \dots = 0$ guarantees that compatibility conditions at odd weight layers must identically vanish when the top layer is Hamiltonian. Formulating this via the graded Lie algebra structure prevents referee skepticism regarding "lucky cancellations."
+
+**Critique 3: Disambiguation of the Scope (Preventing Scope Extinction)**
+
+Vulnerability: Non-specialist readers may conflate "Elimination of Branch (a,b)" with "Proof of the Jacobian Conjecture in degree (8, 28)."
+
+Constructive Remedy: Enforce strict HLRE language governance. State prominently in the abstract and introduction: $\text{Elimination of Branch (a,b)} \not\implies \text{Resolution of the } (8, 28) \text{ Case}$. GGHV Proposition 4.3 leaves open Branch (c) (normal form (1)), where: $\operatorname{supp}(P) \subseteq \operatorname{conv}\{(0,0), (1,0), (8,28)\}$, $\operatorname{supp}(Q) \subseteq \operatorname{conv}\{(0,0), (0,1), (8,28)\}$. Branch (c) has support along the singular ray $y = x^4$ and cannot be eliminated by the $u = x y^2$ grading. Explicitly state the boundaries of the achieved elimination.
+
+## 7. Semantic Reconstruction & Dependency Ledger
+
+**Semantic Reconstruction Ledger**
+
+| Model Term | Legacy Classification | Operational Meaning | Algebraic Equivalent | Mathematical Object |
+|---|---|---|---|---|
+| Branch (a,b) | Counterexample candidate | Normal form (2) support configuration | $\operatorname{conv}\{(0,0),(1,0),(8,14),(8,16)\}$ | Newton polygon pair in $\mathbb{R}^2$ |
+| Layer $u = xy^2$ | Coordinate trick | Graded filtration on $\mathbb{C}[x,y]$ | Weight vector $w = (2,-1)$ | Toric coordinate on weighted affine plane |
+| Kernel parameter $t$ | Free variable | One-dimensional projective kernel | $\ker(E_4) \cong \mathbb{P}^1$ | Homogeneous coordinates $[t_0 : t_1]$ |
+| Obstruction | Impasse | Incompatibility of affine linear system | Non-vanishing of $3 \times 3$ minors | Empty subscheme $\operatorname{Spec}(\mathbb{C}) = \emptyset$ |
+
+**Live Dependency Trace**
+
+$$\begin{aligned} \text{Jacobian Conjecture } (n=2) &\implies \text{Open} \\ \text{Degree } (8, 28) \text{ Counterexample} &\xrightarrow{\text{GGHV Prop 4.3}} \text{Branch (a,b) [NF2]} \lor \text{Branch (c) [NF1]} \\ \text{Branch (a,b)} &\xrightarrow{\text{Grading } w=(2,-1)} E_5 \to E_4 \to E_3 \to E_2 \\ E_5 &\xrightarrow{\text{Davenport/Belyi}} \text{Exactly 35 roots in } \mathbb{C} \ (\text{Quintic in } \alpha_6^7) \\ E_4 &\xrightarrow{\text{Rank 17/19}} 1\text{-parameter family } t \in \mathbb{P}^1 \\ E_3 &\xrightarrow{\text{Rank 18/20}} \text{Compatibility vanishes identically} \\ E_2 &\xrightarrow{\text{Rank 12 (injective)}} \text{7 conditions on } t \implies \text{No solution for } t \neq 0 \\ t = 0 &\implies b_{12,24} = 0 \ (\text{Violates vertex condition}) \\ &\implies \mathbf{\text{Branch (a,b) is Rigorously ELIMINATED.}} \end{aligned}$$
+
+## 8. Final Checklist & Recommendations for Publication
+
+- **Maintain Formal Blinding in Replication Archives:** Keep the Tier 1 (black-box) and Tier 2 (white-box) logs timestamped and independent to maintain Level I4 certification.
+- **Highlight the Lean 4 Proof Structure:** The formal verification in v17_bundle/lean/ represents the highest evidentiary standard (Grade A). Ensure that lakefile.toml and lean-toolchain (pinned to Lean v4.34.0) are documented for one-command reproduction (`lake build`).
+- **Adopt Explicit Epistemic Verb Discipline:** Replace occurrences of "this proves the conjecture cannot have counterexamples of this type" with "this establishes that GGHV normal form (2) admits no polynomial solution over $\mathbb{C}$ under the bracket $[P, Q] = x^2$."
+
+---
+
+*Audit received 2026-09-27. Filed as an independent review document alongside the v17 bundle; it is not part of the formal proof artifact.*
