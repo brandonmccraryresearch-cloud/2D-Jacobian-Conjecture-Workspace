@@ -272,9 +272,9 @@ assert all(all(k in quint for k in mc) for mc in minorsc)     # still homogeneou
 assert all(evalp(mc, pt0, (0, 0)) == 0 for mc in minorsc)
 Cc = [[mc.get(q, Z) for q in quint] for mc in minorsc]
 _, rkc = rref(Cc, 6)
+assert len(rkc) == 5
 print(f"cubic planted control: 35 homogeneous minors vanish at t0: True; "
       f"minor rank 6 -> {len(rkc)}: True")
-assert len(rkc) == 5
 
 # 6. end-to-end residual check (not tautological): plug numeric (t,s) into the constructed
 #    A1,B2,A0,B1 and evaluate the ORIGINAL weight -3 and -2 bracket equations directly from the

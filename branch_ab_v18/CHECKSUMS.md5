@@ -1,5 +1,5 @@
 72379baefc36faa40de9ebfb8e8efd9f  ./BUILD_STATUS.md
-ae577440bcea3c25c45efa88f54de81d  ./CHANGES_v18.md
+853976b262ae6c6aadd70cd847d0eccc  ./CHANGES_v18.md
 7547f76b36a35b1a3a57df99c248d0fa  ./correspondence_guide/CORRESPONDENCE_GUIDE.md
 8d0f21f26062c6a846cfb5ba45e72392  ./figures/fig1_newton_polygons.png
 3b55143e65acaec806b763a4dfb13ae8  ./figures/fig2_layer_descent.png
@@ -205,13 +205,14 @@ a0247668e8bca587be42b91c8ece0abd  ./logs/regeneration_check.log
 55994012dc06b7027659f2128170ee85  ./logs/regeneration_check_v17.log
 5791d9ca17951c908c06c603d1ea770d  ./logs/run_all_first_pass.log
 6d71c9783a0157730e829371c0daf9c2  ./logs/run_all_with_chart.log
+ae7919e92612613726107898c855a292  ./logs/v18_scripts.log
 7ba28b90062c6861c4308d854af97639  ./logs/verify_from_scratch.log
 9dbb87071d8491159fce3213a7563300  ./logs/verify_with_classification.log
 8ff3da287ac89b9a3e11ea5df8f94f52  ./paper/branch_ab_elimination_v3.aux
-08da3fa2cd132cfda5caf9ed081020a3  ./paper/branch_ab_elimination_v3.log
+47d75e5f845a0d9f9e1afc85fae04f2b  ./paper/branch_ab_elimination_v3.log
 cce81092ec416fe02d14c517bbab1bcf  ./paper/branch_ab_elimination_v3.out
-61bb1255b36bb6de649ac29ecfe4db83  ./paper/branch_ab_elimination_v3.pdf
-8d665de3fb1d7dd9f52010d36f927e1e  ./paper/branch_ab_elimination_v3.tex
+63c5c0f6553ea19383014a9e4157b5e1  ./paper/branch_ab_elimination_v3.pdf
+74f34d115a99fef4b3760084fda82552  ./paper/branch_ab_elimination_v3.tex
 4e3856be405a82931548d7af0e3aacc1  ./paper/branch_ab_elimination_v3.toc
 8d0f21f26062c6a846cfb5ba45e72392  ./paper/figures/fig1_newton_polygons.png
 3b55143e65acaec806b763a4dfb13ae8  ./paper/figures/fig2_layer_descent.png
@@ -227,7 +228,7 @@ cbea8e3bc7b006de4ba60aa50955c136  ./scripts/belyi_counts_m357.py
 23f2d97609d9aebbe4b961dab7015ac5  ./scripts/e5_exact_counts_m35.py
 d1a5b7bf2f90c07e06887c3dd214d301  ./scripts/e5_m7.ms
 db29417fd92b3f1131491bf236386757  ./scripts/e5_m7.out
-d477ccae1fbf50696648df873c0369e5  ./scripts/exact_obstruction_K5.py
+a91ce1837c3cf3a25232ed067a2ce91d  ./scripts/exact_obstruction_K5.py
 3720b54e28f90e7bf7ee48a9bf1ce0a4  ./scripts/exact_ranks_K5.py
 08857046e6db284f6022bfcc11863136  ./scripts/gen_listings_v10.py
 95c1558f72665c1ec48137ab60915872  ./scripts/gen_listings_v9.py

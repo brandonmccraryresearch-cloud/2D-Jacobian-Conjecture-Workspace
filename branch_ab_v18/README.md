@@ -44,9 +44,9 @@ planar Jacobian conjecture.
 | `figures/` | Paper figures |
 | `logs/` | Build, axiom, control, regeneration, saturation logs |
 | `correspondence_guide/` | Correspondence guide mapping proof elements to their Lean formalization |
-| `audits/` | Independent review documents: the HLRE v5.0 audit plus its errata |
+| `audits/` | The HLRE v5.0 audit (an external review, filed unchanged) and `HLRE_v5_audit_ERRATA.md`, which corrects its factual errors (the errata is a response, not an independent review) |
 | `BUILD_STATUS.md` | Full build and verification record |
-| `CHECKSUMS.md5` / `CHECKSUMS.sha256` | Checksums of the 233 shipped bundle files (excludes this README, `.gitignore`, and `audits/`, which were added for publication) |
+| `CHECKSUMS.md5` / `CHECKSUMS.sha256` | Checksums of the 236 shipped bundle files (excludes this README, `.gitignore`, and `audits/`, which were added for publication) |
 
 ## Reproduction
 
@@ -54,7 +54,7 @@ planar Jacobian conjecture.
 cd lean
 lake exe cache get                              # fetch Mathlib oleans
 LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh  # full build + 44-theorem axiom audit
-CONTROLS_JOBS=1 bash controls.sh                  # 14/14 controls behaved as expected (3 positive ACCEPT + 11 perturbed REJECT)
+CONTROLS_JOBS=1 bash controls.sh                  # 14/14 as expected: 3 unmodified ACCEPT, 9 perturbed REJECT (expected Lean error), 2 sorry copies flagged
 bash certgen/check_regeneration.sh                # byte-identical regeneration
 ```
 

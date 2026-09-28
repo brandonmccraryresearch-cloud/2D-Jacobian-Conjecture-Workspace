@@ -1,0 +1,26 @@
+=== e5_exact_counts_m35.py ===
+m=3: vdim=3 (expect 3), eliminant degree 3, proportional to stated: True, irreducible: True, separable: True => EXACT count 3: True
+m=5: vdim=10 (expect 10), eliminant degree 10, proportional to stated: True, irreducible: True, separable: True => EXACT count 10: True
+ALL CHECKS PASS
+exit=0
+
+=== exact_obstruction_K5.py ===
+E4: 18x19, rank 17, kernel 2 (exact, char 0); kernel residuals zero
+E3: 19x20, rank 18, kernel 2
+E3 solvable for every t in characteristic 0 (consistency of all three t-monomials checked exactly); residuals M3 x + K = 0
+E2: 19x12, rank 12, left nullity 7
+7 conditions: b_i cubic, M_i and L_i linear in t (exact) -- matches the paper's Lemma 8.2 shape
+35 minors: rank of 35x6 coefficient matrix over K5 = 6  (6 means they span ALL binary quintics)
+planted control at (t,s)=(4, 9),(2, 6): 7 conditions vanish at planted point: True; 35 planted minors vanish at t0: True; condition-matrix rank 3 -> 2: True; planted E2 directly solvable: True
+cubic planted control: 35 homogeneous minors vanish at t0: True; minor rank 6 -> 5: True
+(t,s)=(2, 3),(5, 7): nonvanishing weight -3 eqs: 0, weight -2 eqs: 0;  E2 inhomogeneity symbolic==direct: True
+(t,s)=(-1, 4),(0, 11): nonvanishing weight -3 eqs: 0, weight -2 eqs: 0;  E2 inhomogeneity symbolic==direct: True
+exit=0
+
+=== exact_ranks_K5.py ===
+unknown counts: E4 19  E3 20  E2 12
+E4: 18 x 19 over K5 (char 0, exact): rank 17
+E3: 19 x 20 over K5 (char 0, exact): rank 18
+E2: 19 x 12 over K5 (char 0, exact): rank 12
+E3 solvable for every t in characteristic 0: left null vector kills K(t) identically: True
+exit=0
