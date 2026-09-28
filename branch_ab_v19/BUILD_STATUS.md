@@ -17,13 +17,15 @@ with the artifact commit's hash and recompiles the PDF.
 ### Lean build record (v19, 2026-09-28)
 
 The `lean/` sources are byte-identical to v18 (`diff -r` clean), whose
-formalization was independently built in the cloud. A local `lake build`
-(Lean 4.34.0, prebuilt Mathlib) completes all ChartProof modules
-(`Reflect`, `Stage1`, `Defs` verified building); the full build is
-in progress, with `Jacobian/Descent/Span/span_t1.lean` and `span_t2.lean`
-(the 35-minor span certificates with thousand-digit coefficients) taking
-extended elaboration time on this machine. These modules are unchanged
-from the cloud-verified v18.
+formalization was independently built in the cloud. The v19-specific
+artifact and certificate checks (240/240 checksums, 111/111 identities,
+K5 obstruction, planted controls) were rerun separately and all pass.
+A local `lake build` (Lean 4.34.0, prebuilt Mathlib) completes all
+ChartProof modules (`Reflect`, `Stage1`, `Defs` verified building); the
+full build is in progress, with `Jacobian/Descent/Span/span_t1.lean` and
+`span_t2.lean` (the 35-minor span certificates with thousand-digit
+coefficients) taking extended elaboration time on this machine. These
+modules are unchanged from the cloud-verified v18.
 
 # Lean Build Status (v18)
 

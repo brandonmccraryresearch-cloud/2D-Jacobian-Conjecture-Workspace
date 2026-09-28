@@ -1,4 +1,4 @@
-2b21db753e88bf0851be6af5894b35fb  ./BUILD_STATUS.md
+ec58cf27b2786b2e6cdf021ee6bd011e  ./BUILD_STATUS.md
 80e2a9e37fbc55461fa3d5d49616fc44  ./CHANGES_v18.md
 beffed728681fc0fef15b314e2767134  ./CHANGES_v19.md
 7547f76b36a35b1a3a57df99c248d0fa  ./correspondence_guide/CORRESPONDENCE_GUIDE.md
@@ -215,7 +215,7 @@ e01d756eab4192dfa5168ac83be6837e  ./paper/branch_ab_elimination_v3.aux
 c4fa48d925b87764676dba05b6cf3376  ./paper/branch_ab_elimination_v3.log
 a3e97f889aebd1d8cb9efbfe2276a064  ./paper/branch_ab_elimination_v3.out
 6cec551dda0d1e65effcdd2374b94c1a  ./paper/branch_ab_elimination_v3.pdf
-52141c4c0379d08d388aaa3f0bffea32  ./paper/branch_ab_elimination_v3.tex
+c664550f17e359a46c1be80f821d5eda  ./paper/branch_ab_elimination_v3.tex
 5b83257a2a153c4c5c245e48a17e1c81  ./paper/branch_ab_elimination_v3.toc
 8d0f21f26062c6a846cfb5ba45e72392  ./paper/figures/fig1_newton_polygons.png
 3b55143e65acaec806b763a4dfb13ae8  ./paper/figures/fig2_layer_descent.png
