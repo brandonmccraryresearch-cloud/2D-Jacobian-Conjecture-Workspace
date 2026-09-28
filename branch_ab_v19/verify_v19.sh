@@ -13,8 +13,9 @@ run() {
   echo "exit=$rc"
   if [ "$rc" -eq 0 ]; then pass=$((pass+1)); else fail=$((fail+1)); fi
 }
-PY=python3
-command -v "$PY" >/dev/null || { echo "python3 not found"; exit 1; }
+PY="${PYTHON:-python3}"
+command -v "$PY" >/dev/null || { echo "$PY not found (set PYTHON to choose interpreter)"; exit 1; }
+$PY -c "import flint" 2>/dev/null || { echo "python-flint not importable by $PY (needed for exact K5 scripts)"; exit 1; }
 
 echo "=== 1. checksum verification ==="
 run md5sum -c CHECKSUMS.md5
@@ -69,7 +70,7 @@ TMPD=$(mktemp -d)
 cp "$ROOT/paper/branch_ab_elimination_v3.tex" "$TMPD/" && cp -r "$ROOT/paper/figures" "$TMPD/"
 cd "$TMPD" || exit 1
 for i in 1 2 3; do run xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex; done
-PAGES=$(pdfinfo branch_ab_elimination_v3.pdf 2>/dev/null | grep Pages | awk '{print $2}')
+PAGES=$(grep -o '([0-9]* pages' branch_ab_elimination_v3.log | tail -1 | grep -o '[0-9]*')
 echo "### compiled pages: $PAGES (expect 31)"
 if [ "$PAGES" = "31" ]; then echo "PAGECOUNT OK"; pass=$((pass+1)); else echo "PAGECOUNT MISMATCH"; fail=$((fail+1)); fi
 cd "$ROOT" || exit 1
