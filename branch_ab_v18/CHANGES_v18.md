@@ -49,5 +49,13 @@ This tree is `branch_ab_v18/`; the published v17 tree is preserved unchanged as
   232-file v18 bundle subset.
 
 ## Verification (from clean extraction of branch_ab_final_v18_0.zip)
-- 232/232 checksums pass; all three scripts exit 0; 111/111 identities pass;
+- 235/235 checksums pass; all three scripts exit 0; 111/111 identities pass;
   paper PDF contains the new proof text.
+
+## 6. Title block — source link (2026-09-28)
+- `branch_ab_v18/paper/branch_ab_elimination_v3.tex` (and recompiled `.pdf`)
+- The title-page "Computation, Lean and LaTeX Source:" label is now black;
+  the link target is the GitHub repository
+  `https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace`
+  (replacing the Google Drive link), displayed in magenta. Verified in the
+  compiled PDF: label black, link magenta, link target the repo URL.
