@@ -31,19 +31,19 @@ planar Jacobian conjecture.
 | `scripts/` | Audit and analysis scripts |
 | `figures/` | Paper figures |
 | `logs/` | Build, axiom, control, regeneration, saturation logs |
-| `correspondence_guide/` | Referee correspondence guide |
-| `audits/` | Independent review documents (incl. HLRE v5.0 audit) |
+| `correspondence_guide/` | Correspondence guide mapping proof elements to their Lean formalization |
+| `audits/` | Independent review documents: the HLRE v5.0 audit plus its errata |
 | `BUILD_STATUS.md` | Full build and verification record |
-| `CHECKSUMS.md5` / `CHECKSUMS.sha256` | Checksums of every file |
+| `CHECKSUMS.md5` / `CHECKSUMS.sha256` | Checksums of the 233 shipped bundle files (excludes this README, `.gitignore`, and `audits/`, which were added for publication) |
 
 ## Reproduction
 
 ```bash
 cd lean
-lake exe cache get        # fetch Mathlib oleans
-LEAN_NUM_THREADS=1 ./verify_branch_ab_lean.sh   # full build + 44-theorem axiom audit
-CONTROLS_JOBS=1 ./controls.sh                   # 14/14 controls (kernel-verdict rejections)
-certgen/check_regeneration.sh                   # byte-identical regeneration
+lake exe cache get                              # fetch Mathlib oleans
+LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh  # full build + 44-theorem axiom audit
+CONTROLS_JOBS=1 bash controls.sh                  # 14/14 controls behaved as expected (3 positive ACCEPT + 11 perturbed REJECT)
+bash certgen/check_regeneration.sh                # byte-identical regeneration
 ```
 
 Quick checks (no Lean needed):
@@ -57,8 +57,8 @@ python3 lean/certgen/chartproof/saturation_check.py     # saturation over Q (nee
 
 - The formalized statement is the m = 7 chart classification; the degree-35
   eliminant, the m = 3 and m = 5 cases, the a₈,₁₆ = 0 computation, and GGHV
-  Proposition 4.3 are outside the Lean formalization (see `CLASSIFICATION_STATUS.md`
-  and paper §1.3 "Logical status").
+  Proposition 4.3 are outside the Lean formalization (see
+  `lean/CLASSIFICATION_STATUS.md` and paper §1.3 "Logical status").
 - Nothing here claims resolution of the (8,28) case or the Jacobian conjecture.
 
 ## Status
