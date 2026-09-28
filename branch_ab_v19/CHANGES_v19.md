@@ -133,3 +133,7 @@ reproducibility appendix names the artifact commit.
 - Flint availability checked at start with clear error message.
 - Page-count read from xelatex log via grep (no pdfinfo/poppler dependency).
 - Removed committed `__pycache__/` files (were force-added despite .gitignore).
+
+## 12. Lemma 6.6 polish + PDF rebuild (this commit)
+- Lemma 6.6: "its five specializations at the five roots of R (over a splitting field of R)".
+- PDF rebuilt with permanent TeX Live installation (~/texlive): 31 pages, 0 errors, 0 undefined references.

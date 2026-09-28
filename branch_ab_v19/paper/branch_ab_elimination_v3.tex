@@ -606,7 +606,7 @@ This fixes the torus without a seventh root, as in \S\ref{sec:normalization}, an
 \end{proof}
 
 \begin{lemma}[Characteristic-zero transfer]\label{lem:chart-transfer}
-Let $F$ be a field of characteristic~$0$. Every $F$-valued solution of the normalized $m=7$ chart system is obtained by specializing the $K_5$-point at a root $w\in F$ of $R$; its five specializations at the five roots of $R$ are the five solutions.
+Let $F$ be a field of characteristic~$0$. Every $F$-valued solution of the normalized $m=7$ chart system is obtained by specializing the $K_5$-point at a root $w\in F$ of $R$; its five specializations at the five roots of $R$ (over a splitting field of $R$) are the five solutions.
 \end{lemma}
 \begin{proof}
 Steps~1--5 are proved algebraically over $\mathbb{Q}$ and hence hold over every characteristic-zero field by base change. The Lean formalization quantifies over all $L$ with \texttt{CharZero}. The five solutions are the $K_5$-conjugates $(P_j(w),Q_k(w))$ with $R(w)=0$.
