@@ -1,0 +1,17 @@
+chart_cas.log -- external (Singular 4.x) computations for the chart system of ChartClassification
+(this session; wall-clock times on a 4-core container with other jobs running).
+
+MOD p = 32003  (evidence only; see CLASSIFICATION_STATUS.md for why a mod-p count is not a proof)
+  certgen/chart_a1_0_p.sing   a1 = 0 (no torus equation):  time 5s    dim -1  vdim 0  #G 1   -> unit ideal, no solutions
+  certgen/chart_a1_1_p.sing   a1 = 1 (no torus equation):  time 264s  dim 0   vdim 5  #G 22  -> 5 solutions with multiplicity
+  certgen/chart_system_p.sing a7^3 b0^2 = 1 (the Lean chart): std did not finish in 34 min (stopped)
+  (the Lean chart's solutions = torus images of the a1 = 1 solutions + the a1 = 0 solutions)
+
+OVER Q  (the exact check that `chart_cas.py verify` / `verify_split` would consume)
+  chart_system_Q.sing (a7^3 b0^2 = 1):         stopped unfinished after 34 min
+  a1 = 1 system over Q (b10 = 1 formulation):  see the end of this file
+  a1 = 0 system over Q (b10 = 1 formulation):  see the end of this file
+  earlier formulation a0 = b0 = 1, chart a1 = 1 with z*a7 = 1: std over Q did not finish in 30 min
+
+Status of the Q runs at packaging time:
+  top1Q (a1=1 over Q) and top0Q (a1=0 over Q): still running, unfinished at packaging.

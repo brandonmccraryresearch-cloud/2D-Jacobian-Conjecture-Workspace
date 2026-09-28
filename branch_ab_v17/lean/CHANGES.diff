@@ -1,0 +1,1330 @@
+# CHANGES.diff -- hand-written files vs the original branch_ab_lean_proofs.zip (MD5 808d565b...).
+# New generated files (not diffed; certgen/regenerate.sh reproduces them byte-for-byte):
+#   Jacobian/Descent/** (84 files), Jacobian/BranchAbFinal.lean, Jacobian/BranchAbSharp.lean
+# New hand-written files: Jacobian/BranchAbRefereeChecks.lean, BranchAbLayers.lean, BranchAbTorus.lean, BranchAbNewton.lean,
+#   BranchAbClassification.lean, certgen/*.py, certgen/*.gp, certgen/*.sh, setup.sh, run_all.sh, controls.sh, README.md
+# New generated file: Jacobian/BranchAbMain.lean (gen_main.py)
+
+diff -ruN -x .lake -x certgen -x Descent -x BranchAbFinal.lean -x BranchAbSharp.lean -x CHANGES.diff /tmp/origtree/BranchAbObstruction_CORRESPONDENCE.md jacobian_lean/BranchAbObstruction_CORRESPONDENCE.md
+--- /tmp/origtree/BranchAbObstruction_CORRESPONDENCE.md	2026-09-26 14:58:33.395024154 +0000
++++ jacobian_lean/BranchAbObstruction_CORRESPONDENCE.md	2026-09-26 17:44:12.256562018 +0000
+@@ -1,182 +1,106 @@
+ # Correspondence guide: Lean 4 proofs ↔ paper ↔ scripts
+ 
+-File: `~/workspace/jacobian_lean/Jacobian/BranchAbObstruction.lean`
+-(also re-exported through `~/workspace/jacobian_lean/Jacobian.lean`).
+-All three theorems are written with no `sorry`/`admit`/user `axiom`;
+-compilation under Lean 4 v4.34.0 + Mathlib v4.34.0 is running
+-(`lake build`); the clean-build claim below will be confirmed from the
+-build log before delivery.
+-
+-The paper is `branch_ab_elimination_v3.tex` (v17, PDF md5
+-`0ca4eef5a5dd232735c7f0d4e2b18631`), conditional throughout on
+-GGHV Proposition 4.3.  The scripts live in
+-`~/workspace/jc2_papers/branch_ab_cert/tier2/`.
+-
+----
+-
+-## 1. `t_zero_case` — the §8.3 final step (referee's sketch, sorry closed)
+-
+-```lean
+-theorem t_zero_case {K : Type*} [Field K] [CharZero K]
+-    (A₂ B₀ : K[X]) (hA : A₂ ≠ 0)
+-    (hE2 : (2 : K[X]) * A₂ * derivative B₀ = 0)
+-    (hvertex : B₀.coeff 12 ≠ 0) : False
+-```
+-
+-**Paper:** Corollary `cor:t0` ("$t=0$ impossible", §8 "The final
+-obstruction", subsection "The case $t=0$").  The chain E4 homogeneity →
+-$(A_1,B_2) \equiv (0,0)$ → E3 $K(0) = 0$ → the E2 compatibility equation
+-reduces strictly to $2A_2B_0' = 0$.  Since $A_2 = u\alpha \neq 0$,
+-$B_0' = 0$, so $B_0$ is constant — contradicting the vertex
+-$(12,24) \in N(Q)$ (source-gated at GGHV v1 lines 495 and 600), which
+-requires a nonzero $u^{12}$ coefficient in $B_0$.
+-
+-**What the Lean proof does, line by line:**
+-- `h2`: $2 \neq 0$ in $K[X]$, via `C_ne_zero.mpr two_ne_zero` pushed
+-  through `map_ofNat` (needs `CharZero K` for `two_ne_zero`).
+-- `hd`: from $(2) \cdot A_2 \cdot B_0' = 0$, reassociated and cancelled
+-  the two nonzero factors $2$ and $A_2$ in the integral domain $K[X]$,
+-  deduce $B_0' = 0$.
+-- `h11`: the coefficient of $u^{11}$ in $B_0'$ is $0$.
+-- `rw [coeff_derivative]`: `coeff_derivative` is the symbolic identity
+-  $(B_0')_{11} = B_0{}_{12}\cdot(\uparrow\!11 + 1)$ — this is the exact
+-  symbolic counterpart of the script's coefficient bookkeeping.  Note
+-  Lean's cast shape: the factor is `↑11 + 1`, *not* `↑(11 + 1)`.
+-- `hnorm`: the cast normalisation `↑11 + 1 = ↑12` (by `norm_num`) —
+-  **this, together with `hcast`, is the closed sorry** (the referee's
+-  "cast normalisation only" gap).
+-- `hcast`: in characteristic zero, $\uparrow\!12 \neq 0$ in $K$, via
+-  `Nat.cast_ne_zero`.  `mul_eq_zero` on
+-  $B_0{}_{12}\cdot\uparrow\!12 = 0$ then forces $B_0{}_{12} = 0$,
+-  contradicting `hvertex`.
+-
+-**Scripts:**
+-- `exact_obstruction_K5.py` — the $E_4 \to E_3 \to E_2$ pipeline; the
+-  $t = 0$ argument itself is characteristic-free (Lemma 9.1(iv), last
+-  sentence: "The $t=0$ case is excluded by the vertex $(12,24)$
+-  argument, which is characteristic-free").
+-- The planted end-to-end check in `exact_obstruction_K5.py` (§5,
+-  `evalp`): all 35 planted minors vanish at the planted $(t_0, s_0)$,
+-  i.e. the pipeline detects solutions — the non-tautological control
+-  for this whole section.
+-
+----
+-
+-## 2. `minor_obstruction` — the 35-minor spanning argument (new proof)
+-
+-```lean
+-theorem minor_obstruction {K : Type*} [Field K]
+-    (minor : Fin 35 → MvPolynomial (Fin 2) K)
+-    (hspan : ∀ k : Fin 6, ∃ c : Fin 35 → K,
+-      MvPolynomial.X (0 : Fin 2) ^ (5 - k.val)
+-        * MvPolynomial.X (1 : Fin 2) ^ k.val
+-        = ∑ j, MvPolynomial.C (c j) * minor j)
+-    (t : Fin 2 → K)
+-    (hzero : ∀ j, MvPolynomial.eval t (minor j) = 0) :
+-    t = 0
+-```
++Project: `~/workspace/jacobian_lean` (library `Jacobian`). Toolchain: Lean 4.34.0 (commit `293d5d0c`),
++Mathlib tag `v4.34.0` = `5ed2965256430c3649e86755f9576b54eca72435` (pinned in `lake-manifest.json`).
+ 
+-**Paper:** Theorem `thm:no-direction` ("No nonzero direction", §8).
+-The seven $E_2$ conditions are affine-linear in $(s_1,s_2)$; a solution
+-needs all $\binom{7}{3} = 35$ minors of the $7 \times 3$ matrix
+-$[b(t) \mid M(t) \mid L(t)]$ to vanish.  Each minor is a homogeneous
+-binary quintic in $(t_1,t_2)$; the $35 \times 6$ coefficient matrix has
+-rank 6 over $K_5$, so the minors span all binary quintics and their
+-only common zero in $\overline{K_5}^2$ is $(0,0)$.
+-
+-**What the Lean proof does:**
+-- `hspan` is exactly the rank-6 claim: each of the 6 monomials
+-  $t_1^{5-k}t_2^k$ ($k = 0,\dots,5$) is a $K$-linear combination of the
+-  35 minors.  (The script proves the stronger matrix-rank statement;
+-  the Lean proof consumes its consequence.)
+-- `hzero`: every minor vanishes at the true $(t_1,t_2)$ — this is
+-  equation `eq:minors` evaluated at a putative solution.
+-- `eval_eq`: evaluating a spanning relation at $t$ kills every minor,
+-  so each monomial value $(t_0)^{5-k}(t_1)^k = 0$.
+-- Specialising to $k = 0$ gives $t_1^5 = 0$; to $k = 5$ gives
+-  $t_2^5 = 0$; `pow_eq_zero_iff` (field, no zero divisors) yields
+-  $t_1 = t_2 = 0$, i.e. `t = 0`.
+-
+-**Scripts (exact characteristic-0 route):**
+-- `exact_obstruction_K5.py`, lines 175–187:
+-  - `det3(rows)` — the $3 \times 3$ determinant;
+-  - `minors = [det3([BML[i], BML[j], BML[k]]) for i, j, k in
+-    itertools.combinations(range(7), 3)]` — the 35 minors, each a
+-    binary quintic (`assert all(all(k in quint for k in m) ...)` checks
+-    homogeneity of degree 5);
+-  - `C = [[m.get(q, Z) for q in quint] for m in minors]` — the
+-    $35 \times 6$ coefficient matrix;
+-  - the rank computation printing `rank of 35x6 coefficient matrix
+-    over K5 = 6 (6 means they span ALL binary quintics)`.
+-  - §5 (`evalp`): end-to-end residuals of the original weight $-3$
+-    and $-2$ bracket equations vanish exactly — the non-tautological
+-    check that the pipeline is faithful.
+-- `exact_ranks_K5.py` — the exact ranks $17, 18, 12$ over $K_5$
+-  (Proposition 7.1; the $E_2$ rank 12 is what makes the left nullspace
+-  $19 - 12 = 7$-dimensional, producing exactly the seven conditions).
+-- Cross-checks (not the exact route): `C5_E2_obstruction_corrected.py`
+-  (SymPy Gröbner basis over $\mathbb{F}_{101}$); the remainder-based
+-  certificate at $p = 10^9+9$ and $p = 10^9+21$ (Remark
+-  `rem:two-routes`).
+-
+----
+-
+-## 3. `only_zero_transport` — Lemma 9.1(v), corrected form (referee's sketch)
+-
+-```lean
+-theorem only_zero_transport {K : Type*} [Field K]
+-    (G : (Fin 2 → K) ≃ₗ[K] (Fin 2 → K)) :
+-    G '' ({0} : Set (Fin 2 → K)) = {0}
+-```
+-
+-**Paper:** Lemma `lem:lifting`, item (v) addendum.  The exact
+-computation is done at the $K_5$-point; the chart points are reached by
+-the rescaling $u \mapsto \theta u$ with $\theta^7 = 1/a_{8,14}$ at the
+-$K_5$-point.  This acts on $(t_1,t_2)$ by *some* $G \in \mathrm{GL}_2$
+-(in the pivot-free basis, $G = \mathrm{diag}(\theta^9,\theta^{10})$ —
+-the false "common scalar" wording from Round 5 was removed in v17).
+-The minors transform by nonzero row factors and by
+-$\mathrm{Sym}^5 G$, so rank 6, and hence the conclusion $t = 0$, is
+-invariant; Galois conjugation over $K_5(\theta)$ reaches all 35
+-points.
+-
+-**What the Lean proof does:** the image of $\{0\}$ under any linear
+-automorphism is $\{0\}$ — i.e. "only $t = 0$" is a statement about the
+-zero vector, which no $G \in \mathrm{GL}_2$ can move.  This is why the
+-corrected lemma no longer needs the (false) common-scalar claim: the
+-transport only ever has to preserve the *conclusion* $t = 0$, and every
+-linear automorphism does.
+-
+-**Scripts:** `compare_V.gp` (the minpoly of $\alpha_6^7$ from the
+-$K_5$-point equals $V$, independently deriving $\mathcal{W}$);
+-`belyi_counts_m357.py` (the 1/2/5 cover counts — the 35 points forming
+-a single Galois orbit, which is what item (v)'s transitivity claim
+-rests on).
+-
+----
+-
+-## What is *not* formalized (and why)
+-
+-- **The $E_1$–$E_5$ layer reduction** (Proposition `prop:layers`):
+-  symbolic polynomial identity in 72 unknowns, verified by
+-  `C1_layer_reduction.sing`.  Formalizing it would mean re-implementing
+-  the $u = xy^2$ substitution and the five one-variable identities in
+-  Lean — possible but large; the Singular script *is* the certificate.
+-- **The Belyi-map top-layer classification** (Proposition 6.1,
+-  `belyi_counts_m357.py`): Riemann existence + Frobenius counting.
+-  Dessin enumeration is outside Mathlib's current library.
+-- **GGHV Proposition 4.3 itself**: an explicit assumption of the whole
+-  paper (source-gated, §2); not a computation.
+-- **Tier-1 blind replication** (`tier1_blind_gghv43_nf2/`): an
+-  independent *computation*, not a proof step — nothing to formalize.
++**Build status (confirmed from a clean extraction).** `lake build` succeeds.
++`verify_branch_ab_lean.sh` prints *ALL CHECKS PASSED*. All 24 listed theorems depend only on
++`propext`, `Classical.choice` and `Quot.sound`: there is no `sorryAx` and there are no user axioms.
++
++**Resources.** The exact K₅ descent (`Jacobian/Descent/**`, 84 modules) takes about 12 minutes on
++4 cores. Each build job needs about 2 GB of RAM (the peak with 4 parallel jobs was 7.5 GB), and the
++build writes about 2.5 GB of `.olean` files. On a machine with less memory, build with fewer
++parallel jobs.
++
++## What the Lean code now proves
++
++The end-to-end theorem is `BranchAb.no_completion_K5` (`Jacobian/BranchAbFinal.lean`). For every
++field `L` of characteristic 0 and every root `w ∈ L` of `R = w⁵ − w⁴ + 3w³ + 3w² + 26`:
++
++* take `P = p₀ + p₁ + p₂` and `Q = q₀ + q₁ + q₂ + q₃`, with `yᵃ pₐ = Aₐ(x y²)` and `yᵇ q_b = B_b(x y²)`
++  (the layer decomposition with `u = x y²`);
++* assume `J(P, Q) = P_x Q_y − P_y Q_x = λ x²`;
++* assume the layer coefficients lie on the lattice points of `N(P) = conv{(0,0),(1,0),(8,14),(8,16)}` and
++  `N(Q) = conv{(0,0),(2,1),(12,21),(12,24)}`;
++* assume the top layer is any torus image of the K₅ point: `A₂.coeff i = ρ εⁱ⁻¹ Tᵢ(w)` and
++  `B₃.coeff k = σ εᵏ⁻² Tₖ(w)` with `ρ σ ε ≠ 0`.
++
++Then `b₁₂,₂₄ = B₀.coeff 12 = 0`, which contradicts the vertex `(12, 24)`.
++
++Quantifying over all roots `w` covers the five Galois conjugates. Quantifying over `(ρ, σ, ε)` covers
++every normalization, including the paper's 35 chart points `a₈,₁₄ = 1`, since `L` may be `ℂ`.
++`BranchAb.layers_K5_sharp` shows the statement is not vacuous. The lower-edge partial solution
++(`A₀ = B₀ = 1`, `A₁ = B₁ = B₂ = 0`) satisfies every other hypothesis, and it has `b₁₂,₂₄ = 0`.
++
++## Modules
++
++| File | Content | Paper |
++|---|---|---|
++| `BranchAbLayers.lean` | `jac`, `evH` (`A ↦ A(x y²)`), `layerTerm a b A B = a A B' − b A' B`; `layer_bracket` (`y^{a+b+1} J(p, q) = y² (a A B' − b A' B)(x y²)`, from the derivation rules only); `coeff_yev` and `layers_eq_zero` (the layers have disjoint supports); `layers_of_jac` (`J(P, Q) = λ x²` ⇒ E5, …, E1); `coeff_layerTerm` (the scalar bracket equations) | §4, Prop. `prop:layers` |
++| `BranchAbTorus.lean` | `sc κ F = F(κ u)`; `coeff_sc`; `layerTerm_sc` (every layer term scales by the same constant); `layers_transport` (E4, E3, E2 are preserved along the torus) | Lemma 9.1(v) |
++| `Descent/**` (generated) | 84 modules, one per certificate step: E4 pivots (17), E3 reduced equations (19), E3 pivots (18), E2 reduced equations (19), the seven E2 conditions (7), t = 0 (1), span (2), and `Main.descent_K5` | §7–§8, Lemma 9.1(iii)–(iv) |
++| `BranchAbFinal.lean` (generated) | `layers_K5` (layer identities with the K₅ top layer ⇒ `b₁₂,₂₄ = 0`, through `coeff_layerTerm` and `descent_K5`); `no_completion_K5` (the end-to-end statement above) | Thm. 1.1 for the K₅ orbit |
++| `BranchAbSharp.lean` (generated) | `top_layer_E5` (the stated top layer solves E5: `2 A₂ B₃' − 3 A₂' B₃ = x²`, a check on the hard-coded values, since the descent itself never uses E5); `layers_K5_sharp` (non-vacuity) | §6 |
++| `BranchAbObstruction.lean` | `t_zero_case`, `minor_obstruction`, `only_zero_transport` (the original three theorems, now subsumed) | §8.3, §8.4, 9.1(v) |
++| `BranchAbRefereeChecks.lean` | `t_zero_case_char`, `t_zero_case_fails_char3`, `minor_vanish`, `eval_minorPoly`, `no_nonzero_direction` | §8.3, §8.4 |
++| `Basic.lean` | Valuative properness. Not used by the branch-(a,b) proof. | — |
++
++## The exact K₅ certificate (`certgen/`)
++
++The top layer is the exactly verified point of `e5_exact_K5.json` (normalization
++`a₁,₀ = b₂,₁ = a₂,₂ = 1`), moved along the torus by
++`e = (49w⁴ − 51w³ − 389w² + 879w + 2424)/128`. This cancels the prime ideals above 2, 431 and
++571063277 in the denominators and cuts the total coefficient size from about 936 to 89 digits.
++`no_completion_K5` quantifies over the whole orbit, so this choice does not affect the statement.
++
++| Step | Content | Lean |
++|---|---|---|
++| E₄ (18 × 19, rank 17) | every pivot unknown is a K₅-linear form in t = (b₁₁,₂₀, b₁₂,₂₂) | `Descent/E4/*` |
++| E₃ (19 × 20, rank 18) | the equations reduced mod R after substituting E₄; each pivot is a quadratic form in t plus a linear form in s = (b₁₁,₂₁, b₁₂,₂₃) | `Descent/E3red/*`, `Descent/E3/*` |
++| E₂ (19 × 12, rank 12) | the equations reduced after substitution; 7 left-null combinations give F_i = b_i(t) + s₁M_i(t) + s₂L_i(t) = 0 | `Descent/E2red/*`, `Descent/E2/F*` |
++| span | t₁⁵ = Σ G⁰_r F_r and t₂⁵ = Σ G¹_r F_r (the minors span all binary quintics) | `Descent/Span/*` |
++| t = 0 | b₁₂,₂₄ = Σ v_e E₂,e (a row of the left inverse of the E₂ operator) | `Descent/E2/T0` |
++
++Every step is a `linear_combination` with explicit K₅ multipliers, closed by `ring_nf` and the reduction
++`wᵏ ↦` a polynomial of degree ≤ 4 (from `R(w) = 0`). `certgen/regenerate.sh` rebuilds `cert.json`
++(every identity re-verified exactly in python-flint) and every generated Lean file. The output
++is byte-identical to the shipped files.
++
++**Independent check of the span step (PARI/GP, `certgen/span_check.gp`).**
++* F_i = b_i + s₁M_i + s₂L_i for all 7 rows.
++* All 35 minors det[b|M|L] are nonzero, with rank 6 over K₅.
++* t₁⁵ = Σ c₀·minor and t₂⁵ = Σ c₁·minor, using 6 selected minors.
++* The Lean multipliers G satisfy t₁⁵ = Σ G⁰F and t₂⁵ = Σ G¹F.
++* Control: a corrupted multiplier is rejected.
++
++**Negative controls on the Lean descent.**
++* Changing the last digit of a 13-digit numerator in the claimed value of an E₃ pivot makes that
++  lemma fail.
++* Changing one top-layer coefficient by 1/16 makes an E₄ lemma fail.
++
++## Characteristic
++
++`t_zero_case_char` needs only `2 ≠ 0` and `12 ≠ 0`, and `t_zero_case_fails_char3` is a counterexample
++in characteristic 3. So Lemma 9.1(iv)'s phrase "characteristic-free" should read "valid in every
++characteristic other than 2 and 3". The end-to-end theorem assumes `CharZero`.
++
++## What is still *not* formalized
++
++* **GGHV Proposition 4.3.** It is an explicit assumption of the whole paper (source-gated, §2).
++* **The classification of top layers** (Proposition 6.1, via the Riemann existence theorem and
++  Frobenius counting, `belyi_counts_m357.py`): that every solution of E5 with the vertex conditions
++  is a torus image of one of the five K₅ points. Mathlib has no dessins d'enfants or Riemann
++  existence theorem. `no_completion_K5` is therefore stated for top layers in the K₅ orbit, and
++  `top_layer_E5` checks that this orbit really consists of E5 solutions.
++* **Irreducibility of 𝒲 over ℚ** (Theorem 6.2(i)). The Lean statement no longer needs it: it
++  quantifies over every root `w` directly.
+ 
+ ## Reproducing
+ 
+ ```bash
+-cd ~/workspace/jacobian_lean
++cd jacobian_lean                      # or ~/workspace/jacobian_lean
+ export PATH="$HOME/.elan/bin:$PATH"
+-lake env lean Jacobian/BranchAbObstruction.lean && echo LEAN-OK
++lake exe cache get                    # prebuilt Mathlib for the pinned commit
++./verify_branch_ab_lean.sh            # build, sorry/axiom scan, #print axioms (24 theorems)
++certgen/regenerate.sh                 # optional: rebuild the certificate and the generated Lean files
+ ```
+-
+-`lake build` also builds the whole project (the file is imported from
+-`Jacobian.lean`).  No `sorry`, no `admit`, no `axiom` beyond Mathlib's.
+diff -ruN -x .lake -x certgen -x Descent -x BranchAbFinal.lean -x BranchAbSharp.lean -x CHANGES.diff /tmp/origtree/Jacobian/BranchAbLayers.lean jacobian_lean/Jacobian/BranchAbLayers.lean
+--- /tmp/origtree/Jacobian/BranchAbLayers.lean	1970-01-01 00:00:00.000000000 +0000
++++ jacobian_lean/Jacobian/BranchAbLayers.lean	2026-09-26 18:00:06.065122311 +0000
+@@ -0,0 +1,252 @@
++import Mathlib
++
++/-!
++# Branch (a), (b): the exact layer reduction
++
++With `u = x y²`, write `P = Σₐ y^{-a} Aₐ(u)` (`a = 0, 1, 2`) and `Q = Σ_b y^{-b} B_b(u)`
++(`b = 0, …, 3`).  Each piece `pₐ = y^{-a} Aₐ(u)` is a genuine polynomial, recorded by the
++hypothesis `y^a · pₐ = Aₐ(x y²)`.
++
++* `layer_bracket`: `y^{a+b+1} · J(p, q) = y² · (a A B' − b A' B)(x y²)`, from the derivation
++  rules for `∂ₓ` and `∂ᵧ` only.
++* `coeff_yev`: the coefficient of `xⁱ yⁿ` in `y^m · F(x y²)` is `F.coeff i` if `n = 2i + m`
++  and `0` otherwise, so the layers `y^k · F_k(x y²)` have disjoint supports.
++* `layers_of_jac`: `J(P, Q) = C λ · x²` forces the five layer identities E5, …, E1 in `K[u]`.
++* `coeff_layerTerm`: `(a A B' − b A' B)ₙ = Σ_{i ≤ n+1} (a (n+1−i) − b i) Aᵢ B_{n+1−i}`, the scalar
++  bracket equations (this is the monomial rule `[xⁱyʲ, xᵏyˡ] = (il − jk) x^{i+k−1} y^{j+l−1}`).
++-/
++
++open MvPolynomial
++
++noncomputable section
++
++namespace BranchAb
++
++variable {K : Type*} [Field K]
++
++/-- The Jacobian bracket `P_x Q_y − P_y Q_x`. -/
++def jac (P Q : MvPolynomial (Fin 2) K) : MvPolynomial (Fin 2) K :=
++  pderiv 0 P * pderiv 1 Q - pderiv 1 P * pderiv 0 Q
++
++/-- `u = x y²`. -/
++def uu : MvPolynomial (Fin 2) K := X 0 * X 1 ^ 2
++
++/-- `A ↦ A(x y²)`. -/
++def evH : Polynomial K →ₐ[K] MvPolynomial (Fin 2) K := Polynomial.aeval (uu (K := K))
++
++/-- The layer term `a A B' − b A' B`. -/
++def layerTerm (a b : ℕ) (A B : Polynomial K) : Polynomial K :=
++  (a : Polynomial K) * A * Polynomial.derivative B - (b : Polynomial K) * Polynomial.derivative A * B
++
++lemma jac_add_left (P P' Q : MvPolynomial (Fin 2) K) :
++    jac (P + P') Q = jac P Q + jac P' Q := by
++  simp only [jac, map_add]; ring
++
++lemma jac_add_right (P Q Q' : MvPolynomial (Fin 2) K) :
++    jac P (Q + Q') = jac P Q + jac P Q' := by
++  simp only [jac, map_add]; ring
++
++lemma pderiv0_uu : pderiv 0 (uu (K := K)) = X 1 ^ 2 := by
++  simp [uu, pderiv_X]
++
++lemma pderiv1_uu : pderiv 1 (uu (K := K)) = 2 * X 0 * X 1 := by
++  simp [uu, pderiv_X, Derivation.leibniz_pow]; ring
++
++lemma pderiv0_evH (A : Polynomial K) :
++    pderiv 0 (evH A) = evH (Polynomial.derivative A) * X 1 ^ 2 := by
++  show pderiv 0 (Polynomial.aeval uu A) = Polynomial.aeval uu (Polynomial.derivative A) * X 1 ^ 2
++  rw [Derivation.map_aeval, pderiv0_uu, smul_eq_mul]
++
++lemma pderiv1_evH (A : Polynomial K) :
++    pderiv 1 (evH A) = evH (Polynomial.derivative A) * (2 * X 0 * X 1) := by
++  show pderiv 1 (Polynomial.aeval uu A) = Polynomial.aeval uu (Polynomial.derivative A) * (2 * X 0 * X 1)
++  rw [Derivation.map_aeval, pderiv1_uu, smul_eq_mul]
++
++lemma X1_mul_pderiv1_X1_pow (a : ℕ) :
++    (X 1 : MvPolynomial (Fin 2) K) * pderiv 1 (X 1 ^ a) = (a : MvPolynomial (Fin 2) K) * X 1 ^ a := by
++  rcases a with _ | a
++  · simp
++  · rw [Derivation.leibniz_pow, pderiv_X_self, smul_eq_mul, nsmul_eq_mul, pow_succ]
++    push_cast; ring
++
++lemma pderiv0_X1_pow (a : ℕ) : pderiv 0 ((X 1 : MvPolynomial (Fin 2) K) ^ a) = 0 := by
++  rw [Derivation.leibniz_pow, pderiv_X_of_ne (by decide)]; simp
++
++/-- The per-layer bracket identity `y^{a+b+1} J(p, q) = y² (a A B' − b A' B)(x y²)`. -/
++theorem layer_bracket (a b : ℕ) (A B : Polynomial K) (p q : MvPolynomial (Fin 2) K)
++    (hp : X 1 ^ a * p = evH A) (hq : X 1 ^ b * q = evH B) :
++    X 1 ^ (a + b + 1) * jac p q = X 1 ^ 2 * evH (layerTerm a b A B) := by
++  have hx : ∀ (c : ℕ) (r : MvPolynomial (Fin 2) K) (C' : Polynomial K),
++      X 1 ^ c * r = evH C' → X 1 ^ c * pderiv 0 r = evH (Polynomial.derivative C') * X 1 ^ 2 := by
++    intro c r C' h
++    have := congrArg (pderiv 0) h
++    rw [Derivation.leibniz, pderiv0_X1_pow, smul_zero, add_zero, smul_eq_mul, pderiv0_evH] at this
++    exact this
++  have hy : ∀ (c : ℕ) (r : MvPolynomial (Fin 2) K) (C' : Polynomial K),
++      X 1 ^ c * r = evH C' →
++        X 1 ^ (c + 1) * pderiv 1 r =
++          2 * uu * evH (Polynomial.derivative C') - (c : MvPolynomial (Fin 2) K) * evH C' := by
++    intro c r C' h
++    have h1 := congrArg (fun s => X 1 * pderiv 1 s) h
++    simp only [Derivation.leibniz, smul_eq_mul, pderiv1_evH] at h1
++    have e := X1_mul_pderiv1_X1_pow (K := K) c
++    rw [← h, uu]
++    linear_combination h1 - r * e
++  have ha0 := hx a p A hp
++  have hb0 := hx b q B hq
++  have ha1 := hy a p A hp
++  have hb1 := hy b q B hq
++  have hev : evH (layerTerm a b A B) =
++      (a : MvPolynomial (Fin 2) K) * (evH A * evH (Polynomial.derivative B)) -
++        (b : MvPolynomial (Fin 2) K) * (evH (Polynomial.derivative A) * evH B) := by
++    simp only [layerTerm, map_sub, map_mul, map_natCast]
++    ring
++  rw [hev, jac]
++  linear_combination (X 1 ^ (b + 1) * pderiv 1 q) * ha0 +
++    (evH (Polynomial.derivative A) * X 1 ^ 2) * hb1 -
++    (X 1 ^ b * pderiv 0 q) * ha1 -
++    (2 * uu * evH (Polynomial.derivative A) - (a : MvPolynomial (Fin 2) K) * evH A) * hb0
++
++lemma X1_pow_mul_C_mul_uu_pow (m j : ℕ) (c : K) :
++    (X 1 : MvPolynomial (Fin 2) K) ^ m * (C c * uu ^ j) =
++      monomial (Finsupp.single 0 j + Finsupp.single 1 (2 * j + m)) c := by
++  have hs : Finsupp.single (1 : Fin 2) m + (Finsupp.single 0 j + Finsupp.single 1 (2 * j)) =
++      Finsupp.single 0 j + Finsupp.single 1 (2 * j + m) := by
++    ext k; fin_cases k <;> simp; omega
++  rw [uu, mul_pow, ← pow_mul, X_pow_eq_monomial, X_pow_eq_monomial, X_pow_eq_monomial,
++    monomial_mul_monomial, C_mul_monomial, monomial_mul_monomial, hs]
++  simp
++
++/-- Coefficients of `y^m · F(x y²)`. -/
++lemma coeff_yev (F : Polynomial K) (m i n : ℕ) :
++    (X 1 ^ m * evH F).coeff (Finsupp.single 0 i + Finsupp.single 1 n) =
++      if n = 2 * i + m then F.coeff i else 0 := by
++  have hs : evH F = ∑ j ∈ Finset.range (F.natDegree + 1), C (F.coeff j) * uu ^ j := by
++    show Polynomial.aeval uu F = _
++    rw [Polynomial.aeval_eq_sum_range]
++    simp only [smul_eq_C_mul]
++  rw [hs, Finset.mul_sum]
++  simp only [X1_pow_mul_C_mul_uu_pow, coeff_sum, coeff_monomial]
++  have key : ∀ j : ℕ, (Finsupp.single (0 : Fin 2) j + Finsupp.single 1 (2 * j + m) =
++      Finsupp.single 0 i + Finsupp.single 1 n) ↔ (j = i ∧ n = 2 * i + m) := by
++    intro j
++    constructor
++    · intro h
++      have h0 := congrArg (fun f => f 0) h
++      have h1 := congrArg (fun f => f 1) h
++      simp at h0 h1
++      subst h0; exact ⟨rfl, h1.symm⟩
++    · rintro ⟨rfl, rfl⟩; rfl
++  simp only [key]
++  by_cases hn : n = 2 * i + m
++  · simp only [hn, and_true, ite_true]
++    rw [Finset.sum_ite_eq' (Finset.range (F.natDegree + 1)) i (fun j => F.coeff j)]
++    split_ifs with hi
++    · rfl
++    · simp only [Finset.mem_range, not_lt] at hi
++      exact (Polynomial.coeff_eq_zero_of_natDegree_lt (by omega)).symm
++  · simp [hn]
++
++/-- If `Σ_{k<5} y^k · F_k(x y²) = 0` then every `F_k = 0`. -/
++lemma layers_eq_zero (F : Fin 5 → Polynomial K)
++    (h : ∑ k : Fin 5, X 1 ^ (k : ℕ) * evH (F k) = 0) (k : Fin 5) : F k = 0 := by
++  ext i
++  have := congrArg (fun p : MvPolynomial (Fin 2) K => p.coeff (Finsupp.single 0 i + Finsupp.single 1 (2 * i + k))) h
++  simp only [coeff_sum] at this
++  rw [show (0 : MvPolynomial (Fin 2) K).coeff _ = 0 from rfl] at this
++  simp only [coeff_yev] at this
++  rw [Finset.sum_eq_single k] at this
++  · simpa using this
++  · intro j _ hj
++    have hkj : (k : ℕ) ≠ (j : ℕ) := fun e => hj (Fin.ext e.symm)
++    simp [hkj]
++  · simp
++
++/-- **Exact layer reduction.**  `J(P, Q) = C λ x²` forces the five layer identities. -/
++theorem layers_of_jac (lam : K) (A₀ A₁ A₂ B₀ B₁ B₂ B₃ : Polynomial K)
++    (p₀ p₁ p₂ q₀ q₁ q₂ q₃ : MvPolynomial (Fin 2) K)
++    (hp₀ : X 1 ^ 0 * p₀ = evH A₀) (hp₁ : X 1 ^ 1 * p₁ = evH A₁) (hp₂ : X 1 ^ 2 * p₂ = evH A₂)
++    (hq₀ : X 1 ^ 0 * q₀ = evH B₀) (hq₁ : X 1 ^ 1 * q₁ = evH B₁) (hq₂ : X 1 ^ 2 * q₂ = evH B₂)
++    (hq₃ : X 1 ^ 3 * q₃ = evH B₃)
++    (hJ : jac (p₀ + p₁ + p₂) (q₀ + q₁ + q₂ + q₃) = C lam * X 0 ^ 2) :
++    layerTerm 2 3 A₂ B₃ = Polynomial.C lam * Polynomial.X ^ 2 ∧
++    layerTerm 2 2 A₂ B₂ + layerTerm 1 3 A₁ B₃ = 0 ∧
++    layerTerm 2 1 A₂ B₁ + layerTerm 1 2 A₁ B₂ + layerTerm 0 3 A₀ B₃ = 0 ∧
++    layerTerm 2 0 A₂ B₀ + layerTerm 1 1 A₁ B₁ + layerTerm 0 2 A₀ B₂ = 0 ∧
++    layerTerm 1 0 A₁ B₀ + layerTerm 0 1 A₀ B₁ = 0 := by
++  have e23 := layer_bracket 2 3 A₂ B₃ p₂ q₃ hp₂ hq₃
++  have e22 := layer_bracket 2 2 A₂ B₂ p₂ q₂ hp₂ hq₂
++  have e13 := layer_bracket 1 3 A₁ B₃ p₁ q₃ hp₁ hq₃
++  have e21 := layer_bracket 2 1 A₂ B₁ p₂ q₁ hp₂ hq₁
++  have e12 := layer_bracket 1 2 A₁ B₂ p₁ q₂ hp₁ hq₂
++  have e03 := layer_bracket 0 3 A₀ B₃ p₀ q₃ hp₀ hq₃
++  have e20 := layer_bracket 2 0 A₂ B₀ p₂ q₀ hp₂ hq₀
++  have e11 := layer_bracket 1 1 A₁ B₁ p₁ q₁ hp₁ hq₁
++  have e02 := layer_bracket 0 2 A₀ B₂ p₀ q₂ hp₀ hq₂
++  have e10 := layer_bracket 1 0 A₁ B₀ p₁ q₀ hp₁ hq₀
++  have e01 := layer_bracket 0 1 A₀ B₁ p₀ q₁ hp₀ hq₁
++  have e00 := layer_bracket 0 0 A₀ B₀ p₀ q₀ hp₀ hq₀
++  have hl00 : layerTerm 0 0 A₀ B₀ = 0 := by simp [layerTerm]
++  rw [hl00, map_zero, mul_zero] at e00
++  simp only [jac_add_left, jac_add_right] at hJ
++  have hx2 : (X 1 : MvPolynomial (Fin 2) K) ^ 7 * (C lam * X 0 ^ 2) =
++      X 1 ^ 3 * evH (Polynomial.C lam * Polynomial.X ^ 2) := by
++    show _ = X 1 ^ 3 * Polynomial.aeval uu (Polynomial.C lam * Polynomial.X ^ 2)
++    simp only [map_mul, map_pow, Polynomial.aeval_C, Polynomial.aeval_X, uu, algebraMap_eq]
++    ring
++  set F : Fin 5 → Polynomial K := ![
++    layerTerm 2 3 A₂ B₃ - Polynomial.C lam * Polynomial.X ^ 2,
++    layerTerm 2 2 A₂ B₂ + layerTerm 1 3 A₁ B₃,
++    layerTerm 2 1 A₂ B₁ + layerTerm 1 2 A₁ B₂ + layerTerm 0 3 A₀ B₃,
++    layerTerm 2 0 A₂ B₀ + layerTerm 1 1 A₁ B₁ + layerTerm 0 2 A₀ B₂,
++    layerTerm 1 0 A₁ B₀ + layerTerm 0 1 A₀ B₁] with hF
++  have hsum : X 1 ^ 3 * ∑ k : Fin 5, X 1 ^ (k : ℕ) * evH (F k) = 0 := by
++    simp only [Fin.sum_univ_five, hF, Matrix.cons_val_zero, Matrix.cons_val_one,
++      Matrix.cons_val_two, Matrix.cons_val_three, Matrix.cons_val_four, Matrix.head_cons,
++      Matrix.tail_cons, map_add, map_sub, Fin.val_zero, Fin.val_one, Fin.val_two]
++    have h7 := congrArg (fun s => X 1 ^ 7 * s) hJ
++    rw [hx2] at h7
++    have v3 : ((3 : Fin 5) : ℕ) = 3 := rfl
++    have v4 : ((4 : Fin 5) : ℕ) = 4 := rfl
++    rw [v3, v4]
++    linear_combination h7 - X 1 ^ 1 * e23 - X 1 ^ 2 * e22 - X 1 ^ 2 * e13 -
++      X 1 ^ 3 * e21 - X 1 ^ 3 * e12 - X 1 ^ 3 * e03 - X 1 ^ 4 * e20 - X 1 ^ 4 * e11 -
++      X 1 ^ 4 * e02 - X 1 ^ 5 * e10 - X 1 ^ 5 * e01 - X 1 ^ 6 * e00
++  have hs : ∑ k : Fin 5, X 1 ^ (k : ℕ) * evH (F k) = 0 := by
++    rcases mul_eq_zero.mp hsum with h | h
++    · exact absurd h (pow_ne_zero _ (X_ne_zero 1))
++    · exact h
++  have z := layers_eq_zero F hs
++  refine ⟨?_, z 1, z 2, z 3, z 4⟩
++  have := z 0
++  simp only [hF, Matrix.cons_val_zero] at this
++  exact sub_eq_zero.mp this
++
++/-- Coefficients of a layer term: `(a A B' − b A' B)ₙ = Σ_{i ≤ n+1} (a (n+1−i) − b i) Aᵢ B_{n+1−i}`. -/
++theorem coeff_layerTerm (a b n : ℕ) (A B : Polynomial K) :
++    (layerTerm a b A B).coeff n =
++      ∑ i ∈ Finset.range (n + 2),
++        ((a : K) * ((n + 1 - i : ℕ) : K) - (b : K) * (i : K)) * A.coeff i * B.coeff (n + 1 - i) := by
++  have h1 : ((a : Polynomial K) * A * Polynomial.derivative B).coeff n =
++      ∑ i ∈ Finset.range (n + 2), (a : K) * ((n + 1 - i : ℕ) : K) * A.coeff i * B.coeff (n + 1 - i) := by
++    rw [mul_assoc, Polynomial.coeff_natCast_mul, Polynomial.coeff_mul,
++      Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk, Finset.sum_range_succ _ (n + 1), Finset.mul_sum]
++    simp only [Polynomial.coeff_derivative, Nat.sub_self, Nat.cast_zero, mul_zero, zero_mul, add_zero]
++    refine Finset.sum_congr rfl (fun i hi => ?_)
++    have hi' : i ≤ n := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)
++    have e1 : n - i + 1 = n + 1 - i := by omega
++    rw [e1]; push_cast [Nat.cast_sub hi', Nat.cast_sub (by omega : i ≤ n + 1)]; ring
++  have h2 : ((b : Polynomial K) * Polynomial.derivative A * B).coeff n =
++      ∑ i ∈ Finset.range (n + 2), (b : K) * (i : K) * A.coeff i * B.coeff (n + 1 - i) := by
++    rw [mul_assoc, Polynomial.coeff_natCast_mul, Polynomial.coeff_mul,
++      Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk, Finset.sum_range_succ' _ (n + 1), Finset.mul_sum]
++    simp only [Nat.cast_zero, mul_zero, zero_mul, add_zero]
++    refine Finset.sum_congr rfl (fun i hi => ?_)
++    have hi' : i ≤ n := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)
++    simp only [Polynomial.coeff_derivative]
++    have e1 : n + 1 - (i + 1) = n - i := by omega
++    rw [e1]; push_cast; ring
++  rw [layerTerm, Polynomial.coeff_sub, h1, h2, ← Finset.sum_sub_distrib]
++  refine Finset.sum_congr rfl (fun i _ => by ring)
++
++end BranchAb
+diff -ruN -x .lake -x certgen -x Descent -x BranchAbFinal.lean -x BranchAbSharp.lean -x CHANGES.diff /tmp/origtree/Jacobian/BranchAbObstruction.lean jacobian_lean/Jacobian/BranchAbObstruction.lean
+--- /tmp/origtree/Jacobian/BranchAbObstruction.lean	2026-09-26 14:58:33.389966915 +0000
++++ jacobian_lean/Jacobian/BranchAbObstruction.lean	2026-09-26 14:57:15.752350962 +0000
+@@ -3,46 +3,49 @@
+ open Polynomial
+ 
+ /-!
+-# Branch (a), (b) elimination: machine-checked core steps
++# Branch (a), (b) elimination: machine-checked final steps
+ 
+-This file formalizes three key steps of the branch-(a,b) elimination proof
+-(conditional on GGHV Proposition 4.3):
+-
+-1. `t_zero_case` — the §8.3 final step: the E2 layer identity at `t = 0` reads
+-   `2 * A₂ * B₀' = 0`; with `A₂ ≠ 0` this forces `B₀' = 0`, contradicting the
+-   vertex condition `b_{12,24} ≠ 0` (i.e. `B₀.coeff 12 ≠ 0`).  This closes the
+-   `sorry` in the referee's Lean 4 sketch (the cast normalisation step).
+-
+-2. `only_zero_transport` — Lemma 9.1(v) in corrected form: whatever
+-   `G ∈ GL₂` the pivot-free rescaling induces, the only point of the
+-   `(t₁, t₂)`-plane fixed by the transport argument is `t = 0` itself, so
+-   "only `t = 0` survives" is stable under any such `G`.
+-
+-3. `minor_obstruction` — the heart of §8.4 / Theorem 8.x: the 35 E2
+-   compatibility minors are binary quintics in `(t₁, t₂)` spanning the full
+-   6-dimensional space (the 35×6 coefficient matrix has rank 6 over `K₅`,
+-   computed exactly in `exact_obstruction_K5.py`).  Each minor vanishes at the
+-   true `(t₁, t₂)`; since `t₁⁵` and `t₂⁵` lie in the span, both vanish at
+-   `(t₁, t₂)`, forcing `t₁ = t₂ = 0`.
++This file formalizes the final algebraic step of three parts of the branch-(a,b)
++elimination proof (conditional on GGHV Proposition 4.3).  The computed inputs (the
++exact layer reduction, the E₂ data, and the rank-6 span certificate) enter as
++hypotheses; they are certified by the exact K₅ scripts, not in Lean.
++
++1. `t_zero_case`: §8.3, final step.  At `t = 0` the E₂ layer identity reads
++   `2 * A₂ * B₀' = 0` (hypothesis `hE2`).  With `A₂ ≠ 0` this forces `B₀' = 0`,
++   contradicting the vertex condition `b_{12,24} ≠ 0`, i.e. `B₀.coeff 12 ≠ 0`.
++   The step uses `2 ≠ 0` and `12 ≠ 0` in the base field; `CharZero` gives both.
++   The sharp form (any characteristic other than 2 and 3) and a counterexample in
++   characteristic 3 are in `Jacobian.BranchAbRefereeChecks`.
++
++2. `minor_obstruction`: §8.4, final inference.  If every binary quintic monomial
++   lies in the `K`-span of the 35 minors (hypothesis `hspan`: the 35×6 coefficient
++   matrix has rank 6 over `K₅`, computed exactly in `exact_obstruction_K5.py`) and
++   every minor vanishes at `t` (hypothesis `hzero`), then `t = 0`.  Only the
++   monomials `t₁⁵` and `t₂⁵` are used.  The implication "the seven E₂ conditions
++   are solvable in `(s₁, s₂)` ⇒ every 3×3 minor vanishes" is `minor_vanish`, and
++   the combined statement is `no_nonzero_direction`, both in
++   `Jacobian.BranchAbRefereeChecks`.
++
++3. `only_zero_transport`: bookkeeping for Lemma 9.1(v).  A linear automorphism of
++   the `(t₁, t₂)`-plane maps `{0}` to `{0}`.  The substantive part of Lemma 9.1(v)
++   (the rescaling `u ↦ θu` maps ker E₄ isomorphically onto ker E₄ and preserves the
++   rank of the minor matrix under `Sym⁵ G`) is argued in the paper, not here.
+ -/
+ 
+ /-- §8.3, final step (char 0): `2 * A₂ * B₀' = 0` with `A₂ ≠ 0` contradicts
+     `b_{12,24} ≠ 0`.
+ 
+-    Proof sketch of the computation this mirrors: at `t = 0` the E2 layer
+-    identity reduces to `2 * A₂ * B₀' = 0` (from the chain E4 homogeneity →
+-    `(A₁, B₂) = 0` → E3 `K(0) = 0`; see Corollary 8.4).  The vertex
+-    `(12, 24)` of the Q-support forces `B₀.coeff 12 = b_{12,24} ≠ 0`.
+-    Since `2 ≠ 0` and `A₂ ≠ 0`, we get `B₀' = 0`, and the coefficient of
+-    `u^11` in `B₀'` is `12 * B₀.coeff 12`, nonzero in characteristic zero —
+-    contradiction. -/
++    At `t = 0` the E₂ layer identity reduces to `2 * A₂ * B₀' = 0` (from the chain
++    E₄ homogeneity → `(A₁, B₂) = 0` → E₃ `K(0) = 0`; see Corollary 8.4); that
++    reduction is the hypothesis `hE2`.  The vertex `(12, 24)` of the Q-support gives
++    `B₀.coeff 12 = b_{12,24} ≠ 0`.  Since `2 ≠ 0` and `A₂ ≠ 0`, we get `B₀' = 0`,
++    and the coefficient of `u^11` in `B₀'` is `12 * B₀.coeff 12`, which is nonzero
++    because `12 ≠ 0` in characteristic zero: contradiction. -/
+ theorem t_zero_case {K : Type*} [Field K] [CharZero K]
+     (A₂ B₀ : K[X]) (hA : A₂ ≠ 0)
+     (hE2 : (2 : K[X]) * A₂ * derivative B₀ = 0)
+     (hvertex : B₀.coeff 12 ≠ 0) : False := by
+-  have h2 : (2 : K[X]) ≠ 0 := by
+-    have hC := C_ne_zero.mpr two_ne_zero
+-    rwa [map_ofNat] at hC
++  have h2 : (2 : K[X]) ≠ 0 := two_ne_zero
+   have hd : derivative B₀ = 0 := by
+     have h9 : (2 : K[X]) * (A₂ * derivative B₀) = 0 := by
+       simpa [mul_assoc] using hE2
+@@ -63,19 +66,20 @@
+   · exact hvertex h
+   · exact absurd h hcast
+ 
+-/-- Lemma 9.1(v), corrected form (the false "common scalar" wording removed):
+-    "only `t = 0`" survives any `G ∈ GL₂`.  The image of `{0}` under any
+-    linear automorphism is `{0}`. -/
++/-- Bookkeeping for Lemma 9.1(v): the image of `{0}` under any linear automorphism
++    `G` of the `(t₁, t₂)`-plane is `{0}`.  This records only that the conclusion
++    "`t = 0`" is stable under the induced `G ∈ GL₂`; the kernel isomorphism and the
++    rank invariance that produce `G` are argued in the paper. -/
+ theorem only_zero_transport {K : Type*} [Field K]
+     (G : (Fin 2 → K) ≃ₗ[K] (Fin 2 → K)) :
+     G '' ({0} : Set (Fin 2 → K)) = {0} := by
+   simp
+ 
+-/-- The 35-minor obstruction (§8.4): the E2 compatibility conditions are 35
+-    binary quintics in `(t₁, t₂)` whose coefficient vectors span the full
+-    6-dimensional space of binary quintics (rank 6 of the 35×6 matrix, exact
+-    over `K₅` in `exact_obstruction_K5.py`).  Every minor vanishes at the true
+-    `(t₁, t₂)`; since `t₁⁵` and `t₂⁵` are in the span, evaluating at
++/-- §8.4, final inference: the E₂ compatibility minors are 35 binary quintics in
++    `(t₁, t₂)` whose coefficient vectors span the 6-dimensional space of binary
++    quintics (hypothesis `hspan`: rank 6 of the 35×6 matrix, exact over `K₅` in
++    `exact_obstruction_K5.py`).  If every minor vanishes at `(t₁, t₂)` (hypothesis
++    `hzero`), then evaluating the spanning relations for `t₁⁵` and `t₂⁵` at
+     `(t₁, t₂)` gives `t₁⁵ = t₂⁵ = 0`, hence `t = 0`. -/
+ theorem minor_obstruction {K : Type*} [Field K]
+     (minor : Fin 35 → MvPolynomial (Fin 2) K)
+diff -ruN -x .lake -x certgen -x Descent -x BranchAbFinal.lean -x BranchAbSharp.lean -x CHANGES.diff /tmp/origtree/Jacobian/BranchAbRefereeChecks.lean jacobian_lean/Jacobian/BranchAbRefereeChecks.lean
+--- /tmp/origtree/Jacobian/BranchAbRefereeChecks.lean	1970-01-01 00:00:00.000000000 +0000
++++ jacobian_lean/Jacobian/BranchAbRefereeChecks.lean	2026-09-26 14:57:15.755153260 +0000
+@@ -0,0 +1,118 @@
++import Mathlib
++
++open Polynomial
++
++/-!
++# Branch (a), (b) elimination: referee checks
++
++Companion to `Jacobian.BranchAbObstruction`.  Nothing here is assumed; every
++statement is proved from Mathlib.
++
++1. `t_zero_case_char`: the §8.3 step with its sharp hypotheses `(2 : K) ≠ 0` and
++   `(12 : K) ≠ 0`, i.e. `char K ∉ {2, 3}`.  `CharZero` (as in `t_zero_case`) is
++   sufficient but not necessary.
++2. `t_zero_case_fails_char3`: in characteristic 3 the hypotheses of the §8.3 step are
++   satisfiable, so the argument is valid in every characteristic other than 2 and 3,
++   not in every characteristic.
++3. `minor_vanish`: if `b + s₁ M + s₂ L = 0` row by row, every 3×3 minor
++   `det[b | M | L]` on rows `i, j, k` vanishes (the implication §8.4 uses).
++4. `no_nonzero_direction`: the §8.4 argument end to end.  If the seven E₂ conditions
++   are solvable in `(s₁, s₂)` at `t`, and `t₁⁵`, `t₂⁵` are `K`-linear combinations
++   (coefficients `c₀`, `c₁`) of the 3×3 minor polynomials, then `t = 0`.  The only
++   inputs left unformalized are the computed `b, M, L` and the vectors `c₀, c₁`.
++-/
++
++/-- §8.3 final step with its true characteristic hypothesis. -/
++theorem t_zero_case_char {K : Type*} [Field K]
++    (h2 : (2 : K) ≠ 0) (h12 : (12 : K) ≠ 0)
++    (A₂ B₀ : K[X]) (hA : A₂ ≠ 0)
++    (hE2 : (2 : K[X]) * A₂ * derivative B₀ = 0)
++    (hvertex : B₀.coeff 12 ≠ 0) : False := by
++  have h2' : (2 : K[X]) ≠ 0 := by
++    have hC := C_ne_zero.mpr h2
++    rwa [map_ofNat] at hC
++  have hd : derivative B₀ = 0 := by
++    rcases mul_eq_zero.mp hE2 with h | h
++    · rcases mul_eq_zero.mp h with h' | h'
++      · exact absurd h' h2'
++      · exact absurd h' hA
++    · exact h
++  have h11 : (derivative B₀).coeff 11 = 0 := by rw [hd]; simp
++  rw [coeff_derivative] at h11
++  have hnorm : ((11 : ℕ) : K) + 1 = 12 := by norm_num
++  rw [hnorm] at h11
++  rcases mul_eq_zero.mp h11 with h | h
++  · exact hvertex h
++  · exact h12 h
++
++/-- In characteristic 3 the hypotheses of the §8.3 step are satisfiable:
++    A₂ = X, B₀ = X¹² gives 2·A₂·B₀' = 2·X·12·X¹¹ = 0 while b₁₂ = 1 ≠ 0. -/
++theorem t_zero_case_fails_char3 :
++    ∃ A₂ B₀ : (ZMod 3)[X], A₂ ≠ 0 ∧ (2 : (ZMod 3)[X]) * A₂ * derivative B₀ = 0 ∧
++      B₀.coeff 12 ≠ 0 := by
++  refine ⟨X, X ^ 12, X_ne_zero, ?_, ?_⟩
++  · rw [derivative_X_pow, show ((12 : ℕ) : ZMod 3) = 0 by decide]
++    simp
++  · simp
++
++/-- Solvability of the seven affine conditions forces every 3×3 minor to vanish. -/
++theorem minor_vanish {K : Type*} [CommRing K] {n : ℕ}
++    (b M L : Fin n → K) (s₁ s₂ : K)
++    (h : ∀ r, b r + s₁ * M r + s₂ * L r = 0) (i j k : Fin n) :
++    Matrix.det !![b i, M i, L i; b j, M j, L j; b k, M k, L k] = 0 := by
++  have hb : ∀ r, b r = -(s₁ * M r + s₂ * L r) := fun r => by
++    linear_combination h r
++  rw [Matrix.det_fin_three]
++  simp only [Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero, Matrix.cons_val_one,
++    Matrix.cons_val_two, Matrix.empty_val', Matrix.cons_val_fin_one, Matrix.head_cons,
++    Matrix.tail_cons, Matrix.head_fin_const]
++  rw [hb i, hb j, hb k]
++  ring
++
++/-- The 3×3 minor polynomial det[b|M|L] on rows i, j, k. -/
++noncomputable def minorPoly {K : Type*} [CommRing K] {n : ℕ}
++    (b M L : Fin n → MvPolynomial (Fin 2) K) (i j k : Fin n) : MvPolynomial (Fin 2) K :=
++  Matrix.det !![b i, M i, L i; b j, M j, L j; b k, M k, L k]
++
++theorem eval_minorPoly {K : Type*} [CommRing K] {n : ℕ}
++    (b M L : Fin n → MvPolynomial (Fin 2) K) (t : Fin 2 → K) (i j k : Fin n) :
++    MvPolynomial.eval t (minorPoly b M L i j k) =
++      Matrix.det !![MvPolynomial.eval t (b i), MvPolynomial.eval t (M i), MvPolynomial.eval t (L i);
++                    MvPolynomial.eval t (b j), MvPolynomial.eval t (M j), MvPolynomial.eval t (L j);
++                    MvPolynomial.eval t (b k), MvPolynomial.eval t (M k), MvPolynomial.eval t (L k)] := by
++  unfold minorPoly
++  rw [RingHom.map_det]
++  congr 1
++  ext r c
++  fin_cases r <;> fin_cases c <;> rfl
++
++/-- §8.4 logical skeleton: solvable E₂ conditions + span certificates for t₁⁵, t₂⁵ ⇒ t = 0. -/
++theorem no_nonzero_direction {K : Type*} [Field K] {n : ℕ}
++    (b M L : Fin n → MvPolynomial (Fin 2) K)
++    (c₀ c₁ : Fin n × Fin n × Fin n → K)
++    (hspan₀ : (MvPolynomial.X 0 : MvPolynomial (Fin 2) K) ^ 5 =
++      ∑ ijk, MvPolynomial.C (c₀ ijk) * minorPoly b M L ijk.1 ijk.2.1 ijk.2.2)
++    (hspan₁ : (MvPolynomial.X 1 : MvPolynomial (Fin 2) K) ^ 5 =
++      ∑ ijk, MvPolynomial.C (c₁ ijk) * minorPoly b M L ijk.1 ijk.2.1 ijk.2.2)
++    (t : Fin 2 → K) (s₁ s₂ : K)
++    (hsolv : ∀ r, MvPolynomial.eval t (b r) + s₁ * MvPolynomial.eval t (M r)
++      + s₂ * MvPolynomial.eval t (L r) = 0) :
++    t = 0 := by
++  have hz : ∀ ijk : Fin n × Fin n × Fin n,
++      MvPolynomial.eval t (minorPoly b M L ijk.1 ijk.2.1 ijk.2.2) = 0 := by
++    intro ijk
++    rw [eval_minorPoly]
++    exact minor_vanish _ _ _ s₁ s₂ hsolv _ _ _
++  have key : ∀ (m : MvPolynomial (Fin 2) K) (c : Fin n × Fin n × Fin n → K),
++      m = ∑ ijk, MvPolynomial.C (c ijk) * minorPoly b M L ijk.1 ijk.2.1 ijk.2.2 →
++      MvPolynomial.eval t m = 0 := by
++    intro m c hm
++    rw [hm, map_sum]
++    exact Finset.sum_eq_zero fun ijk _ => by rw [map_mul, hz ijk, mul_zero]
++  have e0 := key _ c₀ hspan₀
++  have e1 := key _ c₁ hspan₁
++  simp only [map_pow, MvPolynomial.eval_X] at e0 e1
++  funext i
++  fin_cases i
++  · simpa using pow_eq_zero_iff (n := 5) (by norm_num) |>.mp e0
++  · simpa using pow_eq_zero_iff (n := 5) (by norm_num) |>.mp e1
+diff -ruN -x .lake -x certgen -x Descent -x BranchAbFinal.lean -x BranchAbSharp.lean -x CHANGES.diff /tmp/origtree/Jacobian/BranchAbTorus.lean jacobian_lean/Jacobian/BranchAbTorus.lean
+--- /tmp/origtree/Jacobian/BranchAbTorus.lean	1970-01-01 00:00:00.000000000 +0000
++++ jacobian_lean/Jacobian/BranchAbTorus.lean	2026-09-26 17:30:31.758561434 +0000
+@@ -0,0 +1,59 @@
++import Jacobian.BranchAbLayers
++
++/-!
++# Branch (a), (b): torus transport of the layer identities (Lemma 9.1(v))
++
++Rescaling `u ↦ κ u` together with constant multiples `α`, `β` of the P- and Q-layers multiplies every
++layer term `a A B' − b A' B` by the same constant `α β κ` (and composes with `u ↦ κ u`).  Hence the
++layer identities E4, E3, E2 and the supports are preserved, and the top layer moves along its torus
++orbit.  This is the formal content of the transport step in Lemma 9.1(v): an obstruction proved at
++one top layer holds at every top layer in its orbit.
++-/
++
++open Polynomial
++
++noncomputable section
++
++namespace BranchAb
++
++variable {K : Type*} [Field K]
++
++/-- `F(u) ↦ F(κ u)`. -/
++def sc (κ : K) (F : K[X]) : K[X] := F.comp (C κ * X)
++
++lemma coeff_sc (κ : K) (F : K[X]) (i : ℕ) : (sc κ F).coeff i = κ ^ i * F.coeff i := by
++  unfold sc
++  induction F using Polynomial.induction_on' with
++  | add p q hp hq => simp [add_comp, hp, hq, mul_add]
++  | monomial n a =>
++    rw [← C_mul_X_pow_eq_monomial, mul_comp, C_comp, X_pow_comp, mul_pow, ← C_pow, ← mul_assoc,
++      ← C_mul, coeff_C_mul_X_pow, coeff_C_mul_X_pow]
++    split_ifs with h
++    · subst h; ring
++    · simp
++
++lemma derivative_sc (κ : K) (F : K[X]) :
++    derivative (sc κ F) = C κ * sc κ (derivative F) := by
++  unfold sc
++  rw [derivative_comp, derivative_C_mul_X]
++
++lemma layerTerm_sc (α β κ : K) (a b : ℕ) (A B : K[X]) :
++    layerTerm a b (C α * sc κ A) (C β * sc κ B) = C (α * β * κ) * sc κ (layerTerm a b A B) := by
++  simp only [layerTerm, derivative_mul, derivative_C, zero_mul, zero_add, derivative_sc]
++  simp only [sc, sub_comp, mul_comp, natCast_comp, C_mul]
++  ring
++
++/-- Transport of E4, E3, E2 along the torus. -/
++theorem layers_transport (α β κ : K) (A₀ A₁ A₂ B₀ B₁ B₂ B₃ : K[X])
++    (E4 : layerTerm 2 2 A₂ B₂ + layerTerm 1 3 A₁ B₃ = 0)
++    (E3 : layerTerm 2 1 A₂ B₁ + layerTerm 1 2 A₁ B₂ + layerTerm 0 3 A₀ B₃ = 0)
++    (E2 : layerTerm 2 0 A₂ B₀ + layerTerm 1 1 A₁ B₁ + layerTerm 0 2 A₀ B₂ = 0) :
++    layerTerm 2 2 (C α * sc κ A₂) (C β * sc κ B₂) + layerTerm 1 3 (C α * sc κ A₁) (C β * sc κ B₃) = 0 ∧
++    layerTerm 2 1 (C α * sc κ A₂) (C β * sc κ B₁) + layerTerm 1 2 (C α * sc κ A₁) (C β * sc κ B₂) +
++      layerTerm 0 3 (C α * sc κ A₀) (C β * sc κ B₃) = 0 ∧
++    layerTerm 2 0 (C α * sc κ A₂) (C β * sc κ B₀) + layerTerm 1 1 (C α * sc κ A₁) (C β * sc κ B₁) +
++      layerTerm 0 2 (C α * sc κ A₀) (C β * sc κ B₂) = 0 := by
++  simp only [layerTerm_sc, ← mul_add]
++  simp only [sc, ← add_comp, E4, E3, E2, zero_comp, mul_zero, and_self]
++
++end BranchAb
+diff -ruN -x .lake -x certgen -x Descent -x BranchAbFinal.lean -x BranchAbSharp.lean -x CHANGES.diff /tmp/origtree/Jacobian.lean jacobian_lean/Jacobian.lean
+--- /tmp/origtree/Jacobian.lean	2026-09-26 14:58:33.394833858 +0000
++++ jacobian_lean/Jacobian.lean	2026-09-26 17:43:39.794901733 +0000
+@@ -1,2 +1,7 @@
+ import Jacobian.Basic
+ import Jacobian.BranchAbObstruction
++import Jacobian.BranchAbRefereeChecks
++import Jacobian.BranchAbLayers
++import Jacobian.BranchAbTorus
++import Jacobian.BranchAbFinal
++import Jacobian.BranchAbSharp
+diff -ruN -x .lake -x certgen -x Descent -x BranchAbFinal.lean -x BranchAbSharp.lean -x CHANGES.diff /tmp/origtree/lake-manifest.json jacobian_lean/lake-manifest.json
+--- /tmp/origtree/lake-manifest.json	1970-01-01 00:00:00.000000000 +0000
++++ jacobian_lean/lake-manifest.json	2026-09-26 14:53:16.538482542 +0000
+@@ -0,0 +1,96 @@
++{"version": "1.2.0",
++ "packagesDir": ".lake/packages",
++ "packages":
++ [{"url": "https://github.com/leanprover-community/mathlib4",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover-community",
++   "rev": "5ed2965256430c3649e86755f9576b54eca72435",
++   "name": "mathlib",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "v4.34.0",
++   "inherited": false,
++   "configFile": "lakefile.lean"},
++  {"url": "https://github.com/leanprover-community/plausible",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover-community",
++   "rev": "118aa17ee84656b8bd727fef7c458ee8c833385c",
++   "name": "plausible",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "main",
++   "inherited": true,
++   "configFile": "lakefile.toml"},
++  {"url": "https://github.com/leanprover-community/LeanSearchClient",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover-community",
++   "rev": "ddf04cf3949fa556442341e87d47f9f6e6074707",
++   "name": "LeanSearchClient",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "main",
++   "inherited": true,
++   "configFile": "lakefile.toml"},
++  {"url": "https://github.com/leanprover-community/import-graph",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover-community",
++   "rev": "e928b72544873815af278d38681b31c0293588e3",
++   "name": "importGraph",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "main",
++   "inherited": true,
++   "configFile": "lakefile.toml"},
++  {"url": "https://github.com/leanprover-community/ProofWidgets4",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover-community",
++   "rev": "106ff4fafc74ef4ac99d81dbf3ab399118f497a5",
++   "name": "proofwidgets",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "main",
++   "inherited": true,
++   "configFile": "lakefile.lean"},
++  {"url": "https://github.com/leanprover-community/aesop",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover-community",
++   "rev": "355695d523e41d0554926416cba2a2b3544fbbc9",
++   "name": "aesop",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "master",
++   "inherited": true,
++   "configFile": "lakefile.toml"},
++  {"url": "https://github.com/leanprover-community/quote4",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover-community",
++   "rev": "6a489d9af5d0c47e5b259e2e8bcdfc1811b5a259",
++   "name": "Qq",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "master",
++   "inherited": true,
++   "configFile": "lakefile.toml"},
++  {"url": "https://github.com/leanprover-community/batteries",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover-community",
++   "rev": "f2effa3d803fda822b1f97b806c47cf2adfbcbc2",
++   "name": "batteries",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "main",
++   "inherited": true,
++   "configFile": "lakefile.toml"},
++  {"url": "https://github.com/leanprover/lean4-cli",
++   "type": "git",
++   "subDir": null,
++   "scope": "leanprover",
++   "rev": "e92c9f15fdfacc8536f31cfb3b7ad26c3c8cd204",
++   "name": "Cli",
++   "manifestFile": "lake-manifest.json",
++   "inputRev": "v4.34.0",
++   "inherited": true,
++   "configFile": "lakefile.toml"}],
++ "name": "jacobian",
++ "lakeDir": ".lake",
++ "fixedToolchain": false}
+diff -ruN -x .lake -x certgen -x Descent -x BranchAbFinal.lean -x BranchAbSharp.lean -x CHANGES.diff /tmp/origtree/verify_branch_ab_lean.sh jacobian_lean/verify_branch_ab_lean.sh
+--- /tmp/origtree/verify_branch_ab_lean.sh	2026-09-26 14:58:33.394875423 +0000
++++ jacobian_lean/verify_branch_ab_lean.sh	2026-09-26 17:43:39.803901397 +0000
+@@ -1,15 +1,34 @@
+ #!/usr/bin/env bash
+ # verify_branch_ab_lean.sh — verification script for the branch-(a,b) Lean 4 formalization.
+-# Runs the full build (unpiped, genuine exit status), checks for sorry/admit/user axioms,
+-# and prints the axiom dependencies of each theorem (must show no sorryAx).
++# Runs the full build (unpiped, genuine exit status), checks the build log for `sorry`
++# warnings, scans all sources for sorry/admit/user axioms outside comments, and prints the
++# axiom dependencies of every theorem (must be exactly propext, Classical.choice, Quot.sound).
++#
++# Resources: the exact K5 descent (Jacobian/Descent, 84 modules) needs ~12 min on 4 cores and
++# ~2 GB RAM per build job (peak ~7.5 GB total with 4 jobs); outputs ~2.5 GB of .olean files.
++#
++# Usage: verify_branch_ab_lean.sh [PROJECT_DIR]
++#   PROJECT_DIR defaults to this script's directory if it holds lakefile.toml,
++#   otherwise to ~/workspace/jacobian_lean.
+ set -u
+ export PATH="$HOME/.elan/bin:$PATH"
+ 
+-PROJ=~/workspace/jacobian_lean
+-SRC=$PROJ/Jacobian/BranchAbObstruction.lean
++HERE="$(cd "$(dirname "$0")" && pwd)"
++if [ $# -ge 1 ]; then PROJ="$1"
++elif [ -f "$HERE/lakefile.toml" ]; then PROJ="$HERE"
++else PROJ=~/workspace/jacobian_lean
++fi
+ LOG=/tmp/lean_verify.log
++THEOREMS="t_zero_case minor_obstruction only_zero_transport
++  t_zero_case_char t_zero_case_fails_char3 minor_vanish eval_minorPoly no_nonzero_direction
++  isValuativelyProper2D_id isValuativelyProper2D_triangular isValuativelyProper2D_linear
++  BranchAb.layer_bracket BranchAb.coeff_yev BranchAb.layers_eq_zero BranchAb.layers_of_jac
++  BranchAb.coeff_layerTerm BranchAb.coeff_sc BranchAb.layerTerm_sc BranchAb.layers_transport
++  BranchAb.Descent.descent_K5 BranchAb.layers_K5 BranchAb.no_completion_K5
++  BranchAb.top_layer_E5 BranchAb.layers_K5_sharp"
+ 
+ cd "$PROJ" || { echo "FAIL: cannot cd to $PROJ"; exit 1; }
++echo "project: $PROJ"
+ 
+ echo "=== 1. lake build (full project) ==="
+ lake build > "$LOG" 2>&1
+@@ -20,27 +39,31 @@
+   grep -E "error" "$LOG" | head -20
+   exit 1
+ fi
+-echo "PASS: build clean"
+-
+-echo "=== 2. sorry/admit/user-axiom scan ==="
+-if grep -nE "sorry|admit" "$SRC"; then
+-  echo "FAIL: sorry/admit found above"
+-  exit 1
+-fi
+-if grep -nE "^axiom |^private axiom " "$SRC"; then
+-  echo "FAIL: user axiom found above"
++# Lean 4.34 prints: declaration uses `sorry`  (older versions: 'sorry')
++if grep -E "declaration uses .sorry." "$LOG"; then
++  echo "FAIL: sorry warning in build log"
+   exit 1
+ fi
++echo "PASS: build clean"
++
++echo "=== 2. sorry/admit/user-axiom scan (all sources, comments stripped) ==="
++python3 - Jacobian.lean $(find Jacobian -name '*.lean' | sort) <<'PY' || exit 1
++import re, sys
++bad = 0
++for f in sys.argv[1:]:
++    s = open(f).read()
++    s = re.sub(r'/-.*?-/', '', s, flags=re.S)   # block and doc comments
++    s = re.sub(r'--[^\n]*', '', s)              # line comments
++    for l in s.splitlines():
++        if re.search(r'\b(sorry|admit)\b', l) or re.match(r'\s*(private\s+)?axiom\s', l):
++            print(f"  {f}: {l.strip()}"); bad = 1
++sys.exit(bad)
++PY
++if [ $? -ne 0 ]; then echo "FAIL: sorry/admit/axiom found above"; exit 1; fi
+ echo "PASS: no sorry, no admit, no user-declared axioms"
+ 
+ echo "=== 3. #print axioms ==="
+-cat > /tmp/axiom_check.lean <<'EOF'
+-import Jacobian.BranchAbObstruction
+-#print axioms t_zero_case
+-#print axioms minor_obstruction
+-#print axioms only_zero_transport
+-EOF
+-cp /tmp/axiom_check.lean "$PROJ/AxiomCheck.lean"
++{ echo "import Jacobian"; for t in $THEOREMS; do echo "#print axioms $t"; done; } > "$PROJ/AxiomCheck.lean"
+ lake env lean "$PROJ/AxiomCheck.lean" > /tmp/axiom_check.log 2>&1
+ axstatus=$?
+ rm -f "$PROJ/AxiomCheck.lean"
+@@ -54,6 +77,12 @@
+   echo "FAIL: sorryAx present in axiom dependencies"
+   exit 1
+ fi
+-echo "PASS: no sorryAx; axioms are the expected Mathlib/standard ones"
++n_ok=$(grep -c "depends on axioms: \[propext, Classical.choice, Quot.sound\]" /tmp/axiom_check.log)
++n_all=$(echo $THEOREMS | wc -w)
++if [ "$n_ok" -ne "$n_all" ]; then
++  echo "FAIL: $n_ok of $n_all theorems have exactly the standard axioms"
++  exit 1
++fi
++echo "PASS: all $n_all theorems depend only on propext, Classical.choice, Quot.sound"
+ 
+ echo "=== ALL CHECKS PASSED ==="
+
+# ============================================================================================
+# v17 addendum (2026-09-27): hand-written files, v16 bundle -> v17 bundle (baseline here is v16,
+# not the original zip). Generated files are not diffed: Jacobian/ChartProof/{Defs,Stage1,Stage2_*,
+# Stage3,Stage4,Final}.lean are reproduced byte-for-byte by certgen/chartproof/regenerate_chartproof.sh.
+# New hand-written files: Jacobian/ChartProof/Reflect.lean (shown in full below), certgen/chartproof/*.py
+# (generator; saturation_check.py and independent_check.py are checks, not part of the generator),
+# certgen/chartproof/regenerate_chartproof.sh, certgen/chartproof/README_chartproof.md.
+# ============================================================================================
+--- v16/lean/Jacobian.lean
++++ v17/lean/Jacobian.lean
+@@ -9,3 +9,4 @@
+ import Jacobian.BranchAbClassification
+ import Jacobian.BranchAbMain
+ import Jacobian.BranchAbChart
++import Jacobian.ChartProof.Final
+--- v16/lean/AxiomsAudit.lean
++++ v17/lean/AxiomsAudit.lean
+@@ -15,6 +15,7 @@
+ import Jacobian.BranchAbFinal
+ import Jacobian.Descent.Main
+ import Jacobian.Descent.E2.T0
++import Jacobian.ChartProof.Final
+ 
+ #print axioms BranchAb.layers_of_jac
+ #print axioms BranchAb.layers_transport
+@@ -25,3 +26,7 @@
+ #print axioms BranchAb.Descent.descent_K5
+ #print axioms BranchAb.Descent.e2_t0
+ #print axioms BranchAb.no_completion_K5
++#print axioms BranchAb.chartClassification_holds
++#print axioms BranchAb.main_theorem
++#print axioms BranchAb.ChartProof.eq_of_toPolyK
++#print axioms BranchAb.ChartProof.lc_zero
+--- v16/lean/controls.sh
++++ v17/lean/controls.sh
+@@ -1,5 +1,7 @@
+ #!/usr/bin/env bash
+ # controls.sh -- negative controls: perturbed copies of certificate lemmas must be REJECTED by Lean,
++# (v17: includes 6 controls for the Lean proof of Prop. 6.1, Jacobian/ChartProof; run after `lake build`;
++#  set CONTROLS_JOBS=1 on machines with less than 12 GB RAM)
+ # and the unperturbed copy must be ACCEPTED.  The descent lemma files import only Mathlib, so each
+ # control is a standalone elaboration (~1-2 min); nothing in the project is modified.
+ set -uo pipefail
+@@ -34,20 +36,50 @@
+ open(f"{T}/pos_chart.lean", "w").write(s); jobs.append(("pos_chart", "ACCEPT", "unmodified chart reduction module BranchAbChart"))
+ t, n = bump_first_num(s, "      a1 = ("); open(f"{T}/neg_chart_point.lean", "w").write(t)
+ jobs.append(("neg_chart_point", "REJECT", f"ChartClassification: chart point P_1 constant numerator {n} -> {int(n)+1}"))
+-open(f"{T}/jobs.txt", "w").write("".join("|".join(j) + "\n" for j in jobs))
++# --- v17: controls for the Lean proof of Prop. 6.1 (Jacobian/ChartProof); reflective certificates ---
++def bump_expr_num(s, anchor):
++    i = s.index(anchor); m = re.compile(r'\(\.num \(?(-?\d+)\)?\)').search(s, i)
++    return s[:m.start(1)] + str(int(m.group(1)) + 1) + s[m.end(1):], m.group(1)
++s = open("Jacobian/ChartProof/Stage3.lean").read()
++open(f"{T}/pos_cp_stage3.lean", "w").write(s); jobs.append(("pos_cp_stage3", "ACCEPT", "unmodified ChartProof Stage3 (orbit relations -> K5 point)"))
++t, n = bump_expr_num(s, "lc_zero ctx e_m ["); open(f"{T}/neg_cp_resultant.lean", "w").write(t)
++jobs.append(("neg_cp_resultant", "REJECT", f"ChartProof Stage3 step_m (Sylvester resultant): certificate integer {n} -> {int(n)+1}", "Tactic .decide. proved that the proposition"))
++s = open("Jacobian/ChartProof/Stage1.lean").read()
++t, n = bump_expr_num(s, "lc_zero ctx e_F5 ["); open(f"{T}/neg_cp_recursion.lean", "w").write(t)
++jobs.append(("neg_cp_recursion", "REJECT", f"ChartProof Stage1 step_F5 (power-series recursion): certificate integer {n} -> {int(n)+1}", "Tactic .decide. proved that the proposition"))
++s = open("Jacobian/ChartProof/Stage2_g4.lean").read()
++t, n = bump_expr_num(s, "lc_zero ctx e_g4_P0 ["); open(f"{T}/neg_cp_orbit_g4.lean", "w").write(t)
++jobs.append(("neg_cp_orbit_g4", "REJECT", f"ChartProof Stage2 g4 batch 0 (y7^3 g4 in (S11..S16)): cofactor integer {n} -> {int(n)+1}", "Tactic .decide. proved that the proposition"))
++s = open("Jacobian/ChartProof/Stage4.lean").read()
++t, n = bump_expr_num(s, "noncomputable def e_A7 : Expr :="); open(f"{T}/neg_cp_point.lean", "w").write(t)
++jobs.append(("neg_cp_point", "REJECT", f"ChartProof Stage4 fact A7 (a7 = P7(w)): polynomial integer ...{n[-12:]} -> +1", "Tactic .decide. proved that the proposition"))
++i = s.index("theorem step_B0"); j = s.index("lc_zero ctx e_B0", i); k = s.index("\n", j)
++open(f"{T}/neg_cp_sorry.lean", "w").write(s[:j] + "sorry" + s[k:])
++jobs.append(("neg_cp_sorry", "SORRY", "ChartProof Stage4 step_B0 with its certificate replaced by sorry"))
++open(f"{T}/jobs.txt", "w").write("".join("|".join(j + ("error:",) * (4 - len(j))) + "\n" for j in jobs))
+ PY
+ fail=0
+-run() {   # name expectation description
++run() {   # name expectation description error-pattern
++  # REJECT means: nonzero exit AND a Lean error matching the pattern (for the ChartProof certificate
++  # controls: the kernel's verdict that the perturbed identity is false). An out-of-memory kill, a
++  # missing import or an unrelated error does not count as REJECT.
+   local out="$T/$1.out"; lake env lean "$T/$1.lean" > "$out" 2>&1; local ec=$?
+   local got
+   if grep -qE "declaration uses .sorry." "$out"; then got=SORRY
+-  elif [ $ec -eq 0 ]; then got=ACCEPT; else got=REJECT; fi
+-  if [ "$got" = "$2" ]; then echo "PASS  [$2] $3"; else echo "FAIL  expected $2, got $got: $3"; head -5 "$out"; return 1; fi
++  elif [ $ec -eq 0 ]; then got=ACCEPT
++  elif grep -qE "object file .* does not exist|unknown module prefix|unknown package" "$out"; then got=IMPORT-FAILURE
++  elif grep -qE "$4" "$out"; then got=REJECT
++  else got="NO-EXPECTED-ERROR(exit $ec)"; fi
++  if [ "$got" = "$2" ]; then
++    local msg="PASS  [$2] $3"
++    [ "$got" = REJECT ] && msg="$msg"$'\n'"      first error: $(grep -m1 -E "error" "$out" | sed "s|$T/||" | cut -c1-150)"
++    echo "$msg"
++  else echo "FAIL  expected $2, got $got: $3"; head -5 "$out"; return 1; fi
+ }
+ export -f run; export T
+-while IFS='|' read -r name exp desc; do
+-  echo "$name|$exp|$desc"
+-done < "$T/jobs.txt" | xargs -P 2 -I{} bash -c 'IFS="|" read -r n e d <<< "{}"; run "$n" "$e" "$d"' | tee "$T/results.txt" || fail=1
++while IFS='|' read -r name exp desc pat; do
++  echo "$name|$exp|$desc|$pat"
++done < "$T/jobs.txt" | xargs -P "${CONTROLS_JOBS:-2}" -I{} bash -c 'IFS="|" read -r n e d p <<< "{}"; run "$n" "$e" "$d" "$p"' | tee "$T/results.txt" || fail=1
+ expected=$(wc -l < "$T/jobs.txt"); passed=$(grep -c '^PASS' "$T/results.txt")
+ echo "controls passed: $passed / $expected"
+ [ $fail -eq 0 ] && [ "$passed" -eq "$expected" ] && echo "=== ALL CONTROLS BEHAVED AS EXPECTED ===" || { echo "=== CONTROL FAILURE ==="; exit 1; }
+--- v16/lean/verify_branch_ab_lean.sh
++++ v17/lean/verify_branch_ab_lean.sh
+@@ -6,6 +6,8 @@
+ #
+ # Resources: the exact K5 descent (Jacobian/Descent, 84 modules) needs ~12 min on 4 cores and
+ # ~2 GB RAM per build job (peak ~7.5 GB total with 4 jobs); outputs ~2.5 GB of .olean files.
++# The Prop. 6.1 proof (Jacobian/ChartProof, 12 modules, v17) needs ~25 min sequentially and up to
++# 5.4 GB RAM for a single module (Stage2_g7); build with LEAN_NUM_THREADS=1 on machines with < 12 GB.
+ #
+ # Usage: verify_branch_ab_lean.sh [PROJECT_DIR]
+ #   PROJECT_DIR defaults to this script's directory if it holds lakefile.toml,
+@@ -31,7 +33,8 @@
+   BranchAb.belyi_derivative BranchAb.layerTerm_top BranchAb.orbit_solves_E5
+   BranchAb.main_theorem_of_classification
+   BranchAb.chart_K5_identities BranchAb.chart_point_solves BranchAb.topLayerClassification_of_chart
+-  BranchAb.main_theorem_of_chart"
++  BranchAb.main_theorem_of_chart
++  BranchAb.ChartProof.eq_of_toPolyK BranchAb.ChartProof.lc_zero BranchAb.chartClassification_holds BranchAb.main_theorem"
+ 
+ cd "$PROJ" || { echo "FAIL: cannot cd to $PROJ"; exit 1; }
+ echo "project: $PROJ"
+--- v16/lean/certgen/check_regeneration.sh
++++ v17/lean/certgen/check_regeneration.sh
+@@ -19,3 +19,8 @@
+   [ "$(grep -c PASS "$T/span.out")" -ge 3 ] && grep -q "35 of 35;  rank over K5: 6" "$T/span.out" && grep -q "rejected (good)" "$T/span.out" \
+     && echo "PASS: independent PARI/GP span check" || { echo "FAIL: PARI/GP span check"; exit 1; }
+ else echo "SKIP: PARI/GP not installed"; fi
++
++# v17: the Lean proof of Prop. 6.1 (Jacobian/ChartProof) -- regenerate from scratch, require byte-identity
++if [ "${WITH_CHARTPROOF_REGEN:-1}" = "1" ]; then
++  bash "$HERE/chartproof/regenerate_chartproof.sh" || { echo "FAIL: ChartProof regeneration"; exit 1; }
++else echo "SKIP: ChartProof regeneration (WITH_CHARTPROOF_REGEN=0)"; fi
+--- v16/lean/Jacobian/ChartProof/Reflect.lean
++++ v17/lean/Jacobian/ChartProof/Reflect.lean
+@@ -0,0 +1,135 @@
++import Mathlib.Tactic.Ring
++import Mathlib.Algebra.Field.Basic
++import Mathlib.Algebra.CharZero.Defs
++
++set_option linter.unusedTactic false
++set_option linter.unreachableTactic false
++set_option linter.unnecessarySeqFocus false
++
++/-! Kernel-friendly reflective polynomial identity checking, built on the verified normalizer of
++`Lean.Grind.CommRing` (core).  All functions are defined by recursors, so the kernel evaluates them
++directly; soundness is proved from core's `Poly.denote_*` lemmas. -/
++
++namespace BranchAb.ChartProof
++open Lean.Grind.CommRing
++
++/-- Polynomial multiplication by recursion on the first factor (kernel-friendly). -/
++noncomputable def mulK (p₁ p₂ : Poly) : Poly :=
++  Poly.rec (fun k => p₂.mulConst_k k) (fun k m _ ih => (p₂.mulMon_k k m).combine_k ih) p₁
++
++noncomputable def powK (p : Poly) (k : Nat) : Poly :=
++  Nat.rec (.num 1) (fun _ ih => mulK p ih) k
++
++noncomputable def toPolyK (e : Expr) : Poly :=
++  Expr.rec (fun k => .num k) (fun k => .num k) (fun k => .num k) (fun x => .ofVar x)
++    (fun _ ih => ih.mulConst_k (-1))
++    (fun _ _ ih₁ ih₂ => ih₁.combine_k ih₂)
++    (fun _ _ ih₁ ih₂ => ih₁.combine_k (ih₂.mulConst_k (-1)))
++    (fun _ _ ih₁ ih₂ => mulK ih₁ ih₂)
++    (fun a k ih => Expr.rec (motive := fun _ => Poly) (fun _ => powK ih k) (fun _ => powK ih k)
++        (fun _ => powK ih k)
++        (fun x => .ofMon (.mult { x := x, k := k } .unit)) (fun _ _ => powK ih k)
++        (fun _ _ _ _ => powK ih k) (fun _ _ _ _ => powK ih k) (fun _ _ _ _ => powK ih k)
++        (fun _ _ _ => powK ih k) a)
++    e
++
++variable {α : Type*} [CommRing α]
++
++theorem denote_mulK (ctx : Context α) (p₁ p₂ : Poly) :
++    (mulK p₁ p₂).denote ctx = p₁.denote ctx * p₂.denote ctx := by
++  induction p₁ with
++  | num k =>
++    show (p₂.mulConst_k k).denote ctx = _
++    rw [Poly.mulConst_k_eq_mulConst, Poly.denote_mulConst]
++    simp [Poly.denote] <;> ring
++  | add k m p ih =>
++    show ((p₂.mulMon_k k m).combine_k (mulK p p₂)).denote ctx = _
++    rw [Poly.combine_k_eq_combine, Poly.denote_combine, Poly.mulMon_k_eq_mulMon, Poly.denote_mulMon, ih]
++    simp [Poly.denote] <;> ring
++
++theorem denote_powK (ctx : Context α) (p : Poly) (k : Nat) :
++    (powK p k).denote ctx = p.denote ctx ^ k := by
++  induction k with
++  | zero => simp [powK, Poly.denote]
++  | succ n ih =>
++    show (mulK p (powK p n)).denote ctx = _
++    rw [denote_mulK, ih]; ring
++
++theorem denote_toPolyK (ctx : Context α) (e : Expr) : (toPolyK e).denote ctx = e.denote ctx := by
++  induction e with
++  | num k => simp [toPolyK, Poly.denote, Expr.denote, denoteInt_eq]
++  | natCast k => simp [toPolyK, Poly.denote, Expr.denote]
++  | intCast k => simp [toPolyK, Poly.denote, Expr.denote]
++  | var x => simp [toPolyK, Poly.denote_ofVar, Expr.denote]
++  | neg a ih =>
++    show ((toPolyK a).mulConst_k (-1)).denote ctx = _
++    rw [Poly.mulConst_k_eq_mulConst, Poly.denote_mulConst, ih]; simp [Expr.denote]
++  | add a b iha ihb =>
++    show ((toPolyK a).combine_k (toPolyK b)).denote ctx = _
++    rw [Poly.combine_k_eq_combine, Poly.denote_combine, iha, ihb]; rfl
++  | sub a b iha ihb =>
++    show ((toPolyK a).combine_k ((toPolyK b).mulConst_k (-1))).denote ctx = _
++    rw [Poly.combine_k_eq_combine, Poly.denote_combine, Poly.mulConst_k_eq_mulConst,
++      Poly.denote_mulConst, iha, ihb]
++    simp [Expr.denote]; ring
++  | mul a b iha ihb =>
++    show (mulK (toPolyK a) (toPolyK b)).denote ctx = _
++    rw [denote_mulK, iha, ihb]; rfl
++  | pow a k ih =>
++    cases a with
++    | var x =>
++      show (Poly.ofMon (.mult { x := x, k := k } .unit)).denote ctx = _
++      rw [Poly.denote_ofMon]
++      simp [Mon.denote, Power.denote_eq, Expr.denote]
++    | num n => show (powK (toPolyK (.num n)) k).denote ctx = _; rw [denote_powK, ih]; rfl
++    | natCast n => show (powK (toPolyK (.natCast n)) k).denote ctx = _; rw [denote_powK, ih]; rfl
++    | intCast n => show (powK (toPolyK (.intCast n)) k).denote ctx = _; rw [denote_powK, ih]; rfl
++    | neg a => show (powK (toPolyK (.neg a)) k).denote ctx = _; rw [denote_powK, ih]; rfl
++    | add a b => show (powK (toPolyK (.add a b)) k).denote ctx = _; rw [denote_powK, ih]; rfl
++    | sub a b => show (powK (toPolyK (.sub a b)) k).denote ctx = _; rw [denote_powK, ih]; rfl
++    | mul a b => show (powK (toPolyK (.mul a b)) k).denote ctx = _; rw [denote_powK, ih]; rfl
++    | pow a j => show (powK (toPolyK (.pow a j)) k).denote ctx = _; rw [denote_powK, ih]; rfl
++
++/-- Reflective identity check: if the kernel-normal form of `a - b` is `0`, then `a = b`. -/
++theorem eq_of_toPolyK (ctx : Context α) (a b : Expr)
++    (h : Poly.beq' (toPolyK (.sub a b)) (.num 0) = true) : a.denote ctx = b.denote ctx := by
++  have h1 : toPolyK (.sub a b) = .num 0 := by simpa using h
++  have h2 := denote_toPolyK ctx (.sub a b)
++  rw [h1] at h2
++  have h3 : a.denote ctx - b.denote ctx = 0 := by
++    rw [← show (Expr.sub a b).denote ctx = a.denote ctx - b.denote ctx from rfl, ← h2]
++    simp [Poly.denote]
++  exact sub_eq_zero.mp h3
++
++end BranchAb.ChartProof
++
++namespace BranchAb.ChartProof
++open Lean.Grind.CommRing
++
++/-- `Σ cᵢ·eᵢ` as a reflected expression. -/
++noncomputable def lcExpr (l : List (Expr × Expr)) : Expr :=
++  List.rec (.num 0) (fun p _ ih => .add (.mul p.1 p.2) ih) l
++
++/-- All the listed polynomials `eᵢ` vanish at `ctx`. -/
++abbrev AllZero {α : Type*} [CommRing α] (ctx : Context α) (l : List (Expr × Expr)) : Prop :=
++  List.rec True (fun p _ ih => p.2.denote ctx = 0 ∧ ih) l
++
++variable {α : Type*} [CommRing α]
++
++theorem denote_lcExpr (ctx : Context α) (l : List (Expr × Expr)) (h : AllZero ctx l) :
++    (lcExpr l).denote ctx = 0 := by
++  induction l with
++  | nil => show denoteInt 0 = (0 : α); simp [denoteInt_eq]
++  | cons p l ih =>
++    obtain ⟨h1, h2⟩ := h
++    show (p.1.denote ctx) * (p.2.denote ctx) + (lcExpr l).denote ctx = 0
++    rw [h1, ih h2]; simp
++
++/-- Reflective linear combination: if `g ≡ Σ cᵢ eᵢ` (checked by the kernel) and every `eᵢ` vanishes,
++then `g` vanishes. -/
++theorem lc_zero (ctx : Context α) (g : Expr) (l : List (Expr × Expr))
++    (hcert : Poly.beq' (toPolyK (.sub g (lcExpr l))) (.num 0) = true) (h : AllZero ctx l) :
++    g.denote ctx = 0 := by
++  rw [eq_of_toPolyK ctx g (lcExpr l) hcert]; exact denote_lcExpr ctx l h
++
++end BranchAb.ChartProof
