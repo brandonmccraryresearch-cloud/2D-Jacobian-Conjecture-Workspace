@@ -3,8 +3,10 @@
 ## v18 Packaging Note (2026-09-28)
 
 This tree (`branch_ab_v18/`) is derived from the published v17 (`branch_ab_v17/`,
-commit 45dc9b3, unchanged). The v18 changes repair three items the v17 paper and
-scripts left incomplete. Nothing has been published, uploaded or deposited.
+commit 45dc9b3 plus the PR #2 README fix merged at 2a40ffd; unchanged since).
+The v18 changes repair three items the v17 paper and
+scripts left incomplete. Public on GitHub since 2026-09-28; not submitted to a
+journal or preprint server; no archival deposit or DOI.
 
 ### What changed in v18
 

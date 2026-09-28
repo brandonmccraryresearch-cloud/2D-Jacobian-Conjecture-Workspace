@@ -1,6 +1,7 @@
-# v18 changes vs published v17 (commit 45dc9b3)
+# v18 changes vs published v17 (commit 45dc9b3 plus the PR #2 README fix merged at 2a40ffd)
 
-This tree is `branch_ab_v18/`; the published v17 tree is preserved unchanged as
+This tree is `branch_ab_v18/`; the published v17 tree (commit 45dc9b3 plus the
+PR #2 README fix merged at 2a40ffd; unchanged since) is preserved as
 `branch_ab_v17/`. Merged to `main` and pushed 2026-09-28 (merge commit `97f50a8`).
 
 ## 1. Proposition 6.1 — m=3, m=5 bounds proved sharp
@@ -55,6 +56,9 @@ This tree is `branch_ab_v18/`; the published v17 tree is preserved unchanged as
   236-entry v18 bundle subset (235 + the new script-run log).
 - `branch_ab_v18/logs/v18_scripts.log` — recorded stdout and exit codes of the
   three v18 script runs.
+- `branch_ab_v18/BUILD_STATUS.md` — v18 packaging note added.
+- `branch_ab_v18/paper/branch_ab_elimination_v3.{aux,log,toc}` — recompile
+  byproducts of the PDF rebuild.
 
 ## Verification (from clean extraction of branch_ab_final_v18_2.zip)
 - 236/236 checksums pass (md5 and sha256); all three scripts exit 0;
