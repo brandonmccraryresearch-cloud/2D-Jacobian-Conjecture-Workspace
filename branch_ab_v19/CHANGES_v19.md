@@ -121,3 +121,9 @@ reproducibility appendix names the artifact commit.
   record); `#print axioms` on `main_theorem` reports only propext,
   Classical.choice, Quot.sound.
 - Manifest: all entries verify under MD5 and SHA-256 (see the verification record in BUILD_STATUS.md).
+
+## 10. Post-v19 reviewer fixes (commits a633e17, fcbc917, 2529293, and this one)
+- `a633e17`: paper wording — independent_check.py scope note ("verifies the arithmetic of the certificates only; it does not re-prove the mathematical statements"); BUILD_STATUS.md Lean build record.
+- `fcbc917`: rebuilt PDF from the a633e17 source (31pp, xelatex exit 0).
+- `2529293`: reviewer findings 1–6 — all 9 .sh files set executable (100755); abstract + Remark 6.7 classification wording ("proved twice"); §4 grading terminology; dependency diagram; Lemma 9.1 proof added; smaller items (Thm 6.3, Lemma 6.6, Thm 8.3, Remark 8.4, title, Remark 1.3, reproducibility, Appendix C, §11).
+- This commit: Lemma 9.1 irreducibility via mod-67 (replaces false Eisenstein claim); verify_v19.sh compiles paper in temp dir (no longer mutates tree); checksums regenerated; Remark 6.7 "m=7 case"; Lemma 8.5 wording; Thm 8.3 proof notation; reproducibility stale-build note removed.

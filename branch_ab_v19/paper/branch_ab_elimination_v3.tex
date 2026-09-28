@@ -613,7 +613,7 @@ Steps~1--5 are proved algebraically over $\mathbb{Q}$ and hence hold over every 
 \end{proof}
 
 \begin{remark}[Roles of the two classifications]
-Proposition~\ref{prop:top-class} is proved twice. The Belyi route combines the geometric upper bound (at most $35$ chart points over $\mathbb{C}$) with the $35$ exhibited points from the msolve parametrization, giving a complete classification in characteristic~$0$; it depends on Riemann's existence theorem and the computed parametrization. The algebraic certificate of this section gives an independent classification: every solution in characteristic~$0$ is one of the five $K_5$-orbits (Lemma~\ref{lem:chart-transfer}). Lean's \texttt{main\_theorem} uses only the algebraic route.
+The $m=7$ case of Proposition~\ref{prop:top-class} is proved twice. The Belyi route combines the geometric upper bound (at most $35$ chart points over $\mathbb{C}$) with the $35$ exhibited points from the msolve parametrization, giving a complete classification in characteristic~$0$; it depends on Riemann's existence theorem and the computed parametrization. The algebraic certificate of this section gives an independent classification: every solution in characteristic~$0$ is one of the five $K_5$-orbits (Lemma~\ref{lem:chart-transfer}). Lean's \texttt{main\_theorem} uses only the algebraic route.
 \end{remark}
 
 \begin{remark}[Formalization]\label{rem:chartproof-lean}
@@ -761,7 +761,7 @@ exactly over $K_5$ (the $35\times6$ coefficient matrix has rank $6$, spanning al
 \begin{proof}
 Exact computation over $K_5$: the $35$ minors are homogeneous quintics, and their $35\times6$ coefficient matrix has rank~$6$, so
 \[
-\operatorname{span}_{K_5}\{M_{ijk}\}=K_5[t_1,t_2]_5=\operatorname{Sym}^5(K_5^2)^\vee,
+\operatorname{span}_{K_5}\{M_{ijk}\}=K_5[t_1,t_2]_5,
 \]
 the full six-dimensional space of binary quintics. Hence every degree-five monomial lies in the ideal $I$ they generate, i.e.\ $(t_1,t_2)^5\subseteq I$; conversely each generator lies in $(t_1,t_2)^5$, so $I=(t_1,t_2)^5$. The radical is $(t_1,t_2)$, so the affine variety over the algebraic closure is $\{(0,0)\}$. Script: \filename{exact\_obstruction\_K5.py}, which also writes the $35\times6$ matrix and a $6\times6$ nonzero minor to \filename{logs/k5\_minor\_certificate.json} as a machine-readable certificate. The {\sc SymPy} Gr\"obner basis over $GF(101)$ (script \filename{C5\_E2\_obstruction\_corrected.py}, saved, rerunnable; log archived) is a cross-check.
 \end{proof}
@@ -773,13 +773,13 @@ The top layer admits five characteristic-zero orbits, but none extends to a full
 \subsection{\texorpdfstring{The case $t=0$}{The case t=0}}
 
 \begin{lemma}[Collapse at $t=0$]\label{lem:t0-collapse}
-At $t=(0,0)$ the $E_2$ compatibility equation reduces to
+At $t=(0,0)$ the $E_2$ layer equation reduces to
 \[
 2A_2B_0'=0.
 \]
 \end{lemma}
 \begin{proof}
-Because the target bracket identity $[P,Q]=x^2=u^2y^{-4}$ contains only a $y^{-4}$ component, the layer equation $E_4$ at $y^{-3}$ is strictly homogeneous:
+Because the target bracket identity $[P,Q]=x^2=u^2y^{-4}$ contains only a $y^{-4}$ component, the layer equation $E_4$ at $y^{-3}$ is homogeneous:
 \[
 2(A_2B_2'-A_2'B_2)+(A_1B_3'-3A_1'B_3)=0.
 \]
@@ -872,7 +872,7 @@ $R(w)=w^5-w^4+3w^3+3w^2+26$ is irreducible and separable over $\mathbb{Q}$, so $
 \end{lemma}
 
 \begin{proof}
-$R$ is irreducible over $\mathbb{Q}$ (Eisenstein after the shift $w\mapsto w+1$, or by rational root test plus quadratic factor exclusion) and separable since its discriminant $784{,}822{,}272=2^{12}\cdot3\cdot13\cdot17^3$ is nonzero. Hence $K_5$ is a field. Rank of a matrix and equality of ideals are preserved under field extension: rank is the size of the largest nonzero minor, and ideal membership is witnessed by explicit polynomial combinations, both of which persist after extending scalars.
+$R$ is irreducible modulo $67$ (a single quintic factor), hence irreducible over $\mathbb{Q}$, and separable since its discriminant $784{,}822{,}272=2^{12}\cdot3\cdot13\cdot17^3$ is nonzero. Hence $K_5$ is a field. Rank of a matrix and equality of ideals are preserved under field extension: rank is the size of the largest nonzero minor, and ideal membership is witnessed by explicit polynomial combinations, both of which persist after extending scalars.
 \end{proof}
 
 \begin{lemma}[Exact obstruction]\label{lem:lifting}
@@ -955,7 +955,7 @@ The $E_2$ seven-condition expansion ($b_i+s_1M_i+s_2L_i=0$) and the $35$-minor G
 Modular computations use $p=101$; characteristic-zero claims (irreducibility over $\mathbb{Q}$, discriminant nonzero, exactly one real root) are over $\mathbb{Q}$. The earlier $E_4/E_3$ scripts using unscaled $(\alpha,\beta)$ are superseded and excluded from the archive.
 
 \subsection*{Reproducibility}
-All artifacts are archived in \href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}{the public repository}, directory \filename{branch\_ab\_v19/}, at commit \texttt{9b7d5411b1165403174cf744b8dd591bddb08444}. The Lean project sources are byte-identical to the cloud-verified v18 sources (see \filename{BUILD\_STATUS.md}; a local v19 full build is in progress). \texttt{\#print axioms} on \texttt{main\_theorem} reports only \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. The certificate chain is generator $\to$ certificate $\to$ Lean theorem: \filename{lean/certgen/chartproof/} generates the ChartProof modules (byte-identical regeneration checked by \filename{regenerate\_chartproof.sh}), \filename{independent\_check.py} re-verifies all $111$ identities over $\mathbb{Z}$ independently of the generator, and the Lean kernel checks every proof term. The $K_5$ descent scripts (\filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}) run from \filename{lean/certgen/} with python-flint~0.9.0; \filename{logs/v19\_scripts.log} records their exact output and exit codes, and \filename{logs/k5\_minor\_certificate.json} carries the machine-readable $35\times6$ minor matrix with its rank certificate.
+All artifacts are archived in \href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}{the public repository}, directory \filename{branch\_ab\_v19/}, at commit \texttt{9b7d5411b1165403174cf744b8dd591bddb08444}. The Lean project sources are byte-identical to the v18 sources, whose full build is recorded in \filename{BUILD\_STATUS.md}. \texttt{\#print axioms} on \texttt{main\_theorem} reports only \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. The certificate chain is generator $\to$ certificate $\to$ Lean theorem: \filename{lean/certgen/chartproof/} generates the ChartProof modules (byte-identical regeneration checked by \filename{regenerate\_chartproof.sh}), \filename{independent\_check.py} re-verifies all $111$ identities over $\mathbb{Z}$ independently of the generator, and the Lean kernel checks every proof term. The $K_5$ descent scripts (\filename{exact\_ranks\_K5.py}, \filename{exact\_obstruction\_K5.py}) run from \filename{lean/certgen/} with python-flint~0.9.0; \filename{logs/v19\_scripts.log} records their exact output and exit codes, and \filename{logs/k5\_minor\_certificate.json} carries the machine-readable $35\times6$ minor matrix with its rank certificate.
 
 \section{Original certificate (second route)}\label{app:original-cert}
 

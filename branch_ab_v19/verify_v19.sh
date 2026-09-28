@@ -64,10 +64,16 @@ PYEOF
 echo "=== 4. 111/111 independent identities ==="
 run $PY chartproof/independent_check.py
 
-echo "=== 5. paper recompile ==="
-cd "$ROOT/paper" || exit 1
-run xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex
-run xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex
+echo "=== 5. paper recompile (in temp dir, tree untouched) ==="
+TMPD=$(mktemp -d)
+cp "$ROOT/paper/branch_ab_elimination_v3.tex" "$TMPD/" && cp -r "$ROOT/paper/figures" "$TMPD/"
+cd "$TMPD" || exit 1
+for i in 1 2 3; do run xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex; done
+PAGES=$(pdfinfo branch_ab_elimination_v3.pdf 2>/dev/null | grep Pages | awk '{print $2}')
+echo "### compiled pages: $PAGES (expect 31)"
+if [ "$PAGES" = "31" ]; then echo "PAGECOUNT OK"; pass=$((pass+1)); else echo "PAGECOUNT MISMATCH"; fail=$((fail+1)); fi
+cd "$ROOT" || exit 1
+rm -rf "$TMPD"
 
 echo "=== 6. Lean build (only if .lake present) ==="
 cd "$ROOT/lean" || exit 1
