@@ -13,7 +13,6 @@
 08a9166b98004094fcc49a2fd222a2b7  ./lean/setup.sh
 0a854ce600dc5e150ba37721e7edeebf  ./lean/certgen/e5_exact_K5.json
 0b17f87adf11a7c89f95b485df9804d5  ./lean/Jacobian/BranchAbSharp.lean
-0c1e7a33294178a4c489a8f01d146c7f  ./paper/branch_ab_elimination_v3.log
 11b00d616d45560388e781a135dc044e  ./lean/certgen/regenerate.sh
 12460d57f4a788f2f905269e44974cb2  ./lean/lakefile.toml
 19fe619b635ffc515887e00bf967cc48  ./lean/Jacobian/BranchAbTorus.lean
@@ -54,6 +53,7 @@
 3c2ad3f91435f192c38d781d688fe165  ./lean/Jacobian/Descent/E3/x_b_1_1.lean
 3ca8d71dff8f40411a16f30ec97766ec  ./lean/Jacobian/BranchAbFinal.lean
 3df652ea78b18e35e0fadca39a6901cd  ./lean/Jacobian/Descent/E3/x_a_6_12.lean
+3fe56195e42d5b64c715eb0d03a23cb5  ./CHANGES_v19.md
 3fffd33bc66376c4493b65f075e12ad4  ./lean/Jacobian/Descent/E2red/r2_2_3.lean
 41cb5cb195a1521bea6c25949c21901b  ./lean/certgen/chart_a1_0_Q.sing
 41e0a577affa647dfa9535dcce832252  ./lean/Jacobian/Descent/E4/z_a_7_13.lean
@@ -76,7 +76,6 @@
 52e7c43d7f7905ecdb45ef8a0fb5a4c8  ./lean/Jacobian/Descent/Main.lean
 5527e68d18d385a37d92594326da57f6  ./lean/certgen/chart_system_p.sing
 55994012dc06b7027659f2128170ee85  ./logs/regeneration_check_v17.log
-55fa667713e4a84d35b7ee8993ee3260  ./CHANGES_v19.md
 5791d9ca17951c908c06c603d1ea770d  ./lean/logs/run_all_first_pass.log
 5791d9ca17951c908c06c603d1ea770d  ./logs/run_all_first_pass.log
 57b39f951ba84d330f83443b4aa77072  ./lean/certgen/chartproof/ptree.py
@@ -122,6 +121,7 @@
 8270cfaa42e627eb175ccfa8d56b2bb6  ./lean/certgen/chartproof/gen_final.py
 83706534fa987e06e020bda7f52cad1c  ./lean/Jacobian/Descent/E4/z_b_2_2.lean
 83eb252d6d861b139a987a80c0156928  ./lean/certgen/chartproof/stage3data.json
+857cf91c6a899a1b9b6e07a129b31bce  ./paper/branch_ab_elimination_v3.log
 885bff37b13b03eab02ab6c44d3c4bcc  ./lean/Jacobian/ChartProof/Reflect.lean
 88c3d93dd2b2dfd67cb766b7715007c6  ./lean/Jacobian/Descent/E3/x_b_5_9.lean
 89263f5dd3c3e5a57dfaf1cc24104d71  ./lean/certgen/chartproof/parse_chart.py
@@ -152,6 +152,7 @@ a3d91ca1da081e9d902c7a4589911224  ./lean/Jacobian/Descent/E3red/r3_6_10.lean
 a3e97f889aebd1d8cb9efbfe2276a064  ./paper/branch_ab_elimination_v3.out
 a53b8de0baa9bd9ce8d21c629dff9589  ./lean/certgen/check_regeneration.sh
 a61ffe495956e6682472f78ed83e3935  ./lean/certgen/chart_a1_1_p.sing
+a7ff542f2f7687a4c732b9c5e24de560  ./paper/branch_ab_elimination_v3.pdf
 a845afb3fc66daf48ae1d61d9beacdb1  ./lean/Jacobian/Basic.lean
 a9c9a9e1a23665b7af51e27a5b95acae  ./lean/Jacobian/Descent/E2red/r2_1_1.lean
 aa68d2ffa08a8db86627a03e41f4e94d  ./scripts/a816_full.sing
@@ -178,7 +179,7 @@ c163128aaf6d6ccd1eb409e6cc22ae76  ./lean/Jacobian/Descent/E2red/r2_15_29.lean
 c1851e36608d61268f8cda1b4558449b  ./lean/CHANGES.diff
 c31002d091acf9ffa37005a57ccb549a  ./lean/Jacobian/Descent/E2red/r2_17_33.lean
 c3c0d9862ee512aa774501139f8e903b  ./lean/Jacobian/ChartProof/Stage1.lean
-c50f3f5b6b274f8faf0d87c3345882ef  ./paper/branch_ab_elimination_v3.tex
+ca386221235ee4a9ef1c459f36546bcb  ./paper/branch_ab_elimination_v3.tex
 cb6aea069f86bf0053af1574c5cdc132  ./lean/Jacobian/Descent/E3/x_b_2_3.lean
 cbea8e3bc7b006de4ba60aa50955c136  ./scripts/belyi_counts_m357.py
 cc1139b9744c39b398f2d94cf1905124  ./lean/Jacobian/Descent/E4/z_b_8_14.lean
@@ -214,7 +215,6 @@ e4952a1af8cef8156dc21159f616660d  ./logs/chart_cas.log
 e496be3e28695b452f8ecf0fa0fd6b6f  ./lean/certgen/cert.json
 e50597c46d52750530b1094acb1fb9f0  ./lean/Jacobian/Descent/E2/F2.lean
 e5f8a4b099905f11f084bfc80014ce1f  ./lean/certgen/chart_a1_0_p.sing
-e6155b66423a1f1cea63a5c28c9582d2  ./paper/branch_ab_elimination_v3.pdf
 e9dfd78063ca1afa4657d0b67c3ca5d9  ./lean/certgen/chartproof/README_chartproof.md
 eb3080edad0f71a24390162f5df26a08  ./verify_v19.sh
 ebb4010a49453eb6643734924ef74d94  ./lean/certgen/chartproof/yform.py

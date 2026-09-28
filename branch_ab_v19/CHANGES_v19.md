@@ -142,3 +142,7 @@ reproducibility appendix names the artifact commit.
 - Lemma 9.2 proof: "(the S = a6^7 parametrization; Remark~\ref{rem:import})" — cites the derivation remark for K5 ≅ Q(rho^7).
 - Remark 9.3 title: "$W$" -> "$\mathcal{W}$" (eliminant, not the §7.3 matrix).
 - PDF rebuilt: 31pp, 0 errors, 0 undefined refs, 0 overfull boxes.
+
+## 14. Reproducibility paragraph cites final commit (this commit)
+- Reproducibility paragraph: commit hash 9b7d541 -> 7597700 (the first commit where scripts, permissions, and checksums are all final).
+- PDF rebuilt: 31pp, 0 errors, 0 undefined refs.
