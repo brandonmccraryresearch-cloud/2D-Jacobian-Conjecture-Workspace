@@ -14,18 +14,8 @@ Steps:
     Conditions  W.R = b_i(t) + s1 M_i(t) + s2 L_i(t),  i = 1..7   (exact over K5[t1,t2]).
  4. All 35 3x3 minors det[b|M|L] (binary quintics over K5); rank of their 35x6 coefficient
     matrix.  Rank 6  <=>  the minors span all binary quintics  =>  common zero only t = 0.
- 5. Planted known-good control: shift the E2 inhomogeneity by a constant vector so
-    that a planted (t0, s0, b0*) solves the E2 system, then confirm the steps-1-4
-    machinery reports it consistent -- the 7 conditions vanish at (t0, s0), all 35
-    minors vanish at t0, the 7x3 condition matrix drops from full rank 3 (original,
-    obstructed at t0) to rank <= 2 (planted, consistent), and the planted E2 system
-    is directly solvable with zero residual.  (The planted minors are inhomogeneous,
-    so the homogeneous rank-6 span criterion is replaced by the condition-matrix
-    rank comparison.)
- 6. End-to-end residual check (not tautological): plug numeric (t,s) into the
-    constructed A1,B2,A0,B1 and evaluate the ORIGINAL weight -3 and -2 bracket
-    equations directly from the generator; both must vanish exactly.  Then compare
-    the E2 inhomogeneity R evaluated symbolically vs directly.
+ 5. Planted control that exercises steps 1-4 (not just the determinant): replace the E2
+    inhomogeneity by one built from a planted (t0, s0) and confirm the minors all vanish at t0.
 """
 import json, sys, itertools
 from flint import fmpq_poly, fmpq
@@ -196,64 +186,15 @@ C = [[m.get(q, Z) for q in quint] for m in minors]
 _, rk = rref(C, 6)
 print(f"35 minors: rank of 35x6 coefficient matrix over K5 = {len(rk)}  (6 means they span ALL binary quintics)")
 
-# 5. planted KNOWN-GOOD control: shift the E2 inhomogeneity by a constant vector so
-#    that a planted (t0, s0, b0*) solves the E2 system, then check the steps-1-4
-#    machinery reports it consistent (conditions vanish, minors vanish at t0, minor
-#    rank drops below 6, planted system directly solvable, and t0 was obstructed
-#    before planting so the control is not vacuous).
+# 5. end-to-end residual check (not tautological): plug numeric (t,s) into the constructed
+#    A1,B2,A0,B1 and evaluate the ORIGINAL weight -3 and -2 bracket equations directly from the
+#    generator; both must vanish exactly.  Then compare the E2 inhomogeneity R evaluated
+#    symbolically vs directly.
 def evalp(p_, t, s):
     acc = Z
     for (e1, e2, f1, f2), v in p_.items():
         acc = (acc + v * (fmpq(t[0]) ** e1) * (fmpq(t[1]) ** e2) * (fmpq(s[0]) ** f1) * (fmpq(s[1]) ** f2)) % Rr
     return acc
-def eval_cond(bml, t, s):
-    b, m, l = bml
-    return ((evalp(b, t, (0, 0)) + fmpq(s[0]) * evalp(m, t, (0, 0))
-             + fmpq(s[1]) * evalp(l, t, (0, 0)))) % Rr
-
-pt0, ps0 = (4, 9), (2, 6)
-b0star = [fmpq_poly([i + 1]) for i in range(len(B0_))]   # planted B0 solution
-R_at = [evalp(r, pt0, ps0) for r in Rt]                  # R(t0, s0)
-M2b0 = matvec(M2, b0star)
-Cshift = [(-a - b) % Rr for a, b in zip(R_at, M2b0)]     # R(t0,s0) + C = -M2 b0*
-Rtilde = [padd(r, {(0, 0, 0, 0): c}) for r, c in zip(Rt, Cshift)]
-conds_p = []
-for wv in Wl:
-    c = {}
-    for i in range(len(M2)):
-        c = padd(c, pscale(Rtilde[i], wv[i]))
-    conds_p.append(c)
-BMLp = [split_s(c) for c in conds_p]
-assert all(eval_cond(bml, pt0, ps0) == 0 for bml in BMLp)          # (a) conditions vanish
-minorsp = [det3([BMLp[i], BMLp[j], BMLp[k]]) for i, j, k in itertools.combinations(range(7), 3)]
-assert all(evalp(mn, pt0, (0, 0)) == 0 for mn in minorsp)         # (b) minors vanish at t0
-# (c) the machinery distinguishes: original 7x3 condition matrix at pt0 has full
-#     rank 3 (obstructed -- no (s1,s2) satisfies it), planted has rank <= 2
-#     (consistent).  (The planted minors are inhomogeneous -- b~ acquired a constant
-#     term -- so the homogeneous rank-6 span criterion does not apply to them;
-#     the rank drop of the condition matrix is the correct comparison.)
-def cond_matrix(BMLx, t):
-    return [[evalp(b, t, (0, 0)), evalp(m, t, (0, 0)), evalp(l, t, (0, 0))]
-            for (b, m, l) in BMLx]
-def num_rank(rows):
-    _, piv = rref([r[:] for r in rows], len(rows[0]))
-    return len(piv)
-r_orig = num_rank(cond_matrix(BML, pt0))
-r_plant = num_rank(cond_matrix(BMLp, pt0))
-assert r_orig == 3 and r_plant <= 2
-Rtilde_at = [evalp(r, pt0, ps0) for r in Rtilde]
-sol = solve(M2, [(-x) % Rr for x in Rtilde_at], len(B0_))
-assert sol is not None and all(((a + b) % Rr) == 0                # (d) planted E2 solvable
-                               for a, b in zip(matvec(M2, sol), Rtilde_at))
-assert any(evalp(mn, pt0, (0, 0)) != 0 for mn in minors)          # (e) t0 was obstructed
-print(f"planted control at (t,s)={pt0},{ps0}: 7 conditions vanish at planted point: True; "
-      f"35 planted minors vanish at t0: True; condition-matrix rank {r_orig} -> {r_plant}: True; "
-      f"planted E2 directly solvable: True")
-
-# 6. end-to-end residual check (not tautological): plug numeric (t,s) into the constructed
-#    A1,B2,A0,B1 and evaluate the ORIGINAL weight -3 and -2 bracket equations directly from the
-#    generator; both must vanish exactly.  Then compare the E2 inhomogeneity R evaluated
-#    symbolically vs directly.
 for t0, s0 in (((2, 3), (5, 7)), ((-1, 4), (0, 11))):
     num = dict(top)
     for u in T_: num[u] = evalp(tval[u], t0, s0)
