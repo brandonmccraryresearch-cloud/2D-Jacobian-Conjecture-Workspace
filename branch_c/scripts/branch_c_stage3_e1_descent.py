@@ -21,7 +21,12 @@ import json
 import sys
 from flint import fmpq_poly, fmpq, nmod_poly
 
-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
+import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
+CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
+WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
+SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
+if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
+sys.path.insert(0, CERTGEN)
 from gen_system import build
 
 # ---------------------------------------------------------------- K_5 setup
@@ -40,7 +45,7 @@ ZERO = fmpq_poly([0])
 ONE = fmpq_poly([1])
 
 # ------------------------------------------------- Load K_5 point + system
-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
+d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
 pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
 pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
 

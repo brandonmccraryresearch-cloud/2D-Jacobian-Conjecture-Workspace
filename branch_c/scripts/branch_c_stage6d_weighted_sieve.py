@@ -4,7 +4,12 @@ Full reconstruction + Singular Groebner over F_1000003.
 """
 import json, sys, os, subprocess, pickle
 from flint import fmpq_poly, fmpq
-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
+import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
+CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
+WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
+SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
+if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
+sys.path.insert(0, CERTGEN)
 from gen_system import build
 
 P_PRIME = 1000003
@@ -23,7 +28,7 @@ def to_mod(a):
         pw=pw*W_ROOT%P_PRIME
     return t
 
-d=json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
+d=json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
 pt={v:K(c) for v,c in d.items() if not v.startswith("_")}
 pt.update({"a_1_0":ONE,"b_2_1":ONE,"a_2_2":ONE})
 LP,LQ,eqs,tgt=build()
@@ -290,9 +295,10 @@ for idx,e in enumerate(ue1):
     for k,v in RHS1[e].items():Omega[k]=(Omega.get(k,ZERO)+wv*v)%Rr
 Omega={k:v for k,v in Omega.items() if v!=ZERO}
 print(f"Omega: {len(Omega)} terms")
-c1=to_mod(Omega.get((0,0,0,2,0,0),ZERO))
-c2=to_mod(Omega.get((0,2,0,1,0,0),ZERO))
-c3=to_mod(Omega.get((0,4,0,0,0,0),ZERO))
+c1=to_mod(Omega.get((0,0,0,2,0,0,0),ZERO))
+c2=to_mod(Omega.get((0,2,0,1,0,0,0),ZERO))
+c3=to_mod(Omega.get((0,4,0,0,0,0,0),ZERO))
+assert not (c1==0 and c2==0 and c3==0), "Omega degenerate mod p (wrong keys?)"
 print(f"  c1={c1}, c2={c2}, c3={c3} (mod {P_PRIME})")
 # kappa roots: c1*k^2 + c2*k + c3 = 0
 disc=(c2*c2-4*c1*c3)%P_PRIME
@@ -315,10 +321,22 @@ monos1=sorted({k for p in RHS1.values() for k in p.keys()})
 Am2v=[f"a_{i}_{2*i-1}" for i in range(0,7)];Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)]
 E1v=Am2v+Bm1v
 am2_ad={};bm1_ad={}
+# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
+# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
+# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
+# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
+_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
+_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
+_WE1=_NE1[0]
+_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
+def _proj_E1(rhs):
+    wr=ZERO
+    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
+    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
 for m in monos1:
     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
     sol=solve_aug(M1,rhs)
-    if sol is None:continue
+    if sol is None:sol=solve_aug(M1,_proj_E1(rhs));assert sol is not None
     for j,v in enumerate(E1v):
         if sol[j]!=ZERO:
             dd=am2_ad if j<7 else bm1_ad
@@ -472,8 +490,8 @@ ideal I={','.join(p1_polys)};
 ideal G=groebner(I);
 G;
 """
-open("/home/hatch/workspace/stage6d_prong1.sing","w").write(sing1)
-r1=subprocess.run(["/home/hatch/miniconda3/envs/cas/bin/Singular","-q","/home/hatch/workspace/stage6d_prong1.sing"],capture_output=True,text=True,timeout=120)
+open(_os.path.join(WORKDIR, "stage6d_prong1.sing"),"w").write(sing1)
+r1=subprocess.run([SINGULAR,"-q",_os.path.join(WORKDIR, "stage6d_prong1.sing")],capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=120)
 print("Singular Prong 1 output:")
 print(r1.stdout[:1500])
 if r1.stderr:print("ERR:",r1.stderr[:300])
@@ -519,15 +537,17 @@ else:
     # Omega substituted should vanish; verify
     om_sub=subst_prong2({k:v for k,v in Omega.items()})
     print(f"  Omega substituted terms (should be 0): {len(om_sub)}")
+    assert len(om_sub)==0, "kappa is not a root of Omega"
     sing2=f"""ring R={P_PRIME},(t2,s1,r1,r2,q),wp(1,2,3,3,4);
 ideal I={','.join(p2_polys)};
 ideal G=slimgb(I);
 G;
 """
-    open("/home/hatch/workspace/stage6d_prong2.sing","w").write(sing2)
-    r2=subprocess.run(["/home/hatch/miniconda3/envs/cas/bin/Singular","-q","/home/hatch/workspace/stage6d_prong2.sing"],capture_output=True,text=True,timeout=300)
+    open(_os.path.join(WORKDIR, "stage6d_prong2.sing"),"w").write(sing2)
+    r2=subprocess.run([SINGULAR,"-q",_os.path.join(WORKDIR, "stage6d_prong2.sing")],capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=300)
     print("Singular Prong 2 output (first 1500 chars):")
     print(r2.stdout[:1500])
+    print(f"  G = <1>: {r2.stdout.strip().split(chr(10))[0].replace(' ','')=='G[1]=1'}")
     if r2.stderr:print("ERR:",r2.stderr[:300])
 
 print("\nSTAGE 6d DONE")

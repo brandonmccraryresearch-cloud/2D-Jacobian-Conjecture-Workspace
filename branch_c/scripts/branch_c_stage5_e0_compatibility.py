@@ -12,7 +12,12 @@ Run with: ~/miniconda3/envs/physics/bin/python branch_c_stage5_e0_compatibility.
 
 import json, sys, subprocess, os
 from flint import fmpq_poly, fmpq, nmod_poly
-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
+import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
+CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
+WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
+SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
+if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
+sys.path.insert(0, CERTGEN)
 from gen_system import build
 
 Rr = fmpq_poly([26, 0, 3, 3, -1, 1])
@@ -23,7 +28,7 @@ def kinv(a):
     g, s, _ = a.xgcd(Rr); assert g == 1; return s % Rr
 ZERO = fmpq_poly([0]); ONE = fmpq_poly([1])
 
-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
+d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
 pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
 pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
 LP, LQ, eqs, tgt = build()
@@ -268,12 +273,24 @@ Am2v=[f"a_{i}_{2*i-1}" for i in range(0,7)]  # A_{-2}: a_{i,2i-1}, i=0..6 (w=+2)
 Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)] # B_{-1}: b_{i,2i-1}, i=0..11 (w=+1)
 E1v=Am2v+Bm1v
 am2_ad={}; bm1_ad={}
+# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
+# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
+# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
+# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
+_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
+_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
+_WE1=_NE1[0]
+_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
+def _proj_E1(rhs):
+    wr=ZERO
+    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
+    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
 for m in monos1:
     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
     sol=solve_aug(M1,rhs)
     if sol is None:
-        print(f"  E_1 unsolvable for monomial {m} (expected iff Omega!=0)")
-        continue
+        print(f"  E_1: monomial {m} carries Omega; W1-component projected out (valid on Omega = 0)")
+        sol=solve_aug(M1,_proj_E1(rhs)); assert sol is not None
     for j,v in enumerate(E1v):
         if sol[j]!=ZERO:
             dd=am2_ad if j<7 else bm1_ad
@@ -412,7 +429,7 @@ print("\n"+"="*70); print("IDEAL CHECK <Omega, Psi>"); print("="*70)
 # We need Omega coeffs: rerun the Stage-4 Omega computation briefly is heavy;
 # instead check: does Psi alone (plus Omega from Stage 4 file) force t2=0?
 # Write Singular script with Psi; Omega added if available.
-sing_dir="/home/hatch/workspace"
+sing_dir=WORKDIR
 # Save Psi as Singular poly in ring with K5 coeffs -> use mod-101 specialization for speed
 psi101={}
 for k,v in Psi.items():
@@ -440,9 +457,9 @@ ideal G=groebner(I);
 G;
 """
 open(os.path.join(sing_dir,"stage5_ideal.sing"),"w").write(singsrc)
-r=subprocess.run(["/home/hatch/miniconda3/envs/cas/bin/Singular","-q",
+r=subprocess.run([SINGULAR,"-q",
                   os.path.join(sing_dir,"stage5_ideal.sing")],
-                 capture_output=True,text=True,timeout=300)
+                 capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=300)
 print("Singular Groebner of <Psi> (mod 101):")
 print(r.stdout[:2000])
 if r.stderr: print("STDERR:",r.stderr[:500])

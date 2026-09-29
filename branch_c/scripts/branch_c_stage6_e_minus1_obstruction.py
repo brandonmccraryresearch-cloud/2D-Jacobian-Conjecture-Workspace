@@ -12,7 +12,12 @@ Run with: ~/miniconda3/envs/physics/bin/python branch_c_stage6_e_minus1_obstruct
 
 import json, sys, os
 from flint import fmpq_poly, fmpq, nmod_poly
-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
+import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
+CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
+WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
+SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
+if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
+sys.path.insert(0, CERTGEN)
 from gen_system import build
 
 Rr = fmpq_poly([26, 0, 3, 3, -1, 1])
@@ -23,7 +28,7 @@ def kinv(a):
     g, s, _ = a.xgcd(Rr); assert g == 1; return s % Rr
 ZERO = fmpq_poly([0]); ONE = fmpq_poly([1])
 
-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
+d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
 pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
 pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
 LP, LQ, eqs, tgt = build()
@@ -271,10 +276,22 @@ monos1=sorted({k for p in RHS1.values() for k in p.keys()})
 Am2v=[f"a_{i}_{2*i-1}" for i in range(0,7)]; Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)]
 E1v=Am2v+Bm1v
 am2_ad={}; bm1_ad={}
+# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
+# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
+# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
+# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
+_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
+_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
+_WE1=_NE1[0]
+_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
+def _proj_E1(rhs):
+    wr=ZERO
+    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
+    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
 for m in monos1:
     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
     sol=solve_aug(M1,rhs)
-    if sol is None: continue  # Omega monomials
+    if sol is None: sol=solve_aug(M1,_proj_E1(rhs)); assert sol is not None  # Omega monomials: projected
     for j,v in enumerate(E1v):
         if sol[j]!=ZERO:
             dd=am2_ad if j<7 else bm1_ad
@@ -311,16 +328,28 @@ Am3v=[f"a_{i}_{2*i-3}" for i in range(0,6)]; Bm2v=[f"b_{i}_{2*i-2}" for i in ran
 E0v=Am3v+Bm2v
 am3_ad={}; bm2_ad={}
 n_unsolv=0
+# E0 compatibility (fix): M0 has a one-dimensional left null space.  A right-hand side outside col(M0)
+# has W.rhs equal to its coefficient in the E0 obstruction; the old `continue` dropped such monomials
+# entirely, so the particular solution did not solve E0 even where the obstruction vanishes.  Project
+# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
+_MTE0=[[M0[r][c] for r in range(len(M0))] for c in range(len(M0[0]))]
+_NE0=nullspace(_MTE0,len(M0))[0]; assert len(_NE0)==1, 'left null space of M0 is not 1-dimensional'
+_WE0=_NE0[0]
+_jE0=next(j for j in range(len(_WE0)) if _WE0[j]!=ZERO)
+def _proj_E0(rhs):
+    wr=ZERO
+    for j in range(len(_WE0)): wr=(wr+_WE0[j]*rhs[j])%Rr
+    return [(rhs[j]-(wr*kinv(_WE0[_jE0]) if j==_jE0 else ZERO))%Rr for j in range(len(rhs))]
 for m in monos0:
     rhs=[RHS0[e].get(m,ZERO) if e in RHS0 else ZERO for e in ue0]
     sol=solve_aug(M0,rhs)
     if sol is None:
-        n_unsolv+=1; continue  # Psi != 0
+        n_unsolv+=1; sol=solve_aug(M0,_proj_E0(rhs)); assert sol is not None  # Psi monomials: projected
     for j,v in enumerate(E0v):
         if sol[j]!=ZERO:
             dd=am3_ad if j<6 else bm2_ad
             dd[v]=ts7_add(dd.get(v,{}),{m:sol[j]})
-print(f"E_0 solved. Unsolvable monomials (Psi!=0): {n_unsolv} / {len(monos0)}")
+print(f"E_0 solved. Psi-carrying monomials projected (valid where Omega = Psi = 0): {n_unsolv} / {len(monos0)}")
 
 # ---- RHS_{E_{-1}} and Phi_1, Phi_2
 a7e0=dict(a7full); a7e0.update(am3_ad); a7e0.update(bm2_ad)
