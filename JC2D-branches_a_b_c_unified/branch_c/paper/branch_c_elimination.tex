@@ -39,17 +39,17 @@
   \end{center}
 }
 % Portable fonts: system font names, no hardcoded paths.
-% Text and math letters: Noto Sans. Math symbols: Noto Sans Math.
-% (Noto Sans Math has no OpenType MATH table, so Latin Modern Math supplies
-% the layout engine and every symbol/letter range it does not cover.)
+% Math: Noto Sans Math v3.000 is the SOLE math font. It now ships an OpenType
+% MATH table (verified 2026-09-30), so it lays out display math itself.
+% Latin Modern Math is FORBIDDEN everywhere except inside tabular
+% environments (Brandon 2026-09-30).
 \setmainfont{Noto Sans}[BoldFont={Noto Sans Bold},ItalicFont={Noto Sans Italic},BoldItalicFont={Noto Sans Bold Italic}]
 \setmonofont{Noto Sans Mono}[ItalicFont={Noto Sans Mono},BoldItalicFont={Noto Sans Mono Bold}]
-\setmathfont{Latin Modern Math}
-\setmathfont{Noto Sans}[range=it,ItalicFont={Noto Sans Italic}]
-\setmathfont{Noto Sans}[range=up]
-\setmathfont{Noto Sans}[range=bfup,BoldFont={Noto Sans Bold}]
-\setmathfont{Noto Sans}[range=bfit,BoldFont={Noto Sans Bold},ItalicFont={Noto Sans Bold Italic}]
-\setmathfont{Noto Sans Math}[range={"2190-"21FF,"2200-"22FF,"27C0-"27EF,"2A00-"2AFF},range=bb]
+\setmathfont{Noto Sans Math}
+\setmathfont{Latin Modern Math}[version=LM]
+\setmathfontface\mathrm[version=LM]{Latin Modern Math}
+\usepackage{etoolbox}
+\AtBeginEnvironment{tabular}{\mathversion{LM}}
 \hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
 \setlength{\parskip}{0.6em}
 \setlength{\parindent}{0pt}
