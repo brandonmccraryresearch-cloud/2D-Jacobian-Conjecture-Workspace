@@ -1,5 +1,0 @@
-1. F_i = b_i + s1*M_i + s2*L_i for all 7 rows: PASS
-2. nonzero minors: 35 of 35;  rank over K5: 6
-3. t1^5 = sum c0 * minors: PASS;  t2^5 = sum c1 * minors: PASS
-4. t1^5 = sum G0*F: PASS;  t2^5 = sum G1*F: PASS
-5. control (G0[1] perturbed by 1): rejected (good)

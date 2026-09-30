@@ -94,7 +94,7 @@ while the bundle interior is untouched.
 
 ## 3. Branches (a) and (b) — elimination
 
-GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab_v19`).
+GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab`, the v19 package).
 
 ### 3.1 Symbolic elimination (Lean 4)
 
@@ -271,14 +271,13 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
 - **Branches (a,b):** v17 (2026-09-28) → v18 (build fixes, wording) → v19
   (independent blind review: no fatal flaw; ten recommendations implemented).
   Published: Zenodo 10.5281/zenodo.23023490. The v17/v18 trees are preserved on
-  repo main as `branch_ab_v17/`, `branch_ab_v18/`.
+  repo main as `branch_ab_v17/`, `branch_ab_v18/` until 2026-09-30, when both were removed and `branch_ab_v19/` renamed to `branch_ab/`.
 - **Branch (c):** the `branch_c/` pipeline scripts on repo main (corrected
   2026-09-29: E₁ projection, 6d κ=0, Singular hang guard) → v2 bundle → v3.0
   (bundled mid-build) → **v3.1** (2026-09-29, 23:40 CDT; every module built,
   `verify_branch_c_lean.sh` passed, `Bridge` bug found and fixed). The v2
   corrected-commit proposal is **not** applied. See `branch_c/V3_1_PROVENANCE.md`.
-- **This unified directory** (2026-09-30): `branches_a_b/` is `branch_ab_v19`
-  byte-for-byte; `branch_c/bundle_v3_1/` is the v3.1 bundle byte-for-byte
+- **This unified directory** (2026-09-30): `branches_a_b/` is `branch_ab` (v19) byte-for-byte; `branch_c/bundle_v3_1/` is the v3.1 bundle byte-for-byte
   (manifest-verified at assembly). New: this map, the READMEs, `BUILD_STATUS.md`,
   checksums, `verify_branch_c.sh`, and the conditional correspondence-guide to-do.
 

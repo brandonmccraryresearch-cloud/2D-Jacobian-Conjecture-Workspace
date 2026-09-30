@@ -1,8 +1,0 @@
-hypotheses parsed: 17
-u^17 coefficient identically zero: True
-17 Lean hypotheses == independently expanded chart system (term by term): True
-constant term (lambda) is b0, not a hypothesis: True
-conclusion coordinates parsed: 17 ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9']
-all 17 conclusion coordinates == my K5 chart point (computed from the Lean top layer): True
-conclusion point satisfies all 17 hypotheses in Q[w]/(R): True
-a1 generates K5 (charpoly irreducible, degree 5): True

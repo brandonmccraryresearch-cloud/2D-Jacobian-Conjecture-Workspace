@@ -4,11 +4,11 @@ Elimination of GGHV normal form (1) [branch (c)] in the degree-(72,108) case of 
 two-dimensional Jacobian conjecture.
 
 This package follows the format of the branch-(a,b) elimination paper package
-(`../branches_a_b/`, i.e. `branch_ab_v19`) exactly, with the branch-(c) elimination
+(`../branches_a_b/`, i.e. `branch_ab`, the v19 package) exactly, with the branch-(c) elimination
 worked out **symbolically** (Lean 4 formalization) and **numerically** (exact and
 modular certificates, finite-field rank computations).
 
-## Format map (branch_ab_v19  ->  branch (c))
+## Format map (branch_ab [v19]  ->  branch (c))
 
 | branch-(a,b) component | branch-(c) location | Notes |
 |---|---|---|
