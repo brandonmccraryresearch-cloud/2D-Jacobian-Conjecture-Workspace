@@ -1,7 +1,7 @@
 b173ddcce46722bbb1b843286fb6c4d5  ./BUILD_STATUS.md
 6ab1e710d8b8d9ed05db4de2c8fa0672  ./GUIDE.md
 a0d6a926194ced14b3b99b8b7737589e  ./PARTS.txt
-e32e16e0222cd3ed00f7fcc2ef372751  ./README.md
+c588f89bc2a5ded05efc54f8f968cc7a  ./README.md
 a146b02c8efd86faf103a81a08093deb  ./README.txt
 c77572cb802234694d1d84f451223f91  ./V3_1_PROVENANCE.md
 6ab1e710d8b8d9ed05db4de2c8fa0672  ./bundle_v3_1/GUIDE.md
@@ -1018,4 +1018,7 @@ c77441c615a20db51e053dd10c09686a  ./bundle_v3_1/v2_carryover/corrected_commit_pr
 e04d819b03353ffc47a8ef3ad9bedd8c  ./bundle_v3_1/v2_carryover/corrected_commit_proposal/tests/phi_stage6_vs_6b.py
 ebaddc66bc51c89bcf608b4fc2a8066a  ./bundle_v3_1/v2_carryover/corrected_commit_proposal/tests/phi_stage6_vs_6b_paths_control.log
 6ab1e710d8b8d9ed05db4de2c8fa0672  ./paper/BRANCH_C_GUIDE.md
+da49ca643fbb90b3d67eefc9d5dd5339  ./paper/README.md
+08cec098a759ffba10364f1df4fbcb88  ./paper/branch_c_elimination.pdf
+236193de49f988cb6ef8e2d34a7afae1  ./paper/branch_c_elimination.tex
 3063fb5beccbbfe22ff4075651a5e3f9  ./verify_branch_c.sh

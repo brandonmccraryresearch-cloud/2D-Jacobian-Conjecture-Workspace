@@ -12,7 +12,7 @@ modular certificates, finite-field rank computations).
 
 | branch-(a,b) component | branch-(c) location | Notes |
 |---|---|---|
-| `paper/` (.tex/.pdf) | `paper/BRANCH_C_GUIDE.md` | The comprehensive v3.1 guide is the paper-equivalent document. No `.tex` paper exists yet for branch (c). |
+| `paper/` (.tex/.pdf) | `paper/branch_c_elimination.tex` / `paper/branch_c_elimination.pdf` | The 16-page elimination paper (2026-09-30), in the branch-(a,b) paper format exactly; `paper/BRANCH_C_GUIDE.md` remains the comprehensive v3.1 reference. |
 | `scripts/` | `bundle_v3_1/jacobian_lean/certgen_c/`, `bundle_v3_1/jacobian_lean/chart_certificates/` | Generators (exact, python-flint) and certificate/rank scripts. Kept inside `jacobian_lean/` because `verify_branch_c_lean.sh` requires `certgen_c/`, `chart_certificates/` and `Jacobian/` as siblings. |
 | `lean/` | `bundle_v3_1/jacobian_lean/Jacobian/BranchC/` | v1/v2 modules, `Descent2R` (505 generated modules), `T1Zero`, `Combine`, `Bridge`, `CondsC` |
 | `audits/` | `bundle_v3_1/jacobian_lean/axioms_branch_c.log`, `bundle_v3_1/v2_carryover/branch_c_audit/` | Axiom audit (53 theorems) + v2 audit carryover |

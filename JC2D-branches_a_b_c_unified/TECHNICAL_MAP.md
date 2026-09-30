@@ -65,7 +65,9 @@ JC2D-branches_a_b_c_unified/
     ├── GUIDE.md                   # the comprehensive v3.1 guide (start here for branch c)
     ├── V3_1_PROVENANCE.md         # provenance of the v3.1 bundle
     ├── paper/
-    │   └── BRANCH_C_GUIDE.md      # paper-equivalent document (no .tex exists yet)
+    │   ├── branch_c_elimination.tex / .pdf   # the 16-page elimination paper (2026-09-30)
+    │   ├── README.md                         # paper build + status
+    │   └── BRANCH_C_GUIDE.md                 # comprehensive v3.1 reference (paper-equivalent)
     ├── bundle_v3_1/               # the v3.1 bundle, byte-for-byte (manifest-verified)
     │   ├── GUIDE.md / README.txt / PARTS.txt / MANIFEST.sha256
     │   ├── jacobian_lean/         # Lean overlay + generators + certificates
