@@ -1,0 +1,6 @@
+Omega = o1 (S2 - kappa T2^2)^2 exactly over K5, o1 != 0: True
+kappa (lowerc_chart) == kappa' (independent inversion): True
+chart generators == direct evaluation of conds_c.json at 12 random points (6 generators each): True  (0.6s)
+control kappa' + 1 detected as different: True
+ALL: PASS
+[guardrun] exit 0  0.9s  peak RSS 29 MB  cgroup anon peak 365 MB

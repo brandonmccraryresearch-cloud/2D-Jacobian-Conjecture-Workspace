@@ -1,0 +1,61 @@
+Jacobian/BranchC/Descent2R/Bridge.lean:131:49: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HSub (ℤ → Prop) ℕ (Sort ?u.12)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Jacobian/BranchC/Descent2R/Bridge.lean:134:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  if -2 = 5 then ?m.167 else ?m.168
+in the target expression
+  (fun n =>
+      (∑ k ∈ Finset.Icc (-8) 2, if n - k ∈ Finset.Icc (-12) 3 then layerTermZ k (n - k) (A k) (B (n - k)) else 0) =
+        if n = 5 then Polynomial.C 0 * Polynomial.X ^ 2 else 0) -
+    2
+
+K : Type u_1
+inst✝ : Field K
+A B : ℤ → Polynomial K
+h :
+  (fun n =>
+      (∑ k ∈ Finset.Icc (-8) 2, if n - k ∈ Finset.Icc (-12) 3 then layerTermZ k (n - k) (A k) (B (n - k)) else 0) =
+        if n = 5 then Polynomial.C 0 * Polynomial.X ^ 2 else 0) -
+    2
+⊢ layerTermZ (-5) 3 (A (-5)) (B 3) + layerTermZ (-4) 2 (A (-4)) (B 2) + layerTermZ (-3) 1 (A (-3)) (B 1) +
+              layerTermZ (-2) 0 (A (-2)) (B 0) +
+            layerTermZ (-1) (-1) (A (-1)) (B (-1)) +
+          layerTermZ 0 (-2) (A 0) (B (-2)) +
+        layerTermZ 1 (-3) (A 1) (B (-3)) +
+      layerTermZ 2 (-4) (A 2) (B (-4)) =
+    0
+Jacobian/BranchC/Descent2R/Bridge.lean:174:14: error(lean.unknownIdentifier): Unknown identifier `eIdent_cm1`
+Jacobian/BranchC/Descent2R/Bridge.lean:167:23: error: unsolved goals
+L : Type u_1
+inst✝¹ : Field L
+inst✝ : CharZero L
+hC : ChartEmptyC L
+w : L
+hw : w ^ 5 - w ^ 4 + 3 * w ^ 3 + 3 * w ^ 2 + 26 = 0
+A B : ℤ → Polynomial L
+hA : ∀ (i : ℕ), (A 2).coeff i = topA w i
+hB : ∀ (i : ℕ), (B 3).coeff i = topB w i
+hPs : ∀ (k : ℤ) (i : ℕ), (A k).coeff i ≠ 0 → rangeP k i
+hQs : ∀ (l : ℤ) (i : ℕ), (B l).coeff i ≠ 0 → rangeQ l i
+hE : ∀ (n : ℤ), -2 ≤ n → n ≤ 4 → EIdent A B 0 n
+ht2 : (B 2).coeff 12 = 1
+L4 : layerTermZ 1 3 (A 1) (B 3) + layerTermZ 2 2 (A 2) (B 2) = 0
+L3 : layerTermZ 0 3 (A 0) (B 3) + layerTermZ 1 2 (A 1) (B 2) + layerTermZ 2 1 (A 2) (B 1) = 0
+L2c :
+  layerTermZ (-1) 3 (A (-1)) (B 3) + layerTermZ 0 2 (A 0) (B 2) + layerTermZ 1 1 (A 1) (B 1) +
+      layerTermZ 2 0 (A 2) (B 0) =
+    0
+L1 :
+  layerTermZ (-2) 3 (A (-2)) (B 3) + layerTermZ (-1) 2 (A (-1)) (B 2) + layerTermZ 0 1 (A 0) (B 1) +
+        layerTermZ 1 0 (A 1) (B 0) +
+      layerTermZ 2 (-1) (A 2) (B (-1)) =
+    0
+L0 :
+  layerTermZ (-3) 3 (A (-3)) (B 3) + layerTermZ (-2) 2 (A (-2)) (B 2) + layerTermZ (-1) 1 (A (-1)) (B 1) +
+          layerTermZ 0 0 (A 0) (B 0) +
+        layerTermZ 1 (-1) (A 1) (B (-1)) +
+      layerTermZ 2 (-2) (A 2) (B (-2)) =
+    0
+⊢ False
+[guardrun] exit 1  18.3s  peak RSS 5046 MB  cgroup anon peak 671 MB

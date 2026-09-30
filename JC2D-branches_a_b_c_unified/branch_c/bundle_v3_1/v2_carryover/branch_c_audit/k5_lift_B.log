@@ -1,0 +1,5 @@
+Patch t1 = 0, t2 = 1, s2 = kappa (pipeline normalisation, corrected E1 solve), exact over K5:
+  Singular 4.3.2: ring R=(0,w),(s1,r1,r2,q),wp(2,3,3,4); minpoly=w^5-w^4+3*w^3+3*w^2+26;
+  matrix L = lift(I, ideal(1));   poly chk = sum_i L[i,1]*I[i];
+  secs=79   lift terms=119   lift chars=13462211   check: 1
+  => an exact characteristic-0 certificate 1 = sum_i L_i F_i over K5 exists for this patch (verified in char 0).

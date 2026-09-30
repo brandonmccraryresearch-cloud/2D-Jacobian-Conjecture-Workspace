@@ -1,0 +1,625 @@
+2026-09-29 17:43:36.487 INFO    procmon.event   msg="procmon v2 start" pid=31714 interval=2.0 follow=build_refl.log,build_t1z.log,build_t1z_main.log,build_final.log cgroup=claude-code-bash
+2026-09-29 17:43:36.521 INFO    procmon.event   msg=start pid=31639 ppid=31638 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_1"
+2026-09-29 17:43:36.521 INFO    procmon.event   msg=start pid=31692 ppid=31639 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_1.lean
+2026-09-29 17:43:42.510 INFO    procmon.event   msg=start pid=31723 ppid=31722 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_2"
+2026-09-29 17:43:42.510 INFO    procmon.event   msg=exit pid=31639 name=lake secs=79 peak_rss=515 peak_anon=99 peak_pss=336 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_1"
+2026-09-29 17:43:42.510 INFO    procmon.event   msg=exit pid=31692 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_1.lean secs=78 peak_rss=1068 peak_anon=248 peak_pss=889 cpu_s=76 majflt=0
+2026-09-29 17:43:42.510 INFO    procmon.build   file=build_refl.log line="[436/506] Jacobian.BranchC.Descent2R.Lm2.C_7_17_1  built (78s, peak 5491 MB)"
+2026-09-29 17:43:44.528 INFO    procmon.event   msg=start pid=31776 ppid=31723 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_2.lean
+2026-09-29 17:44:28.498 INFO    procmon.event   msg=start pid=31803 ppid=31802 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_3"
+2026-09-29 17:44:28.498 INFO    procmon.event   msg=exit pid=31723 name=lake secs=48 peak_rss=818 peak_anon=99 peak_pss=789 cpu_s=1 majflt=4 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_2"
+2026-09-29 17:44:28.498 INFO    procmon.event   msg=exit pid=31776 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_2.lean secs=46 peak_rss=5143 peak_anon=3719 peak_pss=4812 cpu_s=44 majflt=5
+2026-09-29 17:44:28.498 INFO    procmon.build   file=build_refl.log line="[437/506] Jacobian.BranchC.Descent2R.Lm2.C_7_17_2  built (47s, peak 5142 MB)"
+2026-09-29 17:44:30.533 INFO    procmon.event   msg=start pid=31856 ppid=31803 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_3.lean
+2026-09-29 17:45:32.508 INFO    procmon.event   msg=start pid=31891 ppid=31890 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_4"
+2026-09-29 17:45:32.509 INFO    procmon.event   msg=exit pid=31803 name=lake secs=65 peak_rss=828 peak_anon=105 peak_pss=496 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_3"
+2026-09-29 17:45:32.509 INFO    procmon.event   msg=exit pid=31856 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_3.lean secs=64 peak_rss=5491 peak_anon=4130 peak_pss=5159 cpu_s=62 majflt=2
+2026-09-29 17:45:32.509 INFO    procmon.build   file=build_refl.log line="[438/506] Jacobian.BranchC.Descent2R.Lm2.C_7_17_3  built (64s, peak 5494 MB)"
+2026-09-29 17:45:34.539 INFO    procmon.event   msg=start pid=31944 ppid=31891 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_4.lean
+2026-09-29 17:46:08.541 WARNING procmon.event   msg="major-fault storm (thrashing: evicted pages re-read)" pid=31944 lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_4.lean majflt_s=1741 cg_anon=365 cg_mapped=1453
+2026-09-29 17:46:40.523 INFO    procmon.event   msg=start pid=31965 ppid=31964 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_5"
+2026-09-29 17:46:40.523 INFO    procmon.event   msg=exit pid=31891 name=lake secs=69 peak_rss=830 peak_anon=107 peak_pss=497 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_4"
+2026-09-29 17:46:40.523 INFO    procmon.event   msg=exit pid=31944 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_4.lean secs=68 peak_rss=5538 peak_anon=4234 peak_pss=5239 cpu_s=66 majflt=4013
+2026-09-29 17:46:40.523 INFO    procmon.build   file=build_refl.log line="[439/506] Jacobian.BranchC.Descent2R.Lm2.C_7_17_4  built (67s, peak 5540 MB)"
+2026-09-29 17:46:42.544 INFO    procmon.event   msg=start pid=32020 ppid=31965 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_5.lean
+2026-09-29 17:47:54.526 INFO    procmon.event   msg=start pid=32039 ppid=32038 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_6"
+2026-09-29 17:47:54.526 INFO    procmon.event   msg=exit pid=31965 name=lake secs=75 peak_rss=825 peak_anon=103 peak_pss=796 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_5"
+2026-09-29 17:47:54.526 INFO    procmon.event   msg=exit pid=32020 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_5.lean secs=74 peak_rss=5548 peak_anon=4524 peak_pss=5258 cpu_s=72 majflt=43
+2026-09-29 17:47:54.526 INFO    procmon.build   file=build_refl.log line="[440/506] Jacobian.BranchC.Descent2R.Lm2.C_7_17_5  built (74s, peak 5551 MB)"
+2026-09-29 17:47:56.554 INFO    procmon.event   msg=start pid=32092 ppid=32039 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_6.lean
+2026-09-29 17:49:10.536 INFO    procmon.event   msg=start pid=32112 ppid=32111 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_7"
+2026-09-29 17:49:10.536 INFO    procmon.event   msg=exit pid=32039 name=lake secs=77 peak_rss=819 peak_anon=103 peak_pss=575 cpu_s=1 majflt=584 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_6"
+2026-09-29 17:49:10.536 INFO    procmon.event   msg=exit pid=32092 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_6.lean secs=76 peak_rss=5586 peak_anon=4514 peak_pss=5401 cpu_s=74 majflt=253
+2026-09-29 17:49:10.536 INFO    procmon.build   file=build_refl.log line="[441/506] Jacobian.BranchC.Descent2R.Lm2.C_7_17_6  built (75s, peak 5588 MB)"
+2026-09-29 17:49:12.582 INFO    procmon.event   msg=start pid=32166 ppid=32112 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_7.lean
+2026-09-29 17:50:02.537 INFO    procmon.event   msg=start pid=32182 ppid=32181 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_8"
+2026-09-29 17:50:02.537 INFO    procmon.event   msg=exit pid=32112 name=lake secs=54 peak_rss=820 peak_anon=101 peak_pss=801 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_7"
+2026-09-29 17:50:02.537 INFO    procmon.event   msg=exit pid=32166 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_7.lean secs=53 peak_rss=5050 peak_anon=3622 peak_pss=4720 cpu_s=50 majflt=4
+2026-09-29 17:50:02.537 INFO    procmon.build   file=build_refl.log line="[442/506] Jacobian.BranchC.Descent2R.Lm2.C_7_17_7  built (53s, peak 5050 MB)"
+2026-09-29 17:50:04.564 INFO    procmon.event   msg=start pid=32235 ppid=32182 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_8.lean
+2026-09-29 17:50:42.576 INFO    procmon.event   msg=start pid=32254 ppid=32253 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_7_17"
+2026-09-29 17:50:42.576 INFO    procmon.event   msg=start pid=32307 ppid=32254 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_7_17.lean
+2026-09-29 17:50:42.576 INFO    procmon.event   msg=exit pid=32182 name=lake secs=41 peak_rss=824 peak_anon=101 peak_pss=492 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7_17_8"
+2026-09-29 17:50:42.576 INFO    procmon.event   msg=exit pid=32235 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_8.lean secs=40 peak_rss=4145 peak_anon=2717 peak_pss=3813 cpu_s=38 majflt=4
+2026-09-29 17:50:42.576 INFO    procmon.build   file=build_refl.log line="[443/506] Jacobian.BranchC.Descent2R.Lm2.C_7_17_8  built (38s, peak 4145 MB)"
+2026-09-29 17:50:58.545 INFO    procmon.event   msg=start pid=32319 ppid=32318 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_1"
+2026-09-29 17:50:58.545 INFO    procmon.event   msg=start pid=32372 ppid=32319 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_1.lean
+2026-09-29 17:50:58.545 INFO    procmon.event   msg=exit pid=32254 name=lake secs=18 peak_rss=830 peak_anon=107 peak_pss=498 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_7_17"
+2026-09-29 17:50:58.545 INFO    procmon.event   msg=exit pid=32307 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_7_17.lean secs=18 peak_rss=2238 peak_anon=805 peak_pss=1906 cpu_s=16 majflt=22
+2026-09-29 17:50:58.546 INFO    procmon.build   file=build_refl.log line="[444/506] Jacobian.BranchC.Descent2R.Lm2.Red_7_17  built (17s, peak 2238 MB)"
+2026-09-29 17:51:40.572 WARNING procmon.event   msg="major-fault storm (thrashing: evicted pages re-read)" pid=32372 lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_1.lean majflt_s=1724 cg_anon=366 cg_mapped=947
+2026-09-29 17:52:06.075 INFO    procmon.event   msg="procmon v2 start" pid=32402 interval=2.0 follow=build_refl.log,build_t1z.log,build_t1z_main.log,build_final.log cgroup=claude-code-bash
+2026-09-29 17:52:06.110 INFO    procmon.event   msg=start pid=32319 ppid=32318 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_1"
+2026-09-29 17:52:06.110 INFO    procmon.event   msg=start pid=32372 ppid=32319 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_1.lean
+2026-09-29 17:52:18.121 INFO    procmon.event   msg=start pid=32412 ppid=32411 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_2"
+2026-09-29 17:52:18.122 INFO    procmon.event   msg=start pid=32465 ppid=32412 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_2.lean
+2026-09-29 17:52:18.122 INFO    procmon.event   msg=exit pid=32319 name=lake secs=81 peak_rss=659 peak_anon=103 peak_pss=394 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_1"
+2026-09-29 17:52:18.122 INFO    procmon.event   msg=exit pid=32372 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_1.lean secs=80 peak_rss=1166 peak_anon=247 peak_pss=901 cpu_s=78 majflt=0
+2026-09-29 17:52:18.122 INFO    procmon.build   file=build_refl.log line="[445/506] Jacobian.BranchC.Descent2R.Lm2.C_8_19_1  built (79s, peak 5517 MB)"
+2026-09-29 17:52:20.141 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=32465 lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_2.lean majflt_s=2559 cg_mapped=1483
+2026-09-29 17:53:04.101 INFO    procmon.event   msg=start pid=32486 ppid=32485 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_3"
+2026-09-29 17:53:04.101 INFO    procmon.event   msg=exit pid=32412 name=lake secs=48 peak_rss=818 peak_anon=96 peak_pss=695 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_2"
+2026-09-29 17:53:04.101 INFO    procmon.event   msg=exit pid=32465 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_2.lean secs=47 peak_rss=5144 peak_anon=3719 peak_pss=4812 cpu_s=45 majflt=5131
+2026-09-29 17:53:04.101 INFO    procmon.build   file=build_refl.log line="[446/506] Jacobian.BranchC.Descent2R.Lm2.C_8_19_2  built (47s, peak 5143 MB)"
+2026-09-29 17:53:06.145 INFO    procmon.event   msg=start pid=32539 ppid=32486 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_3.lean
+2026-09-29 17:54:08.120 INFO    procmon.event   msg=start pid=32558 ppid=32557 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_4"
+2026-09-29 17:54:08.120 INFO    procmon.event   msg=exit pid=32486 name=lake secs=65 peak_rss=826 peak_anon=103 peak_pss=793 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_3"
+2026-09-29 17:54:08.120 INFO    procmon.event   msg=exit pid=32539 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_3.lean secs=65 peak_rss=5474 peak_anon=4128 peak_pss=5184 cpu_s=62 majflt=3
+2026-09-29 17:54:08.120 INFO    procmon.build   file=build_refl.log line="[447/506] Jacobian.BranchC.Descent2R.Lm2.C_8_19_3  built (64s, peak 5475 MB)"
+2026-09-29 17:54:10.149 INFO    procmon.event   msg=start pid=32611 ppid=32558 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_4.lean
+2026-09-29 17:55:16.108 INFO    procmon.event   msg=exit pid=32611 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_4.lean secs=69 peak_rss=5571 peak_anon=4234 peak_pss=5264 cpu_s=67 majflt=838
+2026-09-29 17:55:18.142 INFO    procmon.event   msg=start pid=32630 ppid=32629 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_5"
+2026-09-29 17:55:18.143 INFO    procmon.event   msg=start pid=32683 ppid=32630 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_5.lean
+2026-09-29 17:55:18.143 INFO    procmon.event   msg=exit pid=32558 name=lake secs=72 peak_rss=826 peak_anon=103 peak_pss=810 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_4"
+2026-09-29 17:55:18.143 INFO    procmon.build   file=build_refl.log line="[448/506] Jacobian.BranchC.Descent2R.Lm2.C_8_19_4  built (69s, peak 5571 MB)"
+2026-09-29 17:56:32.118 INFO    procmon.event   msg=start pid=32702 ppid=32701 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_6"
+2026-09-29 17:56:32.118 INFO    procmon.event   msg=exit pid=32630 name=lake secs=77 peak_rss=828 peak_anon=105 peak_pss=520 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_5"
+2026-09-29 17:56:32.118 INFO    procmon.event   msg=exit pid=32683 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_5.lean secs=75 peak_rss=5463 peak_anon=4525 peak_pss=5183 cpu_s=73 majflt=1890
+2026-09-29 17:56:32.118 INFO    procmon.build   file=build_refl.log line="[449/506] Jacobian.BranchC.Descent2R.Lm2.C_8_19_5  built (75s, peak 5464 MB)"
+2026-09-29 17:56:34.149 INFO    procmon.event   msg=start pid=32755 ppid=32702 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_6.lean
+2026-09-29 17:57:50.128 INFO    procmon.event   msg=start pid=312 ppid=311 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_7"
+2026-09-29 17:57:50.128 INFO    procmon.event   msg=exit pid=32702 name=lake secs=79 peak_rss=827 peak_anon=103 peak_pss=785 cpu_s=1 majflt=1 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_6"
+2026-09-29 17:57:50.128 INFO    procmon.event   msg=exit pid=32755 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_6.lean secs=78 peak_rss=5608 peak_anon=4706 peak_pss=5389 cpu_s=76 majflt=1464
+2026-09-29 17:57:50.128 INFO    procmon.build   file=build_refl.log line="[450/506] Jacobian.BranchC.Descent2R.Lm2.C_8_19_6  built (77s, peak 5609 MB)"
+2026-09-29 17:57:52.146 INFO    procmon.event   msg=start pid=365 ppid=312 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_7.lean
+2026-09-29 17:58:36.141 INFO    procmon.event   msg=start pid=382 ppid=381 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_8"
+2026-09-29 17:58:36.141 INFO    procmon.event   msg=exit pid=312 name=lake secs=48 peak_rss=822 peak_anon=103 peak_pss=801 cpu_s=1 majflt=4 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_7"
+2026-09-29 17:58:36.142 INFO    procmon.event   msg=exit pid=365 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_7.lean secs=47 peak_rss=5152 peak_anon=3729 peak_pss=4822 cpu_s=44 majflt=5
+2026-09-29 17:58:36.143 INFO    procmon.build   file=build_refl.log line="[451/506] Jacobian.BranchC.Descent2R.Lm2.C_8_19_7  built (47s, peak 5152 MB)"
+2026-09-29 17:58:38.171 INFO    procmon.event   msg=start pid=436 ppid=382 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_8.lean
+2026-09-29 17:59:16.135 INFO    procmon.event   msg=start pid=454 ppid=453 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_8_19"
+2026-09-29 17:59:16.135 INFO    procmon.event   msg=exit pid=382 name=lake secs=42 peak_rss=824 peak_anon=103 peak_pss=806 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_8_19_8"
+2026-09-29 17:59:16.135 INFO    procmon.event   msg=exit pid=436 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_8.lean secs=41 peak_rss=4356 peak_anon=2928 peak_pss=4024 cpu_s=39 majflt=5
+2026-09-29 17:59:16.136 INFO    procmon.build   file=build_refl.log line="[452/506] Jacobian.BranchC.Descent2R.Lm2.C_8_19_8  built (40s, peak 4356 MB)"
+2026-09-29 17:59:18.169 INFO    procmon.event   msg=start pid=507 ppid=454 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_8_19.lean
+2026-09-29 17:59:32.127 INFO    procmon.event   msg=start pid=520 ppid=519 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_1"
+2026-09-29 17:59:32.127 INFO    procmon.event   msg=exit pid=454 name=lake secs=18 peak_rss=830 peak_anon=109 peak_pss=822 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_8_19"
+2026-09-29 17:59:32.128 INFO    procmon.event   msg=exit pid=507 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_8_19.lean secs=17 peak_rss=2228 peak_anon=796 peak_pss=1897 cpu_s=15 majflt=14
+2026-09-29 17:59:32.128 INFO    procmon.build   file=build_refl.log line="[453/506] Jacobian.BranchC.Descent2R.Lm2.Red_8_19  built (17s, peak 2238 MB)"
+2026-09-29 17:59:34.155 INFO    procmon.event   msg=start pid=573 ppid=520 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_1.lean
+2026-09-29 18:00:46.140 INFO    procmon.event   msg=start pid=598 ppid=597 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_2"
+2026-09-29 18:00:46.140 INFO    procmon.event   msg=exit pid=520 name=lake secs=75 peak_rss=824 peak_anon=103 peak_pss=493 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_1"
+2026-09-29 18:00:46.140 INFO    procmon.event   msg=exit pid=573 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_1.lean secs=74 peak_rss=5512 peak_anon=4506 peak_pss=5309 cpu_s=72 majflt=55
+2026-09-29 18:00:46.140 INFO    procmon.build   file=build_refl.log line="[454/506] Jacobian.BranchC.Descent2R.Lm2.C_9_21_1  built (74s, peak 5512 MB)"
+2026-09-29 18:00:48.164 INFO    procmon.event   msg=start pid=651 ppid=598 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_2.lean
+2026-09-29 18:02:04.148 INFO    procmon.event   msg=start pid=674 ppid=673 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_3"
+2026-09-29 18:02:04.148 INFO    procmon.event   msg=exit pid=598 name=lake secs=79 peak_rss=821 peak_anon=101 peak_pss=617 cpu_s=1 majflt=907 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_2"
+2026-09-29 18:02:04.148 INFO    procmon.event   msg=exit pid=651 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_2.lean secs=78 peak_rss=5553 peak_anon=4712 peak_pss=5360 cpu_s=76 majflt=2005
+2026-09-29 18:02:04.148 INFO    procmon.build   file=build_refl.log line="[455/506] Jacobian.BranchC.Descent2R.Lm2.C_9_21_2  built (77s, peak 5556 MB)"
+2026-09-29 18:02:06.180 INFO    procmon.event   msg=start pid=727 ppid=674 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_3.lean
+2026-09-29 18:02:50.148 INFO    procmon.event   msg=start pid=745 ppid=744 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_4"
+2026-09-29 18:02:50.149 INFO    procmon.event   msg=start pid=798 ppid=745 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_4.lean
+2026-09-29 18:02:50.149 INFO    procmon.event   msg=exit pid=674 name=lake secs=48 peak_rss=826 peak_anon=101 peak_pss=811 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_3"
+2026-09-29 18:02:50.149 INFO    procmon.event   msg=exit pid=727 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_3.lean secs=47 peak_rss=5143 peak_anon=3718 peak_pss=4809 cpu_s=44 majflt=6
+2026-09-29 18:02:50.149 INFO    procmon.build   file=build_refl.log line="[456/506] Jacobian.BranchC.Descent2R.Lm2.C_9_21_3  built (46s, peak 5143 MB)"
+2026-09-29 18:03:54.190 INFO    procmon.event   msg=start pid=818 ppid=817 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_5"
+2026-09-29 18:03:54.190 INFO    procmon.event   msg=start pid=874 ppid=818 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_5.lean
+2026-09-29 18:03:54.191 INFO    procmon.event   msg=exit pid=745 name=lake secs=66 peak_rss=832 peak_anon=107 peak_pss=810 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_4"
+2026-09-29 18:03:54.191 INFO    procmon.event   msg=exit pid=798 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_4.lean secs=65 peak_rss=5524 peak_anon=4127 peak_pss=5206 cpu_s=63 majflt=6
+2026-09-29 18:03:54.191 INFO    procmon.build   file=build_refl.log line="[457/506] Jacobian.BranchC.Descent2R.Lm2.C_9_21_4  built (64s, peak 5524 MB)"
+2026-09-29 18:05:02.174 INFO    procmon.event   msg=start pid=894 ppid=893 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_6"
+2026-09-29 18:05:02.174 INFO    procmon.event   msg=exit pid=818 name=lake secs=70 peak_rss=833 peak_anon=107 peak_pss=523 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_5"
+2026-09-29 18:05:02.174 INFO    procmon.event   msg=exit pid=874 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_5.lean secs=69 peak_rss=5532 peak_anon=4236 peak_pss=5264 cpu_s=67 majflt=4
+2026-09-29 18:05:02.174 INFO    procmon.build   file=build_refl.log line="[458/506] Jacobian.BranchC.Descent2R.Lm2.C_9_21_5  built (68s, peak 5534 MB)"
+2026-09-29 18:05:04.208 INFO    procmon.event   msg=start pid=947 ppid=894 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_6.lean
+2026-09-29 18:06:16.195 INFO    procmon.event   msg=start pid=968 ppid=967 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_7"
+2026-09-29 18:06:16.195 INFO    procmon.event   msg=start pid=1021 ppid=968 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_7.lean
+2026-09-29 18:06:16.195 INFO    procmon.event   msg=exit pid=894 name=lake secs=76 peak_rss=827 peak_anon=103 peak_pss=813 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_6"
+2026-09-29 18:06:16.195 INFO    procmon.event   msg=exit pid=947 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_6.lean secs=75 peak_rss=5552 peak_anon=4516 peak_pss=5304 cpu_s=73 majflt=3049
+2026-09-29 18:06:16.195 INFO    procmon.build   file=build_refl.log line="[459/506] Jacobian.BranchC.Descent2R.Lm2.C_9_21_6  built (73s, peak 5552 MB)"
+2026-09-29 18:06:18.231 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1021 lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_7.lean majflt_s=1606 cg_mapped=1486
+2026-09-29 18:07:12.226 INFO    procmon.event   msg=start pid=1054 ppid=1053 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_8"
+2026-09-29 18:07:12.226 INFO    procmon.event   msg=start pid=1108 ppid=1054 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_8.lean
+2026-09-29 18:07:12.226 INFO    procmon.event   msg=exit pid=968 name=lake secs=58 peak_rss=827 peak_anon=105 peak_pss=705 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_7"
+2026-09-29 18:07:12.226 INFO    procmon.event   msg=exit pid=1021 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_7.lean secs=57 peak_rss=5232 peak_anon=3805 peak_pss=4900 cpu_s=55 majflt=3221
+2026-09-29 18:07:12.226 INFO    procmon.build   file=build_refl.log line="[460/506] Jacobian.BranchC.Descent2R.Lm2.C_9_21_7  built (56s, peak 5232 MB)"
+2026-09-29 18:07:44.228 INFO    procmon.event   msg=start pid=1150 ppid=1149 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_9_21"
+2026-09-29 18:07:44.228 INFO    procmon.event   msg=start pid=1203 ppid=1150 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_9_21.lean
+2026-09-29 18:07:44.228 INFO    procmon.event   msg=exit pid=1054 name=lake secs=34 peak_rss=824 peak_anon=101 peak_pss=733 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_9_21_8"
+2026-09-29 18:07:44.228 INFO    procmon.event   msg=exit pid=1108 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_9_21_8.lean secs=33 peak_rss=3331 peak_anon=1904 peak_pss=2998 cpu_s=31 majflt=3
+2026-09-29 18:07:44.228 INFO    procmon.build   file=build_refl.log line="[461/506] Jacobian.BranchC.Descent2R.Lm2.C_9_21_8  built (31s, peak 3330 MB)"
+2026-09-29 18:08:00.219 INFO    procmon.event   msg=start pid=1222 ppid=1221 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_1"
+2026-09-29 18:08:00.219 INFO    procmon.event   msg=start pid=1275 ppid=1222 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_1.lean
+2026-09-29 18:08:00.219 INFO    procmon.event   msg=exit pid=1150 name=lake secs=19 peak_rss=822 peak_anon=99 peak_pss=490 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_9_21"
+2026-09-29 18:08:00.219 INFO    procmon.event   msg=exit pid=1203 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_9_21.lean secs=18 peak_rss=2234 peak_anon=801 peak_pss=1901 cpu_s=16 majflt=20
+2026-09-29 18:08:00.219 INFO    procmon.build   file=build_refl.log line="[462/506] Jacobian.BranchC.Descent2R.Lm2.Red_9_21  built (17s, peak 2236 MB)"
+2026-09-29 18:09:00.201 INFO    procmon.event   msg=start pid=1303 ppid=1302 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_2"
+2026-09-29 18:09:00.202 INFO    procmon.event   msg=exit pid=1222 name=lake secs=62 peak_rss=830 peak_anon=107 peak_pss=522 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_1"
+2026-09-29 18:09:00.202 INFO    procmon.event   msg=exit pid=1275 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_1.lean secs=61 peak_rss=5441 peak_anon=4052 peak_pss=5109 cpu_s=59 majflt=2
+2026-09-29 18:09:00.202 INFO    procmon.build   file=build_refl.log line="[463/506] Jacobian.BranchC.Descent2R.Lm2.C_10_23_1  built (61s, peak 5442 MB)"
+2026-09-29 18:09:02.228 INFO    procmon.event   msg=start pid=1356 ppid=1303 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_2.lean
+2026-09-29 18:10:04.209 INFO    procmon.event   msg=start pid=1375 ppid=1374 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_3"
+2026-09-29 18:10:04.209 INFO    procmon.event   msg=start pid=1428 ppid=1375 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_3.lean
+2026-09-29 18:10:04.209 INFO    procmon.event   msg=exit pid=1303 name=lake secs=65 peak_rss=826 peak_anon=103 peak_pss=682 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_2"
+2026-09-29 18:10:04.209 INFO    procmon.event   msg=exit pid=1356 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_2.lean secs=64 peak_rss=5517 peak_anon=4119 peak_pss=5185 cpu_s=62 majflt=2
+2026-09-29 18:10:04.209 INFO    procmon.build   file=build_refl.log line="[464/506] Jacobian.BranchC.Descent2R.Lm2.C_10_23_2  built (63s, peak 5519 MB)"
+2026-09-29 18:11:12.228 INFO    procmon.event   msg=start pid=1447 ppid=1446 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_4"
+2026-09-29 18:11:12.229 INFO    procmon.event   msg=exit pid=1375 name=lake secs=70 peak_rss=824 peak_anon=101 peak_pss=789 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_3"
+2026-09-29 18:11:12.229 INFO    procmon.event   msg=exit pid=1428 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_3.lean secs=69 peak_rss=5475 peak_anon=4234 peak_pss=5152 cpu_s=67 majflt=384
+2026-09-29 18:11:12.229 INFO    procmon.build   file=build_refl.log line="[465/506] Jacobian.BranchC.Descent2R.Lm2.C_10_23_3  built (68s, peak 5475 MB)"
+2026-09-29 18:11:14.258 INFO    procmon.event   msg=start pid=1500 ppid=1447 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_4.lean
+2026-09-29 18:12:28.246 INFO    procmon.event   msg=start pid=1521 ppid=1520 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_5"
+2026-09-29 18:12:28.246 INFO    procmon.event   msg=start pid=1574 ppid=1521 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_5.lean
+2026-09-29 18:12:28.246 INFO    procmon.event   msg=exit pid=1447 name=lake secs=78 peak_rss=828 peak_anon=105 peak_pss=807 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_4"
+2026-09-29 18:12:28.246 INFO    procmon.event   msg=exit pid=1500 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_4.lean secs=77 peak_rss=5542 peak_anon=4522 peak_pss=5354 cpu_s=74 majflt=3048
+2026-09-29 18:12:28.246 INFO    procmon.build   file=build_refl.log line="[466/506] Jacobian.BranchC.Descent2R.Lm2.C_10_23_4  built (75s, peak 5542 MB)"
+2026-09-29 18:12:30.266 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1574 lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_5.lean majflt_s=521 cg_mapped=1483
+2026-09-29 18:13:44.220 INFO    procmon.event   msg=start pid=1593 ppid=1592 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_6"
+2026-09-29 18:13:44.220 INFO    procmon.event   msg=exit pid=1521 name=lake secs=79 peak_rss=817 peak_anon=99 peak_pss=695 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_5"
+2026-09-29 18:13:44.220 INFO    procmon.event   msg=exit pid=1574 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_5.lean secs=77 peak_rss=5545 peak_anon=4707 peak_pss=5328 cpu_s=75 majflt=2612
+2026-09-29 18:13:44.220 INFO    procmon.build   file=build_refl.log line="[467/506] Jacobian.BranchC.Descent2R.Lm2.C_10_23_5  built (78s, peak 5546 MB)"
+2026-09-29 18:13:46.256 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1593 lean=lake majflt_s=1867 cg_mapped=1065
+2026-09-29 18:13:46.256 INFO    procmon.event   msg=start pid=1646 ppid=1593 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_6.lean
+2026-09-29 18:13:48.273 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1646 lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_6.lean majflt_s=695 cg_mapped=1485
+2026-09-29 18:14:32.271 INFO    procmon.event   msg=start pid=1663 ppid=1662 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_7"
+2026-09-29 18:14:32.271 INFO    procmon.event   msg=start pid=1716 ppid=1663 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_7.lean
+2026-09-29 18:14:32.271 INFO    procmon.event   msg=exit pid=1593 name=lake secs=49 peak_rss=820 peak_anon=99 peak_pss=543 cpu_s=1 majflt=3734 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_6"
+2026-09-29 18:14:32.271 INFO    procmon.event   msg=exit pid=1646 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_6.lean secs=48 peak_rss=5156 peak_anon=3731 peak_pss=4824 cpu_s=45 majflt=1393
+2026-09-29 18:14:32.272 INFO    procmon.build   file=build_refl.log line="[468/506] Jacobian.BranchC.Descent2R.Lm2.C_10_23_6  built (47s, peak 5155 MB)"
+2026-09-29 18:15:12.258 INFO    procmon.event   msg=start pid=1733 ppid=1732 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_10_23"
+2026-09-29 18:15:12.258 INFO    procmon.event   msg=start pid=1786 ppid=1733 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_10_23.lean
+2026-09-29 18:15:12.258 INFO    procmon.event   msg=exit pid=1663 name=lake secs=42 peak_rss=827 peak_anon=103 peak_pss=518 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_10_23_7"
+2026-09-29 18:15:12.258 INFO    procmon.event   msg=exit pid=1716 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_10_23_7.lean secs=41 peak_rss=4357 peak_anon=2928 peak_pss=4024 cpu_s=39 majflt=4
+2026-09-29 18:15:12.258 INFO    procmon.build   file=build_refl.log line="[469/506] Jacobian.BranchC.Descent2R.Lm2.C_10_23_7  built (40s, peak 4357 MB)"
+2026-09-29 18:15:28.253 INFO    procmon.event   msg=start pid=1802 ppid=1801 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_1"
+2026-09-29 18:15:28.253 INFO    procmon.event   msg=start pid=1855 ppid=1802 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_1.lean
+2026-09-29 18:15:28.253 INFO    procmon.event   msg=exit pid=1733 name=lake secs=18 peak_rss=829 peak_anon=105 peak_pss=514 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_10_23"
+2026-09-29 18:15:28.254 INFO    procmon.event   msg=exit pid=1786 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_10_23.lean secs=17 peak_rss=2172 peak_anon=740 peak_pss=1839 cpu_s=15 majflt=16
+2026-09-29 18:15:28.254 INFO    procmon.build   file=build_refl.log line="[470/506] Jacobian.BranchC.Descent2R.Lm2.Red_10_23  built (16s, peak 2175 MB)"
+2026-09-29 18:16:42.252 INFO    procmon.event   msg=start pid=1873 ppid=1872 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_2"
+2026-09-29 18:16:42.252 INFO    procmon.event   msg=exit pid=1802 name=lake secs=76 peak_rss=825 peak_anon=101 peak_pss=562 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_1"
+2026-09-29 18:16:42.252 INFO    procmon.event   msg=exit pid=1855 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_1.lean secs=75 peak_rss=5558 peak_anon=4474 peak_pss=5363 cpu_s=73 majflt=2557
+2026-09-29 18:16:42.253 INFO    procmon.build   file=build_refl.log line="[471/506] Jacobian.BranchC.Descent2R.Lm2.C_11_25_1  built (74s, peak 5559 MB)"
+2026-09-29 18:16:44.294 INFO    procmon.event   msg=start pid=1926 ppid=1873 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_2.lean
+2026-09-29 18:17:48.273 INFO    procmon.event   msg=start pid=1951 ppid=1950 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_3"
+2026-09-29 18:17:48.273 INFO    procmon.event   msg=start pid=2005 ppid=1951 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_3.lean
+2026-09-29 18:17:48.273 INFO    procmon.event   msg=exit pid=1873 name=lake secs=68 peak_rss=826 peak_anon=103 peak_pss=805 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_2"
+2026-09-29 18:17:48.273 INFO    procmon.event   msg=exit pid=1926 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_2.lean secs=67 peak_rss=5525 peak_anon=4117 peak_pss=5202 cpu_s=64 majflt=638
+2026-09-29 18:17:48.273 INFO    procmon.build   file=build_refl.log line="[472/506] Jacobian.BranchC.Descent2R.Lm2.C_11_25_2  built (66s, peak 5526 MB)"
+2026-09-29 18:18:58.279 INFO    procmon.event   msg=start pid=2025 ppid=2024 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_4"
+2026-09-29 18:18:58.279 INFO    procmon.event   msg=start pid=2078 ppid=2025 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_4.lean
+2026-09-29 18:18:58.279 INFO    procmon.event   msg=exit pid=1951 name=lake secs=72 peak_rss=828 peak_anon=103 peak_pss=705 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_3"
+2026-09-29 18:18:58.279 INFO    procmon.event   msg=exit pid=2005 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_3.lean secs=71 peak_rss=5512 peak_anon=4236 peak_pss=5206 cpu_s=69 majflt=17
+2026-09-29 18:18:58.279 INFO    procmon.build   file=build_refl.log line="[473/506] Jacobian.BranchC.Descent2R.Lm2.C_11_25_3  built (70s, peak 5514 MB)"
+2026-09-29 18:19:00.312 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=2078 lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_4.lean majflt_s=576 cg_mapped=1483
+2026-09-29 18:20:12.270 INFO    procmon.event   msg=start pid=2098 ppid=2097 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_5"
+2026-09-29 18:20:12.270 INFO    procmon.event   msg=exit pid=2025 name=lake secs=76 peak_rss=826 peak_anon=105 peak_pss=687 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_4"
+2026-09-29 18:20:12.270 INFO    procmon.event   msg=exit pid=2078 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_4.lean secs=75 peak_rss=5571 peak_anon=4516 peak_pss=5313 cpu_s=73 majflt=3130
+2026-09-29 18:20:12.270 INFO    procmon.build   file=build_refl.log line="[474/506] Jacobian.BranchC.Descent2R.Lm2.C_11_25_4  built (75s, peak 5573 MB)"
+2026-09-29 18:20:14.294 INFO    procmon.event   msg=start pid=2151 ppid=2098 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_5.lean
+2026-09-29 18:21:06.296 INFO    procmon.event   msg=start pid=2169 ppid=2168 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_6"
+2026-09-29 18:21:06.297 INFO    procmon.event   msg=start pid=2222 ppid=2169 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_6.lean
+2026-09-29 18:21:06.297 INFO    procmon.event   msg=exit pid=2098 name=lake secs=55 peak_rss=822 peak_anon=101 peak_pss=789 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_5"
+2026-09-29 18:21:06.297 INFO    procmon.event   msg=exit pid=2151 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_5.lean secs=54 peak_rss=5047 peak_anon=3624 peak_pss=4716 cpu_s=52 majflt=3
+2026-09-29 18:21:06.297 INFO    procmon.build   file=build_refl.log line="[475/506] Jacobian.BranchC.Descent2R.Lm2.C_11_25_5  built (53s, peak 5047 MB)"
+2026-09-29 18:21:44.286 INFO    procmon.event   msg=start pid=2238 ppid=2237 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_11_25"
+2026-09-29 18:21:44.286 INFO    procmon.event   msg=exit pid=2169 name=lake secs=40 peak_rss=821 peak_anon=99 peak_pss=493 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_11_25_6"
+2026-09-29 18:21:44.286 INFO    procmon.event   msg=exit pid=2222 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_11_25_6.lean secs=39 peak_rss=4212 peak_anon=2786 peak_pss=3880 cpu_s=37 majflt=6
+2026-09-29 18:21:44.286 INFO    procmon.build   file=build_refl.log line="[476/506] Jacobian.BranchC.Descent2R.Lm2.C_11_25_6  built (39s, peak 4212 MB)"
+2026-09-29 18:21:46.323 INFO    procmon.event   msg=start pid=2291 ppid=2238 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_11_25.lean
+2026-09-29 18:22:00.318 INFO    procmon.event   msg=start pid=2305 ppid=2304 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_1"
+2026-09-29 18:22:00.318 INFO    procmon.event   msg=start pid=2358 ppid=2305 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_1.lean
+2026-09-29 18:22:00.318 INFO    procmon.event   msg=exit pid=2238 name=lake secs=17 peak_rss=827 peak_anon=105 peak_pss=804 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_11_25"
+2026-09-29 18:22:00.318 INFO    procmon.event   msg=exit pid=2291 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_11_25.lean secs=17 peak_rss=2106 peak_anon=677 peak_pss=1774 cpu_s=15 majflt=8
+2026-09-29 18:22:00.318 INFO    procmon.build   file=build_refl.log line="[477/506] Jacobian.BranchC.Descent2R.Lm2.Red_11_25  built (15s, peak 2107 MB)"
+2026-09-29 18:23:10.279 INFO    procmon.event   msg=start pid=2379 ppid=2378 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_2"
+2026-09-29 18:23:10.279 INFO    procmon.event   msg=exit pid=2305 name=lake secs=72 peak_rss=827 peak_anon=105 peak_pss=512 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_1"
+2026-09-29 18:23:10.279 INFO    procmon.event   msg=exit pid=2358 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_1.lean secs=71 peak_rss=5585 peak_anon=4473 peak_pss=5314 cpu_s=69 majflt=2567
+2026-09-29 18:23:10.280 INFO    procmon.build   file=build_refl.log line="[478/506] Jacobian.BranchC.Descent2R.Lm2.C_12_27_1  built (71s, peak 5586 MB)"
+2026-09-29 18:23:12.306 INFO    procmon.event   msg=start pid=2433 ppid=2379 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_2.lean
+2026-09-29 18:24:14.292 INFO    procmon.event   msg=start pid=2453 ppid=2452 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_3"
+2026-09-29 18:24:14.292 INFO    procmon.event   msg=exit pid=2379 name=lake secs=65 peak_rss=821 peak_anon=103 peak_pss=491 cpu_s=1 majflt=996 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_2"
+2026-09-29 18:24:14.292 INFO    procmon.event   msg=exit pid=2433 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_2.lean secs=64 peak_rss=5504 peak_anon=4119 peak_pss=5191 cpu_s=62 majflt=45
+2026-09-29 18:24:14.292 INFO    procmon.build   file=build_refl.log line="[479/506] Jacobian.BranchC.Descent2R.Lm2.C_12_27_2  built (64s, peak 5507 MB)"
+2026-09-29 18:24:16.333 INFO    procmon.event   msg=start pid=2506 ppid=2453 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_3.lean
+2026-09-29 18:25:22.299 INFO    procmon.event   msg=start pid=2527 ppid=2526 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_4"
+2026-09-29 18:25:22.300 INFO    procmon.event   msg=exit pid=2453 name=lake secs=69 peak_rss=825 peak_anon=105 peak_pss=793 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_3"
+2026-09-29 18:25:22.300 INFO    procmon.event   msg=exit pid=2506 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_3.lean secs=69 peak_rss=5513 peak_anon=4228 peak_pss=5208 cpu_s=66 majflt=5
+2026-09-29 18:25:22.300 INFO    procmon.build   file=build_refl.log line="[480/506] Jacobian.BranchC.Descent2R.Lm2.C_12_27_3  built (68s, peak 5516 MB)"
+2026-09-29 18:25:24.322 INFO    procmon.event   msg=start pid=2580 ppid=2527 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_4.lean
+2026-09-29 18:26:18.309 INFO    procmon.event   msg=start pid=2600 ppid=2599 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_5"
+2026-09-29 18:26:18.309 INFO    procmon.event   msg=exit pid=2527 name=lake secs=57 peak_rss=824 peak_anon=103 peak_pss=793 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_4"
+2026-09-29 18:26:18.310 INFO    procmon.event   msg=exit pid=2580 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_4.lean secs=56 peak_rss=5229 peak_anon=3805 peak_pss=4898 cpu_s=54 majflt=3
+2026-09-29 18:26:18.310 INFO    procmon.build   file=build_refl.log line="[481/506] Jacobian.BranchC.Descent2R.Lm2.C_12_27_4  built (56s, peak 5229 MB)"
+2026-09-29 18:26:20.344 INFO    procmon.event   msg=start pid=2653 ppid=2600 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_5.lean
+2026-09-29 18:26:46.308 INFO    procmon.event   msg=start pid=2666 ppid=2665 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_12_27"
+2026-09-29 18:26:46.308 INFO    procmon.event   msg=exit pid=2600 name=lake secs=30 peak_rss=825 peak_anon=103 peak_pss=807 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_12_27_5"
+2026-09-29 18:26:46.308 INFO    procmon.event   msg=exit pid=2653 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_12_27_5.lean secs=29 peak_rss=3328 peak_anon=1904 peak_pss=2996 cpu_s=27 majflt=3
+2026-09-29 18:26:46.308 INFO    procmon.build   file=build_refl.log line="[482/506] Jacobian.BranchC.Descent2R.Lm2.C_12_27_5  built (28s, peak 3328 MB)"
+2026-09-29 18:26:48.331 INFO    procmon.event   msg=start pid=2719 ppid=2666 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_12_27.lean
+2026-09-29 18:27:00.307 INFO    procmon.event   msg=start pid=2735 ppid=2734 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_13_29_1"
+2026-09-29 18:27:00.307 INFO    procmon.event   msg=exit pid=2666 name=lake secs=15 peak_rss=829 peak_anon=107 peak_pss=784 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_12_27"
+2026-09-29 18:27:00.307 INFO    procmon.event   msg=exit pid=2719 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_12_27.lean secs=14 peak_rss=2034 peak_anon=606 peak_pss=1702 cpu_s=12 majflt=9
+2026-09-29 18:27:00.308 INFO    procmon.build   file=build_refl.log line="[483/506] Jacobian.BranchC.Descent2R.Lm2.Red_12_27  built (14s, peak 2040 MB)"
+2026-09-29 18:27:02.333 INFO    procmon.event   msg=start pid=2788 ppid=2735 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_13_29_1.lean
+2026-09-29 18:28:10.308 INFO    procmon.event   msg=start pid=2824 ppid=2823 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_13_29_2"
+2026-09-29 18:28:10.308 INFO    procmon.event   msg=exit pid=2735 name=lake secs=71 peak_rss=827 peak_anon=105 peak_pss=495 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_13_29_1"
+2026-09-29 18:28:10.308 INFO    procmon.event   msg=exit pid=2788 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_13_29_1.lean secs=70 peak_rss=5589 peak_anon=4473 peak_pss=5316 cpu_s=68 majflt=2569
+2026-09-29 18:28:10.308 INFO    procmon.build   file=build_refl.log line="[484/506] Jacobian.BranchC.Descent2R.Lm2.C_13_29_1  built (70s, peak 5589 MB)"
+2026-09-29 18:28:12.341 INFO    procmon.event   msg=start pid=2877 ppid=2824 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_13_29_2.lean
+2026-09-29 18:29:14.348 INFO    procmon.event   msg=start pid=2932 ppid=2931 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_13_29_3"
+2026-09-29 18:29:14.348 INFO    procmon.event   msg=start pid=2985 ppid=2932 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_13_29_3.lean
+2026-09-29 18:29:14.348 INFO    procmon.event   msg=exit pid=2824 name=lake secs=65 peak_rss=822 peak_anon=101 peak_pss=493 cpu_s=1 majflt=998 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_13_29_2"
+2026-09-29 18:29:14.348 INFO    procmon.event   msg=exit pid=2877 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_13_29_2.lean secs=64 peak_rss=5458 peak_anon=4108 peak_pss=5153 cpu_s=61 majflt=2123
+2026-09-29 18:29:14.349 INFO    procmon.build   file=build_refl.log line="[485/506] Jacobian.BranchC.Descent2R.Lm2.C_13_29_2  built (63s, peak 5458 MB)"
+2026-09-29 18:30:02.346 INFO    procmon.event   msg=start pid=3012 ppid=3011 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_13_29_4"
+2026-09-29 18:30:02.346 INFO    procmon.event   msg=start pid=3065 ppid=3012 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_13_29_4.lean
+2026-09-29 18:30:02.346 INFO    procmon.event   msg=exit pid=2932 name=lake secs=50 peak_rss=826 peak_anon=105 peak_pss=518 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_13_29_3"
+2026-09-29 18:30:02.346 INFO    procmon.event   msg=exit pid=2985 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_13_29_3.lean secs=49 peak_rss=4823 peak_anon=3398 peak_pss=4491 cpu_s=47 majflt=0
+2026-09-29 18:30:02.346 INFO    procmon.build   file=build_refl.log line="[486/506] Jacobian.BranchC.Descent2R.Lm2.C_13_29_3  built (48s, peak 4823 MB)"
+2026-09-29 18:30:24.331 INFO    procmon.event   msg=start pid=3078 ppid=3077 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_13_29"
+2026-09-29 18:30:24.331 INFO    procmon.event   msg=exit pid=3012 name=lake secs=24 peak_rss=822 peak_anon=101 peak_pss=578 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_13_29_4"
+2026-09-29 18:30:24.331 INFO    procmon.event   msg=exit pid=3065 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_13_29_4.lean secs=23 peak_rss=2978 peak_anon=1555 peak_pss=2647 cpu_s=21 majflt=1
+2026-09-29 18:30:24.331 INFO    procmon.build   file=build_refl.log line="[487/506] Jacobian.BranchC.Descent2R.Lm2.C_13_29_4  built (23s, peak 2978 MB)"
+2026-09-29 18:30:26.359 INFO    procmon.event   msg=start pid=3131 ppid=3078 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_13_29.lean
+2026-09-29 18:30:38.353 INFO    procmon.event   msg=start pid=3144 ppid=3143 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_14_31_1"
+2026-09-29 18:30:38.353 INFO    procmon.event   msg=start pid=3197 ppid=3144 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_14_31_1.lean
+2026-09-29 18:30:38.353 INFO    procmon.event   msg=exit pid=3078 name=lake secs=15 peak_rss=828 peak_anon=107 peak_pss=611 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_13_29"
+2026-09-29 18:30:38.353 INFO    procmon.event   msg=exit pid=3131 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_13_29.lean secs=14 peak_rss=1954 peak_anon=526 peak_pss=1622 cpu_s=12 majflt=6
+2026-09-29 18:30:38.354 INFO    procmon.build   file=build_refl.log line="[488/506] Jacobian.BranchC.Descent2R.Lm2.Red_13_29  built (13s, peak 1954 MB)"
+2026-09-29 18:31:46.339 INFO    procmon.event   msg=start pid=3217 ppid=3216 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_14_31_2"
+2026-09-29 18:31:46.339 INFO    procmon.event   msg=exit pid=3144 name=lake secs=70 peak_rss=820 peak_anon=99 peak_pss=523 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_14_31_1"
+2026-09-29 18:31:46.339 INFO    procmon.event   msg=exit pid=3197 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_14_31_1.lean secs=69 peak_rss=5401 peak_anon=4472 peak_pss=5135 cpu_s=67 majflt=898
+2026-09-29 18:31:46.339 INFO    procmon.build   file=build_refl.log line="[489/506] Jacobian.BranchC.Descent2R.Lm2.C_14_31_1  built (69s, peak 5402 MB)"
+2026-09-29 18:31:48.367 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=3217 lean=lake majflt_s=590 cg_mapped=1473
+2026-09-29 18:31:48.367 INFO    procmon.event   msg=start pid=3270 ppid=3217 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_14_31_2.lean
+2026-09-29 18:32:26.347 INFO    procmon.event   msg=start pid=3289 ppid=3288 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_14_31"
+2026-09-29 18:32:26.347 INFO    procmon.event   msg=exit pid=3217 name=lake secs=41 peak_rss=818 peak_anon=101 peak_pss=488 cpu_s=1 majflt=1180 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_14_31_2"
+2026-09-29 18:32:26.347 INFO    procmon.event   msg=exit pid=3270 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_14_31_2.lean secs=40 peak_rss=4348 peak_anon=2927 peak_pss=4019 cpu_s=38 majflt=3
+2026-09-29 18:32:26.347 INFO    procmon.build   file=build_refl.log line="[490/506] Jacobian.BranchC.Descent2R.Lm2.C_14_31_2  built (40s, peak 4348 MB)"
+2026-09-29 18:32:28.394 INFO    procmon.event   msg=start pid=3342 ppid=3289 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_14_31.lean
+2026-09-29 18:32:38.352 INFO    procmon.event   msg=start pid=3355 ppid=3354 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_15_33_1"
+2026-09-29 18:32:38.352 INFO    procmon.event   msg=start pid=3408 ppid=3355 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_15_33_1.lean
+2026-09-29 18:32:38.352 INFO    procmon.event   msg=exit pid=3289 name=lake secs=13 peak_rss=820 peak_anon=101 peak_pss=785 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_14_31"
+2026-09-29 18:32:38.353 INFO    procmon.event   msg=exit pid=3342 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_14_31.lean secs=12 peak_rss=1825 peak_anon=400 peak_pss=1495 cpu_s=10 majflt=0
+2026-09-29 18:32:38.353 INFO    procmon.build   file=build_refl.log line="[491/506] Jacobian.BranchC.Descent2R.Lm2.Red_14_31  built (12s, peak 1825 MB)"
+2026-09-29 18:33:32.369 INFO    procmon.event   msg=start pid=3426 ppid=3425 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_15_33_2"
+2026-09-29 18:33:32.369 INFO    procmon.event   msg=start pid=3479 ppid=3426 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_15_33_2.lean
+2026-09-29 18:33:32.369 INFO    procmon.event   msg=exit pid=3355 name=lake secs=56 peak_rss=819 peak_anon=101 peak_pss=761 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_15_33_1"
+2026-09-29 18:33:32.369 INFO    procmon.event   msg=exit pid=3408 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_15_33_1.lean secs=55 peak_rss=5106 peak_anon=3683 peak_pss=4776 cpu_s=53 majflt=0
+2026-09-29 18:33:32.369 INFO    procmon.build   file=build_refl.log line="[492/506] Jacobian.BranchC.Descent2R.Lm2.C_15_33_1  built (54s, peak 5106 MB)"
+2026-09-29 18:33:50.371 INFO    procmon.event   msg=start pid=3492 ppid=3491 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_15_33"
+2026-09-29 18:33:50.371 INFO    procmon.event   msg=start pid=3545 ppid=3492 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_15_33.lean
+2026-09-29 18:33:50.371 INFO    procmon.event   msg=exit pid=3426 name=lake secs=20 peak_rss=815 peak_anon=97 peak_pss=694 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_15_33_2"
+2026-09-29 18:33:50.371 INFO    procmon.event   msg=exit pid=3479 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_15_33_2.lean secs=19 peak_rss=2554 peak_anon=1132 peak_pss=2224 cpu_s=17 majflt=0
+2026-09-29 18:33:50.371 INFO    procmon.build   file=build_refl.log line="[493/506] Jacobian.BranchC.Descent2R.Lm2.C_15_33_2  built (18s, peak 2554 MB)"
+2026-09-29 18:34:00.349 INFO    procmon.event   msg=start pid=3566 ppid=3565 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_16_35_1"
+2026-09-29 18:34:00.349 INFO    procmon.event   msg=exit pid=3492 name=lake secs=12 peak_rss=822 peak_anon=103 peak_pss=508 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_15_33"
+2026-09-29 18:34:00.349 INFO    procmon.event   msg=exit pid=3545 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_15_33.lean secs=11 peak_rss=1749 peak_anon=325 peak_pss=1419 cpu_s=9 majflt=0
+2026-09-29 18:34:00.349 INFO    procmon.build   file=build_refl.log line="[494/506] Jacobian.BranchC.Descent2R.Lm2.Red_15_33  built (11s, peak 1811 MB)"
+2026-09-29 18:34:02.380 INFO    procmon.event   msg=start pid=3619 ppid=3566 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_16_35_1.lean
+2026-09-29 18:34:34.351 INFO    procmon.event   msg=start pid=3656 ppid=3655 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_16_35"
+2026-09-29 18:34:34.351 INFO    procmon.event   msg=exit pid=3566 name=lake secs=35 peak_rss=818 peak_anon=99 peak_pss=747 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_16_35_1"
+2026-09-29 18:34:34.351 INFO    procmon.event   msg=exit pid=3619 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_16_35_1.lean secs=34 peak_rss=3725 peak_anon=2302 peak_pss=3395 cpu_s=32 majflt=0
+2026-09-29 18:34:34.351 INFO    procmon.build   file=build_refl.log line="[495/506] Jacobian.BranchC.Descent2R.Lm2.C_16_35_1  built (34s, peak 3725 MB)"
+2026-09-29 18:34:36.390 INFO    procmon.event   msg=start pid=3709 ppid=3656 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_16_35.lean
+2026-09-29 18:34:44.368 INFO    procmon.event   msg=start pid=3732 ppid=3731 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_17_37_1"
+2026-09-29 18:34:44.368 INFO    procmon.event   msg=start pid=3799 ppid=3732 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_17_37_1.lean
+2026-09-29 18:34:44.368 INFO    procmon.event   msg=exit pid=3656 name=lake secs=11 peak_rss=826 peak_anon=107 peak_pss=763 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_16_35"
+2026-09-29 18:34:44.369 INFO    procmon.event   msg=exit pid=3709 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_16_35.lean secs=10 peak_rss=1584 peak_anon=163 peak_pss=1254 cpu_s=8 majflt=0
+2026-09-29 18:34:44.369 INFO    procmon.build   file=build_refl.log line="[496/506] Jacobian.BranchC.Descent2R.Lm2.Red_16_35  built (9s, peak 1729 MB)"
+2026-09-29 18:34:56.348 INFO    procmon.event   msg=start pid=3817 ppid=3816 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_17_37"
+2026-09-29 18:34:56.348 INFO    procmon.event   msg=exit pid=3732 name=lake secs=14 peak_rss=817 peak_anon=99 peak_pss=705 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_17_37_1"
+2026-09-29 18:34:56.348 INFO    procmon.event   msg=exit pid=3799 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/C_17_37_1.lean secs=13 peak_rss=2395 peak_anon=973 peak_pss=2065 cpu_s=11 majflt=0
+2026-09-29 18:34:56.348 INFO    procmon.build   file=build_refl.log line="[497/506] Jacobian.BranchC.Descent2R.Lm2.C_17_37_1  built (13s, peak 2395 MB)"
+2026-09-29 18:34:58.399 INFO    procmon.event   msg=start pid=3870 ppid=3817 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_17_37.lean
+2026-09-29 18:35:02.375 INFO    procmon.event   msg=start pid=3891 ppid=3890 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta1_1"
+2026-09-29 18:35:02.375 INFO    procmon.event   msg=start pid=3944 ppid=3891 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta1_1.lean
+2026-09-29 18:35:02.375 INFO    procmon.event   msg=exit pid=3817 name=lake secs=7 peak_rss=820 peak_anon=101 peak_pss=489 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red_17_37"
+2026-09-29 18:35:02.375 INFO    procmon.event   msg=exit pid=3870 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Red_17_37.lean secs=6 peak_rss=1588 peak_anon=167 peak_pss=1259 cpu_s=4 majflt=0
+2026-09-29 18:35:02.376 INFO    procmon.build   file=build_refl.log line="[498/506] Jacobian.BranchC.Descent2R.Lm2.Red_17_37  built (5s, peak 1674 MB)"
+2026-09-29 18:35:42.373 INFO    procmon.event   msg=exit pid=3944 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta1_1.lean secs=41 peak_rss=3742 peak_anon=2311 peak_pss=3411 cpu_s=39 majflt=106
+2026-09-29 18:35:44.399 INFO    procmon.event   msg=start pid=3991 ppid=3990 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta1_2"
+2026-09-29 18:35:44.399 INFO    procmon.event   msg=start pid=4044 ppid=3991 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta1_2.lean
+2026-09-29 18:35:44.399 INFO    procmon.event   msg=exit pid=3891 name=lake secs=44 peak_rss=826 peak_anon=107 peak_pss=816 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta1_1"
+2026-09-29 18:35:44.399 INFO    procmon.build   file=build_refl.log line="[499/506] Jacobian.BranchC.Descent2R.Lm2.P_Theta1_1  built (41s, peak 3742 MB)"
+2026-09-29 18:36:20.405 INFO    procmon.event   msg=exit pid=4044 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta1_2.lean secs=38 peak_rss=3484 peak_anon=2054 peak_pss=3154 cpu_s=36 majflt=53
+2026-09-29 18:36:20.406 INFO    procmon.build   file=build_refl.log line="[500/506] Jacobian.BranchC.Descent2R.Lm2.P_Theta1_2  built (38s, peak 3485 MB)"
+2026-09-29 18:36:22.401 INFO    procmon.event   msg=start pid=4075 ppid=4074 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta2_1"
+2026-09-29 18:36:22.401 INFO    procmon.event   msg=start pid=4129 ppid=4075 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta2_1.lean
+2026-09-29 18:36:22.401 INFO    procmon.event   msg=exit pid=3991 name=lake secs=41 peak_rss=822 peak_anon=103 peak_pss=818 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta1_2"
+2026-09-29 18:37:02.380 INFO    procmon.event   msg=start pid=4166 ppid=4165 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta2_2"
+2026-09-29 18:37:02.380 INFO    procmon.event   msg=exit pid=4075 name=lake secs=43 peak_rss=826 peak_anon=107 peak_pss=495 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta2_1"
+2026-09-29 18:37:02.380 INFO    procmon.event   msg=exit pid=4129 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta2_1.lean secs=42 peak_rss=3745 peak_anon=2314 peak_pss=3415 cpu_s=40 majflt=0
+2026-09-29 18:37:02.380 INFO    procmon.build   file=build_refl.log line="[501/506] Jacobian.BranchC.Descent2R.Lm2.P_Theta2_1  built (41s, peak 3745 MB)"
+2026-09-29 18:37:04.418 INFO    procmon.event   msg=start pid=4219 ppid=4166 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta2_2.lean
+2026-09-29 18:37:40.405 INFO    procmon.event   msg=start pid=4274 ppid=4273 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta3_1"
+2026-09-29 18:37:40.405 INFO    procmon.event   msg=exit pid=4166 name=lake secs=40 peak_rss=829 peak_anon=111 peak_pss=823 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta2_2"
+2026-09-29 18:37:40.405 INFO    procmon.event   msg=exit pid=4219 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta2_2.lean secs=39 peak_rss=3487 peak_anon=2056 peak_pss=3157 cpu_s=36 majflt=0
+2026-09-29 18:37:40.405 INFO    procmon.build   file=build_refl.log line="[502/506] Jacobian.BranchC.Descent2R.Lm2.P_Theta2_2  built (38s, peak 3487 MB)"
+2026-09-29 18:37:42.427 INFO    procmon.event   msg=start pid=4327 ppid=4274 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta3_1.lean
+2026-09-29 18:38:24.466 INFO    procmon.event   msg=start pid=4354 ppid=4353 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta3_2"
+2026-09-29 18:38:24.467 INFO    procmon.event   msg=start pid=4407 ppid=4354 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta3_2.lean
+2026-09-29 18:38:24.467 INFO    procmon.event   msg=exit pid=4274 name=lake secs=45 peak_rss=830 peak_anon=111 peak_pss=783 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta3_1"
+2026-09-29 18:38:24.467 INFO    procmon.event   msg=exit pid=4327 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta3_1.lean secs=44 peak_rss=3747 peak_anon=2316 peak_pss=3417 cpu_s=42 majflt=0
+2026-09-29 18:38:24.467 INFO    procmon.build   file=build_refl.log line="[503/506] Jacobian.BranchC.Descent2R.Lm2.P_Theta3_1  built (43s, peak 3747 MB)"
+2026-09-29 18:39:02.435 INFO    procmon.event   msg=start pid=4435 ppid=4434 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Tgt"
+2026-09-29 18:39:02.435 INFO    procmon.event   msg=exit pid=4354 name=lake secs=40 peak_rss=826 peak_anon=107 peak_pss=519 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.P_Theta3_2"
+2026-09-29 18:39:02.435 INFO    procmon.event   msg=exit pid=4407 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/P_Theta3_2.lean secs=39 peak_rss=3485 peak_anon=2054 peak_pss=3155 cpu_s=36 majflt=0
+2026-09-29 18:39:02.435 INFO    procmon.build   file=build_refl.log line="[504/506] Jacobian.BranchC.Descent2R.Lm2.P_Theta3_2  built (39s, peak 3485 MB)"
+2026-09-29 18:39:04.455 INFO    procmon.event   msg=start pid=4488 ppid=4435 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Tgt.lean
+2026-09-29 18:39:40.531 INFO    procmon.event   msg=start pid=4527 ppid=4526 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Main"
+2026-09-29 18:39:40.531 INFO    procmon.event   msg=start pid=4580 ppid=4527 name=lean lean=Jacobian/BranchC/CondsC.lean
+2026-09-29 18:39:40.531 INFO    procmon.event   msg=exit pid=4435 name=lake secs=39 peak_rss=834 peak_anon=116 peak_pss=788 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Tgt"
+2026-09-29 18:39:40.531 INFO    procmon.event   msg=exit pid=4488 name=lean lean=Jacobian/BranchC/Descent2R/Lm2/Tgt.lean secs=38 peak_rss=1904 peak_anon=454 peak_pss=1574 cpu_s=37 majflt=11
+2026-09-29 18:39:40.531 INFO    procmon.build   file=build_refl.log line="[505/506] Jacobian.BranchC.Descent2R.Lm2.Tgt  built (37s, peak 1904 MB)"
+2026-09-29 18:42:34.456 INFO    procmon.event   msg=start pid=4632 ppid=4527 name=lean lean=Jacobian/BranchC/Descent2R/Main.lean
+2026-09-29 18:42:34.456 INFO    procmon.event   msg=exit pid=4580 name=lean lean=Jacobian/BranchC/CondsC.lean secs=175 peak_rss=1776 peak_anon=357 peak_pss=1446 cpu_s=176 majflt=9
+2026-09-29 22:13:25.765 INFO    procmon.event   msg="procmon v2 start" pid=389 interval=2.0 follow=build_refl.log,build_t1z.log,build_t1z_main.log,build_final.log cgroup=claude-code-bash
+2026-09-29 22:13:25.769 WARNING procmon.event   msg="low anon headroom" headroom=0 anon=0 limit=0 top=
+2026-09-29 22:13:44.671 INFO    procmon.event   msg="procmon v2 start" pid=447 interval=2.0 follow=build_refl.log,build_t1z.log,build_t1z_main.log,build_final.log cgroup=claude-code-bash
+2026-09-29 22:13:44.723 INFO    procmon.event   msg=start pid=406 ppid=403 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Main"
+2026-09-29 22:14:30.694 WARNING procmon.event   msg="sustained major faults mid-run (thrashing)" pid=406 lean=lake majflt_s=788 age_s=63 cg_anon=95 cg_mapped=715
+2026-09-29 22:16:00.699 INFO    procmon.event   msg=start pid=495 ppid=406 name=lean lean=Jacobian/BranchC/Descent2R/Main.lean
+2026-09-29 22:17:20.719 WARNING procmon.event   msg="sustained major faults mid-run (thrashing)" pid=495 lean=Jacobian/BranchC/Descent2R/Main.lean majflt_s=847 age_s=83 cg_anon=308 cg_mapped=1537
+2026-09-29 22:18:12.112 INFO    procmon.event   msg="procmon v2 start" pid=527 interval=2.0 follow=build_refl.log,build_t1z.log,build_t1z_main.log,build_final.log cgroup=claude-code-bash
+2026-09-29 22:18:12.146 INFO    procmon.event   msg=start pid=406 ppid=403 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Main"
+2026-09-29 22:18:12.146 INFO    procmon.event   msg=start pid=495 ppid=406 name=lean lean=Jacobian/BranchC/Descent2R/Main.lean
+2026-09-29 22:22:30.205 INFO    procmon.event   msg=exit pid=569 name=python3 secs=22 peak_rss=160 peak_anon=145 peak_pss=155 cpu_s=18 majflt=16 cmd="python3 gen_refl_c.py"
+2026-09-29 22:22:38.185 INFO    procmon.event   msg=exit pid=578 name=python3 secs=9 peak_rss=111 peak_anon=96 peak_pss=106 cpu_s=6 majflt=1 cmd="python3 gen_t1zero_lean.py"
+2026-09-29 22:24:32.231 INFO    procmon.event   msg=exit pid=625 name=python3 secs=21 peak_rss=154 peak_anon=139 peak_pss=149 cpu_s=17 majflt=0 cmd="python3 gen_refl_c.py"
+2026-09-29 22:24:46.280 INFO    procmon.event   msg=start pid=643 ppid=641 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C1_Sq_bezout.lean
+2026-09-29 22:24:48.235 INFO    procmon.event   msg=start pid=650 ppid=641 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C2_FPsi_drop_eT1.lean
+2026-09-29 22:24:48.235 INFO    procmon.event   msg=exit pid=643 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C1_Sq_bezout.lean secs=4 peak_rss=1547 peak_anon=125 peak_pss=730 cpu_s=1 majflt=0
+2026-09-29 22:24:50.275 INFO    procmon.event   msg=start pid=656 ppid=641 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C3_PPsi_coeff.lean
+2026-09-29 22:24:50.275 INFO    procmon.event   msg=exit pid=650 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C2_FPsi_drop_eT1.lean secs=4 peak_rss=1592 peak_anon=165 peak_pss=773 cpu_s=1 majflt=0
+2026-09-29 22:25:08.291 INFO    procmon.event   msg=start pid=662 ppid=641 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C4_Final_DDplus1.lean
+2026-09-29 22:25:08.291 INFO    procmon.event   msg=exit pid=656 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C3_PPsi_coeff.lean secs=21 peak_rss=1700 peak_anon=272 peak_pss=881 cpu_s=17 majflt=0
+2026-09-29 22:26:16.277 INFO    procmon.event   msg=exit pid=662 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C4_Final_DDplus1.lean secs=70 peak_rss=1860 peak_anon=429 peak_pss=1041 cpu_s=65 majflt=68
+2026-09-29 22:30:58.298 WARNING procmon.event   msg="lean module running > 900s" pid=495 lean=Jacobian/BranchC/Descent2R/Main.lean rss=2470 anon=977 cpu_s=817
+2026-09-29 22:45:48.420 INFO    procmon.event   msg=start pid=834 ppid=833 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/mainprof/Main_60.lean
+2026-09-29 22:45:58.417 INFO    procmon.event   msg=start pid=846 ppid=845 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/mainprof/Main_120.lean
+2026-09-29 22:45:58.417 INFO    procmon.event   msg=exit pid=834 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/mainprof/Main_60.lean secs=12 peak_rss=1802 peak_anon=301 peak_pss=946 cpu_s=9 majflt=0
+2026-09-29 22:46:16.357 INFO    procmon.event   msg=exit pid=846 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/mainprof/Main_120.lean secs=19 peak_rss=1802 peak_anon=300 peak_pss=946 cpu_s=16 majflt=0
+2026-09-29 22:46:28.414 INFO    procmon.event   msg=start pid=865 ppid=864 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/mainprof/Main_240.lean
+2026-09-29 22:47:44.395 INFO    procmon.event   msg=exit pid=865 name=lean lean=/tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/mainprof/Main_240.lean secs=78 peak_rss=1937 peak_anon=436 peak_pss=1082 cpu_s=74 majflt=0
+2026-09-29 22:51:46.385 INFO    procmon.event   msg=exit pid=406 name=lake secs=2299 peak_rss=831 peak_anon=117 peak_pss=503 cpu_s=4 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Main"
+2026-09-29 22:51:46.385 INFO    procmon.event   msg=exit pid=495 name=lean lean=Jacobian/BranchC/Descent2R/Main.lean secs=2148 peak_rss=3314 peak_anon=1797 peak_pss=2987 cpu_s=2062 majflt=259
+2026-09-29 22:57:44.432 INFO    procmon.event   msg=start pid=973 ppid=970 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Bridge"
+2026-09-29 22:58:42.440 INFO    procmon.event   msg=start pid=1031 ppid=973 name=lean lean=Jacobian/BranchC/Descent2R/Bridge.lean
+2026-09-29 23:01:04.503 WARNING procmon.event   msg="sustained major faults under memory pressure (thrashing)" pid=1031 lean=Jacobian/BranchC/Descent2R/Bridge.lean majflt_s=2367 age_s=145 cg_anon=423 cg_mapped=3574 failcnt_per_s=9061
+2026-09-29 23:01:06.506 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=52002 usage=5983 anon=429 mapped=4080 majflt_per_s=1940
+2026-09-29 23:01:10.504 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=77549 usage=5983 anon=439 mapped=4676 majflt_per_s=3361
+2026-09-29 23:01:12.507 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=83693 usage=5982 anon=445 mapped=4623 majflt_per_s=3752
+2026-09-29 23:01:14.520 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=98621 usage=5983 anon=467 mapped=4477 majflt_per_s=5936
+2026-09-29 23:01:16.519 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=126956 usage=5983 anon=509 mapped=4269 majflt_per_s=11330
+2026-09-29 23:01:18.543 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=209276 usage=5983 anon=522 mapped=4307 majflt_per_s=8412
+2026-09-29 23:01:20.576 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=214717 usage=5983 anon=522 mapped=4213 majflt_per_s=9991
+2026-09-29 23:01:22.563 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=148737 usage=5983 anon=522 mapped=4509 majflt_per_s=9840
+2026-09-29 23:01:24.546 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=114970 usage=5982 anon=507 mapped=4507 majflt_per_s=13323
+2026-09-29 23:01:26.559 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=60371 usage=5983 anon=526 mapped=4492 majflt_per_s=9936
+2026-09-29 23:01:28.538 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=105739 usage=5983 anon=583 mapped=4387 majflt_per_s=9349
+2026-09-29 23:01:32.436 INFO    procmon.event   msg=exit pid=1031 name=lean lean=Jacobian/BranchC/Descent2R/Bridge.lean secs=173 peak_rss=4814 peak_anon=452 peak_pss=4669 cpu_s=15 majflt=224537
+2026-09-29 23:01:34.430 INFO    procmon.event   msg=exit pid=973 name=lake secs=233 peak_rss=988 peak_anon=273 peak_pss=937 cpu_s=12 majflt=10 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Bridge"
+2026-09-29 23:02:56.437 INFO    procmon.event   msg=start pid=1083 ppid=1082 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake env lean Jacobian/BranchC/Descent2R/Bridge.lean"
+2026-09-29 23:02:58.511 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1083 lean=lake majflt_s=1590 cg_mapped=1424
+2026-09-29 23:02:58.511 INFO    procmon.event   msg=start pid=1133 ppid=1083 name=lean lean=Jacobian/BranchC/Descent2R/Bridge.lean
+2026-09-29 23:03:00.540 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1133 lean=Jacobian/BranchC/Descent2R/Bridge.lean majflt_s=3514 cg_mapped=3681
+2026-09-29 23:03:02.555 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=144866 usage=5983 anon=233 mapped=4614 majflt_per_s=7125
+2026-09-29 23:03:04.555 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=117513 usage=5983 anon=313 mapped=4765 majflt_per_s=7253
+2026-09-29 23:03:06.608 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=121904 usage=5983 anon=313 mapped=4681 majflt_per_s=9288
+2026-09-29 23:03:08.565 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=114258 usage=5983 anon=313 mapped=4747 majflt_per_s=9899
+2026-09-29 23:03:10.548 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=78183 usage=5983 anon=356 mapped=4692 majflt_per_s=13468
+2026-09-29 23:03:16.437 INFO    procmon.event   msg=exit pid=1083 name=lake secs=21 peak_rss=771 peak_anon=73 peak_pss=648 cpu_s=1 majflt=3180 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake env lean Jacobian/BranchC/Descent2R/Bridge.lean"
+2026-09-29 23:03:16.437 INFO    procmon.event   msg=exit pid=1133 name=lean lean=Jacobian/BranchC/Descent2R/Bridge.lean secs=20 peak_rss=5039 peak_anon=576 peak_pss=5000 cpu_s=13 majflt=119433
+2026-09-29 23:04:23.343 INFO    procmon.event   msg="procmon v2 start" pid=1188 interval=1.0 verbose=True follow=build_refl.log,build_t1z.log,build_t1z_main.log,build_final.log cgroup=claude-code-bash
+2026-09-29 23:04:39.931 INFO    procmon.event   msg="procmon v2 start" pid=1206 interval=1.0 verbose=True follow=build_rest2.log,build_main.log cgroup=claude-code-bash
+2026-09-29 23:04:55.947 INFO    procmon.event   msg=start pid=1223 ppid=1222 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.Descent2R.Bridge"
+2026-09-29 23:04:56.996 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1223 lean=lake majflt_s=2572 cg_mapped=696
+2026-09-29 23:05:05.058 INFO    procmon.event   msg=start pid=1277 ppid=1223 name=lean lean=Jacobian/BranchC/Descent2R/Bridge.lean
+2026-09-29 23:05:06.040 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1277 lean=Jacobian/BranchC/Descent2R/Bridge.lean majflt_s=2858 cg_mapped=3016
+2026-09-29 23:05:06.040 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=72267 usage=5983 anon=408 mapped=3016 majflt_per_s=2766
+2026-09-29 23:05:07.068 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=140348 usage=5983 anon=424 mapped=3933 majflt_per_s=6494
+2026-09-29 23:05:08.040 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=150999 usage=5983 anon=433 mapped=4270 majflt_per_s=6659
+2026-09-29 23:05:09.058 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=163033 usage=5983 anon=441 mapped=4372 majflt_per_s=7300
+2026-09-29 23:05:10.073 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=127754 usage=5983 anon=465 mapped=4433 majflt_per_s=9351
+2026-09-29 23:05:11.073 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=119381 usage=5983 anon=463 mapped=4423 majflt_per_s=10734
+2026-09-29 23:05:12.072 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=99312 usage=5983 anon=519 mapped=4310 majflt_per_s=8189
+2026-09-29 23:05:13.075 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=134293 usage=5983 anon=519 mapped=4284 majflt_per_s=8321
+2026-09-29 23:05:14.075 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=144345 usage=5983 anon=519 mapped=4393 majflt_per_s=9143
+2026-09-29 23:05:15.074 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=116930 usage=5983 anon=519 mapped=4522 majflt_per_s=9372
+2026-09-29 23:05:16.094 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=85683 usage=5982 anon=519 mapped=4523 majflt_per_s=11876
+2026-09-29 23:05:18.044 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=109927 usage=5982 anon=574 mapped=4421 majflt_per_s=6788
+2026-09-29 23:09:27.073 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=86963 usage=5983 anon=2241 mapped=2756 majflt_per_s=9374
+2026-09-29 23:09:33.990 INFO    procmon.event   msg=exit pid=1223 name=lake secs=279 peak_rss=964 peak_anon=271 peak_pss=946 cpu_s=11 majflt=2582 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.Descent2R.Bridge"
+2026-09-29 23:09:33.990 INFO    procmon.event   msg=exit pid=1277 name=lean lean=Jacobian/BranchC/Descent2R/Bridge.lean secs=271 peak_rss=4852 peak_anon=2494 peak_pss=4819 cpu_s=265 majflt=149217
+2026-09-29 23:09:33.995 INFO    procmon.build   file=build_rest2.log line="[guardrun] exit 0  278.2s  peak RSS 4856 MB  cgroup anon peak 2803 MB"
+2026-09-29 23:09:58.775 INFO    procmon.event   msg="procmon v2 start" pid=1353 interval=1.0 verbose=True follow=build_rest3.log cgroup=claude-code-bash
+2026-09-29 23:09:59.797 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1358 lean=lake majflt_s=5136 cg_mapped=700
+2026-09-29 23:10:00.821 INFO    procmon.event   msg=start pid=1414 ppid=1358 name=lean lean=Jacobian/BranchC/T1Zero/Defs.lean
+2026-09-29 23:10:01.819 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=1414 lean=Jacobian/BranchC/T1Zero/Defs.lean majflt_s=4700 cg_mapped=1415
+2026-09-29 23:10:40.798 INFO    procmon.event   msg=start pid=1430 ppid=1429 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Sq"
+2026-09-29 23:10:40.798 INFO    procmon.event   msg=exit pid=1358 name=lake secs=43 peak_rss=795 peak_anon=95 peak_pss=772 cpu_s=1 majflt=5153 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Defs"
+2026-09-29 23:10:40.798 INFO    procmon.event   msg=exit pid=1414 name=lean lean=Jacobian/BranchC/T1Zero/Defs.lean secs=41 peak_rss=1646 peak_anon=261 peak_pss=1325 cpu_s=42 majflt=4942
+2026-09-29 23:10:40.801 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  41.8s  peak RSS 1656 MB  cgroup anon peak 386 MB"
+2026-09-29 23:10:41.822 INFO    procmon.event   msg=start pid=1484 ppid=1430 name=lean lean=Jacobian/BranchC/T1Zero/Sq.lean
+2026-09-29 23:10:42.789 INFO    procmon.event   msg=start pid=1496 ppid=1495 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Psi"
+2026-09-29 23:10:42.789 INFO    procmon.event   msg=exit pid=1430 name=lake secs=3 peak_rss=806 peak_anon=95 peak_pss=597 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Sq"
+2026-09-29 23:10:42.789 INFO    procmon.event   msg=exit pid=1484 name=lean lean=Jacobian/BranchC/T1Zero/Sq.lean secs=2 peak_rss=1278 peak_anon=78 peak_pss=975 cpu_s=0 majflt=0
+2026-09-29 23:10:42.791 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  2.1s  peak RSS 1536 MB  cgroup anon peak 256 MB"
+2026-09-29 23:10:43.816 INFO    procmon.event   msg=start pid=1550 ppid=1496 name=lean lean=Jacobian/BranchC/T1Zero/F_Psi.lean
+2026-09-29 23:10:46.798 INFO    procmon.event   msg=start pid=1562 ppid=1561 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Phi1"
+2026-09-29 23:10:46.798 INFO    procmon.event   msg=exit pid=1496 name=lake secs=5 peak_rss=806 peak_anon=95 peak_pss=568 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Psi"
+2026-09-29 23:10:46.798 INFO    procmon.event   msg=exit pid=1550 name=lean lean=Jacobian/BranchC/T1Zero/F_Psi.lean secs=4 peak_rss=1561 peak_anon=169 peak_pss=1234 cpu_s=2 majflt=0
+2026-09-29 23:10:46.800 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  3.9s  peak RSS 1618 MB  cgroup anon peak 338 MB"
+2026-09-29 23:10:47.821 INFO    procmon.event   msg=start pid=1616 ppid=1562 name=lean lean=Jacobian/BranchC/T1Zero/F_Phi1.lean
+2026-09-29 23:10:55.790 INFO    procmon.event   msg=start pid=1627 ppid=1626 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Phi2"
+2026-09-29 23:10:55.791 INFO    procmon.event   msg=exit pid=1562 name=lake secs=10 peak_rss=808 peak_anon=97 peak_pss=535 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Phi1"
+2026-09-29 23:10:55.791 INFO    procmon.event   msg=exit pid=1616 name=lean lean=Jacobian/BranchC/T1Zero/F_Phi1.lean secs=9 peak_rss=1706 peak_anon=314 peak_pss=1379 cpu_s=7 majflt=0
+2026-09-29 23:10:55.793 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  9.0s  peak RSS 1708 MB  cgroup anon peak 431 MB"
+2026-09-29 23:10:56.833 INFO    procmon.event   msg=start pid=1681 ppid=1627 name=lean lean=Jacobian/BranchC/T1Zero/F_Phi2.lean
+2026-09-29 23:11:04.803 INFO    procmon.event   msg=start pid=1695 ppid=1694 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Theta1"
+2026-09-29 23:11:04.803 INFO    procmon.event   msg=exit pid=1627 name=lake secs=10 peak_rss=806 peak_anon=95 peak_pss=565 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Phi2"
+2026-09-29 23:11:04.803 INFO    procmon.event   msg=exit pid=1681 name=lean lean=Jacobian/BranchC/T1Zero/F_Phi2.lean secs=9 peak_rss=1698 peak_anon=305 peak_pss=1371 cpu_s=7 majflt=0
+2026-09-29 23:11:04.805 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  8.7s  peak RSS 1709 MB  cgroup anon peak 429 MB"
+2026-09-29 23:11:05.827 INFO    procmon.event   msg=start pid=1749 ppid=1695 name=lean lean=Jacobian/BranchC/T1Zero/F_Theta1.lean
+2026-09-29 23:11:28.795 INFO    procmon.event   msg=exit pid=1695 name=lake secs=25 peak_rss=806 peak_anon=95 peak_pss=753 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Theta1"
+2026-09-29 23:11:28.795 INFO    procmon.event   msg=exit pid=1749 name=lean lean=Jacobian/BranchC/T1Zero/F_Theta1.lean secs=24 peak_rss=1843 peak_anon=448 peak_pss=1516 cpu_s=23 majflt=0
+2026-09-29 23:11:29.824 INFO    procmon.event   msg=start pid=1763 ppid=1762 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Theta2"
+2026-09-29 23:11:29.824 INFO    procmon.event   msg=start pid=1817 ppid=1763 name=lean lean=Jacobian/BranchC/T1Zero/F_Theta2.lean
+2026-09-29 23:11:29.827 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  24.4s  peak RSS 1843 MB  cgroup anon peak 563 MB"
+2026-09-29 23:11:53.816 INFO    procmon.event   msg=start pid=1833 ppid=1832 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Theta3"
+2026-09-29 23:11:53.816 INFO    procmon.event   msg=start pid=1887 ppid=1833 name=lean lean=Jacobian/BranchC/T1Zero/F_Theta3.lean
+2026-09-29 23:11:53.816 INFO    procmon.event   msg=exit pid=1763 name=lake secs=26 peak_rss=806 peak_anon=95 peak_pss=686 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Theta2"
+2026-09-29 23:11:53.816 INFO    procmon.event   msg=exit pid=1817 name=lean lean=Jacobian/BranchC/T1Zero/F_Theta2.lean secs=25 peak_rss=1838 peak_anon=446 peak_pss=1512 cpu_s=23 majflt=0
+2026-09-29 23:11:53.819 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  24.1s  peak RSS 1843 MB  cgroup anon peak 563 MB"
+2026-09-29 23:12:17.818 INFO    procmon.event   msg=start pid=1903 ppid=1902 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Psi"
+2026-09-29 23:12:17.818 INFO    procmon.event   msg=exit pid=1833 name=lake secs=26 peak_rss=806 peak_anon=95 peak_pss=756 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.F_Theta3"
+2026-09-29 23:12:17.818 INFO    procmon.event   msg=exit pid=1887 name=lean lean=Jacobian/BranchC/T1Zero/F_Theta3.lean secs=25 peak_rss=1843 peak_anon=448 peak_pss=1517 cpu_s=23 majflt=0
+2026-09-29 23:12:17.820 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  24.4s  peak RSS 1843 MB  cgroup anon peak 563 MB"
+2026-09-29 23:12:18.836 INFO    procmon.event   msg=start pid=1957 ppid=1903 name=lean lean=Jacobian/BranchC/T1Zero/P_Psi.lean
+2026-09-29 23:13:19.855 INFO    procmon.event   msg=exit pid=1957 name=lean lean=Jacobian/BranchC/T1Zero/P_Psi.lean secs=63 peak_rss=1904 peak_anon=510 peak_pss=1578 cpu_s=61 majflt=0
+2026-09-29 23:13:20.837 INFO    procmon.event   msg=start pid=1975 ppid=1974 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Phi1"
+2026-09-29 23:13:20.837 INFO    procmon.event   msg=start pid=2029 ppid=1975 name=lean lean=Jacobian/BranchC/T1Zero/P_Phi1.lean
+2026-09-29 23:13:20.837 INFO    procmon.event   msg=exit pid=1903 name=lake secs=64 peak_rss=810 peak_anon=99 peak_pss=807 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Psi"
+2026-09-29 23:13:20.839 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  62.6s  peak RSS 1904 MB  cgroup anon peak 627 MB"
+2026-09-29 23:15:12.841 INFO    procmon.event   msg=start pid=2057 ppid=2056 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Phi2"
+2026-09-29 23:15:12.841 INFO    procmon.event   msg=exit pid=1975 name=lake secs=114 peak_rss=808 peak_anon=97 peak_pss=749 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Phi1"
+2026-09-29 23:15:12.841 INFO    procmon.event   msg=exit pid=2029 name=lean lean=Jacobian/BranchC/T1Zero/P_Phi1.lean secs=113 peak_rss=2206 peak_anon=811 peak_pss=1880 cpu_s=112 majflt=0
+2026-09-29 23:15:12.844 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  112.8s  peak RSS 2206 MB  cgroup anon peak 929 MB"
+2026-09-29 23:15:13.859 INFO    procmon.event   msg=start pid=2111 ppid=2057 name=lean lean=Jacobian/BranchC/T1Zero/P_Phi2.lean
+2026-09-29 23:17:02.848 INFO    procmon.event   msg=start pid=2144 ppid=2143 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Theta1"
+2026-09-29 23:17:02.848 INFO    procmon.event   msg=exit pid=2057 name=lake secs=111 peak_rss=806 peak_anon=95 peak_pss=534 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Phi2"
+2026-09-29 23:17:02.848 INFO    procmon.event   msg=exit pid=2111 name=lean lean=Jacobian/BranchC/T1Zero/P_Phi2.lean secs=110 peak_rss=2197 peak_anon=802 peak_pss=1871 cpu_s=109 majflt=0
+2026-09-29 23:17:02.850 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  110.0s  peak RSS 2197 MB  cgroup anon peak 918 MB"
+2026-09-29 23:17:03.883 INFO    procmon.event   msg=start pid=2198 ppid=2144 name=lean lean=Jacobian/BranchC/T1Zero/P_Theta1.lean
+2026-09-29 23:19:04.877 INFO    procmon.event   msg=exit pid=2198 name=lean lean=Jacobian/BranchC/T1Zero/P_Theta1.lean secs=122 peak_rss=2264 peak_anon=869 peak_pss=1937 cpu_s=121 majflt=0
+2026-09-29 23:19:05.880 INFO    procmon.event   msg=start pid=2231 ppid=2230 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Theta2"
+2026-09-29 23:19:05.880 INFO    procmon.event   msg=exit pid=2144 name=lake secs=124 peak_rss=806 peak_anon=95 peak_pss=803 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Theta1"
+2026-09-29 23:19:05.882 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  122.4s  peak RSS 2264 MB  cgroup anon peak 987 MB"
+2026-09-29 23:19:06.902 INFO    procmon.event   msg=start pid=2285 ppid=2231 name=lean lean=Jacobian/BranchC/T1Zero/P_Theta2.lean
+2026-09-29 23:21:06.890 INFO    procmon.event   msg=start pid=2311 ppid=2310 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Theta3"
+2026-09-29 23:21:06.890 INFO    procmon.event   msg=exit pid=2231 name=lake secs=123 peak_rss=806 peak_anon=95 peak_pss=791 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Theta2"
+2026-09-29 23:21:06.890 INFO    procmon.event   msg=exit pid=2285 name=lean lean=Jacobian/BranchC/T1Zero/P_Theta2.lean secs=122 peak_rss=2263 peak_anon=868 peak_pss=1937 cpu_s=120 majflt=0
+2026-09-29 23:21:06.892 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  121.5s  peak RSS 2263 MB  cgroup anon peak 986 MB"
+2026-09-29 23:21:07.907 INFO    procmon.event   msg=start pid=2365 ppid=2311 name=lean lean=Jacobian/BranchC/T1Zero/P_Theta3.lean
+2026-09-29 23:22:52.929 INFO    procmon.event   msg=start pid=2390 ppid=2389 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Final"
+2026-09-29 23:22:52.929 INFO    procmon.event   msg=exit pid=2311 name=lake secs=107 peak_rss=810 peak_anon=99 peak_pss=574 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.P_Theta3"
+2026-09-29 23:22:52.929 INFO    procmon.event   msg=exit pid=2365 name=lean lean=Jacobian/BranchC/T1Zero/P_Theta3.lean secs=106 peak_rss=2140 peak_anon=746 peak_pss=1814 cpu_s=105 majflt=0
+2026-09-29 23:22:52.934 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  105.5s  peak RSS 2141 MB  cgroup anon peak 868 MB"
+2026-09-29 23:22:53.932 INFO    procmon.event   msg=start pid=2444 ppid=2390 name=lean lean=Jacobian/BranchC/T1Zero/Final.lean
+2026-09-29 23:23:39.905 INFO    procmon.event   msg=exit pid=2390 name=lake secs=49 peak_rss=814 peak_anon=103 peak_pss=791 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Final"
+2026-09-29 23:23:39.905 INFO    procmon.event   msg=exit pid=2444 name=lean lean=Jacobian/BranchC/T1Zero/Final.lean secs=48 peak_rss=1831 peak_anon=431 peak_pss=1504 cpu_s=46 majflt=0
+2026-09-29 23:23:40.917 INFO    procmon.event   msg=start pid=2463 ppid=2462 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Main"
+2026-09-29 23:23:40.920 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  47.8s  peak RSS 1833 MB  cgroup anon peak 559 MB"
+2026-09-29 23:23:41.944 INFO    procmon.event   msg=start pid=2517 ppid=2463 name=lean lean=Jacobian/BranchC/T1Zero/Main.lean
+2026-09-29 23:24:07.921 INFO    procmon.event   msg=exit pid=2517 name=lean lean=Jacobian/BranchC/T1Zero/Main.lean secs=28 peak_rss=1574 peak_anon=170 peak_pss=1248 cpu_s=26 majflt=7
+2026-09-29 23:24:08.925 INFO    procmon.event   msg=start pid=2532 ppid=2531 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Combine"
+2026-09-29 23:24:08.925 INFO    procmon.event   msg=exit pid=2463 name=lake secs=30 peak_rss=822 peak_anon=111 peak_pss=816 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Main"
+2026-09-29 23:24:08.929 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  28.0s  peak RSS 1602 MB  cgroup anon peak 330 MB"
+2026-09-29 23:24:15.957 INFO    procmon.event   msg=start pid=2588 ppid=2532 name=lean lean=Jacobian/BranchC/T1Zero/Combine.lean
+2026-09-29 23:24:17.040 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=2588 lean=Jacobian/BranchC/T1Zero/Combine.lean majflt_s=5939 cg_mapped=1991
+2026-09-29 23:24:17.991 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=64060 usage=5983 anon=408 mapped=2980 majflt_per_s=6090
+2026-09-29 23:24:19.011 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=162001 usage=5982 anon=420 mapped=3932 majflt_per_s=8546
+2026-09-29 23:24:20.032 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=156972 usage=5983 anon=430 mapped=4090 majflt_per_s=7886
+2026-09-29 23:24:21.028 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=156015 usage=5983 anon=438 mapped=4157 majflt_per_s=7706
+2026-09-29 23:24:22.048 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=109546 usage=5983 anon=462 mapped=4301 majflt_per_s=11198
+2026-09-29 23:24:23.020 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=74591 usage=5983 anon=514 mapped=4255 majflt_per_s=11939
+2026-09-29 23:24:24.029 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=180272 usage=5983 anon=514 mapped=4054 majflt_per_s=8582
+2026-09-29 23:24:25.004 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=176689 usage=5983 anon=514 mapped=3967 majflt_per_s=10144
+2026-09-29 23:24:26.033 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=165123 usage=5983 anon=514 mapped=3997 majflt_per_s=11079
+2026-09-29 23:24:27.028 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=145201 usage=5983 anon=514 mapped=3997 majflt_per_s=10369
+2026-09-29 23:24:28.035 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=164103 usage=5982 anon=514 mapped=4257 majflt_per_s=11192
+2026-09-29 23:24:29.044 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=111750 usage=5983 anon=514 mapped=4301 majflt_per_s=11207
+2026-09-29 23:24:30.013 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=144406 usage=5982 anon=514 mapped=4300 majflt_per_s=12124
+2026-09-29 23:24:31.015 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=133699 usage=5983 anon=514 mapped=4359 majflt_per_s=13265
+2026-09-29 23:24:32.036 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=76088 usage=5983 anon=519 mapped=4385 majflt_per_s=13300
+2026-09-29 23:24:33.040 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=98755 usage=5983 anon=559 mapped=4347 majflt_per_s=7097
+2026-09-29 23:24:34.024 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=84024 usage=5983 anon=635 mapped=4243 majflt_per_s=6560
+2026-09-29 23:24:36.069 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=50591 usage=5983 anon=746 mapped=4182 majflt_per_s=19114
+2026-09-29 23:24:37.026 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=80425 usage=5983 anon=750 mapped=4193 majflt_per_s=9390
+2026-09-29 23:24:37.915 INFO    procmon.event   msg=exit pid=2532 name=lake secs=31 peak_rss=983 peak_anon=272 peak_pss=930 cpu_s=10 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build -v Jacobian.BranchC.T1Zero.Combine"
+2026-09-29 23:24:37.915 INFO    procmon.event   msg=exit pid=2588 name=lean lean=Jacobian/BranchC/T1Zero/Combine.lean secs=23 peak_rss=4641 peak_anon=452 peak_pss=4614 cpu_s=14 majflt=206071
+2026-09-29 23:24:37.920 INFO    procmon.build   file=build_rest3.log line="[guardrun] exit 0  29.5s  peak RSS 4647 MB  cgroup anon peak 750 MB"
+2026-09-29 23:26:38.951 INFO    procmon.event   msg=start pid=2727 ppid=2726 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake env lean AxiomsAuditBranchC.lean"
+2026-09-29 23:26:40.024 INFO    procmon.event   msg=start pid=2777 ppid=2727 name=lean lean=AxiomsAuditBranchC.lean
+2026-09-29 23:27:12.063 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=109022 usage=5982 anon=217 mapped=4078 majflt_per_s=6768
+2026-09-29 23:27:13.061 WARNING procmon.event   msg="sustained major faults under memory pressure (thrashing)" pid=2777 lean=AxiomsAuditBranchC.lean majflt_s=8071 age_s=35 cg_anon=227 cg_mapped=4403 failcnt_per_s=148366
+2026-09-29 23:27:13.061 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=148366 usage=5982 anon=227 mapped=4403 majflt_per_s=8098
+2026-09-29 23:27:14.033 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=115047 usage=5983 anon=235 mapped=4519 majflt_per_s=6917
+2026-09-29 23:27:18.043 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=99571 usage=5980 anon=295 mapped=4645 majflt_per_s=7915
+2026-09-29 23:27:19.070 WARNING procmon.event   msg="sustained major faults under memory pressure (thrashing)" pid=2777 lean=AxiomsAuditBranchC.lean majflt_s=7835 age_s=41 cg_anon=311 cg_mapped=4567 failcnt_per_s=122755
+2026-09-29 23:27:19.070 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=122755 usage=5982 anon=311 mapped=4567 majflt_per_s=7740
+2026-09-29 23:27:20.069 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=162656 usage=5983 anon=311 mapped=4491 majflt_per_s=9563
+2026-09-29 23:27:21.068 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=146052 usage=5983 anon=311 mapped=4489 majflt_per_s=10128
+2026-09-29 23:27:22.073 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=137573 usage=5982 anon=311 mapped=4514 majflt_per_s=9780
+2026-09-29 23:27:23.070 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=123100 usage=5983 anon=311 mapped=4561 majflt_per_s=10518
+2026-09-29 23:27:24.067 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=104221 usage=5983 anon=311 mapped=4606 majflt_per_s=10722
+2026-09-29 23:27:25.035 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=100994 usage=5983 anon=300 mapped=4604 majflt_per_s=14526
+2026-09-29 23:27:26.057 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=58021 usage=5982 anon=350 mapped=4588 majflt_per_s=12824
+2026-09-29 23:27:27.038 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=77817 usage=5979 anon=388 mapped=4625 majflt_per_s=5466
+2026-09-29 23:27:29.941 INFO    procmon.event   msg=exit pid=2727 name=lake secs=53 peak_rss=777 peak_anon=73 peak_pss=775 cpu_s=1 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake env lean AxiomsAuditBranchC.lean"
+2026-09-29 23:27:29.941 INFO    procmon.event   msg=exit pid=2777 name=lean lean=AxiomsAuditBranchC.lean secs=52 peak_rss=4974 peak_anon=445 peak_pss=4941 cpu_s=12 majflt=140475
+2026-09-29 23:28:09.948 INFO    procmon.event   msg=exit pid=2833 name=python3 secs=20 peak_rss=165 peak_anon=150 peak_pss=161 cpu_s=18 majflt=0 cmd="python3 gen_refl_c.py"
+2026-09-29 23:28:16.948 INFO    procmon.event   msg=exit pid=2838 name=python3 secs=8 peak_rss=110 peak_anon=95 peak_pss=106 cpu_s=6 majflt=1 cmd="python3 gen_t1zero_lean.py"
+2026-09-29 23:28:17.961 INFO    procmon.event   msg=start pid=2865 ppid=2856 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build --no-build Jacobian.ChartProof.Reflect Jacobian.BranchC.CondsC Jacobian.BranchAbLayers Jacobia"
+2026-09-29 23:28:25.965 INFO    procmon.event   msg=start pid=2926 ppid=2811 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake env lean AxiomsAuditBranchC.lean"
+2026-09-29 23:28:25.965 INFO    procmon.event   msg=exit pid=2865 name=lake secs=10 peak_rss=945 peak_anon=246 peak_pss=943 cpu_s=10 majflt=20 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build --no-build Jacobian.ChartProof.Reflect Jacobian.Branch"
+2026-09-29 23:28:27.024 INFO    procmon.event   msg=start pid=2975 ppid=2926 name=lean lean=AxiomsAuditBranchC.lean
+2026-09-29 23:28:28.037 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=2975 lean=AxiomsAuditBranchC.lean majflt_s=703 cg_mapped=2138
+2026-09-29 23:28:29.060 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=65873 usage=5983 anon=201 mapped=2994 majflt_per_s=5318
+2026-09-29 23:28:30.071 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=123114 usage=5982 anon=217 mapped=3836 majflt_per_s=7812
+2026-09-29 23:28:31.078 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=142453 usage=5983 anon=227 mapped=4140 majflt_per_s=8274
+2026-09-29 23:28:32.059 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=139478 usage=5983 anon=255 mapped=4276 majflt_per_s=7923
+2026-09-29 23:28:33.060 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=101285 usage=5983 anon=310 mapped=4356 majflt_per_s=6849
+2026-09-29 23:28:34.058 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=166041 usage=5983 anon=310 mapped=4255 majflt_per_s=8557
+2026-09-29 23:28:35.061 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=175165 usage=5983 anon=310 mapped=4185 majflt_per_s=9249
+2026-09-29 23:28:36.062 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=145750 usage=5983 anon=310 mapped=4224 majflt_per_s=8220
+2026-09-29 23:28:37.058 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=81397 usage=5983 anon=310 mapped=4292 majflt_per_s=5708
+2026-09-29 23:28:38.062 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=92166 usage=5983 anon=310 mapped=4338 majflt_per_s=7920
+2026-09-29 23:28:39.062 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=115046 usage=5983 anon=310 mapped=4604 majflt_per_s=11157
+2026-09-29 23:28:40.111 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=131163 usage=5983 anon=310 mapped=4594 majflt_per_s=11239
+2026-09-29 23:28:41.104 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=69616 usage=5983 anon=301 mapped=4565 majflt_per_s=12247
+2026-09-29 23:28:42.078 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=65471 usage=5983 anon=324 mapped=4561 majflt_per_s=13072
+2026-09-29 23:28:43.065 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=95099 usage=5983 anon=366 mapped=4585 majflt_per_s=6278
+2026-09-29 23:28:45.097 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=58424 usage=5983 anon=539 mapped=4425 majflt_per_s=10156
+2026-09-29 23:28:45.956 INFO    procmon.event   msg=exit pid=2926 name=lake secs=21 peak_rss=779 peak_anon=73 peak_pss=762 cpu_s=0 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake env lean AxiomsAuditBranchC.lean"
+2026-09-29 23:28:45.956 INFO    procmon.event   msg=exit pid=2975 name=lean lean=AxiomsAuditBranchC.lean secs=21 peak_rss=4900 peak_anon=443 peak_pss=4856 cpu_s=12 majflt=144794
+2026-09-29 23:34:23.014 INFO    procmon.event   msg=start pid=3108 ppid=3106 name=python3 cmd="python3 gen_omega_edge.py"
+2026-09-29 23:34:24.014 INFO    procmon.event   msg=exit pid=3108 name=python3 secs=2 peak_rss=58 peak_anon=43 peak_pss=0 cpu_s=0 majflt=0 cmd="python3 gen_omega_edge.py"
+2026-09-29 23:34:44.016 INFO    procmon.event   msg=exit pid=3119 name=python3 secs=21 peak_rss=168 peak_anon=153 peak_pss=164 cpu_s=19 majflt=0 cmd="python3 gen_refl_c.py"
+2026-09-29 23:34:51.025 INFO    procmon.event   msg=start pid=3148 ppid=3139 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build --no-build Jacobian.ChartProof.Reflect Jacobian.BranchC.CondsC Jacobian.BranchAbLayers Jacobia"
+2026-09-29 23:34:51.025 INFO    procmon.event   msg=exit pid=3124 name=python3 secs=9 peak_rss=133 peak_anon=118 peak_pss=129 cpu_s=7 majflt=0 cmd="python3 gen_t1zero_lean.py"
+2026-09-29 23:34:52.034 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=3148 lean=lake majflt_s=5540 cg_mapped=717
+2026-09-29 23:34:59.021 INFO    procmon.event   msg=start pid=3204 ppid=3097 name=lake cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake env lean AxiomsAuditBranchC.lean"
+2026-09-29 23:34:59.021 INFO    procmon.event   msg=exit pid=3148 name=lake secs=9 peak_rss=946 peak_anon=231 peak_pss=948 cpu_s=10 majflt=5561 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build --no-build Jacobian.ChartProof.Reflect Jacobian.Branch"
+2026-09-29 23:35:00.047 INFO    procmon.event   msg=start pid=3254 ppid=3204 name=lean lean=AxiomsAuditBranchC.lean
+2026-09-29 23:35:01.069 INFO    procmon.event   msg="startup refault burst (olean pages re-read from disk)" pid=3254 lean=AxiomsAuditBranchC.lean majflt_s=4905 cg_mapped=1080
+2026-09-29 23:35:07.101 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=131760 usage=5983 anon=224 mapped=4368 majflt_per_s=5081
+2026-09-29 23:35:08.135 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=170601 usage=5983 anon=230 mapped=4896 majflt_per_s=7565
+2026-09-29 23:35:09.139 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=177848 usage=5983 anon=254 mapped=4738 majflt_per_s=8587
+2026-09-29 23:35:10.144 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=173824 usage=5983 anon=254 mapped=4635 majflt_per_s=11650
+2026-09-29 23:35:11.145 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=143100 usage=5983 anon=254 mapped=4549 majflt_per_s=12650
+2026-09-29 23:35:12.126 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=120916 usage=5983 anon=310 mapped=4362 majflt_per_s=8736
+2026-09-29 23:35:13.148 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=240776 usage=5982 anon=310 mapped=4246 majflt_per_s=9464
+2026-09-29 23:35:14.152 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=209257 usage=5982 anon=310 mapped=4377 majflt_per_s=9025
+2026-09-29 23:35:15.162 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=187661 usage=5982 anon=310 mapped=4365 majflt_per_s=9298
+2026-09-29 23:35:16.152 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=147398 usage=5983 anon=310 mapped=4698 majflt_per_s=9821
+2026-09-29 23:35:17.157 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=103901 usage=5983 anon=310 mapped=4743 majflt_per_s=9339
+2026-09-29 23:35:18.194 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=115398 usage=5983 anon=310 mapped=4742 majflt_per_s=9832
+2026-09-29 23:35:21.150 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=142392 usage=5982 anon=317 mapped=4680 majflt_per_s=12117
+2026-09-29 23:35:22.146 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=105066 usage=5982 anon=355 mapped=4620 majflt_per_s=9504
+2026-09-29 23:35:23.126 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=79387 usage=5982 anon=423 mapped=4548 majflt_per_s=6231
+2026-09-29 23:35:25.027 INFO    procmon.event   msg=exit pid=3254 name=lean lean=AxiomsAuditBranchC.lean secs=27 peak_rss=4957 peak_anon=443 peak_pss=4873 cpu_s=14 majflt=197872
+2026-09-29 23:35:25.027 WARNING procmon.event   msg="memory-pressure burst (limit hits; page cache being reclaimed)" failcnt_per_s=50898 usage=5334 anon=95 mapped=167 majflt_per_s=12960
+2026-09-29 23:35:26.020 INFO    procmon.event   msg=exit pid=3204 name=lake secs=28 peak_rss=794 peak_anon=73 peak_pss=671 cpu_s=0 majflt=0 cmd="/root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake env lean AxiomsAuditBranchC.lean"

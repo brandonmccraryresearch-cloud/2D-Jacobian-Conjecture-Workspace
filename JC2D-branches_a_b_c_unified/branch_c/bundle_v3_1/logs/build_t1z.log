@@ -1,0 +1,30 @@
+== Defs  16:37:36
+[guardrun] exit 0  9.9s  peak RSS 1673 MB  min MemAvailable 4189 MB
+== Sq  16:37:46
+[guardrun] exit 0  1.5s  peak RSS 1533 MB  min MemAvailable 4343 MB
+== F_Psi  16:37:48
+[guardrun] exit 0  2.4s  peak RSS 1633 MB  min MemAvailable 4373 MB
+== F_Phi1  16:37:50
+[guardrun] exit 0  3.6s  peak RSS 1726 MB  min MemAvailable 6583 MB
+== F_Phi2  16:37:54
+[guardrun] exit 0  3.6s  peak RSS 1726 MB  min MemAvailable 6592 MB
+== F_Theta1  16:37:57
+[guardrun] exit 0  5.7s  peak RSS 1861 MB  min MemAvailable 6464 MB
+== F_Theta2  16:38:03
+[guardrun] exit 0  5.7s  peak RSS 1860 MB  min MemAvailable 6139 MB
+== F_Theta3  16:38:09
+[guardrun] exit 0  5.7s  peak RSS 1861 MB  min MemAvailable 5254 MB
+== P_Psi  16:38:14
+[guardrun] exit 0  17.1s  peak RSS 1924 MB  min MemAvailable 5120 MB
+== P_Phi1  16:38:32
+[guardrun] exit 0  27.1s  peak RSS 2145 MB  min MemAvailable 3445 MB
+== P_Phi2  16:38:59
+[guardrun] exit 0  26.5s  peak RSS 2216 MB  min MemAvailable 4077 MB
+== P_Theta1  16:39:25
+[guardrun] exit 0  28.3s  peak RSS 2282 MB  min MemAvailable 3984 MB
+== P_Theta2  16:39:53
+[guardrun] exit 0  27.7s  peak RSS 2279 MB  min MemAvailable 3815 MB
+== P_Theta3  16:40:21
+[guardrun] exit 0  25.2s  peak RSS 2162 MB  min MemAvailable 4336 MB
+== Main  16:40:46
+FAILED Main

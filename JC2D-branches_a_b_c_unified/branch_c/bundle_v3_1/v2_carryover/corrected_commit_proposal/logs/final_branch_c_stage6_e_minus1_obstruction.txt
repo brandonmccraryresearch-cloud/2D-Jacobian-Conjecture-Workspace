@@ -1,0 +1,18 @@
+======================================================================
+STAGE 6: E_{-1} OBSTRUCTION AND E_{-2}
+======================================================================
+E_1 solved (+q).
+E_0 solved. Psi-carrying monomials projected (valid where Omega = Psi = 0): 32 / 32
+E_{-1} left nullspace dim: 2
+Phi_1: 54 monomials
+  t-free monomials: 9
+Phi_2: 54 monomials
+  t-free monomials: 9
+
+E_{-2} OPERATOR:
+  16x13 (u 0..15), rank 13
+  left nullity 3, kernel dim 0
+  rank mod 101: 13
+
+STAGE 6 CORE DONE
+exit=0 secs=4

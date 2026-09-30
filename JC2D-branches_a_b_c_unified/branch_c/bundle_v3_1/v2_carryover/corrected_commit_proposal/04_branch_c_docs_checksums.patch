@@ -1,0 +1,201 @@
+--- a/branch_c/README.md
++++ b/branch_c/README.md
+@@ -14,11 +14,11 @@
+ | 2 | `branch_c_stage2_e2_operator.py` | E₂ operator 19×20, rank 18, kernel dim 2 |
+ | 3 | `branch_c_stage3_e1_descent.py` | E₂ obstruction vanishes; E₁ kernel dim 1 |
+ | 4 | `branch_c_stage4_e0_descent.py` | Ω(t₂,s₂) support found; E₀ kernel dim 0 |
+-| 5 | `branch_c_stage5_e0_compatibility.py` | Ψ extracted (partial; see notes) |
+-| 6 | `branch_c_stage6_e_minus1_obstruction.py` | E₋₁ operator 17×15, rank 15 |
+-| 6b | `branch_c_stage6b_phi12.py` | Φ₁, Φ₂ (53 terms each) |
++| 5 | `branch_c_stage5_e0_compatibility.py` | Ψ extracted (32 terms); E₋₁ operator 17×15, rank 15 |
++| 6 | `branch_c_stage6_e_minus1_obstruction.py` | Φ₁, Φ₂ (cross-check of 6b); E₋₂ operator 16×13, rank 13 |
++| 6b | `branch_c_stage6b_phi12.py` | Φ₁, Φ₂ (54 terms each; 53 before the E₁ correction) |
+ | 6c | `branch_c_stage6c_e_minus2.py` | Θ₁, Θ₂, Θ₃ (84 terms each) |
+-| 6d | `branch_c_stage6d_weighted_sieve.py` | Prong 1: t=0 slice Gröbner |
++| 6d | `branch_c_stage6d_weighted_sieve.py` | Prong 1: t=0 slice Gröbner; Prong 2 repeated mod 1000003 |
+ | 6e | `branch_c_stage6e_patch101.py` | Prong 2: t₁=1 patch, G=⟨1⟩ mod 101 |
+ 
+ ## Key results
+@@ -29,15 +29,79 @@
+   force zero; t=0 ruled out by the Degree-19 Rigidity Lemma
+   (t=0 ⇒ b_{12,24}=0, contradicting (12,24)∈N(Q)).
+ - **Prong 2** (`stage6e_prong2_k0.sing`): t₁=1, s₂=38·t₂²; Singular slimgb
+-  returns G=⟨1⟩ in 0.037s. The patch is inconsistent mod 101.
++  returns G=⟨1⟩ in well under a second. The patch is inconsistent mod 101.
++- **Prong 2 at a second prime** (stage 6d, p = 1000003, w = 806739):
++  κ ≡ 132346 (double root; equals 1/(3·b₁₂,₂₁) mod p); Ω vanishes on
++  s₂ = κ·t₂²; G=⟨1⟩.
++- These are mod-p certificates, not proofs: G=⟨1⟩ mod p excludes solutions
++  whose coordinates are integral at the chosen prime above p; the
++  characteristic-zero statement is open.
++
++## Coverage and limitations
++
++- The two prongs cover t = 0 (Prong 1, with the Degree-19 lemma) and t₁ ≠ 0
++  (Prong 2, chart t₁ = 1). The stratum t₁ = 0, t₂ ≠ 0 is not covered by the
++  scripts in this directory. It was checked separately (chart t₁ = 0, t₂ = 1,
++  s₂ = κ): ⟨1⟩ mod 101, and exactly over K₅ with a lift certificate
++  1 = Σ Lᵢ Fᵢ checked in characteristic 0.
++- The operators omit the "pure" rows of each weight block (rows without a new
++  unknown: E₁ u¹⁹, E₀ u¹⁸, E₋₁ u¹⁷ and u¹⁸, E₋₂ u¹⁶ and u¹⁷). Dropping
++  equations only weakens the system, so ⟨1⟩ is unaffected.
++- `verify_branch_c.sh` asserts ⟨1⟩ only for the committed mod-101 input; the
++  mod-1000003 run is printed by stage 6d (`G = <1>: True`) but not asserted.
++- Latent code issues:
++  - The E₁ particular solution is stored under 8-tuple keys next to 7-tuple
++    kernel terms. Products truncate these keys correctly today, but adding
++    the dicts directly would split monomials.
++  - `to_mod` has no guard against a denominator divisible by p. No coefficient
++    of Ω, Ψ, Φ, Θ has one for p = 101 or 1000003.
++
++## Corrections (this revision)
++
++1. **E₁ particular solution (stages 5, 6, 6b, 6c, 6d, 6e).** The E₁ solve
++   looped over parameter monomials and skipped (`continue`) the three
++   monomials whose right-hand side is outside col(M₁):
++   (0,0,0,2,0,0), (0,2,0,1,0,0), (0,4,0,0,0,0) — exactly the monomials of Ω.
++   The resulting particular solution did not solve E₁ even where Ω = 0.
++   Now the right-hand side of such a monomial is projected along e_{j₀}
++   with the left null vector W₁ of M₁ and solved; on Ω = 0 the projected
++   right-hand sides add up to the true one, so the particular solution
++   solves E₁ there. Stage 6 had the same skip at E₀ (Ψ monomials) and gets
++   the same fix with the left null vector of M₀ (valid where Ω = Ψ = 0).
++   Stage 6 previously skipped all 32 E₀ monomials, so its E₀ solution was
++   zero and it printed Φ with 56 terms against 53 in 6b; both now print 54
++   (stages 6b and 6e solve E₀ by dropping a dependent row; the two Φ differ
++   exactly by Ψ·(linear form in t₁, t₂), so they agree where Ψ = 0).
++   Effect: Φ₁, Φ₂ have 54 terms (were 53); Θ₁..₃ keep 84 terms;
++   `stage6e_prong2_k0.sing` changes and still gives G=⟨1⟩ at κ = 38;
++   `stage6d_prong1.sing` is unchanged.
++2. **Stage 6d κ.** Ω is keyed by 7-tuples (t₁,t₂,s₁,s₂,r₁,r₂,q) but 6d
++   looked up its coefficients with 6-tuples, so c₁ = c₂ = c₃ = 0, κ = 0,
++   and its Prong 2 ran on {t₁ = 1, s₂ = 0}; its own check printed
++   "Omega substituted terms (should be 0): 1". Stage 6e (the Prong 2
++   above) already used 7-tuples, so no earlier result depended on this.
++   Both checks are now assertions.
++3. **Checks.** Stage 6e's test `"1" in out.split()` never fired (the output
++   token is `G[1]=1`); 6d and 6e now print `G = <1>: True/False`, and
++   `verify_branch_c.sh` fails unless the Prong 2 output is `G[1]=1`.
++4. **Paths and Singular's stdin.** The `/home/hatch` paths are defaults of
++   the environment variables `BRANCH_C_CERTGEN` (the branch-(a,b)
++   `lean/certgen` directory), `BRANCH_C_WORKDIR` (where `.sing`/`.pkl` files
++   are written) and `SINGULAR`. Singular is started with stdin from
++   /dev/null: the `.sing` files do not end with `quit;`, so with a terminal,
++   pipe or socket as stdin it waited until the timeout. Outputs are unchanged.
+ 
+ ## Environment
+ 
+ - Python: `~/miniconda3/envs/physics/bin/python` (python-flint 0.9.0)
+-- Singular: `~/miniconda3/envs/cas/bin/Singular`
++- Singular: `~/miniconda3/envs/cas/bin/Singular` (override with `SINGULAR`)
++- Elsewhere set `BRANCH_C_CERTGEN`, `BRANCH_C_WORKDIR` and `SINGULAR`.
+ - K₅ = Q[w]/(w⁵−w⁴+3w³+3w²+26); mod-101 root w=9.
+ 
+ ## Verification
+ 
+ Run `./verify_branch_c.sh` from this directory. It recomputes checksums
+ and reruns the fast Singular checks (Prong 1 and Prong 2 inputs).
++`REGEN=1 ./verify_branch_c.sh` also regenerates both `.sing` files from
++stages 6d and 6e (needs python-flint and `BRANCH_C_CERTGEN`) and checks
++that they are byte-identical to the committed ones.
+--- a/branch_c/verify_branch_c.sh
++++ b/branch_c/verify_branch_c.sh
+@@ -1,11 +1,30 @@
+ #!/bin/bash
+ # verify_branch_c.sh — verify Branch (c) scripts and fast Singular checks.
++#   SINGULAR=/path/to/Singular  (default: ~/miniconda3/envs/cas/bin/Singular if present, else Singular on PATH)
++#   REGEN=1                     also regenerate both .sing files from stages 6d and 6e and compare them
++#                               byte-for-byte (needs python-flint and BRANCH_C_CERTGEN, see README)
+ set -e
+ cd "$(dirname "$0")"
++HERE=$PWD
++SINGULAR="${SINGULAR:-$HOME/miniconda3/envs/cas/bin/Singular}"
++[ -x "$SINGULAR" ] || SINGULAR=$(command -v Singular)
++export SINGULAR
+ echo "=== Checksums ==="
+ sha256sum -c CHECKSUMS.sha256
+ echo "=== Prong 1 (t=0 slice) ==="
+-~/miniconda3/envs/cas/bin/Singular -q scripts/stage6d_prong1.sing < /dev/null
++"$SINGULAR" -q scripts/stage6d_prong1.sing < /dev/null
+ echo "=== Prong 2 (t1=1 patch, expect G[1]=1) ==="
+-~/miniconda3/envs/cas/bin/Singular -q scripts/stage6e_prong2_k0.sing < /dev/null
++out=$("$SINGULAR" -q scripts/stage6e_prong2_k0.sing < /dev/null)
++echo "$out"
++[ "$(echo "$out" | head -1 | tr -d ' ')" = "G[1]=1" ] || { echo "FAIL: Prong 2 ideal is not <1>"; exit 1; }
++if [ "${REGEN:-0}" = 1 ]; then
++  echo "=== Regenerate the .sing files from stages 6d and 6e ==="
++  W=$(mktemp -d); trap 'rm -rf "$W"' EXIT
++  export BRANCH_C_WORKDIR="$W"
++  (cd "$W" && python3 "$HERE/scripts/branch_c_stage6d_weighted_sieve.py" > 6d.log < /dev/null && \
++              python3 "$HERE/scripts/branch_c_stage6e_patch101.py" > 6e.log < /dev/null)
++  cmp "$W/stage6d_prong1.sing" scripts/stage6d_prong1.sing
++  cmp "$W/stage6e_prong2_k0.sing" scripts/stage6e_prong2_k0.sing
++  echo "regenerated stage6d_prong1.sing and stage6e_prong2_k0.sing are identical to the committed files"
++fi
+ echo "=== ALL CHECKS DONE ==="
+--- a/branch_c/scripts/stage6e_prong2_k0.sing
++++ b/branch_c/scripts/stage6e_prong2_k0.sing
+@@ -1,4 +1,4 @@
+ ring R=101,(t2,s1,r1,r2,q),wp(1,2,3,3,4);
+-ideal I=2*1+78*q+83*r2+65*r1+62*s1+24*s1*r2+20*s1*r1+70*s1^2+39*t2+80*t2*q+71*t2*r2+65*t2*r1+30*t2*s1+93*t2*s1^2+38*t2^2*r2+87*t2^2*r1+1*t2^2*s1+6*t2^3+36*t2^3*s1+37*t2^4+5*t2^5,61*1+100*q+21*r2+82*r2^2+19*r1+70*r1*r2+81*r1^2+46*s1+62*s1*q+1*s1*r2+50*s1*r1+77*s1^2+62*s1^3+3*t2+34*t2*q+93*t2*r2+66*t2*r1+80*t2*s1+90*t2*s1*r2+39*t2*s1*r1+16*t2*s1^2+58*t2^2+33*t2^2*q+7*t2^2*r2+94*t2^2*r1+16*t2^2*s1+6*t2^2*s1^2+6*t2^3+2*t2^3*r2+9*t2^3*r1+3*t2^3*s1+14*t2^4+69*t2^4*s1+32*t2^5+31*t2^6,2*1+81*q+31*r2+90*r2^2+53*r1+18*r1*r2+58*r1^2+12*s1+28*s1*q+45*s1*r2+2*s1*r1+32*s1^2+64*s1^3+39*t2+87*t2*q+33*t2*r2+35*t2*r1+38*t2*s1+12*t2*s1*r2+60*t2*s1*r1+83*t2*s1^2+94*t2^2+75*t2^2*q+26*t2^2*r2+40*t2^2*r1+72*t2^2*s1+20*t2^2*s1^2+61*t2^3+9*t2^3*r2+62*t2^3*r1+21*t2^3*s1+22*t2^4+9*t2^4*s1+70*t2^5+24*t2^6,53*1+9*q+69*r2+32*r2*q+48*r2^2+2*r1+26*r1*q+57*r1*r2+12*r1^2+97*s1+45*s1*q+85*s1*r2+50*s1*r1+8*s1^2+29*s1^2*r2+3*s1^2*r1+51*s1^3+47*t2+78*t2*q+3*t2*r2+67*t2*r2^2+72*t2*r1+44*t2*r1*r2+39*t2*r1^2+44*t2*s1+94*t2*s1*q+6*t2*s1*r2+91*t2*s1*r1+62*t2*s1^2+55*t2*s1^3+70*t2^2+5*t2^2*q+31*t2^2*r2+78*t2^2*r1+51*t2^2*s1+36*t2^2*s1*r2+82*t2^2*s1*r1+98*t2^2*s1^2+67*t2^3+15*t2^3*q+98*t2^3*r2+85*t2^3*r1+33*t2^3*s1+54*t2^3*s1^2+8*t2^4+37*t2^4*r2+79*t2^4*r1+38*t2^4*s1+91*t2^5+24*t2^5*s1+88*t2^6+60*t2^7,78*1+19*q+65*r2+39*r2*q+83*r2^2+10*r1+90*r1*q+91*r1*r2+40*r1^2+54*s1+75*s1*q+69*s1*r2+54*s1*r1+18*s1^2+69*s1^2*r2+23*s1^3+45*t2+40*t2*q+82*t2*r2+92*t2*r2^2+47*t2*r1+44*t2*r1*r2+24*t2*r1^2+15*t2*s1+52*t2*s1*q+3*t2*s1*r2+22*t2*s1*r1+29*t2*s1^2+7*t2*s1^3+2*t2^2+57*t2^2*q+16*t2^2*r2+2*t2^2*r1+10*t2^2*s1+86*t2^2*s1*r2+60*t2^2*s1*r1+14*t2^2*s1^2+49*t2^3+79*t2^3*q+27*t2^3*r2+12*t2^3*r1+98*t2^3*s1+82*t2^3*s1^2+80*t2^4+20*t2^4*r2+44*t2^4*r1+55*t2^4*s1+99*t2^5+63*t2^5*s1+83*t2^6+36*t2^7,59*1+57*q+1*r2+95*r2*q+43*r2^2+41*r1+81*r1*q+47*r1*r2+58*r1^2+68*s1+51*s1*q+32*s1*r2+88*s1*r1+16*s1^2+85*s1^2*r2+86*s1^2*r1+55*s1^3+23*t2+11*t2*q+11*t2*r2+46*t2*r2^2+87*t2*r1+15*t2*r1*r2+69*t2*r1^2+1*t2*s1+6*t2*s1*q+3*t2*s1*r2+73*t2*s1*r1+63*t2*s1^2+5*t2*s1^3+52*t2^2+18*t2^2*q+69*t2^2*r2+72*t2^2*r1+30*t2^2*s1+15*t2^2*s1*r2+93*t2^2*s1*r1+49*t2^2*s1^2+17*t2^3+7*t2^3*q+58*t2^3*r2+1*t2^3*r1+44*t2^3*s1+15*t2^3*s1^2+3*t2^4+49*t2^4*r2+91*t2^4*r1+69*t2^4*s1+36*t2^5+7*t2^5*s1+45*t2^6+91*t2^7;
++ideal I=2*1+78*q+83*r2+65*r1+62*s1+24*s1*r2+20*s1*r1+70*s1^2+39*t2+80*t2*q+71*t2*r2+65*t2*r1+30*t2*s1+93*t2*s1^2+38*t2^2*r2+87*t2^2*r1+1*t2^2*s1+6*t2^3+36*t2^3*s1+91*t2^4+19*t2^5,61*1+100*q+21*r2+82*r2^2+19*r1+70*r1*r2+81*r1^2+46*s1+62*s1*q+1*s1*r2+50*s1*r1+77*s1^2+62*s1^3+3*t2+34*t2*q+93*t2*r2+66*t2*r1+80*t2*s1+90*t2*s1*r2+39*t2*s1*r1+16*t2*s1^2+58*t2^2+33*t2^2*q+7*t2^2*r2+94*t2^2*r1+16*t2^2*s1+6*t2^2*s1^2+6*t2^3+2*t2^3*r2+9*t2^3*r1+3*t2^3*s1+85*t2^4+51*t2^4*s1+46*t2^5+23*t2^6,2*1+81*q+31*r2+90*r2^2+53*r1+18*r1*r2+58*r1^2+12*s1+28*s1*q+45*s1*r2+2*s1*r1+32*s1^2+64*s1^3+39*t2+87*t2*q+33*t2*r2+35*t2*r1+38*t2*s1+12*t2*s1*r2+60*t2*s1*r1+83*t2*s1^2+94*t2^2+75*t2^2*q+26*t2^2*r2+40*t2^2*r1+72*t2^2*s1+20*t2^2*s1^2+61*t2^3+9*t2^3*r2+62*t2^3*r1+21*t2^3*s1+9*t2^4+21*t2^4*s1+68*t2^5+6*t2^6,53*1+9*q+69*r2+32*r2*q+48*r2^2+2*r1+26*r1*q+57*r1*r2+12*r1^2+97*s1+45*s1*q+85*s1*r2+50*s1*r1+8*s1^2+29*s1^2*r2+3*s1^2*r1+51*s1^3+47*t2+78*t2*q+3*t2*r2+67*t2*r2^2+72*t2*r1+44*t2*r1*r2+39*t2*r1^2+44*t2*s1+94*t2*s1*q+6*t2*s1*r2+91*t2*s1*r1+62*t2*s1^2+55*t2*s1^3+70*t2^2+5*t2^2*q+31*t2^2*r2+78*t2^2*r1+51*t2^2*s1+36*t2^2*s1*r2+82*t2^2*s1*r1+98*t2^2*s1^2+67*t2^3+15*t2^3*q+98*t2^3*r2+85*t2^3*r1+33*t2^3*s1+54*t2^3*s1^2+24*t2^4+45*t2^4*r2+89*t2^4*r1+28*t2^4*s1+84*t2^5+16*t2^5*s1+55*t2^6+26*t2^7,78*1+19*q+65*r2+39*r2*q+83*r2^2+10*r1+90*r1*q+91*r1*r2+40*r1^2+54*s1+75*s1*q+69*s1*r2+54*s1*r1+18*s1^2+69*s1^2*r2+23*s1^3+45*t2+40*t2*q+82*t2*r2+92*t2*r2^2+47*t2*r1+44*t2*r1*r2+24*t2*r1^2+15*t2*s1+52*t2*s1*q+3*t2*s1*r2+22*t2*s1*r1+29*t2*s1^2+7*t2*s1^3+2*t2^2+57*t2^2*q+16*t2^2*r2+2*t2^2*r1+10*t2^2*s1+86*t2^2*s1*r2+60*t2^2*s1*r1+14*t2^2*s1^2+49*t2^3+79*t2^3*q+27*t2^3*r2+12*t2^3*r1+98*t2^3*s1+82*t2^3*s1^2+73*t2^4+73*t2^4*r2+64*t2^4*r1+99*t2^4*s1+1*t2^5+25*t2^5*s1+92*t2^6+26*t2^7,59*1+57*q+1*r2+95*r2*q+43*r2^2+41*r1+81*r1*q+47*r1*r2+58*r1^2+68*s1+51*s1*q+32*s1*r2+88*s1*r1+16*s1^2+85*s1^2*r2+86*s1^2*r1+55*s1^3+23*t2+11*t2*q+11*t2*r2+46*t2*r2^2+87*t2*r1+15*t2*r1*r2+69*t2*r1^2+1*t2*s1+6*t2*s1*q+3*t2*s1*r2+73*t2*s1*r1+63*t2*s1^2+5*t2*s1^3+52*t2^2+18*t2^2*q+69*t2^2*r2+72*t2^2*r1+30*t2^2*s1+15*t2^2*s1*r2+93*t2^2*s1*r1+49*t2^2*s1^2+17*t2^3+7*t2^3*q+58*t2^3*r2+1*t2^3*r1+44*t2^3*s1+15*t2^3*s1^2+82*t2^4+24*t2^4*r2+75*t2^4*r1+2*t2^4*s1+55*t2^5+60*t2^5*s1+32*t2^6+68*t2^7;
+ ideal G=slimgb(I);
+ G;
+--- a/branch_c/CHECKSUMS.md5
++++ b/branch_c/CHECKSUMS.md5
+@@ -1,14 +1,14 @@
+-227299723d45c2c22029b56976fcd389  ./README.md
++5fb6e75caf27c815996c18d67f14487f  ./README.md
+ d0bcd6e01af837c9a936e814d8fe9c99  ./scripts/branch_c_stage1_setup.py
+-c38a3d17082feb94f02dfbb023f57fa7  ./scripts/branch_c_stage2_e2_operator.py
+-488ffadb8f5ad04811e324225a4d78e1  ./scripts/branch_c_stage3_e1_descent.py
+-e9b0465d107fc0a66177f34c6a66064f  ./scripts/branch_c_stage4_e0_descent.py
+-8f0b9cdf712405dbf561fc9fc75be052  ./scripts/branch_c_stage5_e0_compatibility.py
+-67d061ad8c4240247eba516405b15dff  ./scripts/branch_c_stage6_e_minus1_obstruction.py
+-423bfa48828cbde8b00404087781b035  ./scripts/branch_c_stage6b_phi12.py
+-087964ae716391613b434e49d8469ed6  ./scripts/branch_c_stage6c_e_minus2.py
+-527fff6697e1b93aa547725ef09a1dd5  ./scripts/branch_c_stage6d_weighted_sieve.py
+-027b01e538586af571c4718f5385a83a  ./scripts/branch_c_stage6e_patch101.py
++6f92435d189e5a7fe56b0cf449dc03cc  ./scripts/branch_c_stage2_e2_operator.py
++fde8cfeecffa2338627ff3c6fe0e13e0  ./scripts/branch_c_stage3_e1_descent.py
++991dd3be9c05ec44c199071fd5d70112  ./scripts/branch_c_stage4_e0_descent.py
++96e559cf3c288deffad7d2d540d75acf  ./scripts/branch_c_stage5_e0_compatibility.py
++d3eb83c9361af47d0b7f1bd15b556021  ./scripts/branch_c_stage6_e_minus1_obstruction.py
++11ea97420277a4339b215b9e19b4179d  ./scripts/branch_c_stage6b_phi12.py
++d569d39ed61f7b63b77a40544aa88f28  ./scripts/branch_c_stage6c_e_minus2.py
++6f62c5b7ceb0184eb43d638c6206b4a4  ./scripts/branch_c_stage6d_weighted_sieve.py
++0a036e6f3dc5212a985e6e632d1db4b3  ./scripts/branch_c_stage6e_patch101.py
+ 3789c0ff54180ecfe8e4138a61162db7  ./scripts/stage6d_prong1.sing
+-4aaefe4a34775d159f9dd23dc3e3e325  ./scripts/stage6e_prong2_k0.sing
+-df6f65aaeb786ea2c6abcfe588a509e5  ./verify_branch_c.sh
++b9ed47cce2fafdbc416e936b408b0035  ./scripts/stage6e_prong2_k0.sing
++e89c3051096d168e3e60245e0a252ac1  ./verify_branch_c.sh
+--- a/branch_c/CHECKSUMS.sha256
++++ b/branch_c/CHECKSUMS.sha256
+@@ -1,14 +1,14 @@
+-5d58735cff3788c605d7765c1313324d357fa29c07273783e600832c11873ee4  ./README.md
++18278a84e200d347f69a13884c20ffc35b50cc873d495511efd92a857dc579e1  ./README.md
+ 07879dbdcb367272f39e1fd382da27283c51cb76bebb7c8e158356115b7843f6  ./scripts/branch_c_stage1_setup.py
+-025c31ed179eb7bb138a957cc12c3c3da2fd050011e8e90ef3f0f6c71d0af9a4  ./scripts/branch_c_stage2_e2_operator.py
+-95ba95fe690bfb486df86a9ab6c81e998cd8dc57f1f112ce0a62edd260862a7a  ./scripts/branch_c_stage3_e1_descent.py
+-05dd6d24d462dc5add1630f7d1ec1cc3d1f069fe13a8c7aed2664372500fe573  ./scripts/branch_c_stage4_e0_descent.py
+-be68af6ecca4c1fe025a02132dca24062469483a9ef976c5c1abb65c6ccb2cf8  ./scripts/branch_c_stage5_e0_compatibility.py
+-862a424a393a51616e7ab60984aed52196e093814758e8a70f7872d578e43a08  ./scripts/branch_c_stage6_e_minus1_obstruction.py
+-fb7d8a3a1c08aedca77b587878c387f4a8f9ee543f442425f2db63b3df9ddf5c  ./scripts/branch_c_stage6b_phi12.py
+-a265168f0eb201486a69e9e327f0bbc7ffa0c33b2a276f468900b32b94a01e39  ./scripts/branch_c_stage6c_e_minus2.py
+-b32e38ce301c29152bb6967bb80eef509f4b7312405718437a372e93377fac39  ./scripts/branch_c_stage6d_weighted_sieve.py
+-e817298ce86770590c42f56183677f6cbc720d1c111ddea1c0a70cacbabb9b5b  ./scripts/branch_c_stage6e_patch101.py
++aa93dab6d8ea250b2652fb6f240979c9c72426940bdb681766a5ef74222ccdbe  ./scripts/branch_c_stage2_e2_operator.py
++3230f184249641f9ff5eb6747956c8bab67f15538f91d0a55575c86a1b3c3a1c  ./scripts/branch_c_stage3_e1_descent.py
++59b778504d7a9be0a3e137408ef987e9c26c5e0e710a3db23e5bc294ecdc69f5  ./scripts/branch_c_stage4_e0_descent.py
++8430622b04b4bd17c8abbfe91e7bdb1f6ecc6b1afc73acd03a85a911ce687924  ./scripts/branch_c_stage5_e0_compatibility.py
++91260b48df6028373860c526426534952fcff99a5131e9e02d513d85a6fa9d03  ./scripts/branch_c_stage6_e_minus1_obstruction.py
++a2d67ace51d17be31cdfdcd563b9be4969d6e641df09d531758dbd7f1eaaba4f  ./scripts/branch_c_stage6b_phi12.py
++09b8972c948c84ea517b08d4ab0459f59eaece4bff884962410a5393331ec5a1  ./scripts/branch_c_stage6c_e_minus2.py
++d9bbe013297888b0b6f67ac2404584b2214acf795975235261af7dc0808a63ac  ./scripts/branch_c_stage6d_weighted_sieve.py
++08e210523b8358b8e6e5fffaca1a31ebbe4158b35d880e2a359b9d82c127f6f9  ./scripts/branch_c_stage6e_patch101.py
+ d8dcf423fea15a9c6c0f43ade4742aa95d29568f0090259fe5b68b190848078c  ./scripts/stage6d_prong1.sing
+-5686493ab46ce406b9d9781292797525b5fa4af2ca20cb11feae6ffb0be150d6  ./scripts/stage6e_prong2_k0.sing
+-87bd12bb8bc267515781c0b00300ea465cac89f96cd1d3bf5c373217fcd9afa2  ./verify_branch_c.sh
++bd873e1dece7841c6d27f681db620fac65589c8f6e929ff86a4fb40b88a90431  ./scripts/stage6e_prong2_k0.sing
++9173ec1dab75066312441a1e859c0c86f229e495d58691007af05763113b29f9  ./verify_branch_c.sh

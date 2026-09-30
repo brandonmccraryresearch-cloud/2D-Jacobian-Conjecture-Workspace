@@ -1,0 +1,190 @@
+--- a/branch_c/scripts/branch_c_stage5_e0_compatibility.py
++++ b/branch_c/scripts/branch_c_stage5_e0_compatibility.py
+@@ -273,12 +273,24 @@
+ Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)] # B_{-1}: b_{i,2i-1}, i=0..11 (w=+1)
+ E1v=Am2v+Bm1v
+ am2_ad={}; bm1_ad={}
++# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
++# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
++# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
++# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
++_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
++_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
++_WE1=_NE1[0]
++_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
++def _proj_E1(rhs):
++    wr=ZERO
++    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
++    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
+ for m in monos1:
+     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
+     sol=solve_aug(M1,rhs)
+     if sol is None:
+-        print(f"  E_1 unsolvable for monomial {m} (expected iff Omega!=0)")
+-        continue
++        print(f"  E_1: monomial {m} carries Omega; W1-component projected out (valid on Omega = 0)")
++        sol=solve_aug(M1,_proj_E1(rhs)); assert sol is not None
+     for j,v in enumerate(E1v):
+         if sol[j]!=ZERO:
+             dd=am2_ad if j<7 else bm1_ad
+--- a/branch_c/scripts/branch_c_stage6_e_minus1_obstruction.py
++++ b/branch_c/scripts/branch_c_stage6_e_minus1_obstruction.py
+@@ -276,10 +276,22 @@
+ Am2v=[f"a_{i}_{2*i-1}" for i in range(0,7)]; Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)]
+ E1v=Am2v+Bm1v
+ am2_ad={}; bm1_ad={}
++# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
++# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
++# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
++# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
++_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
++_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
++_WE1=_NE1[0]
++_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
++def _proj_E1(rhs):
++    wr=ZERO
++    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
++    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
+ for m in monos1:
+     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
+     sol=solve_aug(M1,rhs)
+-    if sol is None: continue  # Omega monomials
++    if sol is None: sol=solve_aug(M1,_proj_E1(rhs)); assert sol is not None  # Omega monomials: projected
+     for j,v in enumerate(E1v):
+         if sol[j]!=ZERO:
+             dd=am2_ad if j<7 else bm1_ad
+@@ -316,16 +328,28 @@
+ E0v=Am3v+Bm2v
+ am3_ad={}; bm2_ad={}
+ n_unsolv=0
++# E0 compatibility (fix): M0 has a one-dimensional left null space.  A right-hand side outside col(M0)
++# has W.rhs equal to its coefficient in the E0 obstruction; the old `continue` dropped such monomials
++# entirely, so the particular solution did not solve E0 even where the obstruction vanishes.  Project
++# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
++_MTE0=[[M0[r][c] for r in range(len(M0))] for c in range(len(M0[0]))]
++_NE0=nullspace(_MTE0,len(M0))[0]; assert len(_NE0)==1, 'left null space of M0 is not 1-dimensional'
++_WE0=_NE0[0]
++_jE0=next(j for j in range(len(_WE0)) if _WE0[j]!=ZERO)
++def _proj_E0(rhs):
++    wr=ZERO
++    for j in range(len(_WE0)): wr=(wr+_WE0[j]*rhs[j])%Rr
++    return [(rhs[j]-(wr*kinv(_WE0[_jE0]) if j==_jE0 else ZERO))%Rr for j in range(len(rhs))]
+ for m in monos0:
+     rhs=[RHS0[e].get(m,ZERO) if e in RHS0 else ZERO for e in ue0]
+     sol=solve_aug(M0,rhs)
+     if sol is None:
+-        n_unsolv+=1; continue  # Psi != 0
++        n_unsolv+=1; sol=solve_aug(M0,_proj_E0(rhs)); assert sol is not None  # Psi monomials: projected
+     for j,v in enumerate(E0v):
+         if sol[j]!=ZERO:
+             dd=am3_ad if j<6 else bm2_ad
+             dd[v]=ts7_add(dd.get(v,{}),{m:sol[j]})
+-print(f"E_0 solved. Unsolvable monomials (Psi!=0): {n_unsolv} / {len(monos0)}")
++print(f"E_0 solved. Psi-carrying monomials projected (valid where Omega = Psi = 0): {n_unsolv} / {len(monos0)}")
+ 
+ # ---- RHS_{E_{-1}} and Phi_1, Phi_2
+ a7e0=dict(a7full); a7e0.update(am3_ad); a7e0.update(bm2_ad)
+--- a/branch_c/scripts/branch_c_stage6b_phi12.py
++++ b/branch_c/scripts/branch_c_stage6b_phi12.py
+@@ -276,10 +276,22 @@
+ Am2v=[f"a_{i}_{2*i-1}" for i in range(0,7)]; Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)]
+ E1v=Am2v+Bm1v
+ am2_ad={}; bm1_ad={}
++# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
++# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
++# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
++# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
++_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
++_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
++_WE1=_NE1[0]
++_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
++def _proj_E1(rhs):
++    wr=ZERO
++    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
++    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
+ for m in monos1:
+     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
+     sol=solve_aug(M1,rhs)
+-    if sol is None: continue
++    if sol is None: sol=solve_aug(M1,_proj_E1(rhs)); assert sol is not None
+     for j,v in enumerate(E1v):
+         if sol[j]!=ZERO:
+             dd=am2_ad if j<7 else bm1_ad
+--- a/branch_c/scripts/branch_c_stage6c_e_minus2.py
++++ b/branch_c/scripts/branch_c_stage6c_e_minus2.py
+@@ -290,10 +290,22 @@
+ Am2v=[f"a_{i}_{2*i-1}" for i in range(0,7)]; Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)]
+ E1v=Am2v+Bm1v
+ am2_ad={}; bm1_ad={}
++# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
++# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
++# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
++# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
++_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
++_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
++_WE1=_NE1[0]
++_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
++def _proj_E1(rhs):
++    wr=ZERO
++    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
++    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
+ for m in monos1:
+     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
+     sol=solve_aug(M1,rhs)
+-    if sol is None: continue
++    if sol is None: sol=solve_aug(M1,_proj_E1(rhs)); assert sol is not None
+     for j,v in enumerate(E1v):
+         if sol[j]!=ZERO:
+             dd=am2_ad if j<7 else bm1_ad
+--- a/branch_c/scripts/branch_c_stage6d_weighted_sieve.py
++++ b/branch_c/scripts/branch_c_stage6d_weighted_sieve.py
+@@ -320,10 +320,22 @@
+ Am2v=[f"a_{i}_{2*i-1}" for i in range(0,7)];Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)]
+ E1v=Am2v+Bm1v
+ am2_ad={};bm1_ad={}
++# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
++# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
++# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
++# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
++_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
++_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
++_WE1=_NE1[0]
++_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
++def _proj_E1(rhs):
++    wr=ZERO
++    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
++    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
+ for m in monos1:
+     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
+     sol=solve_aug(M1,rhs)
+-    if sol is None:continue
++    if sol is None:sol=solve_aug(M1,_proj_E1(rhs));assert sol is not None
+     for j,v in enumerate(E1v):
+         if sol[j]!=ZERO:
+             dd=am2_ad if j<7 else bm1_ad
+--- a/branch_c/scripts/branch_c_stage6e_patch101.py
++++ b/branch_c/scripts/branch_c_stage6e_patch101.py
+@@ -322,10 +322,22 @@
+ Am2v=[f"a_{i}_{2*i-1}" for i in range(0,7)];Bm1v=[f"b_{i}_{2*i-1}" for i in range(0,12)]
+ E1v=Am2v+Bm1v
+ am2_ad={};bm1_ad={}
++# E1 compatibility (fix): M1 has a one-dimensional left null space.  A right-hand side outside col(M1)
++# has W.rhs equal to its coefficient in the E1 obstruction; the old `continue` dropped such monomials
++# entirely, so the particular solution did not solve E1 even where the obstruction vanishes.  Project
++# along e_j0 instead: where the obstruction vanishes, the projected right-hand sides add up to the true one.
++_MTE1=[[M1[r][c] for r in range(len(M1))] for c in range(len(M1[0]))]
++_NE1=nullspace(_MTE1,len(M1))[0]; assert len(_NE1)==1, 'left null space of M1 is not 1-dimensional'
++_WE1=_NE1[0]
++_jE1=next(j for j in range(len(_WE1)) if _WE1[j]!=ZERO)
++def _proj_E1(rhs):
++    wr=ZERO
++    for j in range(len(_WE1)): wr=(wr+_WE1[j]*rhs[j])%Rr
++    return [(rhs[j]-(wr*kinv(_WE1[_jE1]) if j==_jE1 else ZERO))%Rr for j in range(len(rhs))]
+ for m in monos1:
+     rhs=[RHS1[e].get(m,ZERO) if e in RHS1 else ZERO for e in ue1]
+     sol=solve_aug(M1,rhs)
+-    if sol is None:continue
++    if sol is None:sol=solve_aug(M1,_proj_E1(rhs));assert sol is not None
+     for j,v in enumerate(E1v):
+         if sol[j]!=ZERO:
+             dd=am2_ad if j<7 else bm1_ad

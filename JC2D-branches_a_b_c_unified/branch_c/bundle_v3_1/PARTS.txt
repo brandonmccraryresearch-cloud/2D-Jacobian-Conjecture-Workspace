@@ -1,0 +1,19 @@
+Bundle v3.1 comes as six zips, because the upload limit is 30 MiB. Each part unpacks into the same tree, bundle_v3/.
+Unzip all six into one directory, then check completeness:
+
+  for z in branch_c_bundle_v3.1_part*.zip; do unzip -q -o "$z"; done
+  cd bundle_v3 && sha256sum -c MANIFEST.sha256 --quiet && echo "all files present and intact"
+
+  part1_core_guide_logs_tools            GUIDE.md, README.txt, PARTS.txt, MANIFEST.sha256; all logs (build, verify,
+                                         audits, controls, diagnostics); diag/; profiling/; muse_refutation/; the Lean
+                                         overlay without the large generated/data files: hand-written and v1/v2 Lean,
+                                         CondsC.lean, generators, scripts, status docs
+  part2_data_and_v2_carryover            certgen_c/ and chart_certificates/ data files over 1 MB (certificates,
+                                         reflected-chain data); v2_carryover/
+  part3_Descent2R_Facts_L4_to_L0         Jacobian/BranchC/Descent2R: Facts, Vals_*, layers E4, E3, E2, E1, E0
+  part4a_Descent2R_Lm1_Main_Bridge       Descent2R: layer E-1, Main.lean (chart_descent_refl), Bridge.lean
+  part4b_Descent2R_Lm2                   Descent2R: layer E-2
+  part5_T1Zero                           Jacobian/BranchC/T1Zero: the kernel-checked stratum b_{11,20} = 0 and Combine
+
+Parts 3-5 are generated. certgen_c/ regenerates them byte for byte (checked by verify_branch_c_lean.sh, step 1),
+so parts 1 and 2 alone are enough to rebuild everything.

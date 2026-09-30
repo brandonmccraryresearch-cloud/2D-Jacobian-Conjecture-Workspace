@@ -1,0 +1,6 @@
+  rank 790; square system 790x790 (0.6s)
+  exact solve 6.0s
+D=3: system 795x1050, nonzero K5-terms 123, max height 16274 digits, total digits 9109565, exact check True, 10s
+  rank 1315; square system 1315x1315 (1.8s)
+  exact solve 16.8s
+D=4: system 1320x2100, nonzero K5-terms 154, max height 18918 digits, total digits 13509932, exact check True, 25s

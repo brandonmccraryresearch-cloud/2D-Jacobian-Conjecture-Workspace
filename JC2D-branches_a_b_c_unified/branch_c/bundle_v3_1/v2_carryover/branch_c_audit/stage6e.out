@@ -1,0 +1,38 @@
+======================================================================
+STAGE 6e: p=101 PATCH SIEVE
+======================================================================
+Omega mod 101: c1=69, c2=8, c3=50
+kappa = [38, 38] (disc=0)
+Psi: 32 terms
+Phi: [53, 53]
+Theta: [84, 84, 84]
+
+======================================================================
+PRONG 2: t1=1 patch (p=101)
+======================================================================
+
+--- kappa_1 = 38 ---
+  Psi: 21 terms
+  Phi1: 35 terms
+  Phi2: 35 terms
+  Th1: 52 terms
+  Th2: 51 terms
+  Th3: 52 terms
+  Running Singular...
+  Output (first 800 chars): G[1]=1
+
+--- kappa_2 = 38 ---
+  Psi: 21 terms
+  Phi1: 35 terms
+  Phi2: 35 terms
+  Th1: 52 terms
+  Th2: 51 terms
+  Th3: 52 terms
+  Running Singular...
+  Output (first 800 chars): G[1]=1
+
+STAGE 6e DONE
+
+real	0m8.072s
+user	0m6.324s
+sys	0m0.067s

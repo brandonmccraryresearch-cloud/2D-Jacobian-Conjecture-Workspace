@@ -1,0 +1,27 @@
+chart generators from conds_c.json: {'Psi': 22, 'Phi1': 35, 'Phi2': 35, 'Theta1': 52, 'Theta2': 52, 'Theta3': 52} | equal to conds_chart.json: True
+slice t1 = 0: {'Psi': 8, 'Phi1': 13, 'Phi2': 13, 'Theta1': 17, 'Theta2': 17, 'Theta3': 17}
+generators (terms, w expanded): [40, 65, 65, 85, 85, 85]
+certificate: 1 = sum L_i F_i exactly in K5[S1,R1,R2,Q]: True
+control, one coefficient perturbed (expect False): False
+control, Theta3 dropped (expect False): False
+control, the pipeline's generators with this certificate (expect False): False
+chartcert_p101_w9.json: 1 = sum L_i F_i in F_101[T1,S1,R1,R2,Q] at w = 9: exact True, random-eval True  (3661 cofactor terms)
+   controls (perturbed / Theta3 dropped / other w): [(False, False), (False, False), (False, False)]  (expect all False)
+chartcert_p1000003_w806739.json: 1 = sum L_i F_i in F_1000003[T1,S1,R1,R2,Q] at w = 806739: exact True, random-eval True  (3688 cofactor terms)
+   controls (perturbed / Theta3 dropped / other w): [(False, False), (False, False), (False, False)]  (expect all False)
+chartcert_p109_inert.json: 1 = sum L_i F_i in F_109[T1,S1,R1,R2,Q,w] with R(w) as a generator: exact True, random-eval True  (102097 cofactor terms)
+   controls (perturbed / Theta3 dropped): [(False, False), (False, False)]  (expect all False)
+ALL MODULAR CHART CERTIFICATES PASSED
+Omega   vs Omega         : terms 3/3, same support True, proportional False
+Psi     vs Psi           : terms 32/32, same support True, proportional False
+Phi1    vs Phi1          : terms 54/54, same support True, proportional False
+Phi2    vs Phi2          : terms 54/54, same support True, proportional False
+Th1     vs Theta1        : terms 84/84, same support True, proportional False
+Th2     vs Theta2        : terms 84/84, same support True, proportional False
+Th3     vs Theta3        : terms 84/84, same support True, proportional False
+X0_18   vs E0pure_18_37  : terms 9/9, same support True, proportional False
+Xm1_17  vs Em1pure_17_36 : terms 39/39, same support True, proportional False
+Xm1_18  vs Em1pure_18_38 : terms 12/12, same support True, proportional False
+Xm2_16  vs Em2pure_16_35 : terms 77/77, same support True, proportional False
+Xm2_17  vs Em2pure_17_37 : terms 55/55, same support True, proportional False
+exit 0

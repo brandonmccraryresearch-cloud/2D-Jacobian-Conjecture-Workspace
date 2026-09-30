@@ -1,0 +1,17 @@
+1611 samples over 53.7 min; min anon headroom 1148 MB (anon 4835 MB); peak anon 4835 MB; peak anon+mapped 5792 MB; oom_kill 1 -> 1; failcnt +6685; pgmajfault +145240
+largest Lean processes by anon peak (67 seen):
+  anon  4712  rss  5553  pss  5360     74s  majflt   2005  Jacobian/BranchC/Descent2R/Lm2/C_9_21_2.lean
+  anon  4709  rss  5516  pss  5251     78s  majflt   4058  Jacobian/BranchC/Descent2R/Lm2/C_8_19_1.lean
+  anon  4707  rss  5545  pss  5328     74s  majflt   2612  Jacobian/BranchC/Descent2R/Lm2/C_10_23_5.lean
+  anon  4706  rss  5608  pss  5389     74s  majflt   1464  Jacobian/BranchC/Descent2R/Lm2/C_8_19_6.lean
+  anon  4525  rss  5463  pss  5183     72s  majflt   1890  Jacobian/BranchC/Descent2R/Lm2/C_8_19_5.lean
+  anon  4524  rss  5548  pss  5258     70s  majflt     43  Jacobian/BranchC/Descent2R/Lm2/C_7_17_5.lean
+  anon  4522  rss  5542  pss  5354     72s  majflt   3048  Jacobian/BranchC/Descent2R/Lm2/C_10_23_4.lean
+  anon  4516  rss  5552  pss  5304     70s  majflt   3049  Jacobian/BranchC/Descent2R/Lm2/C_9_21_6.lean
+  anon  4516  rss  5571  pss  5313     72s  majflt   3130  Jacobian/BranchC/Descent2R/Lm2/C_11_25_4.lean
+  anon  4514  rss  5586  pss  5401     72s  majflt    253  Jacobian/BranchC/Descent2R/Lm2/C_7_17_6.lean
+  anon  4506  rss  5512  pss  5309     70s  majflt     55  Jacobian/BranchC/Descent2R/Lm2/C_9_21_1.lean
+  anon  4474  rss  5558  pss  5363     72s  majflt   2557  Jacobian/BranchC/Descent2R/Lm2/C_11_25_1.lean
+WARNING/ERROR/CRITICAL events (all time): 2
+  2026-09-29 17:46:08.541 WARNING procmon.event   msg="major-fault storm (thrashing: evicted pages re-read)" pid=31944 lean=Jacobian/BranchC/Descent2R/Lm2/C_7_17_4.lean majflt_s=1741 cg_anon=365 cg_mapped=1453
+  2026-09-29 17:51:40.572 WARNING procmon.event   msg="major-fault storm (thrashing: evicted pages re-read)" pid=32372 lean=Jacobian/BranchC/Descent2R/Lm2/C_8_19_1.lean majflt_s=1724 cg_anon=366 cg_mapped=947

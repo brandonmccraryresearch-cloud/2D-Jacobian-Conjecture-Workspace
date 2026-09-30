@@ -1,0 +1,75 @@
+17:26:14 procmon start (pid 30400, interval 2.0s)
+17:26:14 start pid 30334 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_5
+17:26:14 start pid 30387 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_1.lean
+17:27:23 start pid 30415 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_5
+17:27:23 exit  pid 30334 lake:  after 80s, peak RSS 824 MB, anon 101 MB, USS 161 MB, cpu 1s
+17:27:23 exit  pid 30387 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_1.lean after 79s, peak RSS 5419 MB, anon 4709 MB, USS 5021 MB, cpu 77s
+17:27:25 start pid 30469 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_2.lean
+17:28:10 start pid 30496 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_5
+17:28:10 start pid 30549 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_3.lean
+17:28:10 exit  pid 30415 lake:  after 49s, peak RSS 821 MB, anon 99 MB, USS 791 MB, cpu 1s
+17:28:10 exit  pid 30469 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_2.lean after 47s, peak RSS 5143 MB, anon 3719 MB, USS 4481 MB, cpu 45s
+17:28:47 start pid 30580 python3: python3 step3_hadamard.py
+17:28:53 start pid 30585 python3: python3 step3_hadamard_full.py
+17:28:53 exit  pid 30580 python3:  after 8s, peak RSS 112 MB, anon 98 MB, USS 0 MB, cpu 6s
+17:28:55 start pid 30590 cat: AxiomsAuditBranchC.lean
+17:28:57 exit  pid 30590 cat: AxiomsAuditBranchC.lean after 3s, peak RSS 1 MB, anon 0 MB, USS 0 MB, cpu 0s
+17:29:07 exit  pid 30585 python3:  after 17s, peak RSS 473 MB, anon 458 MB, USS 467 MB, cpu 13s
+17:29:14 start pid 30606 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_5
+17:29:14 exit  pid 30496 lake:  after 66s, peak RSS 827 MB, anon 103 MB, USS 171 MB, cpu 1s
+17:29:14 exit  pid 30549 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_3.lean after 65s, peak RSS 5487 MB, anon 4125 MB, USS 4890 MB, cpu 62s
+17:29:16 start pid 30659 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_4.lean
+17:30:43 procmon start (pid 30757, interval 2.0s)
+17:30:44 start pid 30685 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_5
+17:30:44 start pid 30738 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_5.lean
+17:31:39 start pid 30784 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_5
+17:31:39 start pid 30837 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_6.lean
+17:31:39 exit  pid 30685 lake:  after 72s, peak RSS 824 MB, anon 101 MB, USS 161 MB, cpu 1s
+17:31:39 exit  pid 30738 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_5.lean after 70s, peak RSS 5501 MB, anon 4235 MB, USS 4940 MB, cpu 68s
+17:32:54 start pid 30869 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_5
+17:32:54 start pid 30922 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_7.lean
+17:32:54 exit  pid 30784 lake:  after 77s, peak RSS 825 MB, anon 103 MB, USS 580 MB, cpu 1s
+17:32:54 exit  pid 30837 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_6.lean after 76s, peak RSS 5568 MB, anon 4514 MB, USS 5075 MB, cpu 74s
+17:33:35 start pid 30935 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red
+17:33:35 start pid 30988 lean: Jacobian/BranchC/Descent2R/Lm2/Red_5_13.lean
+17:33:35 exit  pid 30869 lake:  after 44s, peak RSS 823 MB, anon 102 MB, USS 210 MB, cpu 1s
+17:33:35 exit  pid 30922 lean: Jacobian/BranchC/Descent2R/Lm2/C_5_13_7.lean after 42s, peak RSS 4263 MB, anon 2838 MB, USS 3601 MB, cpu 40s
+17:33:49 exit  pid 30935 lake:  after 16s, peak RSS 820 MB, anon 97 MB, USS 164 MB, cpu 1s
+17:33:49 exit  pid 30988 lean: Jacobian/BranchC/Descent2R/Lm2/Red_5_13.lean after 15s, peak RSS 2159 MB, anon 728 MB, USS 1496 MB, cpu 14s
+17:33:51 start pid 31056 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_1.lean
+17:35:08 start pid 31073 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_6
+17:35:08 exit  pid 31003 lake:  after 80s, peak RSS 824 MB, anon 101 MB, USS 160 MB, cpu 1s
+17:35:08 exit  pid 31056 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_1.lean after 79s, peak RSS 5565 MB, anon 4708 MB, USS 5289 MB, cpu 77s
+17:35:10 start pid 31127 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_2.lean
+17:35:55 start pid 31146 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_6
+17:35:55 start pid 31199 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_3.lean
+17:35:55 exit  pid 31073 lake:  after 49s, peak RSS 816 MB, anon 97 MB, USS 787 MB, cpu 1s
+17:35:55 exit  pid 31127 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_2.lean after 47s, peak RSS 5138 MB, anon 3719 MB, USS 4480 MB, cpu 45s
+17:36:58 start pid 31216 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_6
+17:36:58 exit  pid 31146 lake:  after 65s, peak RSS 822 MB, anon 99 MB, USS 576 MB, cpu 1s
+17:36:58 exit  pid 31199 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_3.lean after 64s, peak RSS 5504 MB, anon 4125 MB, USS 4863 MB, cpu 62s
+17:37:00 start pid 31269 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_4.lean
+17:38:10 start pid 31287 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_6
+17:38:10 start pid 31340 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_5.lean
+17:38:10 exit  pid 31216 lake:  after 72s, peak RSS 826 MB, anon 103 MB, USS 571 MB, cpu 1s
+17:38:10 exit  pid 31269 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_4.lean after 71s, peak RSS 5562 MB, anon 4236 MB, USS 4996 MB, cpu 69s
+17:39:23 start pid 31359 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_6
+17:39:23 exit  pid 31287 lake:  after 76s, peak RSS 822 MB, anon 101 MB, USS 161 MB, cpu 1s
+17:39:23 exit  pid 31340 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_5.lean after 75s, peak RSS 5501 MB, anon 4523 MB, USS 4951 MB, cpu 73s
+17:39:25 start pid 31412 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_6.lean
+17:40:42 start pid 31429 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_6
+17:40:42 exit  pid 31359 lake:  after 80s, peak RSS 821 MB, anon 101 MB, USS 208 MB, cpu 1s
+17:40:42 exit  pid 31412 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_6.lean after 79s, peak RSS 5569 MB, anon 4704 MB, USS 5040 MB, cpu 77s
+17:40:44 start pid 31482 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_7.lean
+17:41:31 start pid 31503 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_6
+17:41:31 start pid 31556 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_8.lean
+17:41:31 exit  pid 31429 lake:  after 50s, peak RSS 821 MB, anon 103 MB, USS 197 MB, cpu 1s
+17:41:31 exit  pid 31482 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_7.lean after 49s, peak RSS 5145 MB, anon 3729 MB, USS 4486 MB, cpu 46s
+17:42:08 start pid 31573 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.Red
+17:42:08 start pid 31626 lean: Jacobian/BranchC/Descent2R/Lm2/Red_6_15.lean
+17:42:08 exit  pid 31503 lake:  after 39s, peak RSS 822 MB, anon 101 MB, USS 195 MB, cpu 1s
+17:42:08 exit  pid 31556 lean: Jacobian/BranchC/Descent2R/Lm2/C_6_15_8.lean after 38s, peak RSS 3977 MB, anon 2554 MB, USS 3316 MB, cpu 36s
+17:42:24 start pid 31639 lake: /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lake build Jacobian.BranchC.Descent2R.Lm2.C_7
+17:42:24 exit  pid 31573 lake:  after 18s, peak RSS 828 MB, anon 107 MB, USS 606 MB, cpu 1s
+17:42:24 exit  pid 31626 lean: Jacobian/BranchC/Descent2R/Lm2/Red_6_15.lean after 17s, peak RSS 2227 MB, anon 800 MB, USS 1566 MB, cpu 15s
+17:42:26 start pid 31692 lean: Jacobian/BranchC/Descent2R/Lm2/C_7_17_1.lean

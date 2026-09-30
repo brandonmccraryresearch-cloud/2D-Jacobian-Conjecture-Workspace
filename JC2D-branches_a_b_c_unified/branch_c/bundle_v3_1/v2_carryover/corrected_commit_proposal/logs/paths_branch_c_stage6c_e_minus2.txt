@@ -1,0 +1,16 @@
+======================================================================
+STAGE 6c: E_{-2} OBSTRUCTION
+======================================================================
+E_0 formal solution done.
+E_{-1}: 15x15 subsystem selected.
+E_{-1} formal solution: A_{-4} (5), B_{-3} (10)
+E_{-2} left nullspace dim 3
+Theta_1: 84 monomials
+  t-free: 8
+Theta_2: 84 monomials
+  t-free: 8
+Theta_3: 84 monomials
+  t-free: 8
+
+STAGE 6c DONE
+exit=0 secs=6

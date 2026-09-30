@@ -1,0 +1,31 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Context and prior work}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Main result}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Logical status}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Outline}{5}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Source data}{6}{section.2}%
+\contentsline {section}{\numberline {3}The polynomial system}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Lattice points}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}The bracket equations}{7}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Exact layer reduction}{8}{section.4}%
+\contentsline {section}{\numberline {5}Normalization}{9}{section.5}%
+\contentsline {section}{\numberline {6}The top layer}{10}{section.6}%
+\contentsline {subsection}{\numberline {6.1}The Davenport--Stothers equation}{10}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Classification}{10}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Irreducibility and reality}{17}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}An algebraic proof of the top-layer classification for $m=7$, and its formalization}{17}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Descent}{22}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Layer $E_4$}{22}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Layer $E_3$}{22}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Layer $E_2$}{22}{subsection.7.3}%
+\contentsline {section}{\numberline {8}The final obstruction}{23}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Explicit form of the seven conditions}{23}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Elimination of $(s_1,s_2)$}{24}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}The case $t=0$}{24}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Proof of the main theorem}{25}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Exact characteristic-$0$ descent}{27}{section.9}%
+\contentsline {section}{\numberline {10}Conclusion}{27}{section.10}%
+\contentsline {section}{\numberline {11}Prior work, attribution, and independence}{28}{section.11}%
+\contentsline {section}{\numberline {A}Computational archive}{29}{appendix.A}%
+\contentsline {section}{\numberline {B}Original certificate (second route)}{30}{appendix.B}%
+\contentsline {section}{\numberline {C}Computational and AI-assisted research disclosure}{30}{appendix.C}%

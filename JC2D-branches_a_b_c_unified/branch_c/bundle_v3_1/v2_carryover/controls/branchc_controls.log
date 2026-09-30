@@ -1,0 +1,13 @@
+== c1_degAm1_8
+c1_degAm1_8.lean:137:55: error: omega could not prove the goal:
+c1_degAm1_8.lean:147:44: error: omega could not prove the goal:
+== c2_no_A1_zero
+c2_no_A1_zero.lean:168:2: error: ring failed, ring expressions not equal
+c2_no_A1_zero.lean:210:70: error: Application type mismatch: The argument
+== c3_polygon_edge
+c3_polygon_edge.lean:203:33: error: omega could not prove the goal:
+== c5_sorry
+c5_sorry.lean:125:8: warning: declaration uses `sorry`
+d1_target_xy: exit=1 | d1_target_xy.lean:254:59: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+d2_wrong_pair: exit=1 | d2_wrong_pair.lean:262:71: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+d3_Q_weight4: exit=1 | d3_Q_weight4.lean:223:28: error: Tactic `decide` proved that the proposition

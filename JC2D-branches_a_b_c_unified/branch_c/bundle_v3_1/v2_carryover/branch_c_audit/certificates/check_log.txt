@@ -1,0 +1,18 @@
+# run from branch_c_audit/certificates:  python3 check_cert_B.py .. <(gunzip -c cert_B.txt.gz)
+== patch B (t1 = 0, t2 = 1, s2 = kappa), exact over K5, checked by FLINT
+F: 6 generators, 85 terms; identical to the ideal in K5_B_lift.sing
+L: 119 K5-terms; max coefficient size 23189 digits
+sum_i L_i F_i reduced mod R: 1 nonzero terms; equals 1: True  (2.3s)
+exit=0
+-- negative control (one coefficient perturbed by 1e-6)
+F: 6 generators, 85 terms; identical to the ideal in K5_B_lift.sing
+L: 119 K5-terms; max coefficient size 23189 digits
+sum_i L_i F_i reduced mod R: 9 nonzero terms; equals 1: False  (2.2s)
+exit=1
+
+== chart t2 = 1, s2 = kappa, mod 101 (w = 9), checked in pure Python
+F: 6 generators, 246 terms (== T2_101.sing); L: 3661 terms; sum L_i F_i mod 101 has 1 nonzero terms; equals 1: True
+exit=0
+-- negative control (one coefficient + 1)
+F: 6 generators, 246 terms (== T2_101.sing); L: 3661 terms; sum L_i F_i mod 101 has 22 nonzero terms; equals 1: False
+exit=1

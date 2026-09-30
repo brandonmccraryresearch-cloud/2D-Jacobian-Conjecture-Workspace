@@ -1,0 +1,12 @@
+gen_refl_c 21s: wrote 504 modules; 92591898 bytes
+Bridge.lean: 258229 bytes; 179 zero facts; 132 equations
+CondsC.lean: 1369473 bytes
+merge-work estimates: {'s_sq': 570, 's_X2': 1530, 's_f_Psi': 2898, 's_f_Phi1': 5462, 's_f_Phi2': 5462, 's_f_Theta1': 8298, 's_f_Theta2': 8298, 's_f_Theta3': 8298, 's_p_Psi': 120800, 's_p_Phi1': 308820, 's_p_Phi2': 287250, 's_p_Theta1': 320100, 's_p_Theta2': 320100, 's_p_Theta3': 225150, 's_final': 4110}
+Combine.lean: 3318 bytes
+== diffs (empty = byte-identical)
+bridge_c.json identical
+Files /tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/regen_v3/Jacobian/BranchC/Descent2R/Main.lean and /home/claude/build/jacobian_lean/Jacobian/BranchC/Descent2R/Main.lean differ
+CondsC identical
+T1Zero identical (17 files)
+regeneration total 30s
+[guardrun] exit 0  29.8s  peak RSS 169 MB  cgroup anon peak 0 MB

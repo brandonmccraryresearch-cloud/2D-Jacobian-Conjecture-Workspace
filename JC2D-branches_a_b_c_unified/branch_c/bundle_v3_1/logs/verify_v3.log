@@ -1,0 +1,190 @@
+[guardrun 23:34:22] elapsed 0s  peak RSS 0 MB  cgroup anon 22 MB
++ set -euo pipefail
+++ dirname ./verify_branch_c_lean.sh
++ cd .
++ export PATH=/root/.elan/bin:/home/claude/.npm-global/bin:/root/.local/bin:/root/.cargo/bin:/usr/local/go/bin:/opt/node22/bin:/opt/maven/bin:/opt/gradle/bin:/opt/rbenv/bin:/root/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ PATH=/root/.elan/bin:/home/claude/.npm-global/bin:/root/.local/bin:/root/.cargo/bin:/usr/local/go/bin:/opt/node22/bin:/opt/maven/bin:/opt/gradle/bin:/opt/rbenv/bin:/root/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ echo '== 0. prerequisites (the branch-(a,b) project this overlay builds on)'
+== 0. prerequisites (the branch-(a,b) project this overlay builds on)
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f certgen/cert.json ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f certgen/e5_exact_K5.json ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f certgen/gen_system.py ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f Jacobian/Descent/E4/z_a_1_1.lean ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f Jacobian/Descent/E3red/r3_1_0.lean ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f Jacobian/Descent/E3/x_a_1_2.lean ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f Jacobian/ChartProof/Final.lean ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f Jacobian/BranchAbChart.lean ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f Jacobian/BranchAbTorus.lean ']'
++ for f in certgen/cert.json certgen/e5_exact_K5.json certgen/gen_system.py Jacobian/Descent/E4/z_a_1_1.lean Jacobian/Descent/E3red/r3_1_0.lean Jacobian/Descent/E3/x_a_1_2.lean Jacobian/ChartProof/Final.lean Jacobian/BranchAbChart.lean Jacobian/BranchAbTorus.lean Jacobian/BranchAbNewton.lean
++ '[' -f Jacobian/BranchAbNewton.lean ']'
++ python3 -
+  certgen inputs: 442bf8d1f27248f0  (expected 442bf8d1f27248f0)
+  Descent E4/E3red/E3 sources (imports ignored): 260a235be1028994  (expected 260a235be1028994)
+PASS: prerequisite fingerprints match
++ echo '== 1. regeneration'
+== 1. regeneration
+++ mktemp -d
++ T=/tmp/tmp.uayxmMbFvG
++ trap 'rm -rf "$T"' EXIT
++ mkdir -p /tmp/tmp.uayxmMbFvG/Jacobian/BranchC
++ cp -r certgen /tmp/tmp.uayxmMbFvG/certgen
++ cp -r certgen_c /tmp/tmp.uayxmMbFvG/certgen_c
++ cp Jacobian/BranchC/CondsC.lean Jacobian/BranchC/Degree19.lean Jacobian/BranchC/DescentClaim.lean Jacobian/BranchC/Edge19.lean Jacobian/BranchC/LayerE2.lean Jacobian/BranchC/LayersGen.lean Jacobian/BranchC/OmegaEdge.lean Jacobian/BranchC/OmegaSquare.lean /tmp/tmp.uayxmMbFvG/Jacobian/BranchC/
++ cd /tmp/tmp.uayxmMbFvG/certgen_c
++ python3 make_cert_c.py
++ python3 gen_omega_edge.py
++ python3 gen_lean_c.py
++ python3 gen_rank_c.py
++ tail -3 /tmp/tmp.uayxmMbFvG/certgen_c/make_cert_c.log
+o1 = rho*c1*e^20 by definition; check o2 = rho*c2*e^10: True ; o3 = rho*c3: True
+max digits  ysub: 86  E2 mult: 196  W1: 141  E1red: 118
+wrote cert_c.json
++ cat /tmp/tmp.uayxmMbFvG/certgen_c/rank.log
+E2: 19x20 rank 18; free ['a_6_13', 'a_7_15']; left nullity 1  -- certificates verified
+E1: 19x19 rank 18; free ['b_10_21']; left nullity 1  -- certificates verified
+E0: 18x17 rank 17; free []; left nullity 1  -- certificates verified
+Em1: 17x15 rank 15; free []; left nullity 2  -- certificates verified
+Em2: 16x13 rank 13; free []; left nullity 3  -- certificates verified
+wrote 96 modules
++ cmp /tmp/tmp.uayxmMbFvG/certgen_c/cert_c.json certgen_c/cert_c.json
++ diff -r /tmp/tmp.uayxmMbFvG/Jacobian/BranchC/Descent Jacobian/BranchC/Descent
++ diff -r /tmp/tmp.uayxmMbFvG/Jacobian/BranchC/Rank Jacobian/BranchC/Rank
++ '[' 0 '!=' 1 ']'
++ mkdir -p /tmp/tmp.uayxmMbFvG/chart_certificates/step1
++ cp chart_certificates/step1/certB_lowerc.json /tmp/tmp.uayxmMbFvG/chart_certificates/step1/
++ cd /tmp/tmp.uayxmMbFvG/certgen_c
++ WRITE=1
++ python3 gen_refl_c.py
+[guardrun 23:34:32] elapsed 10s  peak RSS 73 MB  cgroup anon 81 MB
+[guardrun 23:34:42] elapsed 20s  peak RSS 169 MB  cgroup anon 173 MB
++ python3 gen_bridge_c.py
++ python3 gen_conds_c.py
++ python3 gen_t1zero_lean.py
++ python3 gen_t1zero_combine.py
++ tail -1 /tmp/tmp.uayxmMbFvG/certgen_c/refl.log
+wrote 504 modules; 92591898 bytes
++ tail -2 /tmp/tmp.uayxmMbFvG/certgen_c/t1zero.log
+  Jacobian.BranchC.T1Zero.Main: 9680 bytes
+merge-work estimates: {'s_sq': 570, 's_X2': 1530, 's_f_Psi': 2898, 's_f_Phi1': 5462, 's_f_Phi2': 5462, 's_f_Theta1': 8298, 's_f_Theta2': 8298, 's_f_Theta3': 8298, 's_p_Psi': 120800, 's_p_Phi1': 308820, 's_p_Phi2': 287250, 's_p_Theta1': 320100, 's_p_Theta2': 320100, 's_p_Theta3': 225150, 's_final': 4110}
++ cmp /tmp/tmp.uayxmMbFvG/certgen_c/bridge_c.json certgen_c/bridge_c.json
++ diff -r /tmp/tmp.uayxmMbFvG/Jacobian/BranchC/Descent2R Jacobian/BranchC/Descent2R
++ diff /tmp/tmp.uayxmMbFvG/Jacobian/BranchC/CondsC.lean Jacobian/BranchC/CondsC.lean
++ diff -r /tmp/tmp.uayxmMbFvG/Jacobian/BranchC/T1Zero Jacobian/BranchC/T1Zero
++ echo 'PASS: regenerated certificate data and generated Lean are byte-identical'
+PASS: regenerated certificate data and generated Lean are byte-identical
++ echo '== 2. build'
+== 2. build
+++ awk '/MemAvailable/ {print $2}' /proc/meminfo
++ avail_kb=7466236
++ avail_kb=7466236
+++ awk -F: '$2=="memory" {print $3}' /proc/self/cgroup
++ for f in /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory/memory.limit_in_bytes "/sys/fs/cgroup/memory$(awk -F: '$2=="memory" {print $3}' /proc/self/cgroup 2> /dev/null)/memory.limit_in_bytes"
++ '[' -r /sys/fs/cgroup/memory.max ']'
++ for f in /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory/memory.limit_in_bytes "/sys/fs/cgroup/memory$(awk -F: '$2=="memory" {print $3}' /proc/self/cgroup 2> /dev/null)/memory.limit_in_bytes"
++ '[' -r /sys/fs/cgroup/memory/memory.limit_in_bytes ']'
+++ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
++ v=9223372036854771712
++ case "$v" in
++ '[' 9007199254740988 -lt 7466236 ']'
++ for f in /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory/memory.limit_in_bytes "/sys/fs/cgroup/memory$(awk -F: '$2=="memory" {print $3}' /proc/self/cgroup 2> /dev/null)/memory.limit_in_bytes"
++ '[' -r /sys/fs/cgroup/memory/process_api/01a0f04a-fcf7-774a-a535-c2b2b32e7cfd/claude-code-bash/memory.limit_in_bytes ']'
+++ cat /sys/fs/cgroup/memory/process_api/01a0f04a-fcf7-774a-a535-c2b2b32e7cfd/claude-code-bash/memory.limit_in_bytes
++ v=6273757184
++ case "$v" in
++ '[' 6126716 -lt 7466236 ']'
++ avail_kb=6126716
++ '[' auto = 1 ']'
++ '[' auto = auto ']'
++ '[' 6126716 -lt 12000000 ']'
++ echo '  sequential build (MemAvailable 6126716 kB; LOWMEM=auto)'
+  sequential build (MemAvailable 6126716 kB; LOWMEM=auto)
++ ./build_branch_c_lowmem.sh
+[guardrun 23:34:52] elapsed 31s  peak RSS 825 MB  cgroup anon 134 MB
+all 790 modules are up to date (8s)
++ echo '== 3. axioms'
+== 3. axioms
++ lake env lean AxiomsAuditBranchC.lean
+[guardrun 23:35:03] elapsed 41s  peak RSS 1091 MB  cgroup anon 130 MB
+[guardrun 23:35:13] elapsed 51s  peak RSS 4873 MB  cgroup anon 310 MB
+[guardrun 23:35:23] elapsed 61s  peak RSS 4958 MB  cgroup anon 521 MB
++ cat axioms_branch_c.log
+'BranchC.degree19_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.e2_t0_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.t0_vertex_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.e2Identity_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.t0_vertex_rigidity_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.degree19_bound_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.latticeNPc_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.latticeNQc_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.layers_of_jac_c' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.eIdent_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.eIdent_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.x19_identity_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.edge19_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.edge19_rigidity_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.vertex_12_24_forces_t2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.omega_disc_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.omega_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.omega_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.omega_mod101_square' depends on axioms: [propext, Quot.sound]
+'BranchC.Omega.c1_at9_mod101' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.c2_at9_mod101' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.c3_at9_mod101' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.kappa_at9_mod101' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.kappa_mul_three_beta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.omega_of_edge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.betaPipe_at9_mod101' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.omega_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Descent.e1_omega' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Descent.omega_descent_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opE2_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opE2_lnull_0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opE1_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opE1_lnull_0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opE0_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opE0_lnull_0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opEm1_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opEm1_lnull_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opEm2_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Rank.opEm2_lnull_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.eIdent_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.main_theorem_c_of_claim' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Descent2R.chart_descent_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.descentClaimC_of_chartEmpty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.main_theorem_c_of_chartEmpty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.T1Zero.s_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.T1Zero.s_X2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.T1Zero.s_f_Theta1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.T1Zero.s_p_Theta1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.T1Zero.s_final' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.T1Zero.chartEmpty_t1_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.chartEmptyC_of_T1ne0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.descentClaimC_of_chartEmpty_T1ne0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.main_theorem_c_of_chartEmpty_T1ne0' depends on axioms: [propext, Classical.choice, Quot.sound]
++ grep -v '^'\''' axioms_branch_c.log
++ grep -q .
++ grep 'depends on axioms' axioms_branch_c.log
++ grep -v '\[propext, Classical.choice, Quot.sound\]\|\[propext, Quot.sound\]\|\[propext\]\|\[Classical.choice, propext, Quot.sound\]'
++ grep -q .
++ echo 'PASS: every audited theorem uses only the standard axioms'
+PASS: every audited theorem uses only the standard axioms
++ echo '== 4. grep'
+== 4. grep
++ grep -rnE '^\s*(private\s+)?axiom\s' Jacobian/BranchC '--include=*.lean'
++ grep -rn native_decide Jacobian/BranchC '--include=*.lean'
++ grep -v '`native_decide`'
++ grep -rnw sorry Jacobian/BranchC '--include=*.lean'
++ grep -v '`sorry`'
++ echo 'PASS: no sorry / axiom / native_decide in Jacobian/BranchC'
+PASS: no sorry / axiom / native_decide in Jacobian/BranchC
++ rm -rf /tmp/tmp.uayxmMbFvG
+[guardrun] exit 0  63.5s  peak RSS 4958 MB  cgroup anon peak 541 MB

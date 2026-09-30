@@ -1,0 +1,3 @@
+=== chart t2=1 (K5, fix) start 18:45:33
+/bin/bash: line 2:  3750 Killed                  timeout 7200 /usr/bin/Singular -q work/K5_T2_fix.sing < /dev/null
+exit=137 end 19:18:36

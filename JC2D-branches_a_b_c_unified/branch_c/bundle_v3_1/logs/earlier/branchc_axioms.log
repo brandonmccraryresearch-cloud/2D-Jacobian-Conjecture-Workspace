@@ -1,0 +1,32 @@
+'BranchC.degree19_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.e2_t0_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.t0_vertex_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.degree19_bound_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.latticeNPc_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.latticeNQc_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.verticesc_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.coeff_layerPolyNeg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@BranchC.t0_vertex_rigidity : ∀ {K : Type u_1} [inst : Field K] [CharZero K] (P Q : MvPolynomial (Fin 2) K),
+  (∀ m ∈ P.support, BranchC.inNPc m) →
+    (∀ m ∈ Q.support, BranchC.inNQc m) →
+      P.coeff (BranchAb.mono 8 14) ≠ 0 →
+        BranchC.E2Identity (BranchAb.layerPoly P 2) (BranchAb.layerPoly P 1) (BranchAb.layerPoly P 0)
+            (BranchC.layerPolyNeg P 1) (BranchAb.layerPoly Q 3) (BranchAb.layerPoly Q 2) (BranchAb.layerPoly Q 1)
+            (BranchAb.layerPoly Q 0) →
+          BranchAb.layerPoly P 1 = 0 ∧ BranchAb.layerPoly Q 2 = 0 → Q.coeff (BranchAb.mono 12 24) = 0
+'BranchC.e2Identity_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.t0_vertex_rigidity_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.layer_bracket_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+@BranchC.t0_vertex_rigidity_of_jac : ∀ {K : Type u_1} [inst : Field K] [CharZero K] (lam : K)
+  (P Q : MvPolynomial (Fin 2) K),
+  (∀ m ∈ P.support, BranchC.inNPc m) →
+    (∀ m ∈ Q.support, BranchC.inNQc m) →
+      P.coeff (BranchAb.mono 8 14) ≠ 0 →
+        BranchAb.jac P Q = MvPolynomial.C lam * MvPolynomial.X 0 ^ 2 →
+          BranchAb.layerPoly P 1 = 0 ∧ BranchAb.layerPoly Q 2 = 0 → Q.coeff (BranchAb.mono 12 24) = 0
+'BranchC.Omega.omega_disc_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.omega_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.omega_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.omega_mod101_square' depends on axioms: [propext, Quot.sound]
+'BranchC.Omega.c1_at9_mod101' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.Omega.kappa_at9_mod101' depends on axioms: [propext, Classical.choice, Quot.sound]

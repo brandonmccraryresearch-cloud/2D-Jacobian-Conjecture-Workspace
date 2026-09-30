@@ -1,0 +1,4 @@
+slice t1=0, D=2: Q-rank 435, Hadamard bound 159,012 digits, true max height 9,681 (ratio 0.061)
+slice t1=0, D=3: Q-rank 790, Hadamard bound 266,336 digits, true max height 16,274 (ratio 0.061)
+slice t1=0, D=4: Q-rank 1315, Hadamard bound 413,681 digits, true max height 18,918 (ratio 0.046)
+[guardrun] exit 0  6.6s  peak RSS 172 MB  cgroup anon peak 519 MB

@@ -1,0 +1,280 @@
+--- a/branch_c/scripts/branch_c_stage2_e2_operator.py
++++ b/branch_c/scripts/branch_c_stage2_e2_operator.py
+@@ -49,7 +49,12 @@
+ ONE = fmpq_poly([1])
+ 
+ # ------------------------------------------------- Load certified K_5 point
+-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})  # normalisation
+ 
+--- a/branch_c/scripts/branch_c_stage3_e1_descent.py
++++ b/branch_c/scripts/branch_c_stage3_e1_descent.py
+@@ -21,7 +21,12 @@
+ import sys
+ from flint import fmpq_poly, fmpq, nmod_poly
+ 
+-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++sys.path.insert(0, CERTGEN)
+ from gen_system import build
+ 
+ # ---------------------------------------------------------------- K_5 setup
+@@ -40,7 +45,7 @@
+ ONE = fmpq_poly([1])
+ 
+ # ------------------------------------------------- Load K_5 point + system
+-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
+ 
+--- a/branch_c/scripts/branch_c_stage4_e0_descent.py
++++ b/branch_c/scripts/branch_c_stage4_e0_descent.py
+@@ -17,7 +17,12 @@
+ 
+ import json, sys
+ from flint import fmpq_poly, fmpq, nmod_poly
+-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++sys.path.insert(0, CERTGEN)
+ from gen_system import build
+ 
+ Rr = fmpq_poly([26, 0, 3, 3, -1, 1])
+@@ -28,7 +33,7 @@
+     g, s, _ = a.xgcd(Rr); assert g == 1; return s % Rr
+ ZERO = fmpq_poly([0]); ONE = fmpq_poly([1])
+ 
+-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
+ LP, LQ, eqs, tgt = build()
+--- a/branch_c/scripts/branch_c_stage5_e0_compatibility.py
++++ b/branch_c/scripts/branch_c_stage5_e0_compatibility.py
+@@ -12,7 +12,12 @@
+ 
+ import json, sys, subprocess, os
+ from flint import fmpq_poly, fmpq, nmod_poly
+-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++sys.path.insert(0, CERTGEN)
+ from gen_system import build
+ 
+ Rr = fmpq_poly([26, 0, 3, 3, -1, 1])
+@@ -23,7 +28,7 @@
+     g, s, _ = a.xgcd(Rr); assert g == 1; return s % Rr
+ ZERO = fmpq_poly([0]); ONE = fmpq_poly([1])
+ 
+-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
+ LP, LQ, eqs, tgt = build()
+@@ -412,7 +417,7 @@
+ # We need Omega coeffs: rerun the Stage-4 Omega computation briefly is heavy;
+ # instead check: does Psi alone (plus Omega from Stage 4 file) force t2=0?
+ # Write Singular script with Psi; Omega added if available.
+-sing_dir="/home/hatch/workspace"
++sing_dir=WORKDIR
+ # Save Psi as Singular poly in ring with K5 coeffs -> use mod-101 specialization for speed
+ psi101={}
+ for k,v in Psi.items():
+@@ -440,9 +445,9 @@
+ G;
+ """
+ open(os.path.join(sing_dir,"stage5_ideal.sing"),"w").write(singsrc)
+-r=subprocess.run(["/home/hatch/miniconda3/envs/cas/bin/Singular","-q",
++r=subprocess.run([SINGULAR,"-q",
+                   os.path.join(sing_dir,"stage5_ideal.sing")],
+-                 capture_output=True,text=True,timeout=300)
++                 capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=300)
+ print("Singular Groebner of <Psi> (mod 101):")
+ print(r.stdout[:2000])
+ if r.stderr: print("STDERR:",r.stderr[:500])
+--- a/branch_c/scripts/branch_c_stage6_e_minus1_obstruction.py
++++ b/branch_c/scripts/branch_c_stage6_e_minus1_obstruction.py
+@@ -12,7 +12,12 @@
+ 
+ import json, sys, os
+ from flint import fmpq_poly, fmpq, nmod_poly
+-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++sys.path.insert(0, CERTGEN)
+ from gen_system import build
+ 
+ Rr = fmpq_poly([26, 0, 3, 3, -1, 1])
+@@ -23,7 +28,7 @@
+     g, s, _ = a.xgcd(Rr); assert g == 1; return s % Rr
+ ZERO = fmpq_poly([0]); ONE = fmpq_poly([1])
+ 
+-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
+ LP, LQ, eqs, tgt = build()
+--- a/branch_c/scripts/branch_c_stage6b_phi12.py
++++ b/branch_c/scripts/branch_c_stage6b_phi12.py
+@@ -11,7 +11,12 @@
+ 
+ import json, sys
+ from flint import fmpq_poly, fmpq
+-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++sys.path.insert(0, CERTGEN)
+ from gen_system import build
+ 
+ Rr = fmpq_poly([26, 0, 3, 3, -1, 1])
+@@ -22,7 +27,7 @@
+     g, s, _ = a.xgcd(Rr); assert g == 1; return s % Rr
+ ZERO = fmpq_poly([0]); ONE = fmpq_poly([1])
+ 
+-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
+ LP, LQ, eqs, tgt = build()
+@@ -384,6 +389,6 @@
+ 
+ # Save Phi for ideal test
+ import pickle
+-with open("/home/hatch/workspace/stage6_phi.pkl","wb") as f:
++with open(_os.path.join(WORKDIR, "stage6_phi.pkl"),"wb") as f:
+     pickle.dump([[(k,[str(c) for c in v]) for k,v in Ph.items()] for Ph in Phi], f)
+ print("\nSTAGE 6b DONE")
+--- a/branch_c/scripts/branch_c_stage6c_e_minus2.py
++++ b/branch_c/scripts/branch_c_stage6c_e_minus2.py
+@@ -11,7 +11,12 @@
+ 
+ import json, sys
+ from flint import fmpq_poly, fmpq
+-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++sys.path.insert(0, CERTGEN)
+ from gen_system import build
+ 
+ Rr = fmpq_poly([26, 0, 3, 3, -1, 1])
+@@ -22,7 +27,7 @@
+     g, s, _ = a.xgcd(Rr); assert g == 1; return s % Rr
+ ZERO = fmpq_poly([0]); ONE = fmpq_poly([1])
+ 
+-d = json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++d = json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt = {v: K(c) for v, c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0": ONE, "b_2_1": ONE, "a_2_2": ONE})
+ LP, LQ, eqs, tgt = build()
+--- a/branch_c/scripts/branch_c_stage6d_weighted_sieve.py
++++ b/branch_c/scripts/branch_c_stage6d_weighted_sieve.py
+@@ -4,7 +4,12 @@
+ """
+ import json, sys, os, subprocess, pickle
+ from flint import fmpq_poly, fmpq
+-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++sys.path.insert(0, CERTGEN)
+ from gen_system import build
+ 
+ P_PRIME = 1000003
+@@ -23,7 +28,7 @@
+         pw=pw*W_ROOT%P_PRIME
+     return t
+ 
+-d=json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++d=json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt={v:K(c) for v,c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0":ONE,"b_2_1":ONE,"a_2_2":ONE})
+ LP,LQ,eqs,tgt=build()
+@@ -472,8 +477,8 @@
+ ideal G=groebner(I);
+ G;
+ """
+-open("/home/hatch/workspace/stage6d_prong1.sing","w").write(sing1)
+-r1=subprocess.run(["/home/hatch/miniconda3/envs/cas/bin/Singular","-q","/home/hatch/workspace/stage6d_prong1.sing"],capture_output=True,text=True,timeout=120)
++open(_os.path.join(WORKDIR, "stage6d_prong1.sing"),"w").write(sing1)
++r1=subprocess.run([SINGULAR,"-q",_os.path.join(WORKDIR, "stage6d_prong1.sing")],capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=120)
+ print("Singular Prong 1 output:")
+ print(r1.stdout[:1500])
+ if r1.stderr:print("ERR:",r1.stderr[:300])
+@@ -524,8 +529,8 @@
+ ideal G=slimgb(I);
+ G;
+ """
+-    open("/home/hatch/workspace/stage6d_prong2.sing","w").write(sing2)
+-    r2=subprocess.run(["/home/hatch/miniconda3/envs/cas/bin/Singular","-q","/home/hatch/workspace/stage6d_prong2.sing"],capture_output=True,text=True,timeout=300)
++    open(_os.path.join(WORKDIR, "stage6d_prong2.sing"),"w").write(sing2)
++    r2=subprocess.run([SINGULAR,"-q",_os.path.join(WORKDIR, "stage6d_prong2.sing")],capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=300)
+     print("Singular Prong 2 output (first 1500 chars):")
+     print(r2.stdout[:1500])
+     if r2.stderr:print("ERR:",r2.stderr[:300])
+--- a/branch_c/scripts/branch_c_stage6e_patch101.py
++++ b/branch_c/scripts/branch_c_stage6e_patch101.py
+@@ -4,7 +4,12 @@
+ """
+ import json, sys, subprocess
+ from flint import fmpq_poly, fmpq
+-sys.path.insert(0, "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++import os as _os, shutil as _shutil  # configurable paths (defaults = the original machine)
++CERTGEN = _os.environ.get("BRANCH_C_CERTGEN", "/home/hatch/workspace/v18/branch_ab_v19/lean/certgen")
++WORKDIR = _os.environ.get("BRANCH_C_WORKDIR", "/home/hatch/workspace")
++SINGULAR = _os.environ.get("SINGULAR", "/home/hatch/miniconda3/envs/cas/bin/Singular")
++if "SINGULAR" not in _os.environ and not _os.path.exists(SINGULAR): SINGULAR = _shutil.which("Singular") or SINGULAR
++sys.path.insert(0, CERTGEN)
+ from gen_system import build
+ 
+ P_PRIME = 101
+@@ -23,7 +28,7 @@
+         pw=pw*W_ROOT%P_PRIME
+     return t
+ 
+-d=json.load(open("/home/hatch/workspace/v18/branch_ab_v19/lean/certgen/e5_exact_K5.json"))
++d=json.load(open(_os.path.join(CERTGEN, "e5_exact_K5.json")))
+ pt={v:K(c) for v,c in d.items() if not v.startswith("_")}
+ pt.update({"a_1_0":ONE,"b_2_1":ONE,"a_2_2":ONE})
+ LP,LQ,eqs,tgt=build()
+@@ -474,10 +479,10 @@
+ ideal G=slimgb(I);
+ G;
+ """
+-    fn=f"/home/hatch/workspace/stage6e_prong2_k{ki}.sing"
++    fn=_os.path.join(WORKDIR, f"stage6e_prong2_k{ki}.sing")
+     open(fn,"w").write(sing)
+     print(f"  Running Singular...")
+-    r=subprocess.run(["/home/hatch/miniconda3/envs/cas/bin/Singular","-q",fn],capture_output=True,text=True,timeout=300)
++    r=subprocess.run([SINGULAR,"-q",fn],capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=300)
+     out=r.stdout.strip()
+     print(f"  Output (first 800 chars): {out[:800]}")
+     if "1" in out.split():

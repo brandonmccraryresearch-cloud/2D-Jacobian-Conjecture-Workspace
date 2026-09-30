@@ -1,0 +1,64 @@
+[guardrun 23:11:28] elapsed 0s  peak RSS 1 MB  cgroup anon 20 MB
+[guardrun 23:11:39] elapsed 10s  peak RSS 1843 MB  cgroup anon 307 MB
+[guardrun 23:11:49] elapsed 20s  peak RSS 1843 MB  cgroup anon 307 MB
+✔ [684/720] Replayed Mathlib.Order.Nat
+✔ [685/720] Replayed Mathlib.Data.Rat.Cast.Defs
+✔ [686/720] Replayed Mathlib.Data.Rat.Cast.CharZero
+✔ [687/720] Replayed Mathlib.Tactic.HaveI
+✔ [688/720] Replayed Mathlib.Lean.Expr.Rat
+✔ [689/720] Replayed Mathlib.Tactic.NormNum.Result
+✔ [690/720] Replayed Mathlib.Util.Qq
+✔ [691/720] Replayed Mathlib.Tactic.NormNum.Core
+✔ [692/720] Replayed Mathlib.Tactic.NormNum.Basic
+✔ [693/720] Replayed Mathlib.Tactic.NormNum.Inv
+✔ [694/720] Replayed Mathlib.Tactic.NormNum.Pow
+✔ [695/720] Replayed Mathlib.Tactic.Ring.Common
+✔ [696/720] Replayed Mathlib.Tactic.Ring.Basic
+✔ [697/720] Replayed Mathlib.Algebra.Order.Monoid.Unbundled.ExistsOfLE
+✔ [698/720] Replayed Mathlib.Algebra.Order.Monoid.NatCast
+✔ [699/720] Replayed Mathlib.Algebra.Order.Monoid.Unbundled.MinMax
+✔ [700/720] Replayed Mathlib.Algebra.Order.Ring.Unbundled.Basic
+✔ [701/720] Replayed Mathlib.Algebra.Order.Monoid.Defs
+✔ [702/720] Replayed Mathlib.Algebra.Order.Group.Defs
+✔ [703/720] Replayed Mathlib.Algebra.Order.Ring.Defs
+✔ [704/720] Replayed Mathlib.Algebra.Order.Positive.Ring
+✔ [705/720] Replayed Mathlib.Algebra.Order.Monoid.Canonical.Defs
+✔ [706/720] Replayed Mathlib.Algebra.Order.Group.Nat
+✔ [707/720] Replayed Mathlib.Algebra.Group.WithOne.Defs
+✔ [708/720] Replayed Mathlib.Data.Option.NAry
+✔ [709/720] Replayed Mathlib.Algebra.Group.WithOne.Map
+✔ [710/720] Replayed Mathlib.Algebra.GroupWithZero.Regular
+✔ [711/720] Replayed Mathlib.Algebra.GroupWithZero.Equiv
+✔ [712/720] Replayed Mathlib.Algebra.GroupWithZero.WithZero
+✔ [713/720] Replayed Mathlib.Order.TypeTags
+✔ [714/720] Replayed Mathlib.Order.WithBot
+✔ [715/720] Replayed Mathlib.Algebra.Order.Monoid.Unbundled.WithTop
+✔ [716/720] Replayed Mathlib.Algebra.Order.Monoid.WithTop
+✔ [717/720] Replayed Mathlib.Algebra.Regular.Basic
+✔ [718/720] Replayed Mathlib.Algebra.Order.AddGroupWithTop
+✔ [719/720] Replayed Mathlib.Algebra.Order.Group.Int
+✔ [720/739] Ran job computation
+✔ [721/739] Replayed Mathlib.Algebra.Order.Monoid.Units
+✔ [722/739] Replayed Mathlib.Algebra.Order.Group.Units
+✔ [723/739] Replayed Mathlib.Algebra.Order.Monoid.OrderDual
+✔ [724/739] Replayed Mathlib.Algebra.Order.Monoid.Unbundled.TypeTags
+✔ [725/739] Replayed Mathlib.Algebra.Order.Monoid.TypeTags
+✔ [726/739] Replayed Mathlib.Algebra.Order.GroupWithZero.Canonical
+✔ [727/739] Replayed Mathlib.Algebra.Order.Ring.Nat
+✔ [728/739] Replayed Mathlib.Algebra.Order.Sub.Unbundled.Basic
+✔ [729/739] Replayed Mathlib.Algebra.Order.Sub.Basic
+✔ [730/739] Replayed Mathlib.Data.PNat.Equiv
+✔ [731/739] Replayed Mathlib.Data.PNat.Basic
+✔ [732/739] Replayed Mathlib.Tactic.Ring.PNat
+✔ [733/739] Replayed Mathlib.Tactic.TryThis
+✔ [734/739] Replayed Mathlib.Util.AtomM.Recurse
+✔ [735/739] Replayed Mathlib.Tactic.Ring.RingNF
+✔ [736/739] Replayed Mathlib.Tactic.Ring
+ℹ [737/739] Replayed Jacobian.ChartProof.Reflect
+trace: .> LEAN_PATH=/home/claude/build/jacobian_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/build/lib/lean /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lean /home/claude/build/jacobian_lean/Jacobian/ChartProof/Reflect.lean -o /home/claude/build/jacobian_lean/.lake/build/lib/lean/Jacobian/ChartProof/Reflect.olean -i /home/claude/build/jacobian_lean/.lake/build/lib/lean/Jacobian/ChartProof/Reflect.ilean -c /home/claude/build/jacobian_lean/.lake/build/ir/Jacobian/ChartProof/Reflect.c --setup /home/claude/build/jacobian_lean/.lake/build/ir/Jacobian/ChartProof/Reflect.setup.json --json
+ℹ [738/739] Replayed Jacobian.BranchC.T1Zero.Defs
+trace: .> LEAN_PATH=/home/claude/build/jacobian_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/build/lib/lean /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lean /home/claude/build/jacobian_lean/Jacobian/BranchC/T1Zero/Defs.lean -o /home/claude/build/jacobian_lean/.lake/build/lib/lean/Jacobian/BranchC/T1Zero/Defs.olean -i /home/claude/build/jacobian_lean/.lake/build/lib/lean/Jacobian/BranchC/T1Zero/Defs.ilean -c /home/claude/build/jacobian_lean/.lake/build/ir/Jacobian/BranchC/T1Zero/Defs.c --setup /home/claude/build/jacobian_lean/.lake/build/ir/Jacobian/BranchC/T1Zero/Defs.setup.json --json
+ℹ [739/739] Built Jacobian.BranchC.T1Zero.F_Theta2 (23s)
+trace: .> LEAN_PATH=/home/claude/build/jacobian_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/claude/build/jacobian_lean/.lake/build/lib/lean /root/.elan/toolchains/leanprover--lean4---v4.34.0/bin/lean /home/claude/build/jacobian_lean/Jacobian/BranchC/T1Zero/F_Theta2.lean -o /home/claude/build/jacobian_lean/.lake/build/lib/lean/Jacobian/BranchC/T1Zero/F_Theta2.olean -i /home/claude/build/jacobian_lean/.lake/build/lib/lean/Jacobian/BranchC/T1Zero/F_Theta2.ilean -c /home/claude/build/jacobian_lean/.lake/build/ir/Jacobian/BranchC/T1Zero/F_Theta2.c --setup /home/claude/build/jacobian_lean/.lake/build/ir/Jacobian/BranchC/T1Zero/F_Theta2.setup.json --json
+Build completed successfully (739 jobs).
+[guardrun] exit 0  24.1s  peak RSS 1843 MB  cgroup anon peak 563 MB

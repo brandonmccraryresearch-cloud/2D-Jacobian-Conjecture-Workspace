@@ -1,0 +1,22 @@
+generators on the chart (K5-terms): {'Psi': 22, 'Phi1': 35, 'Phi2': 35, 'Theta1': 52, 'Theta2': 52, 'Theta3': 52}
+
+=== p = 1000003, w0 = 806739: every coefficient p-integral; R(w0) = 0 mod p
+chart generators: exact K5 substitution then reduction == reduction then substitution (independent code path, from conds_c.json): True
+W=22: 2281 rows x 3934 cols, rank 2277, augmented 2278: not full row rank, inconsistent  (6.7s)
+W=23: 2708 rows x 4904 cols, rank 2707, augmented 2708: not full row rank, inconsistent  (11.4s)
+W=24: 3199 rows x 6054 cols, rank 3199, augmented 3199: FULL ROW RANK, consistent  (18.9s)
+W=24 independent check (numpy elimination of the 3199 x 3199 pivot block): square and det != 0 mod p: True  (136.4s)
+control (planted common zero (540939, 694078, 335685, 546538, 181733)): W=24 rank 3198 of 3199 rows, augmented 3199: not full rank and inconsistent, AS REQUIRED
+p = 1000003: full row rank at W = 24 (proves 1 in <F> over K5); controls pass
+
+=== p = 32003, w0 = 11147: every coefficient p-integral; R(w0) = 0 mod p
+chart generators: exact K5 substitution then reduction == reduction then substitution (independent code path, from conds_c.json): True
+W=22: 2281 rows x 3934 cols, rank 2277, augmented 2278: not full row rank, inconsistent  (6.3s)
+W=23: 2708 rows x 4904 cols, rank 2707, augmented 2708: not full row rank, inconsistent  (11.2s)
+W=24: 3199 rows x 6054 cols, rank 3199, augmented 3199: FULL ROW RANK, consistent  (18.9s)
+W=24 independent check (numpy elimination of the 3199 x 3199 pivot block): square and det != 0 mod p: True  (135.7s)
+control (planted common zero (18396, 23845, 2492, 4242, 9808)): W=24 rank 3198 of 3199 rows, augmented 3199: not full rank and inconsistent, AS REQUIRED
+p = 32003: full row rank at W = 24 (proves 1 in <F> over K5); controls pass
+
+ALL: PASS
+[guardrun] exit 0  384.3s  peak RSS 494 MB  cgroup anon peak 5041 MB

@@ -1,0 +1,80 @@
+== toolchain
+Lean (version 4.34.0, x86_64-unknown-linux-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)
+== Mathlib (pinned: 5ed2965256430c3649e86755f9576b54eca72435)
+Current branch: HEAD
+Using cache from origin: (some leanprover-community/mathlib4)
+Attempting to download 2 file(s) from leanprover-community/mathlib4 cache at https://cache.mathlib.org/mathlib4-master
+Downloaded: 0 file(s) [attempted 1/2 = 50%, 0 KB/s], Decompressed: 0[KDownloaded: 0 file(s) [attempted 2/2 = 100%, 0 KB/s], Decompressed: 0[K
+Attempting to download 2 file(s) from leanprover-community/mathlib4 cache at https://cache.mathlib.org/mathlib4
+Downloaded: 0 file(s) [attempted 1/2 = 50%, 0 KB/s], Decompressed: 0[KDownloaded: 0 file(s) [attempted 2/2 = 100%, 0 KB/s], Decompressed: 0[K
+Warning: some files were not found in the cache.
+This usually means that your local checkout of mathlib4 has diverged from upstream.
+
+  * If you push your commits to a PR to the mathlib4 repository
+    (use a draft PR if it is not ready for review),
+    then CI will build the oleans and they will be available later.
+  * If you have already opened a PR, this may mean
+    the CI build has failed part-way through building.
+Decompressed 0 file(s)
+Already decompressed 8906 file(s)
+== certgen dependencies
+python-flint 0.9.0
+PARI/GP: [0;35m[2, 15, 4][0m
+== chart-system CAS check dependency (optional)
+Singular: /usr/bin/Singular
+== setup done
+
+######## 1. Lean build + sorry/axiom audit
+project: /tmp/claude-0/-home-user-2D-Jacobian-Conjecture-Workspace/80a198a2-ca86-5505-a8f8-9f0bd5b1a819/scratchpad/lean/fixed/jacobian_lean
+=== 1. lake build (full project) ===
+lake build exit status: 0
+PASS: build clean
+=== 2. sorry/admit/native_decide/user-axiom scan (all sources, comments stripped) ===
+PASS: no sorry, no admit, no native_decide, no user-declared axioms
+=== 3. #print axioms ===
+'t_zero_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+'minor_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'only_zero_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'t_zero_case_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+'t_zero_case_fails_char3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'minor_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+'eval_minorPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'no_nonzero_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_triangular' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layer_bracket' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_yev' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_layerTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_sc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layerTerm_sc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.Descent.descent_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.no_completion_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.top_layer_E5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_K5_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.latticeNP_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.latticeNQ_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.vertices_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.X1_pow_mul_layerPiece' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.eq_sum_layerPiece' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_layerPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_of_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.no_completion_K5_PQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.belyi_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layerTerm_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.orbit_solves_E5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.main_theorem_of_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.chart_K5_identities' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.chart_point_solves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.topLayerClassification_of_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.main_theorem_of_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: all 40 theorems depend only on propext, Classical.choice, Quot.sound
+=== ALL CHECKS PASSED ===
+
+######## 2. certificate regeneration + PARI/GP
+Terminated
+=== run_all stopped during step 2 for packaging (user request). Step 1: ALL CHECKS PASSED (40/40 theorems, standard axioms). check_regeneration.sh (incl. the chart module) passed in a separate run this session; the chart negative control (neg_chart_point) was run separately and REJECTED as expected; mod-p CAS results are in logs/chart_cas.log.

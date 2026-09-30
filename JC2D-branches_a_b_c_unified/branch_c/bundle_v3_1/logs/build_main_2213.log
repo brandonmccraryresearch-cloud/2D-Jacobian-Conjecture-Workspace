@@ -1,0 +1,27 @@
+== Jacobian.BranchC.Descent2R.Main  22:13:28
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _b_11_21
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Jacobian/BranchC/CondsC.lean:451:75: Variable name `a_6_13` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _a_6_13
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Jacobian/BranchC/CondsC.lean:451:82: Variable name `a_7_15` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _a_7_15
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Jacobian/BranchC/CondsC.lean:451:89: Variable name `b_10_21` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _b_10_21
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (1243 jobs).
+[guardrun] exit 0  2297.8s  peak RSS 3336 MB  cgroup anon peak 0 MB
+ALL OK 22:51:46

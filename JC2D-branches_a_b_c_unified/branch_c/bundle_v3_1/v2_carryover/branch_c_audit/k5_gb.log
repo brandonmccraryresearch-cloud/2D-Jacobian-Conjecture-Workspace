@@ -1,0 +1,10 @@
+=== patch B (K5, fix) start 17:51:31
+size(G)=1
+1
+secs=6
+exit=0 end 17:51:37
+=== patch A (K5, fix) start 17:51:37
+
+halt 1
+exit=1 end 19:14:29
+=== killed patch A K5 run at 19:14:30 after ~83 min (superseded by chart t2=1: t2 != 0 is now formal, Edge19.vertex_12_24_forces_t2)

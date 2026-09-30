@@ -1,0 +1,6 @@
+[guardrun 23:26:37] elapsed 0s  peak RSS 0 MB  cgroup anon 22 MB
+[guardrun 23:26:48] elapsed 10s  peak RSS 1797 MB  cgroup anon 133 MB
+[guardrun 23:26:58] elapsed 20s  peak RSS 1799 MB  cgroup anon 133 MB
+[guardrun 23:27:08] elapsed 31s  peak RSS 1801 MB  cgroup anon 133 MB
+[guardrun 23:27:18] elapsed 41s  peak RSS 4796 MB  cgroup anon 311 MB
+[guardrun 23:27:29] elapsed 51s  peak RSS 4974 MB  cgroup anon 540 MB

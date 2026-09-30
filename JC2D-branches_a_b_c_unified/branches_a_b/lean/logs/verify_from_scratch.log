@@ -1,0 +1,34 @@
+project: /tmp/claude-0/-home-user-2D-Jacobian-Conjecture-Workspace/80a198a2-ca86-5505-a8f8-9f0bd5b1a819/scratchpad/lean/clean3/jacobian_lean
+=== 1. lake build (full project) ===
+lake build exit status: 0
+PASS: build clean
+=== 2. sorry/admit/user-axiom scan (all sources, comments stripped) ===
+PASS: no sorry, no admit, no user-declared axioms
+=== 3. #print axioms ===
+'t_zero_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+'minor_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'only_zero_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'t_zero_case_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+'t_zero_case_fails_char3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'minor_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+'eval_minorPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'no_nonzero_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_triangular' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layer_bracket' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_yev' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_layerTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_sc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layerTerm_sc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.Descent.descent_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.no_completion_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.top_layer_E5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_K5_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: all 24 theorems depend only on propext, Classical.choice, Quot.sound
+=== ALL CHECKS PASSED ===
+VERIFY_EXIT=0 elapsed=892s peakMB=7764 warnings=0

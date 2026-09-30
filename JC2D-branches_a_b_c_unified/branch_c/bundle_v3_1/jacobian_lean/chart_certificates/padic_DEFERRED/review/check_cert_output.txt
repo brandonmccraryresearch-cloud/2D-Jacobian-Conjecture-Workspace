@@ -1,0 +1,37 @@
+E1 ok: Omega = o1 (S2 - kappa T2^2)^2 exactly, o1 != 0
+E2 ok: weights {'Psi': 5, 'Phi1': 6, 'Phi2': 6, 'Theta1': 7, 'Theta2': 7, 'Theta3': 7} (Sq: 2)
+E3 ok: no Q^k or constant monomial in Sq, Psi, Phi1, Phi2, Theta1..3
+E4 ok: Jacobian rank at the vertex over K5 = 5 < 6 (weight-5 conditions: ['Psi'], so the T-columns have rank <= 1)
+p=1000003, r=806739: P0 ok (simple root), P1 ok (p-integral)
+   P2 T1^14 in J6|Q=0 : exact True, random-eval True  (1005 cofactor terms)
+   P2 T2^14 in J6|Q=0 : exact True, random-eval True  (961 cofactor terms)
+   P2 S1^7 in J6|Q=0 : exact True, random-eval True  (1005 cofactor terms)
+   P2 S2^7 in J6|Q=0 : exact True, random-eval True  (962 cofactor terms)
+   P2 R1^5 in J6|Q=0 : exact True, random-eval True  (1279 cofactor terms)
+   P2 R2^5 in J6|Q=0 : exact True, random-eval True  (1154 cofactor terms)
+   P3      T1-73988*T2 in J6|Q=1 : exact True, random-eval True  (20200 cofactor terms)
+   P3               S1 in J6|Q=1 : exact True, random-eval True  (15083 cofactor terms)
+   P3               S2 in J6|Q=1 : exact True, random-eval True  (15083 cofactor terms)
+   P3               R1 in J6|Q=1 : exact True, random-eval True  (10622 cofactor terms)
+   P3               R2 in J6|Q=1 : exact True, random-eval True  (10622 cofactor terms)
+   P3             T2^2 in J6|Q=1 : exact True, random-eval True  (15083 cofactor terms)
+   P3 structure ok: (T1 - c T2, S1, S2, R1, R2, T2^2) inside J6|Q=1  =>  dim_k k[x]/(J6|Q=1) <= 2
+p=1000003: ALL CHECKS PASSED
+p=32003, r=11147: P0 ok (simple root), P1 ok (p-integral)
+   P2 T1^14 in J6|Q=0 : exact True, random-eval True  (1005 cofactor terms)
+   P2 T2^14 in J6|Q=0 : exact True, random-eval True  (961 cofactor terms)
+   P2 S1^7 in J6|Q=0 : exact True, random-eval True  (1005 cofactor terms)
+   P2 S2^7 in J6|Q=0 : exact True, random-eval True  (962 cofactor terms)
+   P2 R1^5 in J6|Q=0 : exact True, random-eval True  (1279 cofactor terms)
+   P2 R2^5 in J6|Q=0 : exact True, random-eval True  (1154 cofactor terms)
+   P3        T1-859*T2 in J6|Q=1 : exact True, random-eval True  (20199 cofactor terms)
+   P3               S1 in J6|Q=1 : exact True, random-eval True  (15083 cofactor terms)
+   P3               S2 in J6|Q=1 : exact True, random-eval True  (15083 cofactor terms)
+   P3               R1 in J6|Q=1 : exact True, random-eval True  (10622 cofactor terms)
+   P3               R2 in J6|Q=1 : exact True, random-eval True  (10620 cofactor terms)
+   P3             T2^2 in J6|Q=1 : exact True, random-eval True  (15083 cofactor terms)
+   P3 structure ok: (T1 - c T2, S1, S2, R1, R2, T2^2) inside J6|Q=1  =>  dim_k k[x]/(J6|Q=1) <= 2
+p=32003: ALL CHECKS PASSED
+control, perturbed cofactor (P2:T1): check returns False (expected False)
+control, perturbed cofactor (P3:S1): check returns False (expected False)
+control, certificate checked at the wrong root of R mod 32003: check returns False (expected False)

@@ -1,0 +1,5 @@
+=== patch A over Q[w] start 18:06:43
+
+halt 1
+exit=1 end 18:19:55
+=== killed Q[w] run at 18:19:55 (RSS>3.2GB, redundant with K5 minpoly run)

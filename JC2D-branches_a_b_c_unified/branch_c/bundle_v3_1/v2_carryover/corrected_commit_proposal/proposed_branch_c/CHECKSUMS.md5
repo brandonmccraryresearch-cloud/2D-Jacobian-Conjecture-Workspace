@@ -1,0 +1,14 @@
+5fb6e75caf27c815996c18d67f14487f  ./README.md
+d0bcd6e01af837c9a936e814d8fe9c99  ./scripts/branch_c_stage1_setup.py
+6f92435d189e5a7fe56b0cf449dc03cc  ./scripts/branch_c_stage2_e2_operator.py
+fde8cfeecffa2338627ff3c6fe0e13e0  ./scripts/branch_c_stage3_e1_descent.py
+991dd3be9c05ec44c199071fd5d70112  ./scripts/branch_c_stage4_e0_descent.py
+96e559cf3c288deffad7d2d540d75acf  ./scripts/branch_c_stage5_e0_compatibility.py
+d3eb83c9361af47d0b7f1bd15b556021  ./scripts/branch_c_stage6_e_minus1_obstruction.py
+11ea97420277a4339b215b9e19b4179d  ./scripts/branch_c_stage6b_phi12.py
+d569d39ed61f7b63b77a40544aa88f28  ./scripts/branch_c_stage6c_e_minus2.py
+6f62c5b7ceb0184eb43d638c6206b4a4  ./scripts/branch_c_stage6d_weighted_sieve.py
+0a036e6f3dc5212a985e6e632d1db4b3  ./scripts/branch_c_stage6e_patch101.py
+3789c0ff54180ecfe8e4138a61162db7  ./scripts/stage6d_prong1.sing
+b9ed47cce2fafdbc416e936b408b0035  ./scripts/stage6e_prong2_k0.sing
+e89c3051096d168e3e60245e0a252ac1  ./verify_branch_c.sh

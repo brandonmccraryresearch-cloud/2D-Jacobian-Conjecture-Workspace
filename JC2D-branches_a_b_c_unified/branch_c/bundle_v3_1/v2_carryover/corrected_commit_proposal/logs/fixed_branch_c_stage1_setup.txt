@@ -1,0 +1,70 @@
+======================================================================
+BRANCH (c) STAGE 1 — LATTICE CENSUS (GGHV Prop 4.3(1))
+======================================================================
+|N(P) ∩ Z^2| = 61   (Pick's theorem: 61, match=True)
+|N(Q) ∩ Z^2| = 125   (Pick's theorem: 125, match=True)
+TOTAL UNKNOWNS (coeffs of P and Q) = 186
+
+----------------------------------------------------------------------
+LAYER DECOMPOSITION  (u = x*y^2,  x^i y^j = y^{-(2i-j)} u^i)
+----------------------------------------------------------------------
+P layers: k = 2i - j ∈ [-8, 2]  →  11 layers
+Q layers: l = 2i - j ∈ [-12, 3]  →  16 layers
+
+P layer inventory (k: sorted u-exponents i in A_k):
+  k= -8:  1 monomials, u-exponents 0..0
+  k= -7:  2 monomials, u-exponents 0..1
+  k= -6:  3 monomials, u-exponents 0..2
+  k= -5:  4 monomials, u-exponents 0..3
+  k= -4:  5 monomials, u-exponents 0..4
+  k= -3:  6 monomials, u-exponents 0..5
+  k= -2:  7 monomials, u-exponents 0..6
+  k= -1:  8 monomials, u-exponents 0..7
+  k=  0:  9 monomials, u-exponents 0..8
+  k=  1:  8 monomials, u-exponents 1..8
+  k=  2:  8 monomials, u-exponents 1..8
+
+Q layer inventory (l: sorted u-exponents i in B_l):
+  l=-12:  1 monomials, u-exponents 0..0
+  l=-11:  2 monomials, u-exponents 0..1
+  l=-10:  3 monomials, u-exponents 0..2
+  l= -9:  4 monomials, u-exponents 0..3
+  l= -8:  5 monomials, u-exponents 0..4
+  l= -7:  6 monomials, u-exponents 0..5
+  l= -6:  7 monomials, u-exponents 0..6
+  l= -5:  8 monomials, u-exponents 0..7
+  l= -4:  9 monomials, u-exponents 0..8
+  l= -3: 10 monomials, u-exponents 0..9
+  l= -2: 11 monomials, u-exponents 0..10
+  l= -1: 12 monomials, u-exponents 0..11
+  l=  0: 13 monomials, u-exponents 0..12
+  l=  1: 12 monomials, u-exponents 1..12
+  l=  2: 11 monomials, u-exponents 2..12
+  l=  3: 11 monomials, u-exponents 2..12
+
+----------------------------------------------------------------------
+TOP-LAYER E_5 IDENTITY CHECK vs BRANCH (a,b)
+----------------------------------------------------------------------
+Branch (c) top P-layer A_2 u-exponents: [1, 2, 3, 4, 5, 6, 7, 8]
+Branch (a,b) top P-layer A_2 u-exponents: [1, 2, 3, 4, 5, 6, 7, 8]
+Branch (c) top Q-layer B_3 u-exponents: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+Branch (a,b) top Q-layer B_3 u-exponents: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+A_2 support identical: True
+B_3 support identical: True
+
+E_5 (y^{-4}) slice: top vertices (8,16),(8,14),(12,24),(12,21) are
+present in Branch (c) lattice sets: True True True True
+
+----------------------------------------------------------------------
+DESCENT DEPTH SUMMARY
+----------------------------------------------------------------------
+P: 11 layers (k=-8..2) vs (a,b): 3 layers (k=0..2)
+Q: 16 layers (l=-12..3) vs (a,b): 4 layers (l=0..3)
+New deep layers from the vertical walls: P k<0 (8 layers), Q l<0 (12 layers)
+
+Stage 1 complete: census + layer structure established.
+Next (Stage 2): expand [P,Q] = u^2 y^{-4} layer by layer; the E_5
+equation is the Davenport–Stothers system already classified in v19 §6.
+
+SUMMARY: {'nP': 61, 'nQ': 125, 'total': 186, 'k_range': (-8, 2), 'l_range': (-12, 3), 'E5_P_match': True, 'E5_Q_match': True}
+exit=0 secs=1

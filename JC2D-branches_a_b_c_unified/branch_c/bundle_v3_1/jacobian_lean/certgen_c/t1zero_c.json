@@ -1,0 +1,41 @@
+{
+ "modules": [
+  "Jacobian.BranchC.T1Zero.Defs",
+  "Jacobian.BranchC.T1Zero.Sq",
+  "Jacobian.BranchC.T1Zero.F_Psi",
+  "Jacobian.BranchC.T1Zero.F_Phi1",
+  "Jacobian.BranchC.T1Zero.F_Phi2",
+  "Jacobian.BranchC.T1Zero.F_Theta1",
+  "Jacobian.BranchC.T1Zero.F_Theta2",
+  "Jacobian.BranchC.T1Zero.F_Theta3",
+  "Jacobian.BranchC.T1Zero.P_Psi",
+  "Jacobian.BranchC.T1Zero.P_Phi1",
+  "Jacobian.BranchC.T1Zero.P_Phi2",
+  "Jacobian.BranchC.T1Zero.P_Theta1",
+  "Jacobian.BranchC.T1Zero.P_Theta2",
+  "Jacobian.BranchC.T1Zero.P_Theta3",
+  "Jacobian.BranchC.T1Zero.Final",
+  "Jacobian.BranchC.T1Zero.Main"
+ ],
+ "estimates": {
+  "s_sq": 570,
+  "s_X2": 1530,
+  "s_f_Psi": 2898,
+  "s_f_Phi1": 5462,
+  "s_f_Phi2": 5462,
+  "s_f_Theta1": 8298,
+  "s_f_Theta2": 8298,
+  "s_f_Theta3": 8298,
+  "s_p_Psi": 120800,
+  "s_p_Phi1": 308820,
+  "s_p_Phi2": 287250,
+  "s_p_Theta1": 320100,
+  "s_p_Theta2": 320100,
+  "s_p_Theta3": 225150,
+  "s_final": 4110
+ },
+ "DD_digits": 5387,
+ "Dk": 851565312,
+ "cB": "5666092928185191726440014722100977435619439998159943795642356442307763438351374984038613377113555861738522742888387114004995112078010274469381222990240",
+ "DO": 195371899102028656710782665720896745816500853623704150917911953778035808712374128077701120
+}

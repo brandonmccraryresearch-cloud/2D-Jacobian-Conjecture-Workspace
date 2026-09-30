@@ -1,0 +1,34 @@
+======================================================================
+PART 1: THE E_2 HYPERSURFACE H(t,s)
+======================================================================
+E_4: 18x19, kernel dim 2
+E_3: 19x20, kernel dim 2
+E_3 particular solution: 17 variables have nonzero quadratic part
+RHS_{E_2}: u-exponents [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+W_1: nonzero on u-exponents [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+H(t,s) has 0 monomials in (t1,t2,s1,s2):
+
+b(t) monomials: 0, degrees: []
+s1*M(t) monomials: 0
+s2*L(t) monomials: 0
+other (nonlinear in s): 0
+M(t) identically zero: True
+L(t) identically zero: True
+
+======================================================================
+PART 2: THE E_1 LAYER OPERATOR
+======================================================================
+E_1 operator: u-exponents 0..18 (19 equations)
+Unknowns: 7 (A_{-2}) + 12 (B_{-1}) = 19
+Rank over K_5 (exact): 18
+Left nullspace dimension: 1
+Kernel dimension (new params): 1
+Rank mod 101: 18
+
+======================================================================
+STAGE 3 SUMMARY
+======================================================================
+H(t,s): 0 monomials; b(t) cubic: 0 terms; M==0: True; L==0: True; nonlinear-in-s: 0
+E_1: 19x19, rank 18, left nullity 1, kernel dim 1
+exit=0 secs=0

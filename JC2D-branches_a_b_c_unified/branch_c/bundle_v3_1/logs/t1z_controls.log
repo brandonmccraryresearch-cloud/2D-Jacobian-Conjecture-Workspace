@@ -1,0 +1,7 @@
+C1_Sq_bezout: exit 1; FAILS AS REQUIRED | /tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C1_Sq_bezout.lean:24:8298: error: Tactic `de
+C2_FPsi_drop_eT1: exit 1; FAILS AS REQUIRED | /tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C2_FPsi_drop_eT1.lean:19:39503: error: Tacti
+C3_PPsi_coeff: exit 1; FAILS AS REQUIRED | /tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C3_PPsi_coeff.lean:23:1471054: error: Tactic
+C4_Final_DDplus1: exit 1; FAILS AS REQUIRED | /tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C4_Final_DDplus1.lean:24:5559: error: Tactic
+C5_Sq_drop_eT2: exit 1; FAILS AS REQUIRED | /tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/t1z_ctl/C5_Sq_drop_eT2.lean:19:2839: error: Tactic `
+controls: ALL FAIL AS REQUIRED
+[guardrun] exit 0  90.9s  peak RSS 1870 MB  cgroup anon peak 1393 MB

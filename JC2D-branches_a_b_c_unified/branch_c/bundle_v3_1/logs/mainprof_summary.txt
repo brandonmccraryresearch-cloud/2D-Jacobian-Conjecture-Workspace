@@ -1,0 +1,14 @@
+Profile of Jacobian/BranchC/Descent2R/Main.lean truncated after N body statements (then `sorry`; scratch test only,
+not part of the project), with `set_option profiler true`, 2026-09-29 ~22:47-22:50 CDT, while the real Main was
+compiling on the other core.
+
+  N = 60   tactic execution 3.11 s   typeclass inference 1.47 s   type checking 333 ms   elaboration 213 ms   (10.2 s wall)
+  N = 120  tactic execution 10.2 s   typeclass inference 1.44 s   type checking 425 ms   elaboration 221 ms   (17.5 s wall)
+  N = 240  tactic execution 69.5 s   typeclass inference 1.49 s   type checking 749 ms   elaboration 214 ms   (77.3 s wall)
+
+Statements 0-152 are `let ctx`, the eR/et_* facts and the 132 raw-equation conversions `have f_eh… := h…`
+(~0.1 s each). From statement 153 on they are step-theorem applications `have f_X := s_Y ctx f_a …` and
+`cancel_int … (by decide) (…)`. Each takes ~2.3-2.5 s ("tactic execution of Lean.Parser.Tactic.refine took 2.38s").
+The whole Main (753 statements) took 2,298 s in `lake build`, 3.34 GB peak. The kernel check is not the bottleneck
+(type checking < 1 s at N = 240).
+Test files: profiling/Main_60.lean, Main_120.lean, Main_240.lean.

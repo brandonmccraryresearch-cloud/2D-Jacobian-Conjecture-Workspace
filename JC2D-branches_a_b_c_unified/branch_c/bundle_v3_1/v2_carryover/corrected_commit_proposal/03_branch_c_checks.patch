@@ -1,0 +1,46 @@
+--- a/branch_c/scripts/branch_c_stage6d_weighted_sieve.py
++++ b/branch_c/scripts/branch_c_stage6d_weighted_sieve.py
+@@ -295,9 +295,10 @@
+     for k,v in RHS1[e].items():Omega[k]=(Omega.get(k,ZERO)+wv*v)%Rr
+ Omega={k:v for k,v in Omega.items() if v!=ZERO}
+ print(f"Omega: {len(Omega)} terms")
+-c1=to_mod(Omega.get((0,0,0,2,0,0),ZERO))
+-c2=to_mod(Omega.get((0,2,0,1,0,0),ZERO))
+-c3=to_mod(Omega.get((0,4,0,0,0,0),ZERO))
++c1=to_mod(Omega.get((0,0,0,2,0,0,0),ZERO))
++c2=to_mod(Omega.get((0,2,0,1,0,0,0),ZERO))
++c3=to_mod(Omega.get((0,4,0,0,0,0,0),ZERO))
++assert not (c1==0 and c2==0 and c3==0), "Omega degenerate mod p (wrong keys?)"
+ print(f"  c1={c1}, c2={c2}, c3={c3} (mod {P_PRIME})")
+ # kappa roots: c1*k^2 + c2*k + c3 = 0
+ disc=(c2*c2-4*c1*c3)%P_PRIME
+@@ -536,6 +537,7 @@
+     # Omega substituted should vanish; verify
+     om_sub=subst_prong2({k:v for k,v in Omega.items()})
+     print(f"  Omega substituted terms (should be 0): {len(om_sub)}")
++    assert len(om_sub)==0, "kappa is not a root of Omega"
+     sing2=f"""ring R={P_PRIME},(t2,s1,r1,r2,q),wp(1,2,3,3,4);
+ ideal I={','.join(p2_polys)};
+ ideal G=slimgb(I);
+@@ -545,6 +547,7 @@
+     r2=subprocess.run([SINGULAR,"-q",_os.path.join(WORKDIR, "stage6d_prong2.sing")],capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=300)
+     print("Singular Prong 2 output (first 1500 chars):")
+     print(r2.stdout[:1500])
++    print(f"  G = <1>: {r2.stdout.strip().split(chr(10))[0].replace(' ','')=='G[1]=1'}")
+     if r2.stderr:print("ERR:",r2.stderr[:300])
+ 
+ print("\nSTAGE 6d DONE")
+--- a/branch_c/scripts/branch_c_stage6e_patch101.py
++++ b/branch_c/scripts/branch_c_stage6e_patch101.py
+@@ -497,9 +497,8 @@
+     r=subprocess.run([SINGULAR,"-q",fn],capture_output=True,text=True,stdin=subprocess.DEVNULL,timeout=300)
+     out=r.stdout.strip()
+     print(f"  Output (first 800 chars): {out[:800]}")
+-    if "1" in out.split():
+-        # check if G[1]=1 or similar
+-        print("  *** CONTAINS 1? Check manually ***")
++    # (the old test `"1" in out.split()` never fired: the output token is "G[1]=1")
++    print(f"  G = <1>: {out.split(chr(10))[0].replace(' ','')=='G[1]=1'}")
+     if r.stderr:print(f"  ERR: {r.stderr[:200]}")
+ 
+ print("\nSTAGE 6e DONE")
