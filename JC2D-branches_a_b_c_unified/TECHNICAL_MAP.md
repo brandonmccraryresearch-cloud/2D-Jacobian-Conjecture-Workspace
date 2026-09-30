@@ -288,8 +288,9 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
 1. **Branch-(c) correspondence guide** — conditional to-do, NOT started:
    `TODO_correspondence_guide.md`. Created only after the finalized paper is drafted.
 2. The p-adic argument for branch (c) — review deferred.
-3. The branch-(c) `.tex` elimination paper — no `.tex` exists; `branch_c/paper/`
-   holds the comprehensive guide as the paper-equivalent document.
+3. The branch-(c) `.tex` elimination paper — **done 2026-09-30**:
+   `branch_c/paper/branch_c_elimination.tex` / `.pdf` (16 pages, Noto Sans /
+   Noto Sans Math); `BRANCH_C_GUIDE.md` remains the comprehensive reference.
 4. `ChartEmptyC_T1ne0` in Lean — currently outside Lean (grade B); formalizing the
    rank lemma's instance in Lean is listed as optional (GUIDE.md §11).
 5. Branch-(c) figures — none produced yet.
