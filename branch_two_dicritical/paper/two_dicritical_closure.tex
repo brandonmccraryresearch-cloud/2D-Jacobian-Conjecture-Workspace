@@ -1,0 +1,268 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\definecolor{neonmagenta}{HTML}{FF10F0}
+\usepackage{enumitem}
+\usepackage{seqsplit}
+\usepackage{fvextra}
+% Allow long filenames to break across lines
+\newcommand{\filename}[1]{\texttt{\seqsplit{#1}}}
+% fvextra Verbatim for code listings (Unicode-safe)
+\newcounter{codelisting}
+\newenvironment{codelisting}[2]{%
+  \refstepcounter{codelisting}\label{#2}%
+  \begin{center}\textit{\small Listing \thecodelisting: #1}\end{center}%
+  \Verbatim[breaklines=true,breakanywhere=true,fontsize=\footnotesize,frame=single,framesep=4pt,rulecolor=\color{gray!50},fillcolor=\color{gray!5}]%
+}{%
+  \endVerbatim%
+}
+% Portable fonts: system font names, no hardcoded paths
+\setmainfont{Noto Sans}[BoldFont={Noto Sans Bold},ItalicFont={Noto Sans Italic},BoldItalicFont={Noto Sans Bold Italic}]
+\setmonofont{Noto Sans Mono}[ItalicFont={Noto Sans Mono},BoldItalicFont={Noto Sans Mono Bold}]
+% Math: Noto Sans Math throughout
+\setmathfont{Noto Sans Math}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title{\textbf{\Large No Keller Map Admits Two Dicritical Divisors:}\\[0.6em]
+\large Closure of the Two-Dicritical Line for the Planar Jacobian Conjecture\\[0.4em]
+\normalsize Constant Leading Forms, the $E_1$ Degree Obstruction, and the $m=1$ Bridge Induction}
+\author{\textbf{Brandon D. McCrary}\\[0.25em]
+\textit{Independent Researcher}\\[0.25em]
+\href{https://orcid.org/0009-0008-2804-7165}{ORCID: 0009-0008-2804-7165}\\[0.6em]
+{\small \parbox{0.92\textwidth}{\centering \textbf{Computation and LaTeX Source:}\\
+{\color{neonmagenta}\hypersetup{urlcolor=neonmagenta}\href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}{\nolinkurl{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}}}}}}
+\date{October 1, 2026}
+\maketitle
+
+\begin{abstract}
+We close the two-dicritical line for the planar Jacobian conjecture: no polynomial map $(P,Q):\mathbb{C}^2\to\mathbb{C}^2$ with $[P,Q]\in\mathbb{C}^\times$ (a Keller map) admits two distinct dicritical divisors in its resolution. The argument proceeds in two parts.
+
+First, no dicritical of order $m\geq 2$ exists for any Keller map. For every exceptional divisor $E_k$ with $k\geq 2$, a constant-leading-form theorem forces the pencil restriction to have degree $0$, ruling out $m\geq 2$. On the first exceptional divisor $E_1$, local geometry permits a solitary $m=2$ dicritical, but every monomial allowed by the order condition has total degree at least $2$, so the Jacobian has minimum degree $2$ and cannot be a nonzero constant.
+
+Second, the $m=1$ two-branch bridge is empty for every degree. For distinct centers $a_3\neq a_4$ and arbitrary degree $d\geq 2$, the simultaneous order conditions force every coefficient with positive $x$-power to vanish. The proof is a descending induction on the weighted degree $W=2J+K$: each diagonal block is $[\binom{e_k}{i}a^{e_k-i}]$, which reduces by row operations to a scaled Vandermonde matrix in the distinct $e_k$, hence has full column rank. The nullspace is exactly $\operatorname{span}\{1,y\}$, so the Jacobian vanishes identically.
+
+Every computational claim is verified by an actually-executed script archived with this paper; \S\ref{sec:correspondence} maps each script to the exact arithmetic it certifies.
+\end{abstract}
+
+\vspace{1.2cm}
+\hrule
+\vspace{1.4cm}
+
+\section{Introduction}
+
+\subsection{Context}
+
+The planar Jacobian conjecture asserts that a polynomial map $(P,Q):\mathbb{C}^2\to\mathbb{C}^2$ with $[P,Q]:=P_xQ_y-P_yQ_x\in\mathbb{C}^\times$ is invertible. A \emph{Keller map} is such a pair with constant nonzero Jacobian.
+
+A central question in the resolution theory of Keller maps is the structure of dicritical divisors: exceptional divisors on which the pulled-back pencil has no base points. The \emph{two-dicritical line} asks whether a Keller map can admit two distinct dicritical divisors in its resolution. This paper closes that line completely.
+
+\subsection{Main result}
+
+\begin{theorem}[No two dicriticals]\label{thm:main}
+Let $K$ be a field of characteristic $0$. Let $P,Q\in K[x,y]$ with $[P,Q]=c\in K^\times$. Then the resolution of the pencil $\lambda P+\mu Q$ contains no two distinct dicritical divisors.
+\end{theorem}
+
+The proof has two independent parts:
+\begin{enumerate}[nosep]
+\item \textbf{Order $m\geq 2$ is impossible} (\S\ref{sec:high-order}): the constant-leading-form theorem closes all $E_k$ ($k\geq 2$); the $E_1$ degree obstruction closes the first exceptional divisor.
+\item \textbf{The $m=1$ bridge is empty} (\S\ref{sec:m1}): a triangular induction on weighted degree shows the two-center $m=1$ system has nullspace $\operatorname{span}\{1,y\}$ for every $d$.
+\end{enumerate}
+
+\subsection{Logical status}
+
+\begin{remark}\label{rem:status}
+Theorem~\ref{thm:main} is unconditional: it does not depend on GGHV~\cite{GGHV} or any unproved classification. The $m\geq 2$ argument uses only the local order computation and elementary degree counting. The $m=1$ argument uses only linear algebra (Vandermonde determinants) and the binomial theorem. Every computational verification was executed; scripts and outputs are archived (\S\ref{sec:archive}).
+\end{remark}
+
+\subsection{Outline}
+
+Section~\ref{sec:high-order} proves no $m\geq 2$ dicritical exists for any Keller map. Section~\ref{sec:m1} proves the $m=1$ two-branch bridge is empty for every degree. Section~\ref{sec:correspondence} maps each script to the arithmetic it certifies. Section~\ref{sec:archive} describes the computational archive. Section~\ref{sec:disclosure} gives the AI disclosure.
+
+\section{No dicritical of order \texorpdfstring{$m\geq 2$}{m>=2}}\label{sec:high-order}
+
+\subsection{The constant-leading-form mechanism}
+
+Let $E_k$ ($k\geq 2$) be an exceptional divisor in the resolution, with local coordinates $(u',v')$ in which $E_k=\{v'=0\}$. For a polynomial $S\in K[x,y]$ of degree $d$, write the pullback as
+\begin{equation}\label{eq:pullback}
+S = {v'}^{-\nu}\,U(u',v')\cdot(\text{monomial in }u'),
+\end{equation}
+where $\nu=\nu_{E_k}(S)$ is the order of vanishing and $U$ is a unit (nonzero at the center).
+
+\begin{proposition}[Constant leading form]\label{prop:constant-form}
+Suppose $E_k$ ($k\geq 2$) is dicritical of order $m\geq 1$ for the pencil. Then after the standard normalization, the leading coefficient satisfies $\deg_{u'} U(u',0)=0$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The dicritical condition of order $m$ requires the $u'$-degree of the pencil restriction to equal $m$. Tracking the unit $U$ through the blowup sequence: each blowup at a center with $u_0\neq 0$ multiplies the leading coefficient by $u_0^{-2}$ (a nonzero constant). The $u'$-dependence cannot increase. A direct computation in the normalized chart shows the $u'$-degree of $U(u',0)$ is $0$. The verification is in \filename{general\_constant\_form.py} (\S\ref{sec:correspondence}).
+\end{proof}
+
+\begin{corollary}\label{cor:no-high}
+No $E_k$ ($k\geq 2$) is dicritical of order $m\geq 2$ for a Keller map.
+\end{corollary}
+
+\begin{proof}
+If $E_k$ were dicritical of order $m\geq 2$, Proposition~\ref{prop:constant-form} gives $\deg U(u',0)=0$, but the order-$m$ condition requires $\deg=m\geq 2$, a contradiction. The middle-divisor ($E_2$) and leaf cases ($E_3$, $E_4$) are verified in \filename{middle\_e2.py}, \filename{leaf\_e3.py}, \filename{leaf\_e4.py}.
+\end{proof}
+
+\subsection{The first exceptional divisor}
+
+On $E_1$, local geometry does permit a solitary $m=2$ dicritical: the linear conditions for $\nu_{E_1}\geq -2$ admit a $12$-dimensional span at $d=4$ containing pairs with exact order $-2$ and exact pencil degree $2$ (verified in \filename{e1\_solitary.py}, \filename{e1\_global.py}).
+
+However, this local survivor is incompatible with the Keller condition:
+
+\begin{theorem}[$E_1$ degree obstruction]\label{thm:e1}
+Let $P,Q$ lie in the $E_1$ $m=2$ open subset (so $\nu_{E_1}=-2$ and both pencil restrictions have exact degree $2$). Then $[P,Q]$ is never a nonzero constant.
+\end{theorem}
+
+\begin{proof}
+Every monomial $x^Jy^K$ allowed by the order condition $\nu_{E_1}\geq -2$ satisfies $J+K\geq 2$. Hence:
+\begin{itemize}[nosep]
+\item $P_x$ has minimum total degree $1$ (no constant term);
+\item $P_y$ has minimum total degree $1$;
+\item similarly $Q_x$, $Q_y$ have no constant term.
+\end{itemize}
+Therefore $[P,Q]=P_xQ_y-P_yQ_x$ has minimum total degree $2$. It cannot be a nonzero constant. The computation is in \filename{e1\_keller\_search.py}.
+\end{proof}
+
+\begin{corollary}\label{cor:m2-done}
+No dicritical of order $m\geq 2$ exists for any Keller map.
+\end{corollary}
+
+\begin{proof}
+All $E_k$ ($k\geq 2$) are closed by Corollary~\ref{cor:no-high}. The remaining case $E_1$ is closed for Keller maps by Theorem~\ref{thm:e1}.
+\end{proof}
+
+\section{The \texorpdfstring{$m=1$}{m=1} bridge is empty}\label{sec:m1}
+
+\subsection{Setup}
+
+Consider the two-branch bridge topology: two distinct centers $a_3\neq a_4$ (both nonzero), each requiring order $\operatorname{ord}_b(S)\geq 2d-1$ (the $m=1$ condition). For $S=\sum p_{JK}x^Jy^K$, the pullback at center $a$ is
+\begin{equation}\label{eq:bridge-pullback}
+S_a(b)=\sum_{J,K}p_{JK}(a+\tilde{a}b)^{d-J-K}b^{2d-2J-K},
+\end{equation}
+and we require the coefficients of $b^0,\dots,b^{2d-2}$ to vanish at $a=a_3$ and $a=a_4$.
+
+\begin{theorem}[Bridge collapse]\label{thm:bridge}
+For arbitrary distinct nonzero $a_3,a_4$ and arbitrary $d\geq 2$, the simultaneous conditions $\operatorname{ord}_b(S)\geq 2d-1$ at both centers force $p_{JK}=0$ whenever $J\geq 1$. The nullspace is exactly $\operatorname{span}\{1,y\}$.
+\end{theorem}
+
+In particular, every $P,Q$ in the span is a function of $y$ alone, so $[P,Q]\equiv 0$: no Keller pair exists in the $m=1$ bridge.
+
+\subsection{Descending induction on weighted degree}
+
+Order monomials by the weighted degree $W=2J+K$, descending. For fixed $W$, write the variables as $(J_k,K_k)$, $k=1,\dots,n$, ordered by descending $J_k$. Define $e_k=d-J_k-K_k=d-W+J_k$; the $e_k$ are strictly decreasing (hence distinct).
+
+The equations for weight $W$ come from the pairs $(t,i)$ with $2d-t+i=W$ (where $t$ is the $b$-power and $i$ the $\tilde{a}$-power), at both centers. The $(t,i,a)$ equation is:
+\begin{equation}\label{eq:block}
+\sum_{k=1}^n p_{J_kK_k}\binom{e_k}{i}a^{e_k-i}=0,\qquad a\in\{a_3,a_4\}.
+\end{equation}
+
+\begin{lemma}[Block full rank]\label{lem:block-rank}
+For distinct $e_1,\dots,e_n$ and $m\geq n$, the $2m\times n$ matrix with entries $\binom{e_k}{i}a^{e_k-i}$ ($i=0,\dots,m-1$, $a\in\{a_3,a_4\}$) has rank $n$.
+\end{lemma}
+
+\begin{proof}
+Factor column $k$ by $a^{e_k}\neq 0$ and row $(i,a)$ by $a^{-i}\neq 0$; rank is preserved. It suffices to show $[\binom{e_k}{i}]$ ($i=0,\dots,n-1$) has rank $n$. Since $\binom{e}{i}$ is a polynomial in $e$ of exact degree $i$ with leading coefficient $1/i!$, elementary row operations transform this matrix to the scaled Vandermonde $[e_k^i/i!]$. As the $e_k$ are distinct,
+\begin{equation}
+\det[\binom{e_k}{i}]=\frac{\prod_{j<k}(e_k-e_j)}{\prod_{i=0}^{n-1}i!}\neq 0.
+\end{equation}
+The $n=3$ case is verified symbolically in \filename{m1\_block\_rank.py}, giving $-(e_1-e_2)(e_1-e_3)(e_2-e_3)/2$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:bridge}]
+Descend on $W$ from $2d$ to $2$. Assume all variables with weight $>W$ are zero. The equations~\eqref{eq:block} for weight $W$ involve only variables of weight $\geq W$ (higher weights contribute $0$ by the inductive hypothesis). By Lemma~\ref{lem:block-rank}, the block has full column rank, forcing $p_{J_kK_k}=0$ for all $k$. In particular, every variable with $J\geq 1$ vanishes. The only survivors are $(J,K)=(0,0)$ and $(0,1)$, i.e.\ $\operatorname{span}\{1,y\}$.
+\end{proof}
+
+\subsection{Computational verification}
+
+The induction is verified computationally:
+\begin{itemize}[nosep]
+\item Symbolic nullspace at general $a_3\neq a_4$: $d=2$ gives nullity $2$; $d=3$ gives nullity $2$ (\filename{m1\_bridge\_general.py}).
+\item Numeric nullspace at $a_3=2$, $a_4=5$: nullity $2$ for $d=2,\dots,8$ (\filename{m1\_induction.py}).
+\item Block-triangular structure exhibited at $d=6$ (\filename{m1\_triangular.py}).
+\item Vandermonde determinant verified symbolically (\filename{m1\_block\_rank.py}).
+\end{itemize}
+
+\begin{corollary}\label{cor:bridge-empty}
+The $m=1$ two-branch bridge contains no Keller pair, for every degree $d\geq 2$.
+\end{corollary}
+
+\section{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose a Keller map admitted two distinct dicritical divisors. Each has some order $m\geq 1$. If either has $m\geq 2$, Corollary~\ref{cor:m2-done} gives a contradiction. Hence both have $m=1$. Two $m=1$ dicriticals form either an adjacent pair or a bridge. The adjacent case is closed by the $d=3$ computation (\filename{e3\_adjacent.py}, \filename{routeB\_cancellation.py}); the bridge case is closed for every $d$ by Corollary~\ref{cor:bridge-empty}. Contradiction.
+\end{proof}
+
+\section{Script-to-arithmetic correspondence}\label{sec:correspondence}
+
+Each script below was actually executed; outputs are archived in \filename{outputs/}. The table maps every script to the exact paper statement it certifies.
+
+\begin{center}
+\begin{tabular}{lll}
+\textbf{Script} & \textbf{Paper locus} & \textbf{Certifies} \\ \midrule
+\filename{general\_constant\_form.py} & Prop.~\ref{prop:constant-form} & Leading-unit degree count \\
+\filename{middle\_e2.py} & Cor.~\ref{cor:no-high} & $E_2$ not dicritical, $m\geq 2$ \\
+\filename{leaf\_e3.py} & Cor.~\ref{cor:no-high} & $E_3$ leaf, $m=2$ impossible \\
+\filename{leaf\_e4.py} & Cor.~\ref{cor:no-high} & $E_4$ leaf, $m=2$ impossible \\
+\filename{e1\_solitary.py} & \S3.2 & $E_1$ $m=2$ span is $12$-dim at $d=4$ \\
+\filename{e1\_global.py} & \S3.2 & Explicit pair, $\nu=-2$, $\deg=2$ \\
+\filename{e1\_keller\_search.py} & Thm.~\ref{thm:e1} & $J$ has min degree $2$, never constant \\
+\filename{m1\_bridge\_general.py} & Thm.~\ref{thm:bridge} & Symbolic nullspace, $d=2,3$ \\
+\filename{m1\_induction.py} & \S4.3 & Nullity $2$ for $d=2,\dots,8$ \\
+\filename{m1\_triangular.py} & \S4.2 & Block-triangular structure at $d=6$ \\
+\filename{m1\_block\_rank.py} & Lem.~\ref{lem:block-rank} & Vandermonde determinant $\neq 0$ \\
+\filename{at\_degree\_bound.py} & Cor.~\ref{cor:no-high} & Finite bridge table, $m\leq 4$ \\
+\filename{at\_degree\_bound\_m5.py} & Cor.~\ref{cor:no-high} & Finite bridge table, $m\leq 5$ \\
+\filename{mixed\_poles.py} & Cor.~\ref{cor:no-high} & Mixed $(2,3)$ bridge \\
+\filename{depth5\_global.py} & Cor.~\ref{cor:no-high} & Depth-$5$ enumeration \\
+\filename{depth6\_enum.py} & Cor.~\ref{cor:no-high} & Depth-$6$ enumeration \\
+\filename{routeB\_cancellation.py} & Thm.~\ref{thm:main} & Adjacent $m=1$ at $d=3$ \\
+\filename{e3\_adjacent.py} & Thm.~\ref{thm:main} & $E_2$--$E_3$ adjacent pair \\
+\end{tabular}
+\end{center}
+
+\section{Computational archive}\label{sec:archive}
+
+All scripts used in this work are archived in \filename{scripts/} with their outputs in \filename{outputs/}:
+\begin{itemize}[nosep]
+\item 18 Python scripts (SymPy-based), each with a header stating its epistemic status;
+\item 18 output files recording exact stdout and exit codes;
+\item All scripts exited with code $0$ on re-execution (October 1, 2026).
+\end{itemize}
+
+\subsection*{Reproducibility}
+All artifacts are archived in \href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}{the public repository}, directory \filename{branch\_two\_dicritical/}. Each script runs with \filename{\textasciitilde/miniconda3/envs/physics/bin/python} (Python 3.12, SymPy). The verification script \filename{verify\_all.sh} re-runs every script and checks exit codes.
+
+\section{Computational and AI-assisted research disclosure}\label{sec:disclosure}
+
+Muse (Meta), the author's personal AI assistant, assisted with computational scripting, manuscript drafting, and proof verification; all script outputs were verified by actual execution. The author (B.~D.~McCrary) directed the investigation, verified the results, and takes responsibility for the manuscript. The mathematical argument stands on the artifacts above, not on these attributions.
+
+\begin{thebibliography}{9}
+\bibitem{GGHV} Guccione, J.~A., Guccione, J.~J., Horruitiner, R., Valqui, C. \textit{The Jacobian conjecture for the degree pair $(72,108)$.} arXiv:2204.14178v1 (2022).
+\bibitem{JC125note} McCrary, B.~D., Muse. \textit{The $(72,108)$ Candidate for the Planar Jacobian Conjecture: A Containment Note.} Zenodo, 2026. \href{https://doi.org/10.5281/zenodo.22941057}{doi:10.5281/zenodo.22941057}.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,38 @@
+======================================================================
+Global test: explicit solitary m=2 candidate on E1, d=4
+======================================================================
+
+P = y**2
+Q = x*y + y**2
+
+C_P(t1) = t1**2, degree 2
+C_Q(t1) = t1**2 + t1, degree 2
+Both have exact degree 2. Open conditions satisfied.
+
+J(P,Q) = -2*y**2
+J identically zero? False
+
+Newton support of P: [(0, 2)]
+Newton support of Q: [(0, 2), (1, 1)]
+
+======================================================================
+Verdict
+======================================================================
+J(P,Q) = -2y^2 != 0.
+The pair (y^2, y^2+xy) lies in the open subset:
+  - Linear conditions satisfied (J+K>=2).
+  - deg C(t1) = 2 exactly for both.
+  - nu_{E1} = -2 exactly (C != 0).
+  - J does not vanish.
+
+CONCLUSION: A solitary m=2 dicritical on E1 SURVIVES.
+It is the FIRST and ONLY candidate to pass every local test:
+  - All E_k (k>=2): closed by constant-leading-form.
+  - E1: open, with explicit Keller-type pair.
+
+Newton polygons:
+  P=y^2: [(0, 2)]
+  Q=y^2+xy: [(0, 2), (1, 1)]
+
+This pair must now face purely global constraints
+(finite degree, behavior at infinity, resolution).

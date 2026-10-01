@@ -1,0 +1,58 @@
+======================================================================
+Route B cancellation locus: d=3, middle divisor E2
+======================================================================
+
+C_P = p20/c**2 + p21/c**3
+C_Q = q20/c**2 + q21/c**3
+Cancellation locus L: p21 + c*p20 = 0 AND q21 + c*q20 = 0
+(i.e. p[2,1] = -c*p[2,0]). Nonempty iff d>=3.
+At d=2: C_P = p20*c^{-2}, and mP=2 <=> p20!=0, so L is EMPTY.
+
+A_P = -2*p20/c**3 - 3*p21/c**4
+B_P = p10/c + p11/c**2 + p12/c**3
+A_Q = -2*q20/c**3 - 3*q21/c**4
+B_Q = q10/c + q11/c**2 + q12/c**3
+
+On L:
+  A_P = p20/c**3
+  B_P = p10/c + p11/c**2 + p12/c**3
+  A_Q = q20/c**3
+  B_Q = q10/c + q11/c**2 + q12/c**3
+
+Key: on L cap {mP=2}, p20 != 0 (else (p20,p21)=(0,0), mP<2).
+Thus A_P = p20*c^{-3} != 0, so nu_{E2}(P) = -1 EXACTLY.
+Similarly nu_{E2}(Q) = -1 when mQ=2.
+Equal valuations: YES.
+
+Degree-1 condition: A_P*B_Q - A_Q*B_P = -p10*q20/c**4 + p20*q10/c**4 - p11*q20/c**5 + p20*q11/c**5 - p12*q20/c**6 + p20*q12/c**6
+This is NOT identically zero on L.
+
+--- Explicit example (c=1) ---
+  P: p20=1,p21=-1; Q: q20=1,q21=-1; B_P=0, B_Q=1.
+  A_P=1.0, B_P=0.0, A_Q=1.0, B_Q=1.0
+  [phi0:psi0] = [1.0+0.0*t : 1.0+1.0*t] = [1 : 1+t]
+  DEGREE 1. nu_E2(P)=nu_E2(Q)=-1.
+  => E2 IS DICRITICAL (m=1) on the cancellation locus.
+  A_P*B_Q - A_Q*B_P = 1.0 != 0. Confirmed.
+
+--- Newton support ---
+d=3. P: (2,0),(2,1) with p21=-c*p20, p20!=0; (1,*),(0,*) free;
+     (3,0)=0 (else mP=3). Q: same pattern.
+Newton polygon: (0,0),(0,3),(2,1); the (2,0)-(2,1) edge carries
+the relation p21 + c*p20 = 0.
+
+======================================================================
+VERDICT
+======================================================================
+1. Cancellation locus L = {C_P=C_Q=0} is NONEMPTY at d>=3
+   (EMPTY at d=2: C_P=p20*c^{-2}, mP=2 forces p20!=0).
+2. On L cap {mP=mQ=2}: nu_{E2}(P)=nu_{E2}(Q)=-1 EXACTLY
+   (A_P=p20*c^{-3}!=0).
+3. [phi0:psi0]=[A_P+B_P*t : A_Q+B_Q*t] has degree 1 iff
+   A_P*B_Q-A_Q*B_P != 0, which is satisfiable (explicit example).
+4. => E2 CAN be dicritical (m=1) on L. The 'middle divisor NEVER
+   dicritical' is FALSE as stated.
+5. Route B is NOT fully closed. It holds off L (and fully at d=2),
+   but L yields a genuine m=1 dicritical candidate for E2.
+6. The ADJACENT PAIR (E2+E3 both dicritical) remains open: this
+   shows E2 can be dicritical on L; E3 needs its own chart analysis.

@@ -1,0 +1,107 @@
+======================================================================
+m=1 bridge: general centers a3 != a4
+======================================================================
+
+Conditions: ord_b(S) >= 2d-1 at a3 and at a4.
+Claim: nullspace = span{y^K} (only J=0 terms survive).
+
+--- d=2 ---
+  nvars=6, rank=4, nullity=2
+
+--- d=3 ---
+  nvars=10, rank=8, nullity=2
+
+======================================================================
+Direct proof attempt: coefficient comparison
+======================================================================
+
+We attempt a direct proof that p_{JK}=0 for J>=1.
+
+Fix (J,K) with J>=1. Consider the b^{2d-2J-K} coefficient at center a.
+
+The term (J,K) contributes:
+  p_{JK} * a^{d-J-K} * b^{2d-2J-K}   [lowest b-power from this term]
+
+Other terms (J',K') contribute to b^{2d-2J-K} only if
+  2d-2J'-K' <= 2d-2J-K, i.e., 2J'+K' >= 2J+K,
+with equality only if (J',K')=(J,K) (for the a^{...} part).
+
+Actually, the full coefficient of b^{2d-2J-K} is a polynomial in at.
+The at^0 part (constant in at) comes from:
+  sum_{(J',K'): 2J'+K' = 2J+K} p_{J'K'} * a^{d-J'-K'}.
+
+This is getting intricate. Let's try a cleaner invariant.
+
+ALTERNATIVE: Use the two centers.
+
+At center a3, the b^{2d-2} coefficient (t=2d-2):
+  Which (J,K) contribute? Need 2d-2J-K <= 2d-2, i.e., 2J+K >= 2.
+  The at^0 part: sum_{2J+K=2} p_{JK} a3^{d-J-K} = 0.
+  2J+K=2: (J,K) = (1,0), (0,2).
+  So: p_{10} * a3^{d-1} + p_{02} * a3^{d-2} = 0.   ...(A3)
+
+At center a4:
+  p_{10} * a4^{d-1} + p_{02} * a4^{d-2} = 0.   ...(A4)
+
+If a3 != a4 and both nonzero, this is a 2x2 system for (p10, p02).
+Determinant: a3^{d-1} a4^{d-2} - a4^{d-1} a3^{d-2}
+           = a3^{d-2} a4^{d-2} (a3 - a4) != 0.
+Therefore p10 = p02 = 0.
+
+Good! This kills two coefficients.
+
+Continue: b^{2d-3} coefficient, at^0 part.
+  Need 2J+K = 3: (J,K) = (1,1), (0,3).
+  p_{11} a3^{d-2} + p_{03} a3^{d-3} = 0
+  p_{11} a4^{d-2} + p_{03} a4^{d-3} = 0
+  Determinant: a3^{d-3} a4^{d-3} (a3 - a4) != 0.
+  So p11 = p03 = 0.
+
+In general, for b^{2d-1-s} (s>=1), at^0 part:
+  sum_{2J+K = s+1} p_{JK} a^{d-J-K} = 0 at a=a3,a4.
+
+For fixed s, the pairs (J,K) with 2J+K = s+1 are:
+  J=0: K=s+1
+  J=1: K=s-1 (if s>=1)
+  J=2: K=s-3 (if s>=3)
+  ...
+
+This is a Vandermonde-like system in a3,a4. With only TWO centers,
+we can kill at most 2 coefficients per s. But there may be more
+than 2 pairs (J,K) with 2J+K=s+1 for large s.
+
+For s+1 >= 4: pairs include (0,s+1), (1,s-1), (2,s-3). That's 3.
+Two equations, three unknowns. NOT enough to kill all!
+
+So the simple at^0 argument FAILS for large s.
+
+We need the FULL at-polynomial, not just at^0.
+
+The b^{2d-1-s} coefficient is a polynomial in at of degree up to ...
+Each (J,K) contributes at^i for i=0..(d-J-K).
+
+This gives MORE equations (coefficients of at^i).
+
+With two centers and multiple at-powers, we may get enough equations.
+
+This is the Vandermonde structure: the full system should force
+p_{JK}=0 for J>=1.
+
+Let's verify computationally for d=2,3 with symbolic a3,a4.
+
+
+======================================================================
+Full symbolic nullspace at d=2
+======================================================================
+Monomials: [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (2, 0)]
+Matrix: 6 x 6, rank 4
+Nullity: 2
+
+Nullspace basis vectors (as coefficient dicts):
+  v0: {'p0_0': 1}
+  v1: {'p0_1': 1}
+
+Check: are all J>=1 coefficients zero in the nullspace?
+  YES: nullspace uses only J=0 (y-powers).
+  Therefore J(P,Q) = 0 identically on the span.
+  The m=1 bridge is IMPOSSIBLE for general a3!=a4, d=2.

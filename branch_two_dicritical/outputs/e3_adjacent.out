@@ -1,0 +1,33 @@
+======================================================================
+E3 adjacent analysis: d=3, on cancellation locus L
+======================================================================
+
+C2^P on L = 0  (x^{-2} term vanishes: C_P=0 on L)
+C1^P on L = p10/(c*tau0) + p11/(c**2*tau0) + p12/(c**3*tau0) + p20/(c**3*tau0**2)
+C2^Q on L = 0
+C1^Q on L = q10/(c*tau0) + q11/(c**2*tau0) + q12/(c**3*tau0) + q20/(c**3*tau0**2)
+
+Hence on L:
+  y^{-1} coeff of P = x^{-1} * C1^P,  C1^P = tau0^{-1}B_P + tau0^{-2}A_P.
+  A_P|_L = p20*c^{-3} != 0 (mP=2), so C1^P is generically nonzero.
+  phi0^P(x) = C1^P * x^{-1};  phi0^Q(x) = C1^Q * x^{-1}.
+  [phi0^P : phi0^Q] = [C1^P : C1^Q] = CONSTANT. Degree 0.
+
+======================================================================
+Valuation and dicritical verdict for E3
+======================================================================
+y^{-2} coeff = x^{-2}tau0^{-2} C_P = 0 on L.
+y^{-1} coeff = x^{-1} C1^P.
+  If C1^P != 0: nu_{E3}(P) = -1, but deg[phi0:psi0] = 0 != 1.
+  If C1^P = 0: nu_{E3}(P) >= 0 (no pole).
+In NEITHER case is E3 dicritical. Same for Q.
+
+CONCLUSION: On L -- the ONLY locus where E2 is dicritical --
+E3 is NEVER dicritical. The adjacent pair (E2,E3) is IMPOSSIBLE.
+Route B CLOSES.
+
+Summary of Route B:
+  - Off L: E2 not dicritical (original constant-restriction argument).
+  - At d=2: L empty; E2 never dicritical.
+  - On L (d>=3): E2 CAN be dicritical (m=1), but E3 NEVER is.
+  - Hence no adjacent dicritical pair exists. QED (in this chart).

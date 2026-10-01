@@ -1,0 +1,59 @@
+======================================================================
+Part 1: depth-5 enumeration, dicritical candidates with m >= 2
+======================================================================
+depth 0: 1 trees, 0 with >=2 m>=2 candidates
+depth 1: 1 trees, 0 with >=2 m>=2 candidates
+depth 2: 3 trees, 0 with >=2 m>=2 candidates
+depth 3: 15 trees, 0 with >=2 m>=2 candidates
+depth 4: 105 trees, 0 with >=2 m>=2 candidates
+depth 5: 945 trees, 13 with >=2 m>=2 candidates
+    (kappa,m) of m>=2 cands: ((5, 2), (5, 2))
+    (kappa,m) of m>=2 cands: ((5, 2), (7, 3))
+    (kappa,m) of m>=2 cands: ((5, 2), (9, 4))
+    (kappa,m) of m>=2 cands: ((5, 2), (11, 5))
+
+======================================================================
+Part 2: two-branch global vanishing, pole order m
+  ord_b(S) >= 2d-m at a3=2 and a4=5; nullity, J-test, support
+======================================================================
+--- pole order m = 1 --- (control: reproduces Vandermonde)
+  d=2: nvars=6 rank=4 nullity=2 J_identically_0=True
+       Newton support: [(0, 0), (0, 1)]
+  d=3: nvars=10 rank=8 nullity=2 J_identically_0=True
+       Newton support: [(0, 0), (0, 1)]
+  d=4: nvars=15 rank=13 nullity=2 J_identically_0=True
+       Newton support: [(0, 0), (0, 1)]
+  d=5: nvars=21 rank=19 nullity=2 J_identically_0=True
+       Newton support: [(0, 0), (0, 1)]
+  d=6: nvars=28 rank=26 nullity=2 J_identically_0=True
+       Newton support: [(0, 0), (0, 1)]
+--- pole order m = 2 ---
+  d=2: nvars=6 rank=2 nullity=4 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (1, 0)]
+  d=3: nvars=10 rank=6 nullity=4 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (1, 0)]
+  d=4: nvars=15 rank=11 nullity=4 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (1, 0)]
+  d=5: nvars=21 rank=17 nullity=4 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (1, 0)]
+  d=6: nvars=28 rank=24 nullity=4 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (1, 0)]
+--- pole order m = 3 ---
+  d=2: nvars=6 rank=1 nullity=5 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1)]
+  d=3: nvars=10 rank=4 nullity=6 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (1, 1)]
+  d=4: nvars=15 rank=8 nullity=7 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (2, 0)]
+  d=5: nvars=21 rank=14 nullity=7 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (2, 0)]
+  d=6: nvars=28 rank=21 nullity=7 J_identically_0=False
+       Newton support: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (2, 0)]
+
+======================================================================
+Part 3: verdict
+======================================================================
+See per-(d,m) rows above. J_identically_0=True means the linear
+vanishing conditions alone rule out any Keller pair (J=1) in this
+bridge topology. J_identically_0=False is INCONCLUSIVE: the exact
+order and deg[phi_0:psi_0]=m still have to be imposed.

@@ -1,0 +1,40 @@
+======================================================================
+Leaf E3 solitary m=2 dicritical: y-adic analysis
+======================================================================
+
+Closed-form y^{-2} coefficient:
+  phi0^P(x) = x^{-2} * tau0^{-2} * C_P,
+  C_P = sum_K p[2,K] * c^{-2-K}  (constant in x).
+  phi0^Q(x) = x^{-2} * tau0^{-2} * C_Q.
+
+Hence [phi0^P : phi0^Q] = [C_P : C_Q], CONSTANT in x.
+Degree 0, ALWAYS (whenever C_P, C_Q not both zero).
+
+For nu_{E3} = -2 exactly: need (C_P, C_Q) != (0,0).
+  If C_P != 0: nu_{E3}(P) = -2. If C_P = 0: nu > -2.
+
+CONCLUSION:
+  - Exact order -2 is attainable (take C_P != 0).
+  - But deg[phi0:psi0] = 0 ALWAYS, never 2.
+  - The joint system {nu=-2, deg=2} is INCONSISTENT.
+  - A solitary m=2 dicritical on leaf E3 is IMPOSSIBLE.
+  - E2 is automatically non-dicritical here: [C_P:C_Q] const.
+
+======================================================================
+Symbolic verification at d=2,3,4
+======================================================================
+d=2: C_P = p20/c**2; x-degree of C_P: 0
+      => [phi0^P:phi0^Q] has x-degree 0. deg=2 impossible.
+d=3: C_P = p20/c**2 + p21/c**3; x-degree of C_P: 0
+      => [phi0^P:phi0^Q] has x-degree 0. deg=2 impossible.
+d=4: C_P = p20/c**2 + p21/c**3 + p22/c**4; x-degree of C_P: 0
+      => [phi0^P:phi0^Q] has x-degree 0. deg=2 impossible.
+
+======================================================================
+Final verdict
+======================================================================
+The leaf E3 of the chain E1-E2-E3 CANNOT carry a solitary m=2
+dicritical. Exact pole order -2 forces the pencil restriction to
+be constant (degree 0), contradicting the required degree 2.
+No linear span to test for J; the degree condition already fails.
+The solitary high-order dicritical does not live here.

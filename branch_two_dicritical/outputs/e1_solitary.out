@@ -1,0 +1,36 @@
+======================================================================
+Solitary m=2 dicritical on E1 (first exceptional)
+======================================================================
+
+Chart U1: s=s1, t=s1*t1. E1={s1=0}, transverse t1.
+S(t1,s1) = sum p[J,K] s1^{J+K-d} t1^K.
+s1^{-2} coeff: C(t1) = sum_{J+K=d-2} p[J,K] t1^K.
+
+  d  nvars  nconds  nullity   J=0?
+  4     15       3       12  False
+    support: [(0, 2), (0, 3), (0, 4), (1, 1), (1, 2), (1, 3), (2, 0), (2, 1), (2, 2), (3, 0), (3, 1), (4, 0)]
+    J(y**2,x*y) = -2*y**2
+
+  5     21       7       14  False
+    support: [(0, 4), (0, 5), (1, 2), (1, 3), (1, 4), (2, 1), (2, 2), (2, 3), (3, 0), (3, 1), (3, 2), (4, 0), (4, 1), (5, 0)]
+    J(y**4,x*y**2) = -4*y**5
+
+  6     28      12       16  False
+    support: [(0, 5), (0, 6), (1, 4), (1, 5), (2, 2), (2, 3), (2, 4), (3, 1), (3, 2), (3, 3), (4, 0), (4, 1), (4, 2), (5, 0), (5, 1), (6, 0)]
+    J(y**5,x*y**4) = -5*y**8
+
+======================================================================
+Interpretation
+======================================================================
+
+The linear conditions (i)+(ii) define the span where nu>=-2 and
+deg C(t1) <= 2. For a genuine m=2 dicritical we additionally need:
+  - C(t1) != 0 (nu = -2 exactly), and
+  - deg C(t1) = 2 exactly (coefficient of t1^2 nonzero).
+
+If the nullspace is nontrivial and J does not vanish identically,
+then a solitary m=2 dicritical on E1 is NOT ruled out by linear
+algebra; it becomes a candidate constrained by global degree bounds.
+
+If nullity=0 or J vanishes identically, then E1 cannot carry m=2.
+

@@ -1,0 +1,43 @@
+======================================================================
+Middle E2 solitary m=2 dicritical: b-adic analysis
+======================================================================
+
+E2 chart: s = c + a*b, t = b. E2 = {b=0}, transverse a.
+Pullback of s^J t^K: (c+a*b)^J * b^K.
+
+For the section (following bridge trivialization):
+  S(a,b) = sum p[J,K] (c+a*b)^J b^K.
+  b-order: min K. For generic P, K=0 terms give b^0.
+
+The POLE along E2 for the rational map comes from the
+ratio. We extract the b^{-2} coefficient in the normalized
+expansion (dividing by the appropriate power).
+
+======================================================================
+Direct computation: b^{-2} coefficient a-degree
+======================================================================
+
+Using the closed-form from the Route-B E2 analysis:
+  For the b-adic valuation on E2, the coefficient of the
+  lowest b-power (corresponding to m=2, i.e., b^{-2}) is:
+    C_P = sum_K p[2,K] * c^{-2-K}.
+  This is CONSTANT in the transverse coordinate a.
+
+Therefore [phi0^P : phi0^Q] = [C_P : C_Q], degree 0.
+deg=2 is IMPOSSIBLE.
+
+======================================================================
+Symbolic check at d=2,3,4
+======================================================================
+d=2: C_P = p20/c**2; contains a: False. OK: constant => deg 0.
+d=3: C_P = p20/c**2 + p21/c**3; contains a: False. OK: constant => deg 0.
+d=4: C_P = p20/c**2 + p21/c**3 + p22/c**4; contains a: False. OK: constant => deg 0.
+
+======================================================================
+Verdict
+======================================================================
+The b^{-2} leading coefficient on the middle E2 is CONSTANT in
+the transverse coordinate a. The pencil map has degree 0, never 2.
+A solitary m=2 dicritical on the MIDDLE E2 of the length-3 chain
+is IMPOSSIBLE. The middle position does NOT restore transverse
+degree.

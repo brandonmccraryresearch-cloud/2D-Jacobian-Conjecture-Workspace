@@ -1,0 +1,63 @@
+======================================================================
+Universal Constant-Leading-Form Mechanism
+======================================================================
+
+Inductive step: E_{k-1} chart (u,v), blow up p_k=(u0,0), u0!=0.
+New chart: u = u0 + u'*v', v = v'.
+
+Pullback of monomial (schematic):
+  PULL = (u0 + u'*v')^{-J} * (v')^{-N} * U(u',v')
+  where U is a unit (regular, nonzero at v'=0).
+
+Coefficient of (v')^{-m}: set v'=0.
+  (u0 + u'*v')^{-J} at v'=0:
+    = u0^{-J}.
+  INDEPENDENT of u'.
+
+  U(u',v') at v'=0:
+    = U(u',0). For the LEADING (lowest v') term, U contributes
+    only its constant part (in v'), which may depend on u'.
+
+======================================================================
+Symbolic verification of the evaluation
+======================================================================
+
+(u0 + u'*v')^{-2} expanded, v'=0 coefficient:
+  u0**(-2)
+  Depends on u': False
+
+Indeed: (u0)^{-J}, constant in u'.
+
+======================================================================
+Contrast: FIRST blowup (u0 = 0)
+======================================================================
+
+(u'*v')^{-2} = u'^{-2} * v'^{-2}.
+The u'-dependence SURVIVES. Leading form CAN depend on u'.
+This is why E1 (first exceptional) is exempt from the theorem.
+
+======================================================================
+Theorem statement and consequence
+======================================================================
+
+THEOREM: For k>=2, with all centers u0 != 0, the (v')^{-m}
+coefficient on E_k is independent of the residual transverse
+coordinate u', for every m>=1.
+
+COROLLARY: [phi0^P : phi0^Q] is constant (degree 0) on E_k.
+For m>=2, the dicritical condition deg=m is IMPOSSIBLE.
+
+Therefore: NO exceptional divisor E_k (k>=2) obtained by
+successive blowups at nonzero centers can carry a dicritical
+of order m>=2.
+
+This single mechanism explains ALL the specific results:
+  - Two-branch bridge (E2): constant.
+  - Leaf E3, E4: constant.
+  - Middle E2: constant.
+  - General E_k, k>=2: constant.
+
+The only possible dicriticals with m>=2 would have to live on
+E1 (the first exceptional), where u0=0 and transverse dependence
+survives. But E1 is a single divisor; it cannot form a pair,
+and a solitary m>=2 on E1 is constrained by global degree bounds.

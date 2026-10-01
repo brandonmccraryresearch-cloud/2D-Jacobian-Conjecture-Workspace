@@ -1,0 +1,49 @@
+======================================================================
+Structural at-degree bound: all (m1,m2), 1<=m1<=m2<=4
+======================================================================
+   (m1,m2)   d  null  deg@a3   <m1?  deg@a4   <m2?
+    (1, 1)   1     2       0   True       0   True
+    (1, 1)   2     2       0   True       0   True
+    (1, 1)   3     2       0   True       0   True
+    (1, 1)   4     2       0   True       0   True
+    (1, 2)   2     3       1  False       0   True  <-- VIOLATION
+    (1, 2)   3     3       1  False       0   True  <-- VIOLATION
+    (1, 2)   4     3       1  False       0   True  <-- VIOLATION
+    (1, 2)   5     3       1  False       0   True  <-- VIOLATION
+    (1, 3)   3     3       1  False      -1   True  <-- VIOLATION
+    (1, 3)   4     3       1  False      -1   True  <-- VIOLATION
+    (1, 3)   5     3       1  False      -1   True  <-- VIOLATION
+    (1, 3)   6     3       1  False      -1   True  <-- VIOLATION
+    (1, 4)   4     3       1  False      -1   True  <-- VIOLATION
+    (1, 4)   5     3       1  False      -1   True  <-- VIOLATION
+    (1, 4)   6     3       1  False      -1   True  <-- VIOLATION
+    (1, 4)   7     3       1  False      -1   True  <-- VIOLATION
+    (2, 2)   2     4       0   True       0   True
+    (2, 2)   3     4       0   True       0   True
+    (2, 2)   4     4       0   True       0   True
+    (2, 2)   5     4       0   True       0   True
+    (2, 3)   3     5       1   True       0   True
+    (2, 3)   4     5       1   True       0   True
+    (2, 3)   5     5       1   True       0   True
+    (2, 3)   6     5       1   True       0   True
+    (2, 4)   4     6       2  False       0   True  <-- VIOLATION
+    (2, 4)   5     6       2  False       0   True  <-- VIOLATION
+    (2, 4)   6     6       2  False       0   True  <-- VIOLATION
+    (2, 4)   7     6       2  False       0   True  <-- VIOLATION
+    (3, 3)   3     6       0   True       0   True
+    (3, 3)   4     7       1   True       1   True
+    (3, 3)   5     7       1   True       1   True
+    (3, 3)   6     7       1   True       1   True
+    (3, 4)   4     8       1   True       0   True
+    (3, 4)   5     8       1   True       0   True
+    (3, 4)   6     8       1   True       0   True
+    (3, 4)   7     8       1   True       0   True
+    (4, 4)   4     9       0   True       0   True
+    (4, 4)   5    10       1   True       1   True
+    (4, 4)   6    10       1   True       1   True
+    (4, 4)   7    10       1   True       1   True
+
+======================================================================
+RESULT: VIOLATION found. Some (m1,m2,d) has at-degree >= m at
+a center. That pair becomes the next candidate.
+======================================================================

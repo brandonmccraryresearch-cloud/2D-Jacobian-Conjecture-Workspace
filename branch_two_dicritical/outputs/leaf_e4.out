@@ -1,0 +1,31 @@
+======================================================================
+Leaf E4 solitary m=2 dicritical: y'-adic analysis
+======================================================================
+
+E4 chart: x = x0 + x'*y', y = y'. E4 = {y'=0}.
+Pullback term (J,K):
+  (c+(x0+x'y')y')^{-J-K} (tau0+y')^{-J} (x0+x'y')^{-J} (y')^{-J}
+
+y'^{-2} requires J=2. Coefficient (set y'=0):
+  phi0^P(x') = tau0^{-2} * x0^{-2} * C_P,
+  C_P = sum_K p[2,K] c^{-2-K}  (constant in x').
+
+CONSTANT in x'. [phi0^P:phi0^Q] = [C_P:C_Q], degree 0.
+deg=2 impossible. Joint {nu=-2, deg=2} EMPTY.
+
+======================================================================
+Symbolic verification
+======================================================================
+d=2: C_P = p20/c**2
+      contains x': False. OK: constant => deg 0.
+d=3: C_P = p20/c**2 + p21/c**3
+      contains x': False. OK: constant => deg 0.
+
+======================================================================
+Verdict
+======================================================================
+The y'^{-2} leading coefficient on E4 is CONSTANT in the residual
+transverse coordinate x'. The pencil map [phi0:psi0] has degree 0,
+never 2. A solitary m=2 dicritical on the leaf E4 of the length-4
+chain is IMPOSSIBLE. Lengthening the chain does NOT restore
+transverse degree to the leaf.

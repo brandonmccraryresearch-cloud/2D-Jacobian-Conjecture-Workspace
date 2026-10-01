@@ -1,0 +1,81 @@
+======================================================================
+Search for constant-Jacobian pair in E1 m=2 open subset
+======================================================================
+
+d=4: 12 monomials: [(0, 2), (0, 3), (0, 4), (1, 1), (1, 2), (1, 3), (2, 0), (2, 1), (2, 2), (3, 0), (3, 1), (4, 0)]
+
+--- Random search: is J ever constant? ---
+  20 random trials: J never constant nonzero.
+
+--- Symbolic: can J be constant? ---
+
+Structural argument:
+
+For P,Q in the d=4 E1 span, write:
+  P = a02*y^2 + (terms with J+K>2 or (J,K)!=(0,2))
+  Q = b02*y^2 + b11*xy + (other terms)
+
+The Jacobian J(P,Q) contains the term:
+  - (2*a02*y) * (b11*y) = -2*a02*b11*y^2   [from P_y * Q_x]
+
+For J to be constant, the y^2 coefficient must vanish:
+  -2*a02*b11 + (contributions from other terms) = 0.
+
+But a02 != 0 and b02 != 0 (open conditions for deg C=2).
+The 'other terms' have J+K>2, so their derivatives have higher
+degree, contributing y^3 or higher to J, not y^2.
+
+Specifically:
+- P_y from a02*y^2 gives 2*a02*y (degree 1).
+- Q_x from b11*xy gives b11*y (degree 1).
+- Product: 2*a02*b11*y^2 (degree 2).
+
+Other contributions to y^2 in J:
+- From P = (higher terms), Q = (higher terms): derivatives have
+  degree >=2, product degree >=4, or degree >=1 * degree >=2 = >=3.
+  Actually, need to check carefully.
+
+Let's verify symbolically with general low-order coefficients.
+
+P0=a02*y**2, Q0=b02*y**2 + b11*x*y
+J0 = -2*a02*b11*y**2
+
+J0 = -2*a02*b11*y^2.
+For J0 constant: need a02*b11 = 0.
+But open conditions require a02 != 0 (P has deg C=2).
+If b11 = 0, then Q0 = b02*y^2, and J0 = 0.
+
+Adding higher terms (J+K>2):
+  Their x/y derivatives have total degree >= 2 (since J+K>2
+  implies at least one partial has degree >=1, actually >=2?).
+  Let's check: term x^J y^K, J+K>2.
+    d/dx: J*x^{J-1} y^K, degree (J-1)+K = J+K-1 > 1.
+    d/dy: K*x^J y^{K-1}, degree J+K-1 > 1.
+  So higher terms contribute to J in degree > 2,
+  CANNOT cancel the y^2 term from -2*a02*b11*y^2.
+
+CONCLUSION: The y^2 coefficient of J is -2*a02*b11,
+with a02 != 0 (open). For J constant, need b11=0,
+but then J has no constant term either (J0=0).
+
+More generally, the CONSTANT term of J:
+  Comes from P_x*Q_y - P_y*Q_x constant parts.
+  P_x: from terms with J>=1. Lowest degree in P_x is from
+    (J,K)=(2,0): 2*p20*x, degree 1. Or (1,1): p11*y, degree 1.
+    No constant term in P_x (since J+K>=2, J>=1 => degree>=1).
+  Similarly Q_y has no constant term.
+  Therefore J has NO constant term!
+
+======================================================================
+THEOREM: J is never a nonzero constant on the E1 m=2 open subset.
+======================================================================
+
+Proof: Every monomial in P,Q has J+K>=2.
+  - P_x has minimum degree 1 (from (2,0) or (1,1)).
+  - P_y has minimum degree 1 (from (0,2) or (1,1)).
+  - Similarly for Q.
+  - J = P_x Q_y - P_y Q_x has minimum degree 2.
+  - Therefore J cannot be a nonzero constant.
+
+The solitary m=2 on E1 CANNOT be realized by a Keller map.
+No dicritical of order m>=2 exists for any Keller map.

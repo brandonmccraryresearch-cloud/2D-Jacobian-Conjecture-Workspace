@@ -1,0 +1,20 @@
+======================================================================
+Depth-6 enumeration: >=2 dicritical candidates with m>=3 (kappa>=7)
+======================================================================
+depth 0: 1 trees, 0 with >=2 m>=3 candidates
+depth 1: 1 trees, 0 with >=2 m>=3 candidates
+depth 2: 3 trees, 0 with >=2 m>=3 candidates
+depth 3: 15 trees, 0 with >=2 m>=3 candidates
+depth 4: 105 trees, 0 with >=2 m>=3 candidates
+depth 5: 945 trees, 0 with >=2 m>=3 candidates
+depth 6: 10395 trees, 17 with >=2 m>=3 candidates
+    (kappa,m) of m>=3 cands: ((7, 3), (7, 3))
+    (kappa,m) of m>=3 cands: ((7, 3), (9, 4))
+    (kappa,m) of m>=3 cands: ((7, 3), (11, 5))
+    (kappa,m) of m>=3 cands: ((7, 3), (13, 6))
+    (kappa,m) of m>=3 cands: ((9, 4), (11, 5))
+    (kappa,m) of m>=3 cands: ((9, 4), (13, 6))
+    (kappa,m) of m>=3 cands: ((9, 4), (15, 7))
+    (kappa,m) of m>=3 cands: ((9, 4), (19, 9))
+
+Minimal (kappa,m) pair-types with two m>=3 candidates identified above.
