@@ -27,7 +27,7 @@
 % emboldened (FakeBold=0.3); text untouched.
 \setmainfont{Fira Sans}[BoldFont={Fira Sans Bold},ItalicFont={Fira Sans Italic},BoldItalicFont={Fira Sans Bold Italic}]
 \setmonofont{Fira Mono}[BoldFont={Fira Mono Bold}]
-\setmathfont{Fira Math}[FakeBold=0.3,Scale=1.08]
+\setmathfont{Fira Math}[FakeBold=0.3,Scale=1.18]
 \hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
 \setlength{\parskip}{0.6em}
 \setlength{\parindent}{0pt}
@@ -63,8 +63,10 @@ We present a computational elimination of the branch~(a,b) normal form arising f
 
 Starting from the verified Newton polygons
 \[
-N(P)=\operatorname{conv}\{(0,0),(1,0),(8,14),(8,16)\},\qquad
-N(Q)=\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24)\},
+\begin{aligned}
+N(P)&=\operatorname{conv}\{(0,0),(1,0),(8,14),(8,16)\},\\
+N(Q)&=\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24)\},
+\end{aligned}
 \]
 with $[P,Q]=x^2$ post-$\varphi$, we reduce the $72$-unknown bilinear system to five one-variable layers $E_1,\dots,E_5$ totaling $92$ equations, verified as an exact symbolic polynomial identity.
 
@@ -92,8 +94,10 @@ Santib\'a\~nez-Leal has published machine evidence related to the $(72,108)$ can
 
 For the degree pair $(72,108)$, \cite{GGHV} (an unrefereed preprint, arXiv:2204.14178v1) identifies two cases. The corner $(9,27)$ is discarded in \cite[\S5]{GGHV}; the open case is the corner $(8,28)$ with $(m,n)=(3,2)$. For this case, \cite[Proposition~4.3]{GGHV} shows that any counterexample gives rise, after an explicit (non-invertible) morphism $\varphi$, to one of two Newton polygon configurations. Case~(1), with additional vertices $(0,8)$ resp.\ $(0,12)$, is branch~(c). Case~(2), the subject of this paper, is branches~(a) and~(b):
 \begin{equation}\label{eq:polygons}
-N(P)=\operatorname{conv}\{(0,0),(1,0),(8,14),(8,16)\},\qquad
-N(Q)=\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24)\},
+\begin{aligned}
+N(P)&=\operatorname{conv}\{(0,0),(1,0),(8,14),(8,16)\},\\
+N(Q)&=\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24)\},
+\end{aligned}
 \end{equation}
 with $[P,Q]=x^2$ in post-$\varphi$ coordinates. See Figure~\ref{fig:polygons} for the polygon shapes.
 
