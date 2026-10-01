@@ -1,7 +1,7 @@
 # Build Status — branch_two_dicritical
 
 **Date:** October 1, 2026
-**Commit:** (to be filled on push)
+**Commit:** `36b9cc0eb8f01c80dbe6b1c7388c93643ba29e5a` (Fira-font revision; initial push `3ffdfe31f0b21dcee4651ee1795128c8ffcaab7a`)
 
 ## Paper
 
