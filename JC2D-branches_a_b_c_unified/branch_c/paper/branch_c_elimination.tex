@@ -23,33 +23,14 @@
 }{%
   \endVerbatim%
 }
-% Figure placeholder: framed box with a detailed description of the figure
-% that will occupy the slot in the finalized paper.
-\newcounter{figplaceholder}
-\newenvironment{figureplaceholder}[1]{%
-  \refstepcounter{figplaceholder}%
-  \begin{center}
-  \begin{minipage}{0.92\linewidth}
-  \hrule\vspace{0.6em}
-  \begin{center}\textbf{\small FIGURE PLACEHOLDER \thefigplaceholder}\label{#1}\end{center}
-  \vspace{0.3em}
-}{%
-  \vspace{0.6em}\hrule
-  \end{minipage}
-  \end{center}
-}
 % Portable fonts: system font names, no hardcoded paths.
-% Math: Noto Sans Math v3.000 is the SOLE math font. It now ships an OpenType
-% MATH table (verified 2026-09-30), so it lays out display math itself.
-% Latin Modern Math is FORBIDDEN everywhere except inside tabular
-% environments (Brandon 2026-09-30).
-\setmainfont{Noto Sans}[BoldFont={Noto Sans Bold},ItalicFont={Noto Sans Italic},BoldItalicFont={Noto Sans Bold Italic}]
-\setmonofont{Noto Sans Mono}[ItalicFont={Noto Sans Mono},BoldItalicFont={Noto Sans Mono Bold}]
-\setmathfont{Noto Sans Math}
-\setmathfont{Latin Modern Math}[version=LM]
-\setmathfontface\mathrm[version=LM]{Latin Modern Math}
+% Fira ONLY (Brandon 2026-10-01): Fira Sans (text), Fira Mono (code),
+% Fira Math (math, with FakeBold=0.3). Latin Modern Math is FORBIDDEN
+% everywhere, including inside tabular environments.
+\setmainfont{Fira Sans}[BoldFont={Fira Sans Bold},ItalicFont={Fira Sans Italic},BoldItalicFont={Fira Sans Bold Italic}]
+\setmonofont{Fira Mono}[BoldFont={Fira Mono Bold}]
+\setmathfont{Fira Math}[FakeBold=0.3]
 \usepackage{etoolbox}
-\AtBeginEnvironment{tabular}{\mathversion{LM}}
 \hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
 \setlength{\parskip}{0.6em}
 \setlength{\parindent}{0pt}
@@ -77,7 +58,7 @@
 \href{https://orcid.org/0009-0008-2804-7165}{ORCID: 0009-0008-2804-7165}\\[0.6em]
 {\small \parbox{0.92\textwidth}{\centering \textbf{Computation, Lean and LaTeX Source:}\\
 {\color{neonmagenta}\hypersetup{urlcolor=neonmagenta}\href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}{\nolinkurl{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace}}}}}}
-\date{September 30, 2026}
+\date{October 1, 2026}
 \maketitle
 
 \begin{abstract}
@@ -127,10 +108,12 @@ N(Q)&=\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24),(0,12)\}.
 \end{equation}
 with $[P,Q]=\lambda x^2$ in post-$\varphi$ coordinates and $\lambda\ne0$. The additional vertices $(0,8)$ and $(0,12)$ distinguish branch~(c) from branches~(a,b). See Figure~\ref{fig:polygons} for the polygon shapes.
 
-\begin{figureplaceholder}{fig:polygons}
-\textbf{What goes here (Figure~\ref{fig:polygons}).} Two side-by-side Newton polygon plots, rendered from the exact vertex data of~\eqref{eq:polygons}, source-gated at GGHV v1 lines~495 and~599--600.
-\textit{Left panel:} $N(P)=\operatorname{conv}\{(0,0),(1,0),(8,14),(8,16),(0,8)\}$ with all lattice points marked ($25$ from the branch-(a,b) sub-polygon plus the points contributed by the $(0,8)$ vertex). \textit{Right panel:} $N(Q)=\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24),(0,12)\}$ with all lattice points marked. In both panels the branch-(a,b) sub-polygon $\operatorname{conv}\{(0,0),(1,0),(8,14),(8,16)\}$ resp.\ $\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24)\}$ is drawn in a lighter shade underneath, and the extra branch-(c) vertices $(0,8)$ and $(0,12)$ are highlighted (e.g.\ in the accent color), with an arrow and label indicating ``branch-(c) extension''. The ten vertex coefficients required nonzero by \texttt{NewtonNFc} are labelled at the vertices. Rendering: vector PDF (not raster), produced by a short Python script from the vertex lists, so the figure is regenerable from source; axes labelled $(i,j)$ for the monomial $x^iy^j$.
-\end{figureplaceholder}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig1_newton_polygons.pdf}
+\caption{Branch-(c) Newton polygons, rendered from the exact vertex data of~\eqref{eq:polygons} (source-gated at GGHV v1 lines~495 and~599--600). In each panel the branch-(a,b) sub-polygon is drawn in the lighter shade underneath; the extra branch-(c) vertices $(0,8)$ and $(0,12)$ are highlighted in the accent color. All lattice points are marked ($61$ for $N(P)$, $125$ for $N(Q)$); the ten vertex coefficients required nonzero by \texttt{NewtonNFc} are labelled. Rendered by \texttt{figures/fig1\_newton\_polygons.py} from the vertex lists.}
+\label{fig:polygons}
+\end{figure}
 
 Santib\'a\~nez-Leal has published machine evidence related to the $(72,108)$ candidate~\cite{Santibanez,SantibanezPaper}, explicitly not claiming elimination. The candidate itself is documented in~\cite{JC125note}. Independent non-peer-reviewed treatments of the GGHV configuration in 2026 include Helali's exact characteristic-zero certificate~\cite{Helali} and the structural analysis of wstrinz~\cite{wstrinz}; none is peer-reviewed, and the parity-constrained Davenport--Stothers equation relevant to the top layer remains unclassified.
 
@@ -170,9 +153,12 @@ A preliminary version of this work claimed a ``reduction lemma'': that a unit id
 
 Section~\ref{sec:source} source-gates all base objects against GGHV v1. Section~\ref{sec:system} sets up the polynomial system and the grading. Section~\ref{sec:layers} gives the exact layer reduction and the $132$ raw equations. Section~\ref{sec:normalization} fixes normalizations and reaches the chart. Section~\ref{sec:top} treats the top layer, inherited from branches~(a,b). Section~\ref{sec:descent} carries out the descent to the twelve conditions, proved by kernel reflection. Section~\ref{sec:conditions} studies the chart conditions. Section~\ref{sec:t1zero} eliminates the stratum $b_{11,20}=0$ inside Lean. Section~\ref{sec:wholechart} eliminates the whole chart by the rank lemma. Section~\ref{sec:proof} assembles the proof of Theorem~\ref{thm:main}. Section~\ref{sec:epistemic} gives the epistemic accounting: grades, the retraction, and what is not claimed. Section~\ref{sec:conclusion} concludes. Section~\ref{sec:attribution} covers prior work, attribution, and independence. Figure~\ref{fig:bridges} shows the bridge architecture.
 
-\begin{figureplaceholder}{fig:bridges}
-\textbf{What goes here (Figure~\ref{fig:bridges}).} A flowchart of the nine bridges B0--B8 (Table~\ref{tab:bridges}), laid out left to right in three bands. \textit{Top band (Lean, grade~A):} boxes for B0 (layer identities), B1 (top layer), B2 (degree-19 rigidity, $t_2\ne0$), B3 (normalization to chart), B4 (coefficient extraction, $132$ equations), B5 (eliminations $E_4\dots E_{-2}$, $600$ reflective identities), B6 (split on $b_{11,20}$), B7 (stratum $b_{11,20}=0$ in the kernel). \textit{Middle band (outside Lean, grade~B):} box for B8 (rank lemma at $W=24$, two primes). \textit{Bottom band:} the Lean propositions each bridge targets (\texttt{EIdent}, \texttt{DescentClaimC}, \texttt{ChartEmptyC}, \texttt{ChartEmptyC\_T1ne0}, \texttt{main\_theorem\_c\_of\_chartEmpty\_T1ne0}), with arrows showing composition to the final contradiction. Each box lists its Lean file/theorem name and its epistemic grade. Rendering: vector PDF (TikZ or Graphviz \texttt{dot}), regenerable from a checked-in source file; box colors encode grade (A/B) consistently with Table~\ref{tab:grades}.
-\end{figureplaceholder}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.97\textwidth]{figures/fig2_bridges.pdf}
+\caption{Bridge architecture. Top band: the eight Lean bridges B0--B7 (grade~A), each labelled with its certified Lean name. Middle band: the external rank lemma B8 (grade~B), the only non-Lean component. Bottom band: the Lean propositions they target, composing left to right to the final contradiction. Grade colors are consistent with Table~\ref{tab:bridges}. Rendered by \texttt{figures/fig2\_bridges.py}.}
+\label{fig:bridges}
+\end{figure}
 
 \section{Source data}\label{sec:source}
 
@@ -227,11 +213,13 @@ Layer $k$ of $P$ corresponds to $W=j-2i$ via $n=1-W$; the raw equation key $(i,j
 
 \textbf{B2 (Lean, v1/v2).} Degree-$19$ rigidity: $b_{12,24}\ne0$ forces $t_2=b_{12,22}\ne0$. The theorems are \texttt{vertex\_12\_24\_forces\_t2} and \texttt{edge19\_rigidity\_of\_jac} in \filename{Edge19.lean}, and \texttt{t0\_vertex\_rigidity\_of\_jac} in \filename{LayerE2.lean}, \filename{Degree19.lean}).
 
-\textbf{B3 (Lean, v1).} Torus and weighted scaling remove the continuous symmetries, normalizing to the rescaled $K_5$ top layer and the chart $b_{12,22}=1$ (\texttt{eIdent\_transport}, \texttt{main\_theorem\_c\_of\_claim} in \filename{DescentClaim.lean}). These are \texttt{DescentClaimC}'s hypotheses: the $19$ top-layer values, the $123$ unknowns, and the $132$ raw equations.
+\textbf{B3 (Lean, v1).} Torus and weighted scaling remove the continuous symmetries, normalizing to the rescaled $K_5$ top layer and the chart $b_{12,22}=1$ (\filename{eIdent\_transport}, \filename{main\_theorem\_c\_of\_claim} in \filename{DescentClaim.lean}). These are \texttt{DescentClaimC}'s hypotheses: the $19$ top-layer values, the $123$ unknowns, and the $132$ raw equations.
 
 \section{The top layer}\label{sec:top}
 
 At $n=5$ the branch-(c) layer equations coincide with the branch-(a,b) top layer, whose complete $K_5$ classification is proved in~\cite{BranchABv19} (five torus orbits; the degree-$35$ eliminant irreducible over $\mathbb{Q}$). The classification is used here as a black box: the $19$ top-layer values enter \texttt{Descent2R/Main.lean} as hypotheses \texttt{h\_v} at minimal integer scale, and the $K_5$ arithmetic they satisfy is exactly the arithmetic of~\eqref{eq:K5}. No new top-layer analysis is needed for branch~(c); the new mathematics is the descent of \S\ref{sec:descent} and the chart analysis of \S\S\ref{sec:conditions}--\ref{sec:wholechart}.
+
+\paragraph{Formalization seam.} Julian's 2026-09-26 audit identified one genuine seam at this step: the degree-$19$ rigidity lemma is \emph{not} formalized inside Lean. The parity-constrained Davenport--Stothers classification (the step ruling out $\deg f > 19$) is supplied by the external certified point in \texttt{e5\_cert.json} (exact equality over $K_5$), which Lean imports and checks by \texttt{decide}; the mathematical classification argument itself is grade~B, not grade~A. This is the only non-kernel step below the chart (the other gap flagged by the audit, the missing GGHV citation line, is bibliographic and is repaired in~\S\ref{sec:attribution}).
 
 \section{Descent}\label{sec:descent}
 
@@ -321,9 +309,12 @@ so that with $\kappa=-o_2/(2o_1)\in K_5$,
 \end{equation}
 The relation $o_2^2=4o_1o_3$ is checked in \texttt{step1/lowerc\_chart.py} and independently in \texttt{step3c\_chart\_identity.py}; $o_1(w)\ne0$ is proved in the Lean kernel by a Bezout identity $a\cdot N_{o_1}+b\cdot R=c$ with $c$ a $151$-digit constant (\texttt{T1Zero.s\_X2}). On the chart $T_2=1$, $\Omega=0$ forces $S_2=\kappa$: the chart collapses to the parabola's vertex line (Figure~\ref{fig:omega}).
 
-\begin{figureplaceholder}{fig:omega}
-\textbf{What goes here (Figure~\ref{fig:omega}).} A schematic of the chart geometry near $\Omega=0$. \textit{Main panel:} the $(T_2,S_2)$-plane over $K_5$ (drawn schematically over $\mathbb{R}$ for illustration) showing the parabola $S_2=\kappa T_2^2$ from~\eqref{eq:omegafactor}, the chart line $T_2=1$ (normalization B3), and their intersection point $(1,\kappa)$ marked; the stratum $T_1=b_{11,20}=0$ is indicated as a transverse slice, with the two strata ($T_1=0$ handled in Lean, $T_1\ne0$ by the rank lemma) labelled. \textit{Inset:} the six generators $F_n$ on the chart ($T_2=1$, $S_2=\kappa$) with their $K_5$-term counts ($22,35,35,52,52,52$) as a small bar chart, showing the input to the Macaulay matrix of \S\ref{sec:wholechart}. Rendering: vector PDF (TikZ), with a caption noting the schematic is over $\mathbb{R}$ for visualization while the mathematics is over $K_5$.
-\end{figureplaceholder}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig3_omega.pdf}
+\caption{Chart geometry near $\Omega=0$. Main panel: the $(T_2,S_2)$-plane drawn schematically over $\mathbb{R}$ for illustration (the mathematics is over $K_5$), showing the parabola $S_2=\kappa T_2^2$ from~\eqref{eq:omegafactor}, the chart line $T_2=1$ (normalization B3), and their intersection $(1,\kappa)$; the stratum $T_1=b_{11,20}=0$ is indicated as a transverse slice, with the $T_1=0$ stratum (Lean, grade~A) and the $T_1\ne0$ stratum (rank lemma, grade~B) labelled. Inset: the six chart generators' $K_5$-term counts ($22,35,35,52,52,52$), the input to the Macaulay matrix of \S\ref{sec:wholechart}. Rendered by \texttt{figures/fig3\_omega.py}.}
+\label{fig:omega}
+\end{figure}
 
 \section{\texorpdfstring{The stratum $b_{11,20}=0$}{The stratum b11,20=0}}\label{sec:t1zero}
 
@@ -393,9 +384,12 @@ Planted common zero, $W=24$ (control) & rank $3198$, inconsistent & same \\
 
 The protocol was frozen before the run: the lemma, the second prime, the independent NumPy elimination and the controls were all fixed in \texttt{step3b\_rank\_lift.py} before it executed. The $W=24$ threshold is sharp: $W=22$ and $W=23$ are inconsistent (Figure~\ref{fig:ranks}).
 
-\begin{figureplaceholder}{fig:ranks}
-\textbf{What goes here (Figure~\ref{fig:ranks}).} A grouped bar chart of the Macaulay rank profile at weights $W=22,23,24$, for both primes ($p=1000003$ and $p=32003$). For each weight: bars for the number of rows ($2281$, $2708$, $3199$), the computed rank ($2277$, $2707$, $3199$), and the augmented rank, with the $W=24$ group highlighted (full row rank $3199/3199$, the obstruction). A fourth group shows the planted-common-zero control at $W=24$ (rank $3198$, exactly one short). Data source: \texttt{step3b\_rank\_lift.log}, reproduced from \texttt{chart\_certificates/step3b\_rank\_lift.py}. Rendering: vector PDF from a short Python script reading the log's PASS lines, so the figure regenerates from the executed output; the $y$-axis starts at a truncated range with a break mark to make the single-rank deficit visible.
-\end{figureplaceholder}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig4_ranks.pdf}
+\caption{Macaulay rank profile at weights $W=22,23,24$, identical at both primes ($p=1000003$ and $p=32003$). For each weight: bars for the number of rows ($2281$, $2708$, $3199$), the computed rank ($2277$, $2707$, $3199$), and the augmented rank, with the $W=24$ group highlighted (full row rank $3199/3199$, the obstruction). The fourth group shows the planted-common-zero control at $W=24$ (rank $3198$, exactly one short of full). Data source: \texttt{step3b\_rank\_lift.log}. Rendered by \texttt{figures/fig4\_ranks.py}; the $y$-axis is truncated with a break mark to make the single-rank deficit visible.}
+\label{fig:ranks}
+\end{figure}
 
 The chart generators are independently verified as the right polynomials (exact evaluation at $12$ random points; an independent $\kappa$; the exact $\Omega$ square; controls including $\kappa+1$ detected) by the script \texttt{step3c\_chart\_identity.py}. This is \textbf{B8}, proved outside Lean at grade~B.
 
@@ -513,6 +507,8 @@ All objects cited in this paper are archived in the public repository \href{http
 \item \filename{muse\_refutation/RefuteReductionLemma.lean} --- the Lean derivation of \texttt{False} from the retracted reduction-lemma axiom (Remark~\ref{rem:retraction}).
 \end{itemize}
 The v3.1 guide \filename{BRANCH\_C\_GUIDE.md} is the complete $13$-section reference for the bundle, including the log index (\S9), diagnostics (\S10), open items (\S11) and reproduction instructions (\S12).
+
+The repository's legacy \filename{branch\_c/} directory (the six-stage Singular pipeline, corrected 2026-09-29: the E1/E0 projection fixes, the $\Phi_1,\Phi_2$ term-count correction $53\to54$, the stage-6d $\kappa$ tuple-key fix, the actual $G[1]=1$ verification, and configurable paths with safe Singular invocation; remote commit \texttt{2b77cd4}) is an independent second route to the same branch-(c) elimination and is not used by the v3.1 argument above.
 
 \subsection*{Reproducibility}
 Lean: overlay the \texttt{jacobian\_lean/} directory on the repository's branch-(a,b) Lean project (Lean~4.34.0, Mathlib~v4.34.0), then \filename{./verify\_branch\_c\_lean.sh} (exit~$0$: prerequisite fingerprints, byte-identical regeneration, all $790$ modules up to date, axioms audit, no \texttt{sorry}/\texttt{axiom}/\texttt{native\_decide}). Outside Lean (python3 with python-flint, NumPy): \filename{chart\_certificates/step1/run\_step1.sh}, \filename{python3 step3c\_chart\_identity.py}, \filename{python3 step3b\_rank\_lift.py} ($6.5$~min, $0.5$~GB). \texttt{\#print axioms} on the $53$ audited theorems reports only \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} (\filename{jacobian\_lean/axioms\_branch\_c.log}).
