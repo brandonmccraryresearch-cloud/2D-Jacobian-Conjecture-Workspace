@@ -22,11 +22,12 @@
 }{%
   \endVerbatim%
 }
-% Portable fonts: system font names, no hardcoded paths
-\setmainfont{Noto Sans}[BoldFont={Noto Sans Bold},ItalicFont={Noto Sans Italic},BoldItalicFont={Noto Sans Bold Italic}]
-\setmonofont{Noto Sans Mono}[ItalicFont={Noto Sans Mono},BoldItalicFont={Noto Sans Mono Bold}]
-% Math: Latin Modern Math for all math
-\setmathfont{Latin Modern Math}
+% Fonts (standing rule): Fira Sans (text), Fira Mono (code), Fira Math (math)
+% only -- no other fonts for any reason. Math strokes very slightly
+% emboldened (FakeBold=0.3); text untouched.
+\setmainfont{Fira Sans}[BoldFont={Fira Sans Bold},ItalicFont={Fira Sans Italic},BoldItalicFont={Fira Sans Bold Italic}]
+\setmonofont{Fira Mono}[BoldFont={Fira Mono Bold}]
+\setmathfont{Fira Math}[FakeBold=0.3]
 \hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
 \setlength{\parskip}{0.6em}
 \setlength{\parindent}{0pt}
@@ -696,7 +697,7 @@ encoding $(A_0,B_1)$ in terms of $(t,s)=(t_1,t_2,s_1,s_2)\in\mathbb{C}^4$.
 The homogeneous operator of $E_2$ in the unknown $B_0'$ is a $19\times12$ matrix of rank $12$, hence injective. Its left nullspace has dimension $19-12=7$. Exact over $K_5$; see Lemma~\ref{lem:lifting}(i)--(ii).
 \end{proposition}
 
-Therefore $B_0'$ (and hence $B_0$ up to an additive constant) is uniquely determined by $(A_0,B_1,A_1,B_2)$. The seven left-nullvector pairings then give seven compatibility conditions:
+Therefore $B_0'$ (and hence $B_0$ up to an additive constant) is uniquely fixed by $(A_0,B_1,A_1,B_2)$. The seven left-nullvector pairings then give seven compatibility conditions:
 \begin{equation}\label{eq:seven}
 W\cdot\mathrm{rhs}(t,s)=0,
 \end{equation}

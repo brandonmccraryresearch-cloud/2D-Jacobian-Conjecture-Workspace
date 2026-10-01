@@ -1,5 +1,23 @@
 # Lean Build Status (v19)
 
+## Fira-font revision (2026-10-01)
+
+Standing font rule: Fira Sans (text), Fira Mono (code), Fira Math (math) are
+the only permitted fonts; Latin Modern Math forbidden everywhere (this
+retires the earlier tabular exception). Changes vs the v19 paper build:
+- `paper/branch_ab_elimination_v3.tex`: `\setmainfont{Fira Sans}`,
+  `\setmonofont{Fira Mono}`, `\setmathfont{Fira Math}[FakeBold=0.3]`
+  (math strokes very slightly emboldened; calibrated visually, 0.3 =
+  extremely slight). Removed `\setmathfont{Latin Modern Math}`.
+- One wording tweak for line-breaking: "is uniquely determined by
+  $(A_0,B_1,A_1,B_2)$" → "is uniquely fixed by $(A_0,B_1,A_1,B_2)$"
+  (§4.2). No mathematical content changed.
+- Rebuilt with `~/texlive/bin/x86_64-linux/xelatex` (TeX Live, permanent
+  install), 3 passes, all exit 0; 0 errors, 0 undefined references,
+  0 overfull boxes; 31 pages. `pdffonts` verifies the PDF embeds only
+  FiraSans-*, FiraMath-Regular, FiraMono-Regular.
+- `CHECKSUMS.md5` / `CHECKSUMS.sha256` regenerated.
+
 ## v19 Packaging Note (2026-09-28)
 
 This tree (`branch_ab_v19/`) is derived from v18 (`branch_ab_v18/`, commit
