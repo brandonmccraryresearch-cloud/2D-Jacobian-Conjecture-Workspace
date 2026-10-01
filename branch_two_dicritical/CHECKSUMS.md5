@@ -1,3 +1,4 @@
+d644f05eea73ffa4dfafebcd0347192b  ./BUILD_STATUS.md
 72bd662c351875d7f3c09e3b27db9072  ./CORRESPONDENCE.md
 f17d7ed9a255e20e2dcf540cfb14d3f1  ./README.md
 e8d8133d276ca7cc22dd7754881bcfcf  ./outputs/at_degree_bound.out
@@ -18,8 +19,8 @@ e50faf45dcea6f716ddfbaaee7db8e8f  ./outputs/m1_triangular.out
 a16faf520c98951b85d4a436d6feb2e1  ./outputs/middle_e2.out
 7cf15946b646bb0b80d83c8d99bf4cb9  ./outputs/mixed_poles.out
 587246a923950baa3b5e46ae10a4f914  ./outputs/routeB_cancellation.out
-4db10d861b497476e38db2aa840b898e  ./paper/two_dicritical_closure.pdf
-1b870d65978c7fa59a1915d2cd5bb3f0  ./paper/two_dicritical_closure.tex
+a6b098ea3c883beec307dc2e038ab8cd  ./paper/two_dicritical_closure.pdf
+f649c4e06261759ae869f88185123013  ./paper/two_dicritical_closure.tex
 03407f7c30a68b519359a6ed967b7776  ./scripts/at_degree_bound.py
 b729ada9daf94cfff5defbd4100d8b1e  ./scripts/at_degree_bound_m5.py
 e860f5194762dcb51cf6959a5227bec9  ./scripts/depth5_global.py

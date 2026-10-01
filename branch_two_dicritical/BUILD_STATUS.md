@@ -10,8 +10,8 @@
 - Compiler: `~/texlive/bin/x86_64-linux/xelatex` (TeX Live, permanent install)
 - Passes: 2 (clean, exit 0 both)
 - Overfull boxes: 0
-- Fonts: Noto Sans (text), Noto Sans Math (math)
-- MD5 (PDF): `4db10d861b497476e38db2aa840b898e`
+- Fonts: Fira Sans (text), Fira Mono (code), Fira Math (math, FakeBold=0.3) -- the only permitted fonts; verified via `pdffonts` (no Latin Modern, no Noto embedded)
+- MD5 (PDF): `a6b098ea3c883beec307dc2e038ab8cd`
 
 ## Scripts
 
