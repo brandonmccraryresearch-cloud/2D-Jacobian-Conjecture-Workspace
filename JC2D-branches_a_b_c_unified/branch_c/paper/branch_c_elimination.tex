@@ -29,7 +29,7 @@
 % everywhere, including inside tabular environments.
 \setmainfont{Fira Sans}[BoldFont={Fira Sans Bold},ItalicFont={Fira Sans Italic},BoldItalicFont={Fira Sans Bold Italic}]
 \setmonofont{Fira Mono}[BoldFont={Fira Mono Bold}]
-\setmathfont{Fira Math}[FakeBold=0.3,Scale=1.08]
+\setmathfont{Fira Math}[FakeBold=0.3,Scale=1.18]
 \usepackage{etoolbox}
 \hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
 \setlength{\parskip}{0.6em}
@@ -319,7 +319,7 @@ The relation $o_2^2=4o_1o_3$ is checked in \texttt{step1/lowerc\_chart.py} and i
 \section{\texorpdfstring{The stratum $b_{11,20}=0$}{The stratum b11,20=0}}\label{sec:t1zero}
 
 \textbf{B7 (Lean kernel).} On the stratum $T_1=b_{11,20}=0$ the conditions admit an exact $K_5$ certificate small enough for the kernel: degree~$2$, $75$ $K_5$-terms, coefficient heights at most $9{,}681$ digits (\texttt{chart\_certificates/step1/certB\_lowerc.json}, produced by \texttt{certB\_lowerc.py} via pivots from a mod-$p$ RREF and an exact FLINT solve; independently rechecked by \texttt{check\_certB\_lowerc.py} with \texttt{fmpq\_mpoly} expansion, $w$ as a variable, reduced mod~$R$ at the end). \texttt{T1Zero} checks the certificate chain end to end in the kernel (\texttt{gen\_t1zero\_lean.py}):
-{\small
+{\footnotesize
 \begin{center}
 \begin{tabular}{lll}
 Step & Identity (integer-polynomial, kernel-checked) & Build \\ \midrule
