@@ -1,0 +1,19 @@
+Total GB polynomials: 10
+Det of M: 30408*a4**3
+a1 = (3*a4**5 + 13078)/(362*a4)
+a2 = 3*(5*a4**5 + 10816)/(181*a4**2)
+a3 = 7*(123*a4**5 + 70304)/(2172*a4**3)
+
+--- Canonical polynomial representatives in Q[a4]/(T) ---
+a1 = Poly(-4527/1323402496*a4**9 - 484011/82712656*a4**4, a4, domain='QQ')
+a2 = Poly(-27/1590628*a4**8 + 5055/397657*a4**3, a4, domain='QQ')
+a3 = Poly(-21/978848*a4**7 + 37653/122356*a4**2, a4, domain='QQ')
+
+All 10 GB elements vanish modulo T: True
+wrote 24 lines residuals 4
+Residual n=8 vanishes exactly mod T
+Residual n=9 vanishes exactly mod T
+Residual n=10 vanishes exactly mod T
+Residual n=11 vanishes exactly mod T
+Residual n=12 vanishes exactly mod T
+All original residuals vanish modulo T: True

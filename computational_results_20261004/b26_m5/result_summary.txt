@@ -1,0 +1,5 @@
+G size: 10
+Elimination ideal size: 1
+9*a4^10+37200*a4^5+95051008
+T degree: 10
+T factor: 1,9*a4^10+37200*a4^5+95051008,1,1
