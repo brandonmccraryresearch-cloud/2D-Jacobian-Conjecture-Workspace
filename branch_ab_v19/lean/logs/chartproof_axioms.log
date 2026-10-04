@@ -1,0 +1,102 @@
+# Axiom audit -- v17 (2026-09-27), Lean v4.34.0, Mathlib v4.34.0
+# Project copy /home/claude/build/jacobian_lean = this bundle's lean/ except the import lines of 48 descent
+# certificate modules (see chartproof_build.log); this bundle's Jacobian.lean, AxiomsAudit.lean and
+# verify_branch_ab_lean.sh were used unchanged.
+
+## 1. lean/verify_branch_ab_lean.sh /home/claude/build/jacobian_lean  (build, static scan, 44 theorems)
+project: /home/claude/build/jacobian_lean
+=== 1. lake build (full project) ===
+lake build exit status: 0
+PASS: build clean
+=== 2. sorry/admit/native_decide/user-axiom scan (all sources, comments stripped) ===
+PASS: no sorry, no admit, no native_decide, no user-declared axioms
+=== 3. #print axioms ===
+'t_zero_case' depends on axioms: [propext, Classical.choice, Quot.sound]
+'minor_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'only_zero_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'t_zero_case_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+'t_zero_case_fails_char3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'minor_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+'eval_minorPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'no_nonzero_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_triangular' depends on axioms: [propext, Classical.choice, Quot.sound]
+'isValuativelyProper2D_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layer_bracket' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_yev' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_layerTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_sc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layerTerm_sc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.Descent.descent_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.no_completion_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.top_layer_E5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_K5_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.latticeNP_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.latticeNQ_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.vertices_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.X1_pow_mul_layerPiece' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.eq_sum_layerPiece' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.coeff_layerPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_of_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.no_completion_K5_PQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.belyi_derivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layerTerm_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.orbit_solves_E5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.main_theorem_of_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.chart_K5_identities' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.chart_point_solves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.topLayerClassification_of_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.main_theorem_of_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.eq_of_toPolyK' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.lc_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.chartClassification_holds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.main_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: all 44 theorems depend only on propext, Classical.choice, Quot.sound
+=== ALL CHECKS PASSED ===
+EXIT 0 after 182s
+
+## 2. lake env lean AxiomsAudit.lean  (this bundle's version)
+'BranchAb.layers_of_jac' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.layers_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartClassification' depends on axioms: [propext, Quot.sound]
+'BranchAb.topLayerClassification_of_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.main_theorem_of_chart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.NewtonNF2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.Descent.descent_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.Descent.e2_t0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.no_completion_K5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.chartClassification_holds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.main_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.eq_of_toPolyK' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.lc_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+RC_AUDIT 0 after 149s
+
+## 3. step-level spot checks (scratch file importing Jacobian.ChartProof.Final)
+  import Jacobian.ChartProof.Final
+  #print axioms BranchAb.chartClassification_holds
+  #print axioms BranchAb.main_theorem
+  #print axioms BranchAb.ChartProof.eq_of_toPolyK
+  #print axioms BranchAb.ChartProof.lc_zero
+  #print axioms BranchAb.ChartProof.step_g7_P0
+  #print axioms BranchAb.ChartProof.step_g7
+  #print axioms BranchAb.ChartProof.step_m
+  #print axioms BranchAb.ChartProof.step_B0
+  #check @BranchAb.chartClassification_holds
+  #check @BranchAb.main_theorem
+  ---
+'BranchAb.chartClassification_holds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.main_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.eq_of_toPolyK' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.lc_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.step_g7_P0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.step_g7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.step_m' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.ChartProof.step_B0' depends on axioms: [propext, Classical.choice, Quot.sound]
+BranchAb.chartClassification_holds : ∀ (L : Type u_1) [inst : Field L] [CharZero L], BranchAb.ChartClassification L
+@BranchAb.main_theorem : ∀ {L : Type u_1} [inst : Field L] [CharZero L],
+  ¬∃ P Q lam, lam ≠ 0 ∧ BranchAb.NewtonNF2 P Q ∧ BranchAb.jac P Q = MvPolynomial.C lam * MvPolynomial.X 0 ^ 2
+EXIT 0 after 58s
