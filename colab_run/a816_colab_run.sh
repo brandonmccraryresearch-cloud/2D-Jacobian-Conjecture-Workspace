@@ -57,8 +57,6 @@ if ! command -v Singular &> /dev/null; then
 else
     echo "  Singular already installed."
 fi
-Singular --version > /tmp/singular_version.txt 2>&1
-cat /tmp/singular_version.txt
 
 # --- Cell 4: Run the lift ---
 echo ""
