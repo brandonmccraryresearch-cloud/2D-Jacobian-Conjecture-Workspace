@@ -27,6 +27,27 @@ Most scripts run directly from here:
   The `lst:t0` block elides the 19 `r2_*` hypotheses mechanically
   (counted and asserted; the elision range in the note is computed, not typed).
 
+### From `computational_20261004/` (structured elimination results)
+
+Computational results from 2026-10-04, using the structured-elimination
+methodology (coefficient-recursion first, then reduced systems):
+
+- `b26_m5/` — B2.6 ($m=5$) **complete exact solution**:
+  `B26_m5_complete.md` documents the irreducible eliminant
+  $9a_4^{10}+37200a_4^5+95051008=0$, explicit back-substitution formulas
+  for $(a_1,a_2,a_3)$, and independent verification (all 10 GB elements
+  and 4 residuals vanish mod $T$). Scripts: `generate_m5_singular_q_5_xcxw.py`,
+  `m5_b2_6_eliminate_basis.sing`, `m5_back_substitution_8_30l1.py`, `verify_b26.py`.
+- `b22_structured/` — B2.2 structured elimination methodology:
+  `B22_structured.md` documents the $c$-recursion (17×17→7×7, proven exact),
+  $s$-parametrization (avoids degeneracy trap), and $s^2$-structure theorem
+  (hidden $\mathbb{Z}/2$ symmetry, 7×7→6×6). The exact $K_5$ point remains
+  pending; methodology is established.
+- `a816_lift/` — $a_{8,16}$ modular lift simplification:
+  `a816_simplified.md` documents the mod-$p$ ($p=1{,}000{,}003$) lift completing
+  in 6.6s vs timeout over $\mathbb{Q}$. `modlift.sing` and `modlift_76.txt`
+  (76 cofactors) are included. Path to exact via ≥3GB machine or multi-prime CRT.
+
 ### From `lean/certgen/` (as working directory)
 
 These scripts expect to be run with `lean/certgen/` as the working directory:
