@@ -20,8 +20,17 @@
 **Axioms.**
 - `AxiomsAudit.lean`, now with B26, prints only `propext`, `Classical.choice` and `Quot.sound` for all 22
   declarations (`lean/logs/axioms_audit_with_B26.log`).
-- It ran against prebuilt oleans of the other modules. Their sources are unchanged, and the root module `Jacobian.lean`
-  elaborates with the new import.
+- **Where it ran.** The audit and the elaboration of the root module `Jacobian.lean`, with the new import (exit 0),
+  ran in a build overlay whose other modules were prebuilt.
+- **How the overlay differs.** Its sources match this tree except for 54 files in `Jacobian/Descent/E3`,
+  `Descent/E3red` and `Descent/E4`. Those files import four Mathlib modules (`Tactic.LinearCombination`,
+  `Tactic.Ring`, `Algebra.Field.Basic`, `Algebra.CharZero.Defs`) instead of `import Mathlib`. Apart from the
+  `import` lines the files are identical.
+- **What this means.** Those modules were therefore not recompiled from this tree's sources in this session. Their
+  full build with `import Mathlib` is the cloud build of the byte-identical v18 sources (see "Lean build record
+  (v19)" below).
+- **B26 itself.** B26 imports only `Mathlib` and its own modules, and its sources in the overlay are identical to this
+  tree. So the build above is a build of these files.
 
 **Source scan.** The `sorry`/`admit`/`native_decide`/`axiom` scan of `verify_branch_ab_lean.sh` passes over all 118
 Lean files.

@@ -116,7 +116,7 @@ e8c20f259849e237de9407d8e26a108d3c3be78e12244ce69d61487f05e765ea  ./lean/AxiomsA
 7d436acded54908624e5253cb8aee63205d26f5386c433b870b038666a66636f  ./lean/certgen/chart_system_Q.sing
 7d91dea460d0a1972649a43124433897151d6d5d6700d7404074de16990f6a0f  ./lean/Jacobian/ChartProof/Defs.lean
 7dd53abae1a5df814074d1dbdba0d4fdc8b3170c2b31a9f907cff53c1578d870  ./lean/Jacobian/Descent/E3/x_b_6_11.lean
-b80ec77686b2f09d9f5e9c39a1568bd0f9801bc7e8846d1cc4fccab80d81f436  ./BUILD_STATUS.md
+628aa85908f46469595ea5ca9c61cfe8cb60a8144068702934fda2cd3c6de7e2  ./BUILD_STATUS.md
 8185d61a1ebbf72a60d8709670a0a042ccaac33cf8e5f925ca4e08b7582f32b8  ./lean/Jacobian/Descent/E4/z_a_2_3.lean
 82c9e3697bd9b1d823775842bd366b459b1210a2b1694da50007f957f58150be  ./lean/Jacobian/Descent/E3/x_a_2_4.lean
 8307b9baf42141ab65ff001eb7289d9e36ea73e0116a4b2b5c39492ade332b0d  ./lean/Jacobian/Descent/E3red/r3_13_24.lean
