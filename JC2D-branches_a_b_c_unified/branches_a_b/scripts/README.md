@@ -33,12 +33,14 @@ Most scripts run directly from here:
   - Contents: `a816_lift.txt` holds 76 cofactors, 3464 terms, coefficients up to 493 digits. The folder also has
     the generator (`structured_cert.py`), two independent exact checkers (Singular over $\mathbb{Q}(w)$ and
     python-flint, which rebuilds $[P,Q]$), negative controls, the multimodular route, and logs.
-  - Check: `./verify_bundle.sh`, about 2 min.
+  - Check: `./verify_bundle.sh`, under 2 min.
   - Supersedes `computational_20261004/a816_lift/`.
 - **`b26_m5_eliminant/lean_certificates/` — generator and ideal-equality certificates for `lean/Jacobian/B26.lean`.**
   - That file is the kernel-checked $m=5$ and $m=3$ classification over any field of characteristic 0: the chart
     system holds iff $T(a_{m-1})=0$ plus explicit back-substitution.
   - Check: `./regen_b26.sh` (byte-identical regeneration, about 12 s).
+  - Check: `python3 independent_checks.py`, which does not use the generator. It confirms that the Lean chart
+    definitions are exactly $E_1,\dots,E_{n+m}$, and it confirms the closed forms at all $d$ roots, to 60 digits.
 - **`b22_structured/RESOLUTION.md`, `b22_validate.py` — B2.2 resolved.**
   - The B2.2 system is the Lean chart system `ChartClassification`, already classified by
     `chartClassification_holds`.

@@ -56,7 +56,7 @@ planar Jacobian conjecture.
 | `CHANGES_v19.md` | Full v19 change list vs v18 |
 | `logs/k5_minor_certificate.json` | Machine-readable 35×6 K5 minor matrix with rank-6 certificate |
 | `logs/v19_scripts.log` | Recorded stdout + exit codes of the v19 script runs |
-| `verify_v19.sh` | One-command verification: checksums, scripts, 111/111 identities, the 2026-10-05 checks (a₈,₁₆ certificate, B26 regeneration, B2.2 validation), paper build |
+| `verify_v19.sh` | One-command verification: checksums, scripts, 111/111 identities, the 2026-10-05 checks (a₈,₁₆ certificate, B26 regeneration and statement check, B2.2 validation), paper build |
 
 ## Reproduction
 

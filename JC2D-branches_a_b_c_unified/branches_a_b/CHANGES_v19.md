@@ -173,6 +173,12 @@ reproducibility appendix names the artifact commit.
 - **Generator, certificates, logs.** In `scripts/b26_m5_eliminant/lean_certificates/`; `regen_b26.sh` regenerates
   the files byte-identically.
 - **Build.** A clean build is recorded in `logs/build_modules_seq.log`. The largest module, `M5T`, needs 3.8 GB.
+- **Independent check of the statements.** `independent_checks.py` does not use the generator.
+  - It parses `m5Chart` and `m3Chart` from the Lean source and confirms that they are exactly $E_1..E_{n+m}$.
+  - It reads $T$ and the relations from `m5_chart_iff` and `m3_chart_iff`, and confirms the 10 and 3 distinct
+    solutions to 60 digits.
+  - Each check also runs on a perturbed input, where it must fail.
+  - It runs in `verify_v19.sh` step 4b.
 - **Scope statements updated.** "m = 3, 5 are not formalized" no longer holds. These now say the cases are formalized
   separately and are not used by the main theorem:
   - `README.md`;
@@ -229,8 +235,8 @@ reproducibility appendix names the artifact commit.
   - 0957290 changed the `.tex` without rebuilding the PDF.
 
 ### Verification files
-- **`verify_v19.sh`.** New step 4b runs `verify_bundle.sh`, `regen_b26.sh` and `b22_validate.py`. The expected page
-  count is now 33.
+- **`verify_v19.sh`.** New step 4b runs `verify_bundle.sh`, `regen_b26.sh`, `b22_validate.py` and
+  `independent_checks.py`. The expected page count is now 33.
 - **`scripts/README.md`.** New entries and attribution.
 - **Checksums.** `CHECKSUMS.md5`, `CHECKSUMS.sha256` and `lean/MD5SUMS` were regenerated, with the same coverage
   rules. They now include the 2026-10-04/05 additions.

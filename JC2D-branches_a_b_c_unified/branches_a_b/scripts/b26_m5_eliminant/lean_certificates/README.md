@@ -61,7 +61,15 @@ All of them hold over any field of characteristic 0.
 | `gen_b26_lean.py` | Writes the single file `B26.lean`. It first re-checks every cofactor identity with SymPy. |
 | `split_b26.py` | Splits that file into `B26/Defs.lean`, eight certificate modules and the umbrella `B26.lean`. Building all eight proofs as one module was killed at 5.5 GB of anonymous memory (`logs/single_module_build_killed.log`); the largest split module, `M5T`, needs 3.8 GB. |
 | `regen_b26.sh` | Regenerates everything and diffs the result against `lean/Jacobian/B26*`. |
-| `logs/` | Build log (`build_modules_seq.log`), the killed single-module build, and the axiom check (`AxB26.lean`, `b26_axioms.log`). |
+| `independent_checks.py` | Checks that do not use the generator; about 1 s; log in `logs/independent_checks.log`. Each check is run on a perturbed input too, and must fail there. |
+| `logs/` | Build log (`build_modules_seq.log`), the killed single-module build, the axiom check (`AxB26.lean`, `b26_axioms.log`), and `independent_checks.log`. |
+
+`independent_checks.py` makes two checks:
+1. **Statement fidelity.** It parses `m5Chart` and `m3Chart` from the Lean source and confirms that conjunct $N$ is
+   $E_N$, built from scratch.
+2. **The closed forms.** It reads $T$ and the relations from the Lean statements of `m5_chart_iff` and `m3_chart_iff`.
+   At every root of $T$, all $E_N$ vanish to 60 digits, and the $d$ points are pairwise distinct. Together with
+   `vdim` $= d$, this counts the solutions without Lean.
 
 ## Build record (2026-10-05)
 

@@ -65,7 +65,7 @@ PYEOF
 echo "=== 4. 111/111 independent identities ==="
 run $PY chartproof/independent_check.py
 
-echo "=== 4b. 2026-10-05 additions: a_{8,16} certificate, B2.2 validation, B26 regeneration ==="
+echo "=== 4b. 2026-10-05 additions: a_{8,16} certificate, B2.2 validation, B26 regeneration and statement check ==="
 if command -v Singular >/dev/null; then
   run bash "$ROOT/scripts/a816_certificate/verify_bundle.sh"
   run bash "$ROOT/scripts/b26_m5_eliminant/lean_certificates/regen_b26.sh"
@@ -73,6 +73,7 @@ else
   echo "SKIP: Singular not found (needed by a816_certificate/verify_bundle.sh and regen_b26.sh)"
 fi
 run $PY "$ROOT/scripts/b22_structured/b22_validate.py"
+run $PY "$ROOT/scripts/b26_m5_eliminant/lean_certificates/independent_checks.py"
 
 echo "=== 5. paper recompile (in temp dir, tree untouched) ==="
 TMPD=$(mktemp -d)
