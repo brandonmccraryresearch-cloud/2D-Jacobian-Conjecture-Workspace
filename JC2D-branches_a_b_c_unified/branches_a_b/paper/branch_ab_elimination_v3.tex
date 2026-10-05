@@ -169,9 +169,7 @@ Theorem~\ref{thm:main} from the explicit statement \texttt{ChartClassification}
 combines it with \texttt{chartClassification\_holds} into a single kernel-checked
 theorem independent of GGHV Proposition~4.3, and \texttt{\#print axioms} reports only \texttt{propext}, \texttt{Classical.choice}
 and \texttt{Quot.sound}.
-The $b_{12,24}=0$ part follows from \texttt{no\_completion\_K5\_PQ} together with \texttt{topLayerClassification\_of\_chart} and \texttt{chartClassification\_holds}; the $a_{8,16}=0$ part (Corollary~\ref{cor:a816}) is computer
-algebra (the exact Gr\"obner computation \texttt{a816\_full.sing}, not Lean;
-see~\S\ref{sec:lower-edge}). Only Corollary~\ref{cor:gghv} also assumes GGHV
+The $b_{12,24}=0$ part follows from \texttt{no\_completion\_K5\_PQ} together with \texttt{topLayerClassification\_of\_chart} and \texttt{chartClassification\_holds}; the $a_{8,16}=0$ part (Corollary~\ref{cor:a816}) is an explicit certificate $a_{8,16}^2 = \sum H_k e_k$ over $K_5$ (\texttt{a816\_lift.txt}, 76 cofactors), checked exactly by Singular and python-flint; not Lean (see~\S\ref{sec:lower-edge}). Only Corollary~\ref{cor:gghv} also assumes GGHV
 Proposition~4.3.
 \end{remark}
 
