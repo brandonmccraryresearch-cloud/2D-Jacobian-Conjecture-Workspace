@@ -41,8 +41,12 @@ planar Jacobian conjecture.
 | `lean/` | Lean 4 project (Mathlib v4.34.0): proof sources, generators, verification scripts |
 | `lean/Jacobian/ChartProof/` | The 12-module machine-checked proof (Reflect + 11 generated modules, 111 identities) |
 | `lean/certgen/chartproof/` | Exact generators (Python/SymPy/python-flint) + independent check scripts |
-| `paper/` | 31-page paper (XeLaTeX), four certificates, explicit 35-minor and transfer arguments |
+| `lean/Jacobian/B26.lean`, `lean/Jacobian/B26/` | (2026-10-05) Kernel-checked $m=3$ and $m=5$ top-layer chart classifications over any field of characteristic 0 (`m3_chart_iff`, `m5_chart_iff`, squarefree eliminants); standard axioms only |
+| `paper/` | 33-page paper (XeLaTeX, TeX Live 2026), four certificates, explicit 35-minor and transfer arguments |
 | `scripts/` | Audit and analysis scripts |
+| `scripts/a816_certificate/` | (2026-10-05) Explicit certificate $a_{8,16}^2=\sum H_k e_k$ over $K_5$ for Corollary 1.2, two independent exact checkers, controls; `./verify_bundle.sh` |
+| `scripts/b26_m5_eliminant/lean_certificates/` | (2026-10-05) Generator and ideal-equality certificates for `lean/Jacobian/B26*`; `./regen_b26.sh` |
+| `scripts/b22_structured/RESOLUTION.md` | (2026-10-05) B2.2 = the Lean chart system; the exact $K_5$ point validated in the $c$-recursion form (`b22_validate.py`) |
 | `figures/` | Paper figures |
 | `logs/` | Build, axiom, control, regeneration, saturation logs |
 | `correspondence_guide/` | Correspondence guide mapping proof elements to their Lean formalization |
@@ -52,7 +56,7 @@ planar Jacobian conjecture.
 | `CHANGES_v19.md` | Full v19 change list vs v18 |
 | `logs/k5_minor_certificate.json` | Machine-readable 35×6 K5 minor matrix with rank-6 certificate |
 | `logs/v19_scripts.log` | Recorded stdout + exit codes of the v19 script runs |
-| `verify_v19.sh` | One-command verification: checksums, scripts, 111/111 identities, paper build |
+| `verify_v19.sh` | One-command verification: checksums, scripts, 111/111 identities, the 2026-10-05 checks (a₈,₁₆ certificate, B26 regeneration, B2.2 validation), paper build |
 
 ## Reproduction
 
@@ -73,9 +77,11 @@ python3 lean/certgen/chartproof/saturation_check.py     # saturation over Q (nee
 
 ## Scope and provenance
 
-- The formalized statement is the m = 7 chart classification; the degree-35
-  eliminant, the m = 3 and m = 5 cases, the a₈,₁₆ = 0 computation, and GGHV
-  Proposition 4.3 are outside the Lean formalization (see
+- The main theorem's Lean proof uses the m = 7 chart classification. The
+  m = 3 and m = 5 chart classifications are kernel-checked separately
+  (`lean/Jacobian/B26*`, 2026-10-05); the main theorem does not use them.
+  The degree-35 eliminant, the a₈,₁₆ = 0 certificate (Corollary 1.2), and
+  GGHV Proposition 4.3 are outside the Lean formalization (see
   `lean/CLASSIFICATION_STATUS.md` and paper §1.3 "Logical status").
 - Nothing here claims resolution of the (8,28) case or the Jacobian conjecture.
 

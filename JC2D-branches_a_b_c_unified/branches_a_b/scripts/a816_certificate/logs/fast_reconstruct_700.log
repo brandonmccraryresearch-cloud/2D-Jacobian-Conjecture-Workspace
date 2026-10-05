@@ -1,0 +1,6 @@
+# 2026-10-05T13:51:44-05:00 fast_reconstruct.py (all completed primes, 8 held out)
+primes: 700 completed, 692 used, 8 held out; 2967 terms; load 57s
+reconstruction with 692 primes: failures 0  (245s)
+with 8 primes fewer: failures 0; entries that change: 0  (430s)
+held-out mismatches: 0
+ACCEPTED: liftstd_cert_K5.json, max height 1630 digits  (432s)

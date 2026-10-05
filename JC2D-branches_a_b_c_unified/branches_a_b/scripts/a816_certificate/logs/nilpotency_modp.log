@@ -1,0 +1,9 @@
+# 2026-10-05T14:01:56-05:00 Singular -q nilpotency_modp.sing
+equations:
+75
+unknowns with x^ceil(4/depth) in I:
+51
+failures:
+0
+ms:
+325

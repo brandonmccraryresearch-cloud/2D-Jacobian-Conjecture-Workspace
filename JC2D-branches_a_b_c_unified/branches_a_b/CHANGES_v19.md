@@ -146,3 +146,91 @@ reproducibility appendix names the artifact commit.
 ## 14. Reproducibility paragraph cites final commit (this commit)
 - Reproducibility paragraph: commit hash 9b7d541 -> 7597700 (the first commit where scripts, permissions, and checksums are all final).
 - PDF rebuilt: 31pp, 0 errors, 0 undefined refs.
+
+## 15. 2026-10-05: a₈,₁₆ certificate, m = 3, 5 classifications in Lean, B2.2 resolution (branch `claude/a816-b26-b22-resolution`)
+
+### `scripts/a816_certificate/`
+- **What 3304df0 left out.** That commit added only `README.md`, `SHA256SUMS`, `a816_lift.txt` and `verify_bundle.sh`,
+  so `verify_bundle.sh` could not run.
+- **Completed.** Added the generator (`structured_cert.py`), both independent checkers (`verify_cert_flint.py` and the
+  Singular scripts), the negative controls, the multimodular route, CAIC's inputs and the logs.
+- **Paths.** The scripts now read `../a816_full.sing` (or the identical copy here, md5 `aa68d2ff…`) instead of an
+  absolute path.
+- **Not committed.** `a816_lift_liftstd.txt` (36.4 MB, sha256 `dd9082fd…`). `verify_bundle.sh` checks it when present.
+- **Result.** `verify_bundle.sh` passes in the repository (`logs/verify_bundle_repo.log`).
+
+### `lean/Jacobian/B26.lean` and `lean/Jacobian/B26/` (10 modules)
+- **Replaced.** The 2b6d208 skeleton is gone. Its statements were over `ℚ`, where `T₅` has no root, so they were
+  vacuous; `QQ` is undefined, so the file did not compile; and it was not imported.
+- **New theorems** (namespace `BranchAb.TopLayerSmall`, any field of characteristic 0):
+  - `m5_chart_iff`: the m = 5 chart system of `E₅` holds iff `T₅(a₄) = 0`, the three back-substitution relations hold,
+    and `b₁…b₇` are explicit polynomials;
+  - `m5_residual_iff`: an ideal equality, both inclusions certified;
+  - `m5_T_squarefree`, `m5_a4_ne_zero`, `m5_solution_formulas`;
+  - the same for m = 3.
+- **Checks.** No `sorry`, no warnings; standard axioms only.
+- **Wiring.** Imported by `Jacobian.lean`, and listed in `AxiomsAudit.lean` and `verify_branch_ab_lean.sh`.
+- **Generator, certificates, logs.** In `scripts/b26_m5_eliminant/lean_certificates/`; `regen_b26.sh` regenerates
+  the files byte-identically.
+- **Build.** A clean build is recorded in `logs/build_modules_seq.log`. The largest module, `M5T`, needs 3.8 GB.
+- **Scope statements updated.** "m = 3, 5 are not formalized" no longer holds. These now say the cases are formalized
+  separately and are not used by the main theorem:
+  - `README.md`;
+  - `lean/CLASSIFICATION_STATUS.md`;
+  - `lean/certgen/chartproof/README_chartproof.md`;
+  - `correspondence_guide/CORRESPONDENCE_GUIDE.md`.
+
+  The dated v17 note in `BUILD_STATUS.md` is left as written.
+
+### `scripts/b22_structured/`
+- **New files.** `RESOLUTION.md`, `b22_validate.py` (with `b22_validate.log` and `b22_s_point.json`), and a copy of
+  `k5.py`.
+- **Finding.** B2.2 is the Lean chart system `ChartClassification`. The exact K₅ point solves the c-recursion system,
+  and `s = c₁₀/a₇ ∈ K₅`. The reduced 7×7 system needs `a₇ ≠ 0`.
+- **Correction notes.** Prepended to `DERIVATION_REPORT.md` and `computational_20261004/b22_structured/B22_structured.md`.
+- **Output location.** `b22_validate.py` writes `b22_s_point.json` next to itself, so `verify_v19.sh`, which calls it
+  from `lean/certgen/`, leaves no stray file.
+
+### `colab_a816/README.md`
+- **Annotation of the archived notebook** `a816_lift_attempts_2026-10-04.ipynb`, added on main in 91c8ff7, which this
+  branch is based on.
+  - The run in characteristic 0 reached `G[1]=1` and was then stopped during `lift` at the 2-hour limit.
+  - The run that finished used the ring `(32003,w)`. R factors mod 32003 with degrees 1, 1, 3, so that quotient is
+    not a field. Its output, a Colab-only file also called `a816_lift.txt`, is a modular computation and not the
+    certificate.
+
+### `computational_20261004/`
+- **`a816_lift/README.md`, `a816_lift/a816_simplified.md`: correction notes.**
+  - 1,000,003 and 32,003 are not inert primes for `R`, so the "F_{p⁵}" statements are wrong.
+  - `std` over Q(w) takes 7.8 s here.
+  - The exact certificate exists.
+- **`b26_m5/B26_m5_complete.md`: update note.** Completeness is now certified, and the result is in Lean.
+
+### Paper (`paper/branch_ab_elimination_v3.tex`)
+- **Corollary `cor:a816`.** The statement now cites the certificate. The proof gives the identity and the layer
+  structure: ranks 17, 18, 12; free unknowns τ, σ; the 14 depth-4 monomials.
+- **New Remark `rem:full-rigidity`.** The span statement implies that all 51 unknowns, the non-constant lower
+  coefficients, vanish at the K₅ point. It is stated with its verification status, and is not used elsewhere.
+- **Other text edits.**
+  - `rem:conditional` wording;
+  - the vertex-conditions paragraph;
+  - the Proposition `prop:top-class` proof (Lean for m = 3, 5);
+  - the characteristic-0 core;
+  - reproducibility;
+  - the AI disclosure, covering Claude's and Muse/CAIC's 2026-10-04/05 contributions.
+- **Layout fix.** Remark 6.2's Lean path is now `\filename`, so it can break; this fixes a pre-existing 101 pt
+  overfull box.
+- **PDF rebuilt.**
+  - Toolchain: TeX Live 2026 (TinyTeX, xdvipdfmx 20260317), with the Fira Sans, Mono and Math fonts from CTAN.
+  - Result: 33 pages, 3 passes all exit 0, 0 errors, 0 undefined references, 0 overfull boxes.
+  - The previously committed PDF has 32 pages (built 2026-10-01 from e8e1d8c), and the same toolchain reproduces
+    32 pages from that source.
+  - The committed `.log` that reported 31 pages was stale.
+  - 0957290 changed the `.tex` without rebuilding the PDF.
+
+### Verification files
+- **`verify_v19.sh`.** New step 4b runs `verify_bundle.sh`, `regen_b26.sh` and `b22_validate.py`. The expected page
+  count is now 33.
+- **`scripts/README.md`.** New entries and attribution.
+- **Checksums.** `CHECKSUMS.md5`, `CHECKSUMS.sha256` and `lean/MD5SUMS` were regenerated, with the same coverage
+  rules. They now include the 2026-10-04/05 additions.

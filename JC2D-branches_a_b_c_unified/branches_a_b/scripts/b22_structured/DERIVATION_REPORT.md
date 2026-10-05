@@ -1,5 +1,12 @@
 # B2.2 Structured Elimination — Derivation Report
 
+> **Correction (2026-10-05): see `RESOLUTION.md`.** The B2.2 system is the Lean chart system `ChartClassification`.
+> Its solutions are classified by the kernel-checked theorem `chartClassification_holds`, and the exact $K_5$ point
+> is in `lean/certgen/chartpoint.json`. `b22_validate.py` checks that this point solves the $c$-recursion system
+> exactly. "No validated numerical solution exists … no evidence a solution exists" (below) is therefore wrong.
+> The reduced $7\times7$ system needs $a_7 \neq 0$ added: without it, it has positive-dimensional spurious components.
+> The recursions and the key identity below are correct.
+
 ## The coefficient-recursion reductions (derived and verified)
 
 ### 1. b-recursion (from E_1..E_9)

@@ -2,7 +2,7 @@
 
 ## Status
 
-- **Nothing has been published, uploaded, deposited or pushed.** The repository is untouched: `git status` is clean, and `branch_ab_v17/scripts/a816_full.sing` was only read.
+- **Repository copy.** This folder is the bundle `a816_certificate_bundle_v1.zip` (2026-10-05) committed under `JC2D-branches_a_b_c_unified/branches_a_b/scripts/a816_certificate/`, with Brandon McCrary's authorization. Two changes from the zip: the 36.4 MB `a816_lift_liftstd.txt` is not committed (see §2), and the scripts read P and Q from `../a816_full.sing` (or the identical copy here) instead of an absolute path.
 - **This is not a proof of the Jacobian conjecture.** It certifies one step of the branch (a,b) elimination: the a₈,₁₆ = 0 part of the main theorem (`\label{thm:main}`) in `branch_ab_elimination_v3.tex`. The paper's remark `rem:conditional` calls that step "computer algebra (`a816_full.sing`), not Lean".
 - **What changes.** That step no longer depends on trusting a Gröbner-basis computation. Two explicit Nullstellensatz certificates are given, and each was checked exactly by two independent implementations.
 - **What stays.** The step is still not checked by the Lean kernel (see §7).
@@ -34,10 +34,10 @@ In `a816_lift.txt`, f_k = z² H_k and g = −(1 + a₈,₁₆ z). This is the sa
 | File | What it is |
 |---|---|
 | `a816_lift.txt` | **Main deliverable.** 76 lines in Singular's own polynomial format, in the order of J₂ (the format targeted by CAIC's `a816_full_lift.sing`). It is the structured certificate: 3464 terms, coefficients up to 493 digits, 10.65 MB. |
-| `a816_lift_liftstd.txt` | Singular's `liftstd` transformation matrix, reconstructed from 692 inert primes: 2967 terms, coefficients up to 1630 digits, 36.4 MB. It is a second, independent certificate. |
+| `a816_lift_liftstd.txt` | **Not committed** (36.4 MB). Singular's `liftstd` transformation matrix, reconstructed from 692 inert primes: 2967 terms, coefficients up to 1630 digits, sha256 `dd9082fd63346a9ff17934e3cd05ebf3e0670a0de031fd0f06f2c6b85a41936a`. It is a second, independent certificate; it is in the delivered zip, or rebuild it with the multimodular route of §3 (`verify_bundle.sh` checks it when present). |
 | `structured_reduced.json` | The reduced system in K₅[τ, σ] (§4): the 25 nonzero reduced generators, the 9 nonzero multipliers h′_k, and φ(a₈,₁₆). |
 | `gens_0.txt` | Singular dump of the 76 generators of J₂ over Q(w), with the (i,j) label of each of the 75 coefficient rows (`L|row|i,j`). |
-| `a816_full.sing` | Copy of the repository file (md5 `aa68d2ffa08a8db86627a03e41f4e94d`). It is the only source of P and Q. |
+| `a816_full.sing` | Copy of `../a816_full.sing` (md5 `aa68d2ffa08a8db86627a03e41f4e94d`). It is the only source of P and Q. |
 | `caic_inputs/` | CAIC's `a816_full_lift.sing` and `a816_generators.txt` as received, with `MD5SUMS`. |
 | `verify_bundle.sh` | Every exact check, about 2 min (§3). |
 | `regenerate.sh` | Rebuilds the structured certificate from scratch (about 3 min) and requires byte-identical output. |
@@ -156,14 +156,14 @@ Grades follow this project's convention: A = checked by the Lean kernel; B = exa
   - Cost drivers: about 17k distinct numerals (typeclass inference, about 86 ms each, so chunking as in `CondsC`) and a 24k-term expansion before reduction mod R.
 - **Inherited premise.** The top-layer K₅ data in `a816_full.sing` is taken as given. It was audited earlier (chart audit, `audit_chart_v8_rerun.py`) and not re-derived here. Torus transport and the reduction to this K₅ point (Proposition 6.1) are upstream and not re-checked.
 - **B2.6 and B2.2.** These need the actual polynomial systems; see the reply to CAIC.
-- **Suggested paper text (not applied).** In remark `rem:conditional`, replace "the a₈,₁₆ = 0 part is computer algebra (the exact Gröbner computation `a816_full.sing`, not Lean)" with "the a₈,₁₆ = 0 part is an explicit certificate a₈,₁₆² = Σ H_k e_k over K₅ (`a816_lift.txt`), checked exactly by Singular and python-flint; not Lean".
+- **Paper text (applied 2026-10-05 in `paper/branch_ab_elimination_v3.tex`: Corollary `cor:a816`, its proof, remark `rem:conditional` and the vertex-conditions paragraph).** The original suggestion was: in remark `rem:conditional`, replace "the a₈,₁₆ = 0 part is computer algebra (the exact Gröbner computation `a816_full.sing`, not Lean)" with "the a₈,₁₆ = 0 part is an explicit certificate a₈,₁₆² = Σ H_k e_k over K₅ (`a816_lift.txt`), checked exactly by Singular and python-flint; not Lean".
 
 ## 8. Provenance and log index
 
-- Repository commit `fe05a3be177048af4dc67e15a5fd2cbea4cbc0fc` (2026-09-28), with a clean working tree. The source is `branch_ab_v17/scripts/a816_full.sing`, md5 `aa68d2ffa08a8db86627a03e41f4e94d`.
+- Computed against repository commit `fe05a3be177048af4dc67e15a5fd2cbea4cbc0fc` (2026-09-28), source `branch_ab_v17/scripts/a816_full.sing`; the same file is `JC2D-branches_a_b_c_unified/branches_a_b/scripts/a816_full.sing` on `main` (md5 `aa68d2ffa08a8db86627a03e41f4e94d` in both).
 - CAIC inputs: `a816_full_lift.sing` md5 `2fb1cda070257e853b6afdd5d18f5dbc`; `a816_generators.txt` md5 `bd25c75435c4ae7e812941392ce7d956`. CAIC's script has the same ring, minpoly, P, Q, J and layer loop as the repository file; only J is renamed Jp, and there are three extra writes.
 - Tools: Singular 4.3.2 (GMP 6.3.0, NTL 11.5.1, FLINT 3.0.1), Python 3.11.15, python-flint 0.9.0, sympy 1.14.0. Hardware: 2 cores, 5.98 GB memory cgroup.
-- `a816_lift.txt` md5 `a727c413e88053ec5201f9a0cac46b21`; `a816_lift_liftstd.txt` md5 `664203b5ff5a97ff2734cfb584ce73f6`. Full SHA-256 list: `SHA256SUMS`.
+- `a816_lift.txt` md5 `a727c413e88053ec5201f9a0cac46b21`; `a816_lift_liftstd.txt` md5 `664203b5ff5a97ff2734cfb584ce73f6`. Full SHA-256 list of the committed files: `SHA256SUMS` (check with `sha256sum -c SHA256SUMS`); the sha256 of the uncommitted `a816_lift_liftstd.txt` is in the table of §2.
 
 Logs:
 

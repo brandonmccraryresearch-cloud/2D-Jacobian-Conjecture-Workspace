@@ -1,0 +1,35 @@
+# 2026-10-05T17:26:12-05:00 python3 b22_validate.py
+Python 3.11.15
+c_poly.json keys: ['10', '11', '12', '13', '14', '15', '16']
+c_10: degree 8, 36 terms; equals c_poly.json[10]: True
+c_11: degree 9, 47 terms; equals c_poly.json[11]: True
+c_12: degree 10, 63 terms; equals c_poly.json[12]: True
+c_13: degree 11, 80 terms; equals c_poly.json[13]: True
+c_14: degree 12, 103 terms; equals c_poly.json[14]: True
+c_15: degree 13, 129 terms; equals c_poly.json[15]: True
+c_16: degree 14, 162 terms; equals c_poly.json[16]: True
+c11_s == c_11(a7 = s^2): True
+c12_s == c_12(a7 = s^2): True
+c13_s == c_13(a7 = s^2): True
+c14_s == c_14(a7 = s^2): True
+c15_s == c_15(a7 = s^2): True
+c16_s == c_16(a7 = s^2): True
+torus_s == s^6 - c_10(a7 = s^2)^2: True
+odd powers of s after a7 = s^2: none
+E_0 = b0 (the free constant): True
+E_1..E_16 all zero at the chart point: True ; E_17 = 0
+a7^3 b0^2 == 1: True
+c_11..c_16 all zero at the point: True
+b_k == b0 c_k for k = 0..9: True
+b0 c_10 == 1: True
+a7^3 == c_10^2: True
+s := c_10 / a7 in K5:  s^2 == a7: True ; s^3 == c_10: True
+s = [2082190572783691265736704/940876944932898333916992291843,-381894630352076457115648/72375149610222948762845560911,1259665307048462822408192/313625648310966111305664097281,-2824387545295371313872896/94 ... (height 30 digits)
+origin solves c_11..c_16 = 0 and a7^3 = c_10^2: True
+m = 5 points (a5 = 1, a6 = a7 = 0): c_8..c_16 == 0 mod T: True ; c_7 != 0: True
+=> the 7x7 system without a7 != 0 has positive-dimensional spurious components (torus orbits of m = 1, 3, 5 points)
+key identity E_n = (51-3n) a_{n-10} delta - b0 sum_{k=11}^n (1+2k-3(n-k)) a_{n-k} c_k for n = 10..16: True
+
+real	0m3.822s
+user	0m3.464s
+sys	0m0.096s

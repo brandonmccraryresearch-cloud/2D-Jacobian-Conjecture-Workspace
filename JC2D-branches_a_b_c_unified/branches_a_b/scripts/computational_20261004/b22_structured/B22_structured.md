@@ -3,6 +3,12 @@
 **Date**: 2026-10-04
 **Status**: Methodology established and verified; exact $K_5$ point pending
 
+> **Correction (2026-10-05): see `../../b22_structured/RESOLUTION.md`.** The exact $K_5$ point is not pending. It
+> is the chart point of the Lean statement `ChartClassification` (`lean/certgen/chartpoint.json`), validated exactly
+> against this $c$-recursion system by `../../b22_structured/b22_validate.py`. $s = c_{10}/a_7 \in K_5$, so $a_7$ is
+> a square in $K_5$. The $7\times7$ system needs $a_7 \neq 0$ added: the origin and the orbits of the $m = 5$ (and
+> $m = 3, 1$) chart points also solve it, which is the "degeneracy trap" of §7.
+
 ## 1. Problem statement
 
 The B2.2 top-layer system arises from the Jacobian condition for the

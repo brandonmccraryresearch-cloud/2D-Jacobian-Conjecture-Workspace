@@ -8,6 +8,9 @@
 # ~2 GB RAM per build job (peak ~7.5 GB total with 4 jobs); outputs ~2.5 GB of .olean files.
 # The Prop. 6.1 proof (Jacobian/ChartProof, 12 modules, v17) needs ~25 min sequentially and up to
 # 5.4 GB RAM for a single module (Stage2_g7); build with LEAN_NUM_THREADS=1 on machines with < 12 GB.
+# The m = 3, 5 classifications (Jacobian/B26, 10 modules, added 2026-10-05) take ~8 min sequentially with
+# LEAN_NUM_THREADS=1 and up to ~3.8 GB RAM for a single module (M5T; M5Rel1-3 ~2.4 GB);
+# see scripts/b26_m5_eliminant/lean_certificates/.
 #
 # Usage: verify_branch_ab_lean.sh [PROJECT_DIR]
 #   PROJECT_DIR defaults to this script's directory if it holds lakefile.toml,
@@ -32,6 +35,10 @@ THEOREMS="t_zero_case minor_obstruction only_zero_transport
   BranchAb.eq_sum_layerPiece BranchAb.coeff_layerPoly BranchAb.layers_of_support BranchAb.no_completion_K5_PQ
   BranchAb.belyi_derivative BranchAb.layerTerm_top BranchAb.orbit_solves_E5
   BranchAb.main_theorem_of_classification
+  BranchAb.TopLayerSmall.m5_residual_iff BranchAb.TopLayerSmall.m5_chart_iff BranchAb.TopLayerSmall.m5_a4_ne_zero
+  BranchAb.TopLayerSmall.m5_T_squarefree BranchAb.TopLayerSmall.m5_solution_formulas
+  BranchAb.TopLayerSmall.m3_residual_iff BranchAb.TopLayerSmall.m3_chart_iff BranchAb.TopLayerSmall.m3_a2_ne_zero
+  BranchAb.TopLayerSmall.m3_T_squarefree
   BranchAb.chart_K5_identities BranchAb.chart_point_solves BranchAb.topLayerClassification_of_chart
   BranchAb.main_theorem_of_chart
   BranchAb.ChartProof.eq_of_toPolyK BranchAb.ChartProof.lc_zero BranchAb.chartClassification_holds BranchAb.main_theorem"

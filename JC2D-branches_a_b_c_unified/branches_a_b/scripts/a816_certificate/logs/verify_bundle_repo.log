@@ -1,0 +1,29 @@
+# 2026-10-05T17:25:11-05:00 verify_bundle.sh in the repository folder (branch claude/a816-b26-b22-resolution)
+source of P, Q: /home/claude/wt_pr/JC2D-branches_a_b_c_unified/branches_a_b/scripts/a816_certificate/../a816_full.sing
+md5 aa68d2ffa08a8db86627a03e41f4e94d
+(a816_lift_liftstd.txt not present: it is not committed to the repository; see README.md section 2)
+== python-flint (independent rebuild of J): a816_lift.txt
+certificate: 76 cofactors, 3464 terms; F = sum c_k g_k + c_76 (a_8_16 z - 1) - 1 has 24444 terms before reduction mod R(w)
+RESULT: F == 0 mod R(w): the certificate is VALID
+time 3.6s
+exit 0
+== negative control on a816_lift.txt: perturb (must be rejected)
+RESULT: F != 0 mod R(w) (10 terms remain): the certificate is NOT valid
+exit 1
+== negative control on a816_lift.txt: drop_rabinowitsch (must be rejected)
+RESULT: F != 0 mod R(w) (2 terms remain): the certificate is NOT valid
+exit 1
+== negative control on a816_lift.txt: wrong_minpoly (must be rejected)
+RESULT: F != 0 mod R(w) (10864 terms remain): the certificate is NOT valid
+exit 1
+== Singular over Q(w), repository generators: a816_lift.txt
+SINGULAR CHECK (a816_lift.txt with the repository generators): sum_k I2[k]*L[k] == 1 over Q(w): VALID
+== round trip with CAIC's a816_generators.txt (caic_inputs/)
+ROUND TRIP (CAIC generators file + a816_lift.txt): 1 = sum f_i e_i + g (a_8_16 z - 1): VALID
+CAIC generators vs repository ideal, entrywise mismatches: 0
+== B2.6 eliminant checks
+factor_list(T) over Q: (1, [(9*a**10 + 37200*a**5 + 95051008, 1)])
+disc_u(f) (quadratic in u = a^5): -2037996288
+T irreducible mod 11 (degree 10 kept) -> irreducible over Q
+== overall: ALL CHECKS PASSED
+exit 0

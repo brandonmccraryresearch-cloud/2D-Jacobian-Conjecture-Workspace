@@ -65,14 +65,23 @@ PYEOF
 echo "=== 4. 111/111 independent identities ==="
 run $PY chartproof/independent_check.py
 
+echo "=== 4b. 2026-10-05 additions: a_{8,16} certificate, B2.2 validation, B26 regeneration ==="
+if command -v Singular >/dev/null; then
+  run bash "$ROOT/scripts/a816_certificate/verify_bundle.sh"
+  run bash "$ROOT/scripts/b26_m5_eliminant/lean_certificates/regen_b26.sh"
+else
+  echo "SKIP: Singular not found (needed by a816_certificate/verify_bundle.sh and regen_b26.sh)"
+fi
+run $PY "$ROOT/scripts/b22_structured/b22_validate.py"
+
 echo "=== 5. paper recompile (in temp dir, tree untouched) ==="
 TMPD=$(mktemp -d)
 cp "$ROOT/paper/branch_ab_elimination_v3.tex" "$TMPD/" && cp -r "$ROOT/paper/figures" "$TMPD/"
 cd "$TMPD" || exit 1
 for i in 1 2 3; do run xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex; done
 PAGES=$(grep -o '([0-9]* pages' branch_ab_elimination_v3.log | tail -1 | grep -o '[0-9]*')
-echo "### compiled pages: $PAGES (expect 31)"
-if [ "$PAGES" = "31" ]; then echo "PAGECOUNT OK"; pass=$((pass+1)); else echo "PAGECOUNT MISMATCH"; fail=$((fail+1)); fi
+echo "### compiled pages: $PAGES (expect 33: TeX Live 2026, Fira fonts from CTAN; 2026-10-05 text)"
+if [ "$PAGES" = "33" ]; then echo "PAGECOUNT OK"; pass=$((pass+1)); else echo "PAGECOUNT MISMATCH"; fail=$((fail+1)); fi
 cd "$ROOT" || exit 1
 rm -rf "$TMPD"
 

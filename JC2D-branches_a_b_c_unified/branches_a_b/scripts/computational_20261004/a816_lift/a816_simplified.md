@@ -3,6 +3,22 @@
 **Date**: 2026-10-04
 **Status**: Modular simplification proven; exact $\mathbb{Q}$ lift pending
 
+> **Correction (2026-10-05).** The exact lift is no longer pending: see `../../a816_certificate/`. It holds two
+> certificates over $K_5$, each checked exactly by Singular and by python-flint:
+> - a layer-structured one (coefficients up to 493 digits);
+> - Singular's own `liftstd` matrix, rebuilt from 692 primes (up to 1630 digits).
+>
+> Four statements below are wrong:
+> - **$p = 1{,}000{,}003$ is not inert.** $R \equiv$ (degree 1)(degree 2)(degree 2) mod $1{,}000{,}003$, so
+>   $\mathbb{F}_p[w]/(R)$ is not a field and not $\mathbb{F}_{p^5}$. The same holds for $32{,}003$, where the
+>   pattern is $(1)(1)(3)$.
+> - **What the mod-$p$ lift actually is.** It is an identity in $(\mathbb{F}_p[w]/(R))[a,b,z]$, a product of three
+>   rings. Coordinatewise CRT over such primes is not valid. Use primes at which $R$ is irreducible, as
+>   `../../a816_certificate/find_primes.py` does.
+> - **`std(J)` over $\mathbb{Q}(w)$ is fast.** Measured here (Singular 4.3.2) it takes 7.8 s and 30 MB. The
+>   expensive step is `lift`/`liftstd`, which ran more than 32 minutes and is still growing at 1.4 GB.
+> - **The coefficients are not small.** They are 900–1630 digits, not "25+".
+
 ## 1. Problem statement
 
 Prove $a_{8,16} = 0$ via an explicit Nullstellenssatz certificate:

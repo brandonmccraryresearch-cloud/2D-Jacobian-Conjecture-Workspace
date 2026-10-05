@@ -1,5 +1,10 @@
 # Simplified a816 Gröbner Lift
 
+> **Superseded (2026-10-05): see `../../a816_certificate/` and the correction note in `a816_simplified.md`.**
+> - **The primes used here are not inert.** $1{,}000{,}003$ and $32{,}003$ do not keep the minimal polynomial of $w$
+>   irreducible, so their "$\mathbb{F}_{p^5}$" claims are wrong.
+> - **The exact certificate exists.** It is in `../../a816_certificate/`.
+
 ## The simplification
 
 **Problem**: The exact characteristic-zero lift `lift(J, ideal(1))` over

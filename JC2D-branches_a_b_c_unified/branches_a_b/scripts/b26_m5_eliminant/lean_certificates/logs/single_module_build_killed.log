@@ -1,0 +1,8 @@
+# 2026-10-05 17:17-17:19. lake build of the unsplit B26 file as a single module (all eight m = 5 certificate
+# proofs in one file), under the memory guard guardrun.py --max-anon 5500. It was killed at 5523 MB of anonymous
+# memory after 143 s. This is why split_b26.py splits the generated file into modules (build_modules_seq.log).
+[guardrun] exit -9  142.9s  peak RSS 5306 MB  cgroup anon peak 5523 MB  KILLED (memory guard)
+
+real	2m22.961s
+user	0m6.384s
+sys	0m3.698s

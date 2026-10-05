@@ -3,6 +3,19 @@
 **Date**: 2026-10-04
 **Status**: COMPLETELY SOLVED (eliminant + back-substitution, independently verified)
 
+> **Update (2026-10-05).** The checks in §5 below establish soundness only: the parametrized points solve the
+> system. Completeness rested on the Singular Gröbner basis.
+>
+> Both directions are now certified:
+> - **Ideal equality.** $(r_0,r_1,r_2,r_3) = (T, L_1, L_2, L_3)$ as ideals, with explicit cofactors.
+> - **Kernel-checked classification.** `lean/Jacobian/B26.lean` (namespace `BranchAb.TopLayerSmall`) is
+>   kernel-checked over every field of characteristic 0: `m5_chart_iff`, `m5_residual_iff`, `m5_T_squarefree`.
+>   It also gives $r_k = 3003\,E_{8+k}$, linking the residuals to $E_5$ itself, and covers the same results for $m = 3$.
+>
+> Generator and certificates: `../../b26_m5_eliminant/lean_certificates/`. The discriminant in §3.1 is correctly
+> labelled there as the quadratic discriminant in $z = a_4^5$; $\operatorname{disc}(T)$ itself is
+> $-2^{72}3^{33}5^{10}13^{20}181^{10}$.
+
 ## 1. Problem statement
 
 The B2.6 system for $m=5$ arises from the Jacobian condition for a Keller map

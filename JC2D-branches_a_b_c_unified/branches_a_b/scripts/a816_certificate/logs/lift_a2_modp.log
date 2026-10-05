@@ -1,0 +1,13 @@
+# 2026-10-05T14:01:53-05:00 Singular -q lift_a2_modp.sing
+equations:
+75
+lift(I, a^2) ms:
+2995
+terms:
+2967
+max terms:
+194
+max deg:
+3
+check == a^2:
+1

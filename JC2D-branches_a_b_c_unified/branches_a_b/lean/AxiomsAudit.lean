@@ -16,6 +16,7 @@ import Jacobian.BranchAbFinal
 import Jacobian.Descent.Main
 import Jacobian.Descent.E2.T0
 import Jacobian.ChartProof.Final
+import Jacobian.B26
 
 #print axioms BranchAb.layers_of_jac
 #print axioms BranchAb.layers_transport
@@ -30,3 +31,13 @@ import Jacobian.ChartProof.Final
 #print axioms BranchAb.main_theorem
 #print axioms BranchAb.ChartProof.eq_of_toPolyK
 #print axioms BranchAb.ChartProof.lc_zero
+-- m = 3 and m = 5 top-layer chart classifications (Jacobian/B26.lean, added 2026-10-05)
+#print axioms BranchAb.TopLayerSmall.m5_residual_iff
+#print axioms BranchAb.TopLayerSmall.m5_chart_iff
+#print axioms BranchAb.TopLayerSmall.m5_a4_ne_zero
+#print axioms BranchAb.TopLayerSmall.m5_T_squarefree
+#print axioms BranchAb.TopLayerSmall.m5_solution_formulas
+#print axioms BranchAb.TopLayerSmall.m3_residual_iff
+#print axioms BranchAb.TopLayerSmall.m3_chart_iff
+#print axioms BranchAb.TopLayerSmall.m3_a2_ne_zero
+#print axioms BranchAb.TopLayerSmall.m3_T_squarefree
