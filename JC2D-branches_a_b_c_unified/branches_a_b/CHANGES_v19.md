@@ -240,3 +240,14 @@ reproducibility appendix names the artifact commit.
 - **`scripts/README.md`.** New entries and attribution.
 - **Checksums.** `CHECKSUMS.md5`, `CHECKSUMS.sha256` and `lean/MD5SUMS` were regenerated, with the same coverage
   rules. They now include the 2026-10-04/05 additions.
+
+### After PR #3 was merged: `scripts/b26_m5_eliminant/B26_EXPLICIT_DATA.md` (CAIC, 12c6034)
+- **Checked.** `check_explicit_data.py` compares every entry with the repository, and all are correct:
+  - r0..r3 equal the `.sing` residuals and Lean `m5r0`..`m5r3`;
+  - G1..G10 equal Singular's `std` output (not reduced);
+  - the ideal equality holds; vdim = 10; the elimination ideal is (T);
+  - det 30408 a4^3, the back-substitution, and both discriminants are right;
+  - one negative control is rejected.
+- **Note appended to the file.** It gives the reduced basis and says which three elements form the linear system
+  with determinant 30408 a4^3.
+- **Wiring.** `verify_v19.sh` step 4b runs the check. The checksums now cover the file.

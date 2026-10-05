@@ -137,7 +137,7 @@ af26ec5bfbcb2b2ae019469feac48f28  ./lean/certgen/chartproof/cp_data.py
 3b55143e65acaec806b763a4dfb13ae8  ./figures/fig2_layer_descent.png
 3b55143e65acaec806b763a4dfb13ae8  ./paper/figures/fig2_layer_descent.png
 eea894455e1f61e65e1372d9bab7adb8  ./scripts/C1_layer_reduction.sing
-19787ce707d1b4c8dc17f799a57d16a0  ./CHANGES_v19.md
+36db96e86af35cf3bdbea676c9bddb20  ./CHANGES_v19.md
 a845afb3fc66daf48ae1d61d9beacdb1  ./lean/Jacobian/Basic.lean
 b819ab1531a438763cdb9f6e42ab0c5b  ./lean/Jacobian/Descent/E3/x_b_3_5.lean
 c163128aaf6d6ccd1eb409e6cc22ae76  ./lean/Jacobian/Descent/E2red/r2_15_29.lean
@@ -162,7 +162,7 @@ c3c0d9862ee512aa774501139f8e903b  ./lean/Jacobian/ChartProof/Stage1.lean
 d2393dd082e0c9a111bec65e8206a008  ./scripts/audit_chart_v8_rerun.py
 31eef9d3258c6c72fadd520bf9648a2b  ./lean/certgen/chartproof/reflect.py
 efb85bc17e6b8462c003d80113d91924  ./lean/certgen/chartproof/final_meta.json
-9e02a7764d1bf20500c64d520b1e1c04  ./verify_v19.sh
+3c68bfddcfdd97767040cd6175f9e4cd  ./verify_v19.sh
 ce28f8c28422baef89b4fedceee82aa0  ./lean/Jacobian/Descent/E2/F1.lean
 cc1139b9744c39b398f2d94cf1905124  ./lean/Jacobian/Descent/E4/z_b_8_14.lean
 5bdd9fb9b1b44a80cea47053c0c6d298  ./lean/Jacobian/Descent/E2red/r2_16_31.lean
@@ -182,7 +182,7 @@ c31002d091acf9ffa37005a57ccb549a  ./lean/Jacobian/Descent/E2red/r2_17_33.lean
 3df652ea78b18e35e0fadca39a6901cd  ./lean/Jacobian/Descent/E3/x_a_6_12.lean
 a05e7af9af8290b08be76ec5aa0e9c11  ./scripts/source_gate_verify.py
 cbea8e3bc7b006de4ba60aa50955c136  ./scripts/belyi_counts_m357.py
-aa0995064289c8e71c970f24589147ae  ./scripts/README.md
+a7c25f121455caf4215e7391d486c087  ./scripts/README.md
 ce30e54da1b59a68972e1e865f78c9b7  ./lean/certgen/chartproof/gens6.json
 6d71c9783a0157730e829371c0daf9c2  ./lean/logs/run_all_with_chart.log
 6d71c9783a0157730e829371c0daf9c2  ./logs/run_all_with_chart.log
@@ -372,3 +372,6 @@ da8fc41f001433db41f5b7e39151eab7  ./scripts/computational_20261004/b26_m5/m5_bac
 2743ad9aed87fe8127fd19bc7a3baf9d  ./scripts/computational_20261004/b26_m5/verify_b26.py
 7c1bf22609b330414ca23441da3af7f2  ./scripts/b26_m5_eliminant/lean_certificates/independent_checks.py
 ebec38299133cec97984e0481c9cc087  ./scripts/b26_m5_eliminant/lean_certificates/logs/independent_checks.log
+c55a6881e043f66ee5ee2ff8894fafcd  ./scripts/b26_m5_eliminant/B26_EXPLICIT_DATA.md
+5f619d0c706812f6039fe674fe941609  ./scripts/b26_m5_eliminant/check_explicit_data.log
+30c82c3d4d57eeb0e939fc60335e4615  ./scripts/b26_m5_eliminant/check_explicit_data.py

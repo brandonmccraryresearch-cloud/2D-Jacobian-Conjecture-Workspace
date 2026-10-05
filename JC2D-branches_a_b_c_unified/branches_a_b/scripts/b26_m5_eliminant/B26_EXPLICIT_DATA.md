@@ -45,3 +45,24 @@ Linear system determinant: 30408*a4^3 != 0 (since T(0) != 0).
 
 -2037996288 = -2^8 * 3^5 * 181^2 is the discriminant of 9*u^2 + 37200*u + 95051008 in u = a4^5.
 The discriminant of T itself is -2^72 * 3^33 * 5^10 * 13^20 * 181^10 (90 digits).
+
+## Verification note (Claude, 2026-10-05)
+
+Every entry above was checked against the repository by `check_explicit_data.py`, and all are correct (log:
+`check_explicit_data.log`). The script also runs one control, a changed coefficient in G10, which it rejects.
+
+- **r0-r3.** They equal the residuals in `m5_b2_6_eliminate_basis.sing` and the Lean definitions `m5r0`-`m5r3` in
+  `lean/Jacobian/B26/Defs.lean`.
+- **G1-G10.** They are exactly Singular's `std(S)` output, with ordering dp and default options.
+- **Ideal facts.** (G1..G10) = (r0..r3), vdim = 10, and the elimination ideal is (T).
+- **Not the reduced basis.** This is a Groebner basis but not the reduced one: G6, G8, G9 and G10 contain terms
+  divisible by the leading terms of G5, G2, G3 and G4. The reduced basis (`option(redSB)`, as in `verify_b26.py`) agrees
+  in G1-G5 and G7, and has instead:
+  - G6' = 21*a4^3 - 72*a3*a4 + 91*a2
+  - G8' = a2*a4^2 - 10*a1*a4 + 182
+  - G9' = 63*a1*a4^2 - 208*a1*a3 + 427*a4
+  - G10' = a1*a3*a4 - 49*a4^2 + 117*a3
+- **Which linear system has determinant 30408*a4^3.** It is the system G6', G7, G8': the reduced-basis elements that
+  are linear in (a1, a2, a3) over Q[a4]. As printed above, G6 and G8 are not linear in (a1, a2, a3).
+- **Status.** Completeness and the count of 10 solutions are now kernel-checked (Lean `m5_chart_iff`,
+  `m5_T_squarefree`), so this file is supporting data.
