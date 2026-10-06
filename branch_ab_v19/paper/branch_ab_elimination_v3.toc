@@ -28,4 +28,4 @@
 \contentsline {section}{\numberline {11}Prior work, attribution, and independence}{30}{section.11}%
 \contentsline {section}{\numberline {A}Computational archive}{31}{appendix.A}%
 \contentsline {section}{\numberline {B}Original certificate (second route)}{32}{appendix.B}%
-\contentsline {section}{\numberline {C}Computational and AI-assisted research disclosure}{32}{appendix.C}%
+\contentsline {section}{\numberline {C}Computational and AI-assisted research disclosure}{33}{appendix.C}%

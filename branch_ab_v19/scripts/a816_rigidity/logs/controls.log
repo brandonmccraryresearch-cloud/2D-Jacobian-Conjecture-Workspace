@@ -1,0 +1,14 @@
+# Each control must make check_rigidity_flint.py report NOT VALID (exit 1).
+== control perturb: exit 1; failing files: 1
+FAIL: mono_a_8_16_a_8_16.json
+RESULT: NOT VALID (19s)
+== control drop: exit 1; failing files: 1
+FAIL: mono_a_8_16_a_8_16.json
+RESULT: NOT VALID (19s)
+== control wrong_minpoly: exit 1; failing files: 59
+FAIL: mono_a_8_16_a_8_16.json
+FAIL: mono_a_8_16_b_11_20_b_11_20.json
+FAIL: mono_a_8_16_b_11_20_b_12_22.json
+   not rejected under R + 1 (identities that need no reduction modulo R):
+     pivot_b_1_1.json
+     pivot_b_1_2.json

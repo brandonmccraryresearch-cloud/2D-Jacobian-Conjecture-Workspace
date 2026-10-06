@@ -56,6 +56,7 @@ planar Jacobian conjecture.
 | `scripts/` | Audit and analysis scripts |
 | `scripts/a816_certificate/` | (2026-10-05) Explicit certificate $a_{8,16}^2=\sum H_k e_k$ over $K_5$ for Corollary 1.2, two independent exact checkers, controls; `./verify_bundle.sh` |
 | `scripts/a816_lean_feasibility/` | (2026-10-06) Feasibility estimate for checking that certificate in the Lean kernel: exact sizes, pilots that pass the kernel, a calibration; not part of the Lean build; `bash run_all.sh` |
+| `scripts/a816_rigidity/` | (2026-10-06) The 61 certificates behind Remark 8.8: all 51 lower unknowns nilpotent modulo the layer ideal. Generated with exact $K_5$ arithmetic and checked by an independent python-flint program; `bash run.sh` (about 8 min) |
 | `scripts/b26_m5_eliminant/lean_certificates/` | (2026-10-05) Generator and ideal-equality certificates for `lean/Jacobian/B26*`; `./regen_b26.sh` |
 | `scripts/b22_structured/RESOLUTION.md` | (2026-10-05) B2.2 = the Lean chart system; the exact $K_5$ point validated in the $c$-recursion form (`b22_validate.py`) |
 | `figures/` | Paper figures |

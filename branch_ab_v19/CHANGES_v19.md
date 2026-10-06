@@ -350,3 +350,27 @@ reproducibility appendix names the artifact commit.
 - **`scripts/a816_certificate/README.md` §7** now points to the estimate. It also corrects the old cost driver "17k
   numerals at 86 ms each": that rate applies to numerals in a field, not to the integer numerals of reflected
   `Expr`s.
+
+### 2026-10-06: Remark 8.8 (full rigidity) written out and checked twice
+- **`scripts/a816_rigidity/` (new).** Remark `rem:full-rigidity` (8.8) says that all 51 unknowns are nilpotent
+  modulo the layer ideal. Until now it rested on one exact rank computation, 14 of 14, inside `structured_cert.py`.
+- **The certificates.** 61 are now written out:
+  - 47 pivot identities x − φ(x) = Σ_k D_{x,k} e_k;
+  - 14 identities m = Σ_k H_{m,k} e_k, one for each monomial m of depth 4 in τ, σ.
+- **The checks.**
+  - The generator (`make_rigidity_certs.py`, using `k5.py`) checks every identity with its own exact arithmetic.
+  - An independent python-flint program (`check_rigidity_flint.py`) checks them again. It rebuilds J from
+    `a816_full.sing`, and it computes the depths from the variable names.
+  - It also checks the shape of φ: free unknowns only, no constant term, homogeneous of the right depth. And it
+    checks the coverage: the 14 monomials are all those of depth 4, and the pivots with the free unknowns are the
+    51 unknowns.
+  - Result: ALL CERTIFICATES VALID.
+- **Controls.** The three negative controls (perturbed cofactor, dropped row, R + 1) are rejected.
+- **Size.** 51,613 cofactor terms, heights up to 493 digits; 140 MB of JSON. The files are not committed. `run.sh`
+  regenerates them in about 7 min, byte-identically (`logs/MANIFEST.sha256`).
+- **The deduction** x^⌈4/depth⌉ ∈ I is spelled out in the README.
+- **Where the claim is updated.**
+  - The paper: Remark 8.8 now states the argument and cites the certificates, and the reproducibility list adds the
+    folder.
+  - Claim C2 of `scripts/a816_certificate/README.md`.
+  - `TECHNICAL_MAP.md`.
