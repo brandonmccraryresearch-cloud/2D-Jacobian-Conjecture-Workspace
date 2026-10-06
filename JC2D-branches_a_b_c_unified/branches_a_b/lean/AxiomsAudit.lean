@@ -18,6 +18,7 @@ import Jacobian.Descent.E2.T0
 import Jacobian.ChartProof.Final
 import Jacobian.B26
 import Jacobian.B26Count
+import Jacobian.B26Irred
 
 #print axioms BranchAb.layers_of_jac
 #print axioms BranchAb.layers_transport
@@ -45,3 +46,6 @@ import Jacobian.B26Count
 -- exact solution counts over an algebraically closed field (Jacobian/B26Count.lean, added 2026-10-06)
 #print axioms BranchAb.TopLayerSmall.m5_chart_card
 #print axioms BranchAb.TopLayerSmall.m3_chart_card
+-- irreducibility of the eliminants over ℚ (Jacobian/B26Irred.lean, added 2026-10-06)
+#print axioms BranchAb.TopLayerSmall.T5poly_irreducible
+#print axioms BranchAb.TopLayerSmall.T3poly_irreducible

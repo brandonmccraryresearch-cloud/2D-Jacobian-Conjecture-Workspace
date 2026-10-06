@@ -22,3 +22,5 @@
 'BranchAb.TopLayerSmall.m3_T_squarefree' depends on axioms: [propext, Classical.choice, Quot.sound]
 'BranchAb.TopLayerSmall.m5_chart_card' depends on axioms: [propext, Classical.choice, Quot.sound]
 'BranchAb.TopLayerSmall.m3_chart_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.T5poly_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.T3poly_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
