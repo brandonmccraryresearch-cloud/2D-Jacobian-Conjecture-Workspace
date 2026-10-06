@@ -9,7 +9,7 @@ df187212497c9d751c34f42e730acaa7  ./lean/Jacobian/Descent/E2/F6.lean
 dc9836d09af95aa3c507c01c6094d737  ./lean/Jacobian/Descent/E3/x_a_5_10.lean
 3677d4eaa03fa774be140a7ac9921391  ./lean/logs/chartproof_independent_check.log
 3677d4eaa03fa774be140a7ac9921391  ./logs/chartproof_independent_check.log
-c31fd1d6140db04091b9034d095a309a  ./paper/branch_ab_elimination_v3.tex
+1156bb4baa893c03b6b32dcf06adad4a  ./paper/branch_ab_elimination_v3.tex
 232fe5e997728d825814503530782eec  ./lean/Jacobian/Descent/E2red/r2_14_27.lean
 6c1c7804e1909c40610d9e6aba1cdbb6  ./lean/Jacobian/Descent/E3/x_a_1_2.lean
 cb6aea069f86bf0053af1574c5cdc132  ./lean/Jacobian/Descent/E3/x_b_2_3.lean
@@ -29,7 +29,7 @@ e1c023cda4380c6baac6aedb6fcd1f5c  ./lean/Jacobian/Descent/E3red/r3_18_34.lean
 63a4578a35b182b4b6bcf530d4bb0653  ./lean/Jacobian/Descent/E2/F0.lean
 a3af24b4f960be76d1a526ac83c83daa  ./lean/Jacobian/Descent/E2red/r2_9_17.lean
 815a422f136ef255e4fb856ca9dea662  ./lean/Jacobian/Descent/E2red/r2_5_9.lean
-7143b41f7f546b9561048b2ddeb12a8d  ./paper/branch_ab_elimination_v3.pdf
+42ddcccb4a57915606770468c209f7c5  ./paper/branch_ab_elimination_v3.pdf
 deea23f39c082bd2fd95ba314666434a  ./lean/certgen/k5point.py
 d2d3ce8705a09cb890c64628d080c7b9  ./lean/Jacobian/ChartProof/Stage2_g4.lean
 23f2d97609d9aebbe4b961dab7015ac5  ./scripts/e5_exact_counts_m35.py
@@ -42,7 +42,7 @@ ae8317a7919d2bf1e17b8341543cae68  ./lean/Jacobian/ChartProof/Stage2_g6b.lean
 65984b2b7f2483fedfc3b115fa70030c  ./lean/Jacobian/Descent/E4/z_b_6_10.lean
 12460d57f4a788f2f905269e44974cb2  ./lean/lakefile.toml
 ef94d88392d52d6c5b6da7887ef3bccd  ./lean/certgen/chartproof/cp_common.py
-7ba2667d337131d750b83719fcba4587  ./paper/branch_ab_elimination_v3.aux
+dd74904598f898547c0b1d2f2b74a655  ./paper/branch_ab_elimination_v3.aux
 3b5837f66c199e133393c89ffa68d051  ./lean/Jacobian/ChartProof/Stage4.lean
 64dd5b26b61a71d03a8e4e6c4693247c  ./lean/CLASSIFICATION_STATUS.md
 083edcc1012e3dade80da17edbbcff21  ./lean/Jacobian/Descent/E2red/r2_8_15.lean
@@ -58,7 +58,7 @@ f68f84691e82726f640489a150cdfc47  ./lean/certgen/opt.gp
 6e177d6cb388748b63695f48528849aa  ./lean/logs/chartproof_regeneration.log
 6e177d6cb388748b63695f48528849aa  ./logs/chartproof_regeneration.log
 4ead0d7b36f38bddac4952469a15d5c6  ./logs/k5_minor_certificate.json
-0e08b888242d5046466daf10ccbcb255  ./paper/branch_ab_elimination_v3.toc
+38862ca9d21a1939259300b75fd81b77  ./paper/branch_ab_elimination_v3.toc
 1e1fdebfe3d6f6cf258a93db5397f546  ./lean/controls.sh
 3c2ad3f91435f192c38d781d688fe165  ./lean/Jacobian/Descent/E3/x_b_1_1.lean
 7be417c1978a1f57f76149e7820db9df  ./lean/Jacobian/Descent/E2/F5.lean
@@ -122,7 +122,7 @@ cc44212b9037e449d487c7ec69efe905  ./lean/Jacobian/Descent/E3/x_a_2_4.lean
 1cdf617d22091f9b7e38c493cc42f9c2  ./lean/Jacobian/Descent/E3red/r3_13_24.lean
 3fffd33bc66376c4493b65f075e12ad4  ./lean/Jacobian/Descent/E2red/r2_2_3.lean
 da59a60987b8a1bbd38545fcb5bd7067  ./lean/certgen/make_cert.py
-2cdfe9deca63f190db406ea37b7efc9d  ./paper/branch_ab_elimination_v3.log
+e4743de131e0f0081b096ef3ba039fcd  ./paper/branch_ab_elimination_v3.log
 034347e960ca07bf4b13d8b415441856  ./lean/README.md
 8ead9c9f0b8719b7578f6f05f43969a1  ./lean/Jacobian/Descent/E4/z_b_9_16.lean
 f23d354c6cf460b595e31c94e538043d  ./lean/lean-toolchain
@@ -137,7 +137,7 @@ af26ec5bfbcb2b2ae019469feac48f28  ./lean/certgen/chartproof/cp_data.py
 3b55143e65acaec806b763a4dfb13ae8  ./figures/fig2_layer_descent.png
 3b55143e65acaec806b763a4dfb13ae8  ./paper/figures/fig2_layer_descent.png
 eea894455e1f61e65e1372d9bab7adb8  ./scripts/C1_layer_reduction.sing
-9d3322f1dd23441c91ca91f479988221  ./CHANGES_v19.md
+c98d0e8484c5a7eb489510defcbbcfed  ./CHANGES_v19.md
 a845afb3fc66daf48ae1d61d9beacdb1  ./lean/Jacobian/Basic.lean
 b819ab1531a438763cdb9f6e42ab0c5b  ./lean/Jacobian/Descent/E3/x_b_3_5.lean
 c163128aaf6d6ccd1eb409e6cc22ae76  ./lean/Jacobian/Descent/E2red/r2_15_29.lean
@@ -182,7 +182,7 @@ c31002d091acf9ffa37005a57ccb549a  ./lean/Jacobian/Descent/E2red/r2_17_33.lean
 3df652ea78b18e35e0fadca39a6901cd  ./lean/Jacobian/Descent/E3/x_a_6_12.lean
 a05e7af9af8290b08be76ec5aa0e9c11  ./scripts/source_gate_verify.py
 cbea8e3bc7b006de4ba60aa50955c136  ./scripts/belyi_counts_m357.py
-208b0a96ae4f4d6cb1b33771cf070a8e  ./scripts/README.md
+f49f213ca8addf55c71bb7928fa81358  ./scripts/README.md
 ce30e54da1b59a68972e1e865f78c9b7  ./lean/certgen/chartproof/gens6.json
 6d71c9783a0157730e829371c0daf9c2  ./lean/logs/run_all_with_chart.log
 6d71c9783a0157730e829371c0daf9c2  ./logs/run_all_with_chart.log
@@ -249,8 +249,8 @@ f0649af0d7798f5e15083df593752804  ./lean/Jacobian/B26/M5Res1.lean
 7fa0f89137f65c881b7368ae769ae171  ./lean/Jacobian/B26/M5Res3.lean
 538273933e6a1ad3e99cf4125f13e6da  ./lean/Jacobian/B26/M5T.lean
 8ca0a5a2da3e929173aca4719cba92e0  ./lean/logs/axioms_audit_with_B26.log
-168d541b5c1a6787419933043ee00ac3  ./scripts/a816_certificate/README.md
-d02fc3ccd637d653e57a4236c985d11e  ./scripts/a816_certificate/SHA256SUMS
+9180f17df6b1a8d6294ec774181fe2a4  ./scripts/a816_certificate/README.md
+dfd9f09166de8d4da06d313f0b5c116d  ./scripts/a816_certificate/SHA256SUMS
 aa68d2ffa08a8db86627a03e41f4e94d  ./scripts/a816_certificate/a816_full.sing
 a727c413e88053ec5201f9a0cac46b21  ./scripts/a816_certificate/a816_lift.txt
 af77a96c8556bd2b73eb0cdfb979c7e0  ./scripts/a816_certificate/a816_system.py
@@ -397,3 +397,11 @@ c82dcd9539c26b494708fef133473b83  ./scripts/a816_lean_feasibility/logs/pilots.sh
 5cd4e068b905d3b044659e7656263031  ./scripts/a816_lean_feasibility/logs/structured_stats.log
 fb21fe58a7efc72d2ef497974ecb04bd  ./scripts/a816_lean_feasibility/run_all.sh
 154aefd40673ac14275710d23c09f028  ./scripts/a816_lean_feasibility/structured_stats.py
+cad7a007cf5be9501fb02ba0fc1982cd  ./scripts/a816_rigidity/README.md
+1ac6b3125d04a012024d1d25cc212a4d  ./scripts/a816_rigidity/check_rigidity_flint.py
+b64c883ca4e3428bc140063b1c5777e5  ./scripts/a816_rigidity/logs/MANIFEST.sha256
+6fcd164639e9e5736c5da50248d14990  ./scripts/a816_rigidity/logs/check_rigidity_flint.log
+56a3f743f4a3347e1c4b3cd4830f6239  ./scripts/a816_rigidity/logs/controls.log
+b27788acd53f18ed2d830df54b23968d  ./scripts/a816_rigidity/logs/make_rigidity_certs.log
+646bb8d2f5ac38a27de2f700471f0a17  ./scripts/a816_rigidity/make_rigidity_certs.py
+309210d5546bd86138fb30c924380e66  ./scripts/a816_rigidity/run.sh

@@ -330,4 +330,7 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
      kernel products in about 110 checks; estimated 10–20 min of build time at ≤ 1 GB per module. Pilots of the
      largest identity of each layer and of the final reduced identity pass the kernel.
 
-   Remark 8.8 (all lower coefficients vanish at the K₅ point) rests on one exact rank computation, corroborated mod p.
+   Remark 8.8 (all lower coefficients vanish at the K₅ point): since 2026-10-06 its 61 certificates are written out
+   and checked by two independent programs (`branches_a_b/scripts/a816_rigidity/`): 47 pivot identities x − φ(x) ∈ I
+   and 14 depth-4 monomials m ∈ I. Grade B (exact, outside Lean). Before that it rested on one exact rank computation,
+   corroborated mod p.
