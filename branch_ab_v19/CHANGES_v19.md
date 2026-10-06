@@ -275,3 +275,32 @@ reproducibility appendix names the artifact commit.
     there. The abstract is unchanged.
 - **Other docs.** `README.md` now notes the two identical copies. The stale line "v18 tree preserved as
   `branch_ab_v18/`" is corrected; that tree was removed on 2026-09-30 and is still in the git history at 42cbf03.
+
+### 2026-10-06: the abstract, the solution counts in Lean, the branch-(c) status
+- **Abstract.**
+  - A new paragraph states the m = 3, 5 results. In Lean the chart system holds iff $T=0$ and the other unknowns take
+    explicit values; the eliminant has no repeated root; the exact counts 3 and 10 are kernel-checked; and
+    Theorem 1.1 does not need these cases.
+  - The sentence on $a_{8,16}=0$ now names the explicit certificate $a_{8,16}^2=\sum_k H_ke_k$ over $K_5$, checked
+    exactly by two independent programs, and states that it is not part of the Lean formalization.
+- **`lean/Jacobian/B26Count.lean` (new, hand-written).** It proves `m5_chart_card` and `m3_chart_card`: over every
+  algebraically closed field of characteristic 0 there are exactly 10 (resp. 3) chart solutions.
+  - Proof: a bijection with the roots of T (`m5_chart_iff`, `m3_chart_iff`), separability of T over ℚ by an explicit
+    Bézout identity, and natDegree, then Mathlib's `card_rootSet_eq_natDegree`.
+  - Standard axioms only.
+  - It is imported by `Jacobian.lean`, and listed in `AxiomsAudit.lean` (now 24 declarations) and in
+    `verify_branch_ab_lean.sh` (now 55 theorems).
+  - The file is placed outside `Jacobian/B26/`, so that `regen_b26.sh` still compares only generated files.
+- **Generated docstring.** The generator's text in `B26.lean` ("the count … is not restated as a separate Lean
+  theorem") now points to `B26Count.lean`. `regen_b26.sh` still regenerates byte-identically.
+- **Paper.** The proof of Proposition 6.1 cites `m3_chart_card` and `m5_chart_card`, and the reproducibility list
+  includes `B26Count.lean`. 33 pages, 0 errors, 0 undefined references, 0 overfull boxes.
+- **Logs.**
+  - `lean/logs/b26count_build_and_axioms.log` (new).
+  - `lean/logs/axioms_verify_script_55.log` (new; the 53-theorem log is kept).
+  - `lean/logs/axioms_audit_with_B26.log` (24 declarations).
+- **Branch (c), outside this package.**
+  - The v2 corrected-commit proposal was in fact applied to main as `2b77cd4` on 2026-09-29; the result is
+    byte-identical to `proposed_branch_c/`. The top-level `branch_c/` was later removed (`d65a007`, 2026-10-01).
+  - The statements "not applied" in `branch_c/BUILD_STATUS.md`, `branch_c/V3_1_PROVENANCE.md` and `TECHNICAL_MAP.md`
+    are corrected. `GUIDE.md` is a byte-for-byte copy of the bundle's guide and is left unchanged.

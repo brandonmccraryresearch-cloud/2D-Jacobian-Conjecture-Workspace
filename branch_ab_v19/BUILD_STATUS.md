@@ -1,5 +1,21 @@
 # Lean Build Status (v19)
 
+## 2026-10-06 addition: `Jacobian/B26Count` (the m = 3, 5 solution counts)
+
+- **What it proves.** `m5_chart_card` and `m3_chart_card`: over every algebraically closed field of characteristic 0,
+  the m = 5 (resp. m = 3) chart system has exactly 10 (resp. 3) solutions.
+- **Supporting lemmas.** `T5poly_separable` and `T3poly_separable` give explicit Bézout identities over ℚ;
+  `m5SolutionsEquivRoots` and `m3SolutionsEquivRoots` are the bijections with the roots of T.
+- **Build.** `lake build Jacobian.B26Count`: 31 s, 0.7 GB, 0 errors, 0 warnings. The `B26` umbrella was rebuilt first
+  (35 s), because its generated docstring now points to these theorems (`lean/logs/b26count_build_and_axioms.log`).
+- **Axioms.** Only `propext`, `Classical.choice` and `Quot.sound` for all six new declarations.
+- **The full audit.** `AxiomsAudit.lean` now prints 24 declarations, all on standard axioms
+  (`lean/logs/axioms_audit_with_B26.log`). `ChartClassification` and the two B26 lemmas use only `propext` and
+  `Quot.sound`.
+- **The verify script's list.** Step 3 of `verify_branch_ab_lean.sh` now covers 55 theorems; all 55 use only standard
+  axioms (`lean/logs/axioms_verify_script_55.log`). The PR's root module `Jacobian.lean` elaborates (exit 0).
+- **Where it ran.** The same overlay as below.
+
 ## 2026-10-05 additions: `Jacobian/B26` (m = 3, 5 classifications)
 
 **Build.** Clean build: previous outputs were removed first, and every module was compiled
@@ -18,8 +34,8 @@
   split (`split_b26.py`; `logs/single_module_build_killed.log`).
 
 **Axioms.**
-- `AxiomsAudit.lean`, now with B26, prints only `propext`, `Classical.choice` and `Quot.sound` for all 22
-  declarations (`lean/logs/axioms_audit_with_B26.log`).
+- `AxiomsAudit.lean`, now with B26, printed only standard axioms (subsets of `propext`, `Classical.choice`,
+  `Quot.sound`) for all 22 declarations at that time. It has 24 since 2026-10-06 (`lean/logs/axioms_audit_with_B26.log`).
 - **Where it ran.** The audit and the elaboration of the root module `Jacobian.lean`, with the new import (exit 0),
   ran in a build overlay whose other modules were prebuilt.
 - **How the overlay differs.** The overlay is the branch-(c) build project. Its import change is made by the branch-(c)
@@ -41,7 +57,7 @@
     axioms (`CHANGES_v19.md` §15).
 
 **Source scan.** The `sorry`/`admit`/`native_decide`/`axiom` scan of `verify_branch_ab_lean.sh` passes over all 118
-Lean files.
+Lean files (119 since `B26Count`, re-run 2026-10-06: pass).
 
 **Paper.**
 - Rebuilt with TeX Live 2026 (TinyTeX, xdvipdfmx 20260317) and the Fira fonts from CTAN: 33 pages, 0 errors,

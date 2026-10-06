@@ -51,7 +51,7 @@ planar Jacobian conjecture.
 | `lean/` | Lean 4 project (Mathlib v4.34.0): proof sources, generators, verification scripts |
 | `lean/Jacobian/ChartProof/` | The 12-module machine-checked proof (Reflect + 11 generated modules, 111 identities) |
 | `lean/certgen/chartproof/` | Exact generators (Python/SymPy/python-flint) + independent check scripts |
-| `lean/Jacobian/B26.lean`, `lean/Jacobian/B26/` | (2026-10-05) Kernel-checked $m=3$ and $m=5$ top-layer chart classifications over any field of characteristic 0 (`m3_chart_iff`, `m5_chart_iff`, squarefree eliminants); standard axioms only |
+| `lean/Jacobian/B26.lean`, `lean/Jacobian/B26/`, `lean/Jacobian/B26Count.lean` | (2026-10-05/06) Kernel-checked $m=3$ and $m=5$ top-layer chart classifications over any field of characteristic 0 (`m3_chart_iff`, `m5_chart_iff`, squarefree eliminants), and the exact solution counts 3 and 10 over any algebraically closed field of characteristic 0 (`m3_chart_card`, `m5_chart_card`); standard axioms only |
 | `paper/` | 33-page paper (XeLaTeX, TeX Live 2026), four certificates, explicit 35-minor and transfer arguments |
 | `scripts/` | Audit and analysis scripts |
 | `scripts/a816_certificate/` | (2026-10-05) Explicit certificate $a_{8,16}^2=\sum H_k e_k$ over $K_5$ for Corollary 1.2, two independent exact checkers, controls; `./verify_bundle.sh` |
@@ -73,7 +73,7 @@ planar Jacobian conjecture.
 ```bash
 cd lean
 lake exe cache get                              # fetch Mathlib oleans
-LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh  # full build + 53-theorem axiom audit
+LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh  # full build + 55-theorem axiom audit
 CONTROLS_JOBS=1 bash controls.sh                  # 14/14 as expected: 3 unmodified ACCEPT, 9 perturbed REJECT (expected Lean error), 2 sorry copies flagged
 bash certgen/check_regeneration.sh                # byte-identical regeneration
 ```
