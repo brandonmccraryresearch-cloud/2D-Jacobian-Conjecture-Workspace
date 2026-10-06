@@ -11,7 +11,7 @@
 # 5.4 GB RAM for a single module (Stage2_g7); build with LEAN_NUM_THREADS=1 on machines with < 12 GB.
 # The m = 3, 5 classifications (Jacobian/B26, 10 modules, added 2026-10-05) take ~8 min sequentially with
 # LEAN_NUM_THREADS=1 and up to ~3.8 GB RAM for a single module (M5T; M5Rel1-3 ~2.4 GB);
-# see scripts/b26_m5_eliminant/lean_certificates/.
+# see scripts/b26_m5_eliminant/lean_certificates/.  Jacobian/B26Count (the solution counts, 2026-10-06) takes ~30 s.
 #
 # Usage: verify_branch_ab_lean.sh [PROJECT_DIR]
 #   PROJECT_DIR defaults to this script's directory if it holds lakefile.toml,
@@ -39,7 +39,7 @@ THEOREMS="t_zero_case minor_obstruction only_zero_transport
   BranchAb.TopLayerSmall.m5_residual_iff BranchAb.TopLayerSmall.m5_chart_iff BranchAb.TopLayerSmall.m5_a4_ne_zero
   BranchAb.TopLayerSmall.m5_T_squarefree BranchAb.TopLayerSmall.m5_solution_formulas
   BranchAb.TopLayerSmall.m3_residual_iff BranchAb.TopLayerSmall.m3_chart_iff BranchAb.TopLayerSmall.m3_a2_ne_zero
-  BranchAb.TopLayerSmall.m3_T_squarefree
+  BranchAb.TopLayerSmall.m3_T_squarefree BranchAb.TopLayerSmall.m5_chart_card BranchAb.TopLayerSmall.m3_chart_card
   BranchAb.chart_K5_identities BranchAb.chart_point_solves BranchAb.topLayerClassification_of_chart
   BranchAb.main_theorem_of_chart
   BranchAb.ChartProof.eq_of_toPolyK BranchAb.ChartProof.lc_zero BranchAb.chartClassification_holds BranchAb.main_theorem"

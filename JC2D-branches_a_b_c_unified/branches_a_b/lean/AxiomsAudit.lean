@@ -17,6 +17,7 @@ import Jacobian.Descent.Main
 import Jacobian.Descent.E2.T0
 import Jacobian.ChartProof.Final
 import Jacobian.B26
+import Jacobian.B26Count
 
 #print axioms BranchAb.layers_of_jac
 #print axioms BranchAb.layers_transport
@@ -41,3 +42,6 @@ import Jacobian.B26
 #print axioms BranchAb.TopLayerSmall.m3_chart_iff
 #print axioms BranchAb.TopLayerSmall.m3_a2_ne_zero
 #print axioms BranchAb.TopLayerSmall.m3_T_squarefree
+-- exact solution counts over an algebraically closed field (Jacobian/B26Count.lean, added 2026-10-06)
+#print axioms BranchAb.TopLayerSmall.m5_chart_card
+#print axioms BranchAb.TopLayerSmall.m3_chart_card

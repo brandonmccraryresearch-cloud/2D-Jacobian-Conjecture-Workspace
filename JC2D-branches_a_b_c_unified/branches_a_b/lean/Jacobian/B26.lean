@@ -30,8 +30,8 @@ Main results, over any field `L` of characteristic 0:
   certified).
 * `m5_T_ne_zero_at_zero`, `m5_a4_ne_zero`, `m5_T_squarefree`: `T₅(0) ≠ 0`, so `a₄ ≠ 0`; `T₅` and `T₅'` have no
   common root.  Hence over an algebraically closed field the chart system has exactly `10` solutions, one for each
-  of the `10` distinct roots of `T₅` (the count is this bijection plus `deg T₅ = 10`; it is not restated as a
-  separate Lean theorem).
+  of the `10` distinct roots of `T₅`. The count is this bijection plus `deg T₅ = 10`; it is proved as
+  `m5_chart_card` (and `m3_chart_card` for `m = 3`) in `Jacobian/B26Count.lean`.
 * the same for `m = 3` with `T₃(a₂) = 3 a₂³ - 32` and `8 a₁ = 5 a₂²` (`m3_chart_iff`, `m3_residual_iff`,
   `m3_a2_ne_zero`, `m3_T_squarefree`).
 The irreducibility of `T₅` and `T₃` over `ℚ` is not used and is not formalized here.

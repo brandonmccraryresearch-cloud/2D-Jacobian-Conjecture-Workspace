@@ -114,9 +114,11 @@ GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab
   11 generated modules, **111 step theorems**.
 - `lean/Jacobian/B26/` (2026-10-05): the m = 3 and m = 5 chart classifications over any field of characteristic 0.
   `m3_chart_iff` and `m5_chart_iff` say the system holds iff T(a_{m-1}) = 0 plus explicit back-substitution; the
-  squarefree lemmas show T has no repeated root. The main theorem does not use them.
-- `verify_branch_ab_lean.sh`: 53 theorems (44 until 2026-10-05, plus the 9 B26 theorems), each using only standard
-  axioms (`lean/logs/axioms_verify_script_53.log`).
+  squarefree lemmas show T has no repeated root. `lean/Jacobian/B26Count.lean` (2026-10-06) proves the exact counts
+  `m3_chart_card` (3) and `m5_chart_card` (10) over any algebraically closed field of characteristic 0. The main
+  theorem does not use them.
+- `verify_branch_ab_lean.sh`: 55 theorems (44 until 2026-10-05, the 9 B26 theorems, the 2 count theorems), each
+  using only standard axioms (`lean/logs/axioms_verify_script_55.log`).
 - Controls: 14/14 as expected (3 unmodified ACCEPT, 9 perturbed REJECT, 2 sorry
   copies flagged).
 
@@ -245,7 +247,7 @@ Net Lean theorem (standard axioms only):
 
 | Layer | Branches (a,b) | Branch (c) |
 |---|---|---|
-| Lean kernel + Mathlib v4.34.0; axioms `propext`, `Classical.choice`, `Quot.sound` | 44 theorems audited (`logs/chartproof_axioms.log`); 53 since 2026-10-05, with B26 (`lean/logs/axioms_verify_script_53.log`) | 53 theorems audited (`bundle_v3_1/jacobian_lean/axioms_branch_c.log`) |
+| Lean kernel + Mathlib v4.34.0; axioms `propext`, `Classical.choice`, `Quot.sound` | 44 theorems audited (`logs/chartproof_axioms.log`); 55 since 2026-10-06, with B26 and B26Count (`lean/logs/axioms_verify_script_55.log`) | 53 theorems audited (`bundle_v3_1/jacobian_lean/axioms_branch_c.log`) |
 | No `sorry` / `axiom` / `native_decide` | `grep`-checked | `verify_branch_c_lean.sh` step 4 |
 | Symbolic elimination | ChartProof (111 identities), `independent_check.py` | Descent2R (505 modules), T1Zero, Bridge, Combine |
 | Numerical elimination | Four paper certificates; 35-minor span; char-0 transfer; `a816_full.sing` and the explicit a₈,₁₆ certificate (`scripts/a816_certificate/`, two exact checkers) | Step-1 certificates (exact K₅ slice + 3 modular); rank lemma + two-prime ranks |
@@ -263,7 +265,7 @@ cd branches_a_b
 bash verify_v19.sh                      # checksums, scripts, 111/111 identities, 2026-10-05 checks, paper build
 cd lean
 lake exe cache get
-LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh   # full build + 53-theorem axiom audit
+LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh   # full build + 55-theorem axiom audit
 ```
 
 ### Branch (c)
@@ -294,8 +296,12 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
 - **Branch (c):** the `branch_c/` pipeline scripts on repo main (corrected
   2026-09-29: E₁ projection, 6d κ=0, Singular hang guard) → v2 bundle → v3.0
   (bundled mid-build) → **v3.1** (2026-09-29, 23:40 CDT; every module built,
-  `verify_branch_c_lean.sh` passed, `Bridge` bug found and fixed). The v2
-  corrected-commit proposal is **not** applied. See `branch_c/V3_1_PROVENANCE.md`.
+  `verify_branch_c_lean.sh` passed, `Bridge` bug found and fixed).
+  - **The v2 corrected-commit proposal.** It was applied to repo main as `2b77cd4` on 2026-09-29; the result is
+    byte-identical to `proposed_branch_c/`. Earlier versions of this map said "not applied"; that was corrected on
+    2026-10-06.
+  - **The top-level `branch_c/`.** It was removed on 2026-10-01 (`d65a007`).
+  - See `branch_c/V3_1_PROVENANCE.md`.
 - **This unified directory** (2026-09-30): `branches_a_b/` is `branch_ab` (v19) byte-for-byte; `branch_c/bundle_v3_1/` is the v3.1 bundle byte-for-byte
   (manifest-verified at assembly). New: this map, the READMEs, `BUILD_STATUS.md`,
   checksums, `verify_branch_c.sh`, and the conditional correspondence-guide to-do.
@@ -306,10 +312,16 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
    `TODO_correspondence_guide.md`. Created only after the finalized paper is drafted.
 2. The p-adic argument for branch (c) — review deferred.
 3. The branch-(c) `.tex` elimination paper — **done 2026-09-30**:
-   `branch_c/paper/branch_c_elimination.tex` / `.pdf` (16 pages, Noto Sans /
-   Noto Sans Math); `BRANCH_C_GUIDE.md` remains the comprehensive reference.
+   `branch_c/paper/branch_c_elimination.tex` / `.pdf` (16 pages in Noto Sans / Noto Sans Math when first built;
+   18 pages in Fira since the 2026-10-01 font revision); `BRANCH_C_GUIDE.md` remains the comprehensive reference.
 4. `ChartEmptyC_T1ne0` in Lean — currently outside Lean (grade B); formalizing the
    rank lemma's instance in Lean is listed as optional (GUIDE.md §11).
-5. Branch-(c) figures — none produced yet.
+5. Branch-(c) figures — produced: `branch_c/paper/figures/` (four figures with their scripts).
 6. GGHV Prop. 4.3's other cases and the reduction from the Jacobian conjecture —
    outside scope, unchanged.
+7. Branches (a,b) (2026-10-05/06): optional Lean extensions, none needed for `main_theorem`:
+   - G1: irreducibility of the m = 3, 5 eliminants over ℚ (open);
+   - G2: the solution counts as cardinality theorems (**done 2026-10-06**, `lean/Jacobian/B26Count.lean`);
+   - G3: the a₈,₁₆ certificate (open; a feasibility estimate is in progress).
+
+   Remark 8.8 (all lower coefficients vanish at the K₅ point) rests on one exact rank computation, corroborated mod p.

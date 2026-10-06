@@ -36,4 +36,7 @@ wrapper) while the bundle interior is untouched. See `README.md` for the format 
   argument does not use that axiom; it uses the rank lemma (GUIDE.md §5.9).
 - `chart_certificates/padic_DEFERRED/` is not reviewed further (deferred).
 - The corrected-commit proposal from v2 (`v2_carryover/corrected_commit_proposal/`)
-  is still **not applied**.
+  was described here as "still **not applied**". That was wrong, and was corrected on 2026-10-06:
+  - It had been applied to repo main as `2b77cd4` on 2026-09-29, at 01:25 CDT, before this bundle was assembled.
+  - The applied `branch_c/` tree is byte-identical to `proposed_branch_c/`.
+  - The top-level `branch_c/` was removed later, in `d65a007` (2026-10-01).
