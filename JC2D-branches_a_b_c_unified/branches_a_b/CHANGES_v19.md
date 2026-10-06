@@ -304,3 +304,94 @@ reproducibility appendix names the artifact commit.
     byte-identical to `proposed_branch_c/`. The top-level `branch_c/` was later removed (`d65a007`, 2026-10-01).
   - The statements "not applied" in `branch_c/BUILD_STATUS.md`, `branch_c/V3_1_PROVENANCE.md` and `TECHNICAL_MAP.md`
     are corrected. `GUIDE.md` is a byte-for-byte copy of the bundle's guide and is left unchanged.
+
+### 2026-10-06: irreducibility of the eliminants in Lean (G1)
+- **`lean/Jacobian/B26Irred.lean` (new, hand-written).** It proves `T5poly_irreducible` and `T3poly_irreducible`:
+  $T_5 = 9X^{10}+37200X^5+95051008$ and $T_3 = 3X^3-32$ are irreducible over ℚ. No other theorem uses them.
+  - $T_3$: a cubic with no rational root, since $v_3(32/3) = -1$ is not a multiple of 3.
+  - $T_5 = F(X^5)$: the root $u$ of the quadratic $F$ has norm $95051008/9$, with 3-adic valuation $-2$, so it is not
+    a fifth power in ℚ(u). So $X^5-u$ is irreducible over ℚ(u) (Mathlib's `X_pow_sub_C_irreducible_of_prime`). The
+    tower ℚ ⊂ ℚ(u) ⊂ ℚ(u)(θ), with $θ^5 = u$, has degree 10, and ℚ(θ) is the whole tower. So the minimal polynomial of θ
+    has degree 10, and it divides $T_5$.
+  - CAIC proposed a mod-11 route instead. It is valid ($T_5$ is irreducible mod 11 with its degree kept), but in Lean
+    it would need a computable irreducibility certificate over $\mathbb F_{11}$; the Kummer route needs no computation.
+  - Standard axioms only, for the two theorems and the seven main lemmas.
+  - It is imported by `Jacobian.lean`, and listed in `AxiomsAudit.lean` (now 26 declarations) and in
+    `verify_branch_ab_lean.sh` (now 57 theorems).
+- **Generated docstring.** The generator's line "The irreducibility of `T₅` and `T₃` over `ℚ` is not used and is not
+  formalized here" now points to `B26Irred.lean`; `B26.lean` was regenerated. `regen_b26.sh` still regenerates
+  byte-identically.
+- **Paper.**
+  - The abstract adds: both eliminants are irreducible over ℚ, and this is kernel-checked as well.
+  - The proof of Proposition 6.1 cites the two theorems and gives the argument.
+  - The reproducibility list includes `B26Irred.lean`.
+  - 33 pages, 0 errors, 0 undefined references, 0 overfull boxes.
+- **Claim table.** In `scripts/a816_certificate/README.md`, C6 (irreducibility of $T_5$) is now grade A; its "no real
+  root" part stays B.
+- **Logs.**
+  - `lean/logs/b26irred_build_and_axioms.log` (new).
+  - `lean/logs/axioms_verify_script_57.log` (new; the 53- and 55-theorem logs are kept).
+  - `lean/logs/axioms_audit_with_B26.log` (26 declarations).
+
+### 2026-10-06: Lean feasibility of the a₈,₁₆ certificate (G3)
+- **`scripts/a816_lean_feasibility/` (new).** CAIC asked how large the Lean term for the a₈,₁₆ certificate would be, and
+  how long the kernel check would take. The folder holds exact size statistics, pilot modules and logs; its
+  README gives the estimate.
+  - **Flat identity of `a816_lift.txt`.** It needs 761,540 monomial products, plus the reduction modulo R. Numerals
+    reach 514 digits. Batches that fit in memory would have to write out about 130 MB of reduced partial results,
+    so this route is not recommended.
+  - **Staged route** (pivot facts x = φ(x) layer by layer, then $a_{8,16}^2=\sum_k h'_k\,(e_k\circ\varphi)$). It
+    needs about 262,500 products in about 110 checks of at most 6,516 products each, and about 2 MB of generated data.
+    The estimate is 10–20 min of build time at ≤ 1 GB per module.
+  - **Pilots.** The largest pivot identity of each layer and the final reduced identity pass the Lean kernel,
+    6–20 s each, at most 0.91 GB. A perturbed control is rejected. Four flat pilots measure the memory growth.
+  - Not part of the Lean build. The formalization itself remains open; the README lists the remaining work
+    (substitution lemma, pivot facts, the statement bridge, a generator).
+- **`scripts/a816_certificate/README.md` §7** now points to the estimate. It also corrects the old cost driver "17k
+  numerals at 86 ms each": that rate applies to numerals in a field, not to the integer numerals of reflected
+  `Expr`s.
+
+### 2026-10-06: Remark 8.8 (full rigidity) written out and checked twice
+- **`scripts/a816_rigidity/` (new).** Remark `rem:full-rigidity` (8.8) says that all 51 unknowns are nilpotent
+  modulo the layer ideal. Until now it rested on one exact rank computation, 14 of 14, inside `structured_cert.py`.
+- **The certificates.** 61 are now written out:
+  - 47 pivot identities x − φ(x) = Σ_k D_{x,k} e_k;
+  - 14 identities m = Σ_k H_{m,k} e_k, one for each monomial m of depth 4 in τ, σ.
+- **The checks.**
+  - The generator (`make_rigidity_certs.py`, using `k5.py`) checks every identity with its own exact arithmetic.
+  - An independent python-flint program (`check_rigidity_flint.py`) checks them again. It rebuilds J from
+    `a816_full.sing`, and it computes the depths from the variable names.
+  - It also checks the shape of φ: free unknowns only, no constant term, homogeneous of the right depth. And it
+    checks the coverage: the 14 monomials are all those of depth 4, and the pivots with the free unknowns are the
+    51 unknowns.
+  - Result: ALL CERTIFICATES VALID.
+- **Controls.** The three negative controls (perturbed cofactor, dropped row, R + 1) are rejected.
+- **Size.** 51,613 cofactor terms, heights up to 493 digits; 140 MB of JSON. The files are not committed. `run.sh`
+  regenerates them in about 7 min, byte-identically (`logs/MANIFEST.sha256`).
+- **The deduction** x^⌈4/depth⌉ ∈ I is spelled out in the README.
+- **Where the claim is updated.**
+  - The paper: Remark 8.8 now states the argument and cites the certificates, and the reproducibility list adds the
+    folder.
+  - Claim C2 of `scripts/a816_certificate/README.md`.
+  - `TECHNICAL_MAP.md`.
+
+### 2026-10-06: PDF glyph boxes; checksums and copy identity after the fixes on `main`
+- **The fixes on `main`.** Brandon's commits `01ad644` … `3df30c3` replaced ℕ, ∀, ∃ and ∧ in the Lean listings by
+  `Nat`, `forall`, `exists` and `/\`, because Fira Mono has no glyphs for them. Three glyphs were still missing:
+  - ∈ and ₐ in the listings (`forall m ∈ P.support`, `→ₐ[K]`), which Fira Mono lacks;
+  - ⊤ in the transposes $v^\top$, which Fira Math lacks.
+- **This change.**
+  - ∈ and ₐ are now typeset with Fira Math (active characters in the preamble), so the listing text is unchanged.
+  - The transposes are written $v^{\mathrm T}$.
+  - The build reports no missing characters: 33 pages, 0 errors, 0 undefined references, 0 overfull boxes.
+  - `verify_v19.sh` now also fails if the compiled paper has a missing glyph (`GLYPHS OK`; one more passing check,
+    18 in all).
+- **Checksums and copy identity.**
+  - The fixes on `main` had changed the paper's `.tex` and `.pdf` without updating `CHECKSUMS.md5` and
+    `CHECKSUMS.sha256`, so their checks failed for those two files. They are regenerated here.
+  - `main`'s two PDFs (here and in `branch_ab_v19/`) had been built separately and differed. Both copies are
+    byte-identical again.
+- **What else this change brings to `main`.** G1 (`B26Irred.lean`), G3 (`scripts/a816_lean_feasibility/`) and the
+  Remark 8.8 certificates (`scripts/a816_rigidity/`), all described above.
+  - G1 and G3 had been merged (PR #6) into the stacked base branch `claude/abstract-and-status`.
+  - `main` received that branch at its earlier head `f135426` (merge `f10e7e9`), so they were not on `main`.

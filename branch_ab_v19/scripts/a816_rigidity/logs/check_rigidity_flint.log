@@ -1,0 +1,4 @@
+J rebuilt: 75 generators in layers 0..3, each homogeneous of depth 4 - d; 51 unknowns occur
+certificates: 61 files (47 pivot, 14 monomial), 51613 cofactor terms; monomials = all 14 of depth 4: True; pivots + free = the 51 unknowns: True
+control: None
+RESULT: ALL CERTIFICATES VALID (20s)
