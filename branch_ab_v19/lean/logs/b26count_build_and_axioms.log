@@ -1,0 +1,18 @@
+# 2026-10-06. lake build of Jacobian.B26 (docstring regenerated) and Jacobian.B26Count, one at a time,
+# LEAN_NUM_THREADS=1, under guardrun.py --max-anon 5500 (2-CPU, 7 GB host); then #print axioms for the new declarations
+# (run after both builds).
+=== Jacobian.B26 05:28:16
+✔ [8933/8933] Built Jacobian.B26 (35s)
+Build completed successfully (8933 jobs).
+[guardrun] exit 0  46.6s  peak RSS 4694 MB  cgroup anon peak 868 MB
+=== Jacobian.B26Count 05:29:03
+✔ [8934/8934] Built Jacobian.B26Count (31s)
+Build completed successfully (8934 jobs).
+[guardrun] exit 0  43.3s  peak RSS 4684 MB  cgroup anon peak 724 MB
+#
+'BranchAb.TopLayerSmall.m5_chart_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.m3_chart_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.T5poly_separable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.T3poly_separable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.m5SolutionsEquivRoots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.m3SolutionsEquivRoots' depends on axioms: [propext, Classical.choice, Quot.sound]

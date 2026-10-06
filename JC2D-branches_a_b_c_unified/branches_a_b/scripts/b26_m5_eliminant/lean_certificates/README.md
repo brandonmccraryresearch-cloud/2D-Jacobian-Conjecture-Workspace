@@ -44,10 +44,17 @@ All of them hold over any field of characteristic 0.
 - **`m3_chart_iff`.** The chart system holds if and only if $3a_2^3 = 32$, $8a_1 = 5a_2^2$, and $b_k$ equals `m3B1 … m3B4`.
 - **Also:** `m3_residual_iff`, `m3_a2_ne_zero`, `m3_T_squarefree`.
 
+### The counts (2026-10-06)
+
+- **`m5_chart_card`, `m3_chart_card`** (`lean/Jacobian/B26Count.lean`, hand-written, not generated). Over every
+  algebraically closed field of characteristic 0 the chart system has exactly 10 (resp. 3) solutions.
+- **Proof.**
+  - Build a bijection between the solutions and the roots of $T$, using `m5_chart_iff` and `m3_chart_iff`.
+  - Show that $T$ is separable over $\mathbb Q$, with the Bézout identity of the squarefree lemma.
+  - Use $\deg T = 10$ (resp. 3), and conclude with Mathlib's `Polynomial.card_rootSet_eq_natDegree`.
+
 ### Not formalized
 
-- **The counts.** "Exactly 10 (resp. 3) solutions over $\overline{\mathbb Q}$" follows from the iff, the squarefree
-  lemma and $\deg T$. It is not restated as a separate Lean theorem.
 - **Irreducibility over $\mathbb Q$.** This is checked outside Lean (`../verify_b26.py`, `../../a816_certificate/b26_check.py`).
 
 ## Files

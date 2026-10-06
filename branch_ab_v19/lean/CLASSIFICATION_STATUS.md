@@ -7,7 +7,9 @@
 of Proposition 6.1 in the normalized chart (`a₀ = b₁₀ = 1`, `a₇³b₀² = 1`), which is the form the main
 theorem uses. The eliminant 𝒲 of degree 35 is not formalized. The cases m = 3, 5 have been formalized
 separately since 2026-10-05 (`Jacobian/B26.lean`: `m3_chart_iff`, `m5_chart_iff`, in the chart
-`α₀ = α_m = β₀ = 1`); the main theorem does not use them.
+`α₀ = α_m = β₀ = 1`). Since 2026-10-06 their exact solution counts, 3 and 10 over any algebraically
+closed field of characteristic 0, are proved as well (`Jacobian/B26Count.lean`: `m3_chart_card`,
+`m5_chart_card`). The main theorem does not use them.
 
 ```lean
 theorem chartClassification_holds (L : Type*) [Field L] [CharZero L] : ChartClassification L

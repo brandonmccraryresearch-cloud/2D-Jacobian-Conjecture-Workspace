@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.10.5)  5 OCT 2026 19:06
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.10.5)  6 OCT 2026 05:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -970,28 +970,28 @@ File: figures/fig1_newton_polygons.png Graphic file (type bmp)
  [4]
 
 LaTeX Font Warning: Font shape `TU/FiraMono(0)/m/it' undefined
-(Font)              using `TU/FiraMono(0)/m/n' instead on input line 125.
+(Font)              using `TU/FiraMono(0)/m/n' instead on input line 127.
 
 File: figures/fig2_layer_descent.png Graphic file (type bmp)
 <figures/fig2_layer_descent.png>
 
-Underfull \hbox (badness 1102) in paragraph at lines 161--174
+Underfull \hbox (badness 1102) in paragraph at lines 163--176
 \TU/FiraSans(0)/m/n/10.95 §[][]6.4[][] the classification it provides is proved algebraically, in the normalized chart, and
  []
 
 [5] [6] [7]
 LaTeX Font Info:    Font shape `TU/FiraMath(1)/m/n' will be
-(Font)              scaled to size 10.34995pt on input line 276.
+(Font)              scaled to size 10.34995pt on input line 278.
 LaTeX Font Info:    Font shape `TU/FiraMath(1)/m/n' will be
-(Font)              scaled to size 6.89996pt on input line 276.
+(Font)              scaled to size 6.89996pt on input line 278.
 LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 10.35104pt on input line 276.
+(Font)              scaled to size 10.35104pt on input line 278.
 LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 6.9007pt on input line 276.
+(Font)              scaled to size 6.9007pt on input line 278.
 LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 10.34898pt on input line 276.
+(Font)              scaled to size 10.34898pt on input line 278.
 LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 6.89932pt on input line 276.
+(Font)              scaled to size 6.89932pt on input line 278.
 
 Missing character: There is no ∧ (U+2227) in font Fira Mono/OT:script=latn;language=dflt;!
 Missing character: There is no ∧ (U+2227) in font Fira Mono/OT:script=latn;language=dflt;!
@@ -1007,7 +1007,7 @@ Missing character: There is no ₐ (U+2090) in font Fira Mono/OT:script=latn;lan
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
 
-Underfull \hbox (badness 2237) in paragraph at lines 324--325
+Underfull \hbox (badness 2237) in paragraph at lines 326--327
 [][]\TU/FiraSans(0)/m/it/10.95 Remark \TU/FiraSans(0)/m/n/10.95 5.1 (Lean chart normalization)\TU/FiraSans(0)/m/it/10.95 . []\TU/FiraSans(0)/m/n/10.95 The Lean formalization uses chart coordinates
  []
 
@@ -1094,15 +1094,15 @@ Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;lan
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
 Missing character: There is no ∧ (U+2227) in font Fira Mono/OT:script=latn;language=dflt;!
-Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
-Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
-Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
-Missing character: There is no ∧ (U+2227) in font Fira Mono/OT:script=latn;language=dflt;!
-Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
-Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
-Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
-Missing character: There is no ∧ (U+2227) in font Fira Mono/OT:script=latn;language=dflt;!
 [13]
+Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
+Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
+Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
+Missing character: There is no ∧ (U+2227) in font Fira Mono/OT:script=latn;language=dflt;!
+Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
+Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
+Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
+Missing character: There is no ∧ (U+2227) in font Fira Mono/OT:script=latn;language=dflt;!
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
@@ -1352,25 +1352,25 @@ Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;lan
 File: figures/fig3_top_layer.png Graphic file (type bmp)
 <figures/fig3_top_layer.png>
 LaTeX Font Info:    Font shape `TU/FiraMath(1)/m/n' will be
-(Font)              scaled to size 13.79993pt on input line 546.
+(Font)              scaled to size 13.79993pt on input line 548.
 LaTeX Font Info:    Font shape `TU/FiraMath(1)/m/n' will be
-(Font)              scaled to size 9.19995pt on input line 546.
+(Font)              scaled to size 9.19995pt on input line 548.
 LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 13.80139pt on input line 546.
+(Font)              scaled to size 13.80139pt on input line 548.
 LaTeX Font Info:    Font shape `TU/FiraMath(2)/m/n' will be
-(Font)              scaled to size 9.20093pt on input line 546.
+(Font)              scaled to size 9.20093pt on input line 548.
 LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 13.79865pt on input line 546.
+(Font)              scaled to size 13.79865pt on input line 548.
 LaTeX Font Info:    Font shape `TU/FiraMath(3)/m/n' will be
-(Font)              scaled to size 9.1991pt on input line 546.
+(Font)              scaled to size 9.1991pt on input line 548.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 546.
+(hyperref)                removing `math shift' on input line 548.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 546.
+(hyperref)                removing `math shift' on input line 548.
 
 [18] [19] [20] [21]
 Missing character: There is no ∃ (U+2203) in font Fira Mono/OT:script=latn;language=dflt;!
@@ -1561,7 +1561,7 @@ Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;lan
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
 Missing character: There is no ℕ (U+2115) in font Fira Mono/OT:script=latn;language=dflt;!
 
-Underfull \hbox (badness 1648) in paragraph at lines 894--895
+Underfull \hbox (badness 1648) in paragraph at lines 896--897
 []\TU/FiraSans(0)/m/n/10.95 By Lemma [][]9.1[][], the exact rank and ideal identities over $[][]$ persist under every
  []
 
@@ -1587,6 +1587,6 @@ Here is how much of TeX's memory you used:
  47652 multiletter control sequences out of 15000+600000
  639071 words of font info for 160 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 71i,13n,107p,1910b,798s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 71i,13n,107p,2082b,798s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on branch_ab_elimination_v3.pdf (33 pages).

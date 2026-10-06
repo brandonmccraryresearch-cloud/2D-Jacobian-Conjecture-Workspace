@@ -32,6 +32,18 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
 
 - v3.1 supersedes v3.0 (bundled while the build was still running); §13 of GUIDE.md
   records what changed (the build, the fixed `Bridge` bug, the verification, verbose logs).
-- The v2 corrected-commit proposal is **not** applied; `branch_c/` on repo main is untouched
-  by this package.
-- Nothing has been pushed, published, uploaded, deposited or minted.
+- The v2 corrected-commit proposal **was applied** to repo main as commit `2b77cd4`
+  ("Branch (c): corrected elimination scripts", 2026-09-29).
+  - Its `branch_c/` tree is byte-identical to `bundle_v3_1/v2_carryover/corrected_commit_proposal/proposed_branch_c/`.
+  - The top-level `branch_c/` directory was later removed in `d65a007` (2026-10-01), so the corrected scripts are now
+    in the git history and in `…/corrected_commit_proposal/final/`.
+  - This was found and recorded on 2026-10-06.
+  - The "not applied" lines in `GUIDE.md` and inside `bundle_v3_1/` predate this check. Those files are byte-for-byte
+    copies of the v3.1 bundle and are left unchanged.
+- This package itself pushed, published, uploaded, deposited and minted nothing.
+- `CHECKSUMS.md5` and `CHECKSUMS.sha256` were regenerated on 2026-10-06, with the same rule: every committed file
+  except the checksum files themselves, sorted by path.
+  - Three entries had been stale since the 2026-10-01 Fira revision of the paper: `paper/README.md`,
+    `paper/branch_c_elimination.tex` and `.pdf`.
+  - The nine files in `paper/figures/` had never been listed.
+  - The lists now have 1033 entries, and all of them verify.
