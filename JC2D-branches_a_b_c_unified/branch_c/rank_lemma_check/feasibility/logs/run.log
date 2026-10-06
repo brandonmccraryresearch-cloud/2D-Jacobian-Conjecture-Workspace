@@ -1,0 +1,6 @@
+run_feasibility.sh, 2026-10-06T22:31:00Z; lean: Lean (version 4.34.0, x86_64-unknown-linux-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)
+loop 10000: exit 0, wall 1.1 s, cpu 1.1 s, max RSS 582 MB
+loop 100000: exit 0, wall 9.6 s, cpu 9.6 s, max RSS 1630 MB
+list 10000: exit 0, wall 11.9 s, cpu 16.1 s, max RSS 1290 MB
+build_matrix: exit 0, wall 0.7 s, cpu 0.9 s, max RSS 77 MB
+lu_fill: exit 0, wall 23.4 s, cpu 23.6 s, max RSS 545 MB

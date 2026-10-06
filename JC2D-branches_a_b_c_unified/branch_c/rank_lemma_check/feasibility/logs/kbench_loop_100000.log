@@ -1,0 +1,1 @@
+loop 100000: exit 0, wall 9.6 s, cpu 9.6 s, max RSS 1630 MB
