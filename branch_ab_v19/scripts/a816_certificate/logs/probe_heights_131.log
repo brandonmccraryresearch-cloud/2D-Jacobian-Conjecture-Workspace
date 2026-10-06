@@ -1,0 +1,8 @@
+# 2026-10-05T14:02:35-05:00 python3 probe_heights.py 131
+131 primes; modulus bits 3799
+1 z^2 [('unstable', None), ('unstable', None), ('unstable', None), ('unstable', None), ('unstable', None)]
+5 z^2 [('unstable', None), ('unstable', None), ('unstable', None), ('unstable', None), ('unstable', None)]
+9 z^2 [('unstable', None), ('unstable', None), ('unstable', None), ('unstable', None), ('unstable', None)]
+76 z^0 [(1, (1, 1)), (1, (1, 1)), (1, (1, 1)), (1, (1, 1)), (1, (1, 1))]
+76 z^1 [(1, (4, 4)), (2, (5, 5)), (1, (4, 4)), (1, (4, 5)), (1, (3, 4))]
+76 z^1 [(4, (15, 13)), (4, (14, 12)), (4, (15, 13)), (4, (14, 12)), (4, (15, 14))]

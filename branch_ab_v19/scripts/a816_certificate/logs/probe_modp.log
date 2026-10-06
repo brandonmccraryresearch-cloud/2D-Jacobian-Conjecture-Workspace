@@ -1,0 +1,25 @@
+# 2026-10-05T14:01:53-05:00 Singular -q probe_modp.sing
+equations:
+75
+std(I) ms:
+276
+size std(I):
+87
+Krull dim (56 ring variables, 5 of them absent from I):
+5
+k =
+1
+NF(a_8_16^k, std(I)) == 0:
+0
+k =
+2
+NF(a_8_16^k, std(I)) == 0:
+1
+k =
+3
+NF(a_8_16^k, std(I)) == 0:
+1
+k =
+4
+NF(a_8_16^k, std(I)) == 0:
+1

@@ -7,7 +7,8 @@
 
 `ChartClassification` is the m = 7 case of Proposition 6.1 in the normalized chart
 (`a₀ = b₁₀ = 1`, `a₇³b₀² = 1`): every solution is one of the five K₅-conjugate points. The eliminant
-𝒲 of degree 35 and the cases m = 3, 5 of Proposition 6.1 are not formalized.
+𝒲 of degree 35 is not formalized. The cases m = 3, 5 of Proposition 6.1 are formalized separately
+(since 2026-10-05, `Jacobian/B26.lean`) and are not used by the main theorem.
 
 ## The mathematics
 

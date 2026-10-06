@@ -1,0 +1,15 @@
+ring R = 0, (a1,a2), dp;
+option(redSB);
+poly s0 = -4*a1^2 + 7*a1*a2^2 - 30*a2;
+poly s1 = -4*a1*a2 + 7*a2^3 - 48;
+ideal S = s0, s1;
+poly T = 3*a2^3 - 32;
+poly L1 = 8*a1 - 5*a2^2;
+ideal J = T, L1;
+ideal GS = std(S); "vdim(S):"; vdim(GS); "J in S:"; size(reduce(J, GS)) == 0; "S in J:"; size(reduce(S, std(J))) == 0;
+matrix CJ = lift(S, J); matrix CS = lift(J, S); int i; int j;
+link l1 = ":w m3_lift_S_to_J.txt"; for (j = 1; j <= 2; j++) { for (i = 1; i <= 2; i++) { write(l1, string(j) + "|" + string(i) + "|" + string(CJ[i,j])); } } close(l1);
+link l2 = ":w m3_lift_J_to_S.txt"; for (j = 1; j <= 2; j++) { for (i = 1; i <= 2; i++) { write(l2, string(j) + "|" + string(i) + "|" + string(CS[i,j])); } } close(l2);
+poly chk; for (j = 1; j <= 2; j++) { chk = 0; for (i = 1; i <= 2; i++) { chk = chk + S[i]*CJ[i,j]; } if (chk != J[j]) { "FAIL S->J"; } chk = 0; for (i = 1; i <= 2; i++) { chk = chk + J[i]*CS[i,j]; } if (chk != S[j]) { "FAIL J->S"; } }
+"m3 lifts written";
+quit;

@@ -1,0 +1,3 @@
+84bc6e864e5540f3aea9b3c90a84b240  structured_cert.json
+bfa57f616946cecfc7c7845d53823213  structured_reduced.json
+a727c413e88053ec5201f9a0cac46b21  a816_lift.txt

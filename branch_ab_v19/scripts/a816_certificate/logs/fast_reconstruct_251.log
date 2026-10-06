@@ -1,0 +1,6 @@
+# 2026-10-05T14:03:46-05:00 python3 fast_reconstruct.py 251
+primes: 700 completed, 251 used, 8 held out; 2967 terms; load 59s
+reconstruction with 251 primes: failures 1867  (112s)
+with 8 primes fewer: failures 1944; entries that change: 2105  (162s)
+held-out mismatches: 80968
+NOT accepted

@@ -1,0 +1,18 @@
+# 2026-10-05T13:37:50-05:00 python3 structured_cert.py (rerun for the log; output must be byte-identical to the first run)
+Python 3.11.15
+python-flint 0.9.0 sympy 1.14.0
+layer 3: rank 17 free depth-1 unknowns (tau): ['b_11_20', 'b_12_22']
+layer 3: identically vanishing combinations: 1
+layer 2: rank 18 free depth-2 unknowns (sigma): ['a_8_16', 'b_11_21']
+layer 2: left-kernel combinations: 1
+layer 1: rank 12 (all depth-3 unknowns are pivots); left-kernel combinations: 7
+reduced system: 25 of 75 generators have phi(g) != 0 in K5[b_11_20, b_12_22, a_8_16, b_11_21]  (70.9s)
+depth-4 part of K5[tau, sigma]: 14 monomials; candidate products m * phi(g_k): 32
+rank of the depth-4 products: 14 of 14 monomials; phi(a_8_16)^2 lies in their span
+reduced certificate: phi(a)^2 = sum h'_k phi(g_k) with 9 nonzero h'_k; max height 363 digits
+FULL IDENTITY a_8_16^2 = sum_k H_k g_k: HOLDS; 56 nonzero cofactors, 3462 terms, max coefficient height 493 digits (115.2s)
+wrote structured_cert.json (Rabinowitsch form, 76 rows) and structured_reduced.json
+
+real	1m55.631s
+user	1m17.452s
+sys	0m0.095s

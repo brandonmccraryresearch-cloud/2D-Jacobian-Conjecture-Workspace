@@ -1,0 +1,7 @@
+equations:
+75
+liftstd ms:
+3926
+in-ring check: sum I2[k]*T[k] == 1
+DONE cert_536870813
+[guardrun] exit 0  4.2s  peak RSS 66 MB  cgroup anon peak 481 MB
