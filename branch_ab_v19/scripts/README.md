@@ -53,6 +53,16 @@ Most scripts run directly from here:
   - The reduced $7\times7$ system needs $a_7\neq0$.
   - Check: `python3 b22_validate.py`, about 4 s.
 
+### 2026-10-06: Lean feasibility of the $a_{8,16}$ certificate (G3)
+
+- **`a816_lean_feasibility/` — how large a kernel check of the certificate would be.**
+  - Contents: exact size statistics for checking the flat identity and for a staged check that follows the
+    certificate's layers; pilot modules for both; a calibration against modules already built in this repository.
+  - Result: the staged route is feasible. It needs about 262,500 monomial products in about 110 checks, an
+    estimated 10–20 min of build time, and at most about 1 GB per module. Four pilots pass the Lean kernel, and a
+    perturbed control is rejected.
+  - Check: `bash run_all.sh [LEAN_PROJECT_DIR]`; the Python part takes about 2 min.
+
 ### From `computational_20261004/` (structured elimination results)
 
 Computational results from 2026-10-04, using the structured-elimination

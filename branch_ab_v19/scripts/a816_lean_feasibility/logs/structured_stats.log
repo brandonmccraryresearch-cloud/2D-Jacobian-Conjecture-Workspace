@@ -1,0 +1,21 @@
+layer 3: rank 17 free depth-1 unknowns (tau): ['b_11_20', 'b_12_22']
+layer 3: identically vanishing combinations: 1
+layer 2: rank 18 free depth-2 unknowns (sigma): ['a_8_16', 'b_11_21']
+layer 2: left-kernel combinations: 1
+layer 1: rank 12 (all depth-3 unknowns are pivots); left-kernel combinations: 7
+reduced system: 25 of 75 generators have phi(g) != 0 in K5[b_11_20, b_12_22, a_8_16, b_11_21]  (46.6s)
+depth-4 part of K5[tau, sigma]: 14 monomials; candidate products m * phi(g_k): 32
+rank of the depth-4 products: 14 of 14 monomials; phi(a_8_16)^2 lies in their span
+reduced certificate: phi(a)^2 = sum h'_k phi(g_k) with 9 nonzero h'_k; max height 363 digits
+FULL IDENTITY a_8_16^2 = sum_k H_k g_k: HOLDS; 56 nonzero cofactors, 3462 terms, max coefficient height 493 digits (77.2s)
+wrote structured_cert.json (Rabinowitsch form, 76 rows) and structured_reduced.json
+structured_cert.py ran in 77s
+Delta (common denominator of phi): 67 digits
+identities: 48; total kernel products 491130; max per identity 33190; max digits 615; data terms 8008
+  layer 3: 17 identities, products 74272 (max 4825), max digits 141, quotient terms 1204
+  layer 2: 18 identities, products 230424 (max 14471), max digits 222, quotient terms 1736
+  layer 1: 12 identities, products 162612 (max 33190), max digits 244, quotient terms 828
+  layer -: 1 identities, products 23822 (max 23822), max digits 615, quotient terms 112
+with each e_k o phi_<L checked once and reused (materialized): total kernel products 262536; max per pivot identity 6516; expansion checks {3: 749, 2: 7975, 1: 34945, '-': 17412}
+substituted generators: 65 (56 for the pivot steps, 9 for the final step); 4326 terms; largest expansion check 3867 products; largest numeral 279 digits; about 768918 bytes of Lean source
+identity data (targets, cofactors, quotients) of the 48 checks: about 1370635 bytes of Lean source

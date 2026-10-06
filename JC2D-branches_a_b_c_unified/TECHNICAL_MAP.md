@@ -115,10 +115,11 @@ GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab
 - `lean/Jacobian/B26/` (2026-10-05): the m = 3 and m = 5 chart classifications over any field of characteristic 0.
   `m3_chart_iff` and `m5_chart_iff` say the system holds iff T(a_{m-1}) = 0 plus explicit back-substitution; the
   squarefree lemmas show T has no repeated root. `lean/Jacobian/B26Count.lean` (2026-10-06) proves the exact counts
-  `m3_chart_card` (3) and `m5_chart_card` (10) over any algebraically closed field of characteristic 0. The main
-  theorem does not use them.
-- `verify_branch_ab_lean.sh`: 55 theorems (44 until 2026-10-05, the 9 B26 theorems, the 2 count theorems), each
-  using only standard axioms (`lean/logs/axioms_verify_script_55.log`).
+  `m3_chart_card` (3) and `m5_chart_card` (10) over any algebraically closed field of characteristic 0.
+  `lean/Jacobian/B26Irred.lean` (2026-10-06) proves that both eliminants are irreducible over ℚ
+  (`T3poly_irreducible`, `T5poly_irreducible`). The main theorem does not use them.
+- `verify_branch_ab_lean.sh`: 57 theorems (44 until 2026-10-05, the 9 B26 theorems, the 2 count theorems, the 2
+  irreducibility theorems), each using only standard axioms (`lean/logs/axioms_verify_script_57.log`).
 - Controls: 14/14 as expected (3 unmodified ACCEPT, 9 perturbed REJECT, 2 sorry
   copies flagged).
 
@@ -247,7 +248,7 @@ Net Lean theorem (standard axioms only):
 
 | Layer | Branches (a,b) | Branch (c) |
 |---|---|---|
-| Lean kernel + Mathlib v4.34.0; axioms `propext`, `Classical.choice`, `Quot.sound` | 44 theorems audited (`logs/chartproof_axioms.log`); 55 since 2026-10-06, with B26 and B26Count (`lean/logs/axioms_verify_script_55.log`) | 53 theorems audited (`bundle_v3_1/jacobian_lean/axioms_branch_c.log`) |
+| Lean kernel + Mathlib v4.34.0; axioms `propext`, `Classical.choice`, `Quot.sound` | 44 theorems audited (`logs/chartproof_axioms.log`); 57 since 2026-10-06, with B26, B26Count and B26Irred (`lean/logs/axioms_verify_script_57.log`) | 53 theorems audited (`bundle_v3_1/jacobian_lean/axioms_branch_c.log`) |
 | No `sorry` / `axiom` / `native_decide` | `grep`-checked | `verify_branch_c_lean.sh` step 4 |
 | Symbolic elimination | ChartProof (111 identities), `independent_check.py` | Descent2R (505 modules), T1Zero, Bridge, Combine |
 | Numerical elimination | Four paper certificates; 35-minor span; char-0 transfer; `a816_full.sing` and the explicit a₈,₁₆ certificate (`scripts/a816_certificate/`, two exact checkers) | Step-1 certificates (exact K₅ slice + 3 modular); rank lemma + two-prime ranks |
@@ -265,7 +266,7 @@ cd branches_a_b
 bash verify_v19.sh                      # checksums, scripts, 111/111 identities, 2026-10-05 checks, paper build
 cd lean
 lake exe cache get
-LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh   # full build + 55-theorem axiom audit
+LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh   # full build + 57-theorem axiom audit
 ```
 
 ### Branch (c)
@@ -293,6 +294,8 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
   - 2026-10-05: the a₈,₁₆ certificate, the Lean m = 3, 5 classifications (`Jacobian/B26`) and the B2.2 resolution
     were added (PR #3), followed by the check of CAIC's B2.6 data file. `branch_ab_v19/` was synced to stay
     byte-identical with `branches_a_b/`. See `branches_a_b/CHANGES_v19.md` §15.
+  - 2026-10-06: the abstract update, the Lean solution counts (`B26Count`) and the irreducibility of the eliminants
+    (`B26Irred`); `branch_ab_v19/` synced again. See `branches_a_b/CHANGES_v19.md` §15.
 - **Branch (c):** the `branch_c/` pipeline scripts on repo main (corrected
   2026-09-29: E₁ projection, 6d κ=0, Singular hang guard) → v2 bundle → v3.0
   (bundled mid-build) → **v3.1** (2026-09-29, 23:40 CDT; every module built,
@@ -320,8 +323,11 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
 6. GGHV Prop. 4.3's other cases and the reduction from the Jacobian conjecture —
    outside scope, unchanged.
 7. Branches (a,b) (2026-10-05/06): optional Lean extensions, none needed for `main_theorem`:
-   - G1: irreducibility of the m = 3, 5 eliminants over ℚ (open);
+   - G1: irreducibility of the m = 3, 5 eliminants over ℚ (**done 2026-10-06**, `lean/Jacobian/B26Irred.lean`);
    - G2: the solution counts as cardinality theorems (**done 2026-10-06**, `lean/Jacobian/B26Count.lean`);
-   - G3: the a₈,₁₆ certificate (open; a feasibility estimate is in progress).
+   - G3: the a₈,₁₆ certificate (open). Feasibility estimate done 2026-10-06
+     (`branches_a_b/scripts/a816_lean_feasibility/README.md`): feasible by the staged route, with about 262,500
+     kernel products in about 110 checks; estimated 10–20 min of build time at ≤ 1 GB per module. Pilots of the
+     largest identity of each layer and of the final reduced identity pass the kernel.
 
    Remark 8.8 (all lower coefficients vanish at the K₅ point) rests on one exact rank computation, corroborated mod p.

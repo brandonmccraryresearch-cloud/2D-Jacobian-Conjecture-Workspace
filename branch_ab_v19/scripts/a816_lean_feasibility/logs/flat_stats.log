@@ -1,0 +1,23 @@
+parsed in 2.2s: 3464 Singular terms in 76 rows; 56 nonzero cofactors H_k
+nonzero_cofactors: 56
+singular_terms: 3464
+D_H_digits: 488
+D_e_digits: 6
+H_terms_total_w_expanded: 17310
+e_terms_total_w_expanded: 2249
+products_H_e: 761540
+unreduced_sum_terms: 24444
+max_digits_unreduced_sum: 514
+global_quotient_G_terms: 10864
+global_quotient_max_digits: 512
+max_numeral_digits_H_e: 502
+distinct_numerals_H_e_G: 29204
+lean_source_bytes_H: 10198327
+lean_source_bytes_e: 173058
+lean_source_bytes_global_G: 6713667
+per_k_reduced_s_terms_total: 144525
+per_k_quotient_terms_total: 93988
+per_k_quotient_products: 469940
+per_layer_reduced_partial_sum_terms: {'0': 90, '1': 1830, '2': 8716, '3': 8570}
+max_products_single_cofactor: 65740
+seconds: 10.3

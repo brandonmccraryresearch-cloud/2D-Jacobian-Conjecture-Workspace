@@ -1,5 +1,26 @@
 # Lean Build Status (v19)
 
+## 2026-10-06 addition: `Jacobian/B26Irred` (irreducibility of the eliminants over ℚ)
+
+- **What it proves.** `T5poly_irreducible` and `T3poly_irreducible`: `T₅ = 9X¹⁰ + 37200X⁵ + 95051008` and
+  `T₃ = 3X³ - 32` are irreducible over ℚ. No other theorem uses them.
+- **How.**
+  - `T₃`: a cubic with no rational root, since `v₃(32/3) = -1` is not a multiple of 3.
+  - `T₅ = F(X⁵)`: a Kummer tower `ℚ ⊂ ℚ(u) ⊂ ℚ(u)(θ)`, with `F(u) = 0` and `θ⁵ = u`.
+    - `N(u) = 95051008/9` has 3-adic valuation −2, so `u` is not a fifth power and `X⁵ − u` is irreducible over ℚ(u).
+    - The tower has degree 10 and `ℚ(θ) = ℚ(u)(θ)`, so the minimal polynomial of θ has degree 10 and divides `T₅`.
+  - The module docstring has the full argument.
+- **Build.** The `B26` umbrella was rebuilt first, because its generated docstring now points to this module (23 s);
+  then `B26Count` (19 s), then `lake build Jacobian.B26Irred` (21 s, 0.7 GB, 0 errors, 0 warnings)
+  (`lean/logs/b26irred_build_and_axioms.log`).
+- **Axioms.** Only `propext`, `Classical.choice` and `Quot.sound` for the two theorems and the seven main lemmas.
+- **The full audit.** `AxiomsAudit.lean` now prints 26 declarations, all on standard axioms
+  (`lean/logs/axioms_audit_with_B26.log`).
+- **The verify script's list.** Step 3 of `verify_branch_ab_lean.sh` now covers 57 theorems; all 57 use only standard
+  axioms, and 55 of them use all three (`lean/logs/axioms_verify_script_57.log`). The root module `Jacobian.lean`
+  elaborates (exit 0). The source scan passes over 120 files.
+- **Where it ran.** The same overlay as below.
+
 ## 2026-10-06 addition: `Jacobian/B26Count` (the m = 3, 5 solution counts)
 
 - **What it proves.** `m5_chart_card` and `m3_chart_card`: over every algebraically closed field of characteristic 0,
@@ -57,7 +78,7 @@
     axioms (`CHANGES_v19.md` §15).
 
 **Source scan.** The `sorry`/`admit`/`native_decide`/`axiom` scan of `verify_branch_ab_lean.sh` passes over all 118
-Lean files (119 since `B26Count`, re-run 2026-10-06: pass).
+Lean files (119 since `B26Count` and 120 since `B26Irred`, both re-run 2026-10-06: pass).
 
 **Paper.**
 - Rebuilt with TeX Live 2026 (TinyTeX, xdvipdfmx 20260317) and the Fira fonts from CTAN: 33 pages, 0 errors,

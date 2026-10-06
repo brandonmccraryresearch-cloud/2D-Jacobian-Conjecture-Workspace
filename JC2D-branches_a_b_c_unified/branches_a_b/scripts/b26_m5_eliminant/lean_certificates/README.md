@@ -53,9 +53,25 @@ All of them hold over any field of characteristic 0.
   - Show that $T$ is separable over $\mathbb Q$, with the Bézout identity of the squarefree lemma.
   - Use $\deg T = 10$ (resp. 3), and conclude with Mathlib's `Polynomial.card_rootSet_eq_natDegree`.
 
-### Not formalized
+### Irreducibility over $\mathbb Q$ (2026-10-06)
 
-- **Irreducibility over $\mathbb Q$.** This is checked outside Lean (`../verify_b26.py`, `../../a816_certificate/b26_check.py`).
+- **`T5poly_irreducible`, `T3poly_irreducible`** (`lean/Jacobian/B26Irred.lean`, hand-written, not generated).
+  $T_5$ and $T_3$ are irreducible over $\mathbb Q$. Nothing else uses these two theorems.
+- **Proof for $T_3$.** A cubic with no rational root: $q^3 = 32/3$ is impossible, because $v_3(32/3) = -1$ is not a
+  multiple of 3.
+- **Proof for $T_5 = F(X^5)$**, with $F = 9Y^2 + 37200Y + 95051008$: a Kummer tower.
+  - $F$ has no rational root, since $F = (3Y + 6200)^2 + 56611008$.
+  - Let $u$ be a root of $F$, so $K = \mathbb Q(u)$ is quadratic. Its norm $N_{K/\mathbb Q}(u) = 95051008/9$ has 3-adic
+    valuation $-2$, which is not a multiple of 5. So $u$ is not a fifth power in $K$, and $X^5 - u$ is irreducible over
+    $K$ (Mathlib's `X_pow_sub_C_irreducible_of_prime`).
+  - For $\theta^5 = u$, the field $L = K(\theta)$ has degree 10 over $\mathbb Q$, and $\mathbb Q(\theta) = L$
+    because $u = \theta^5$.
+  - So the minimal polynomial of $\theta$ has degree 10. It divides $T_5$, since $T_5(\theta) = F(u) = 0$; so $T_5$ is a
+    constant multiple of it.
+- **Not used:** a computation modulo a prime. CAIC suggested reducing modulo 11, and $T_5$ is indeed irreducible mod 11
+  with its degree kept (`../../a816_certificate/b26_check.py`). In Lean, though, that route would need a computable
+  certificate for irreducibility over $\mathbb F_{11}$, and the Kummer route needs none.
+- **Also checked outside Lean** by factorization (`../verify_b26.py`, `../../a816_certificate/b26_check.py`).
 
 ## Files
 

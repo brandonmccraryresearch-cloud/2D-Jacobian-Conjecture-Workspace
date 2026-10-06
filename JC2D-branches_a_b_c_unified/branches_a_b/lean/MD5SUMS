@@ -1,9 +1,9 @@
-d29aae427c7c65044f38e6048b97e9a5  ./AxiomsAudit.lean
+653d6f4cd8a0a25d31b4e9c01f1386d8  ./AxiomsAudit.lean
 21a94bc47fe6c5801090cb10668e72d6  ./BranchAbObstruction_CORRESPONDENCE.md
 c1851e36608d61268f8cda1b4558449b  ./CHANGES.diff
-bcb31f61bc65eab60cecbabb255c39a3  ./CLASSIFICATION_STATUS.md
-4f3b0a0bf12c06ce25406b7a477f0f84  ./Jacobian.lean
-13d6f3b55e6b2d0ebb5e84513ae58360  ./Jacobian/B26.lean
+64dd5b26b61a71d03a8e4e6c4693247c  ./CLASSIFICATION_STATUS.md
+45f86474c19a8cf2620f0f41b86e4030  ./Jacobian.lean
+bea9120bac017717a55a5f6b0eda79b8  ./Jacobian/B26.lean
 7f4080b5554a716056714c637a3d1a67  ./Jacobian/B26/Defs.lean
 e339982f740d1211959188bbb5640826  ./Jacobian/B26/M5Rel1.lean
 7318c28c75881da5d11911ff53a44ae4  ./Jacobian/B26/M5Rel2.lean
@@ -14,6 +14,7 @@ f0649af0d7798f5e15083df593752804  ./Jacobian/B26/M5Res1.lean
 7fa0f89137f65c881b7368ae769ae171  ./Jacobian/B26/M5Res3.lean
 538273933e6a1ad3e99cf4125f13e6da  ./Jacobian/B26/M5T.lean
 45a925606cce530ae1f90713f12d1c26  ./Jacobian/B26Count.lean
+8a7158638bfaa589587dfeaf0201eeaa  ./Jacobian/B26Irred.lean
 a845afb3fc66daf48ae1d61d9beacdb1  ./Jacobian/Basic.lean
 5e03c292be00c31d10ebab01a856881b  ./Jacobian/BranchAbChart.lean
 059263a0cf3eaf68025d58f3982c0c2d  ./Jacobian/BranchAbClassification.lean
@@ -122,7 +123,7 @@ cc1139b9744c39b398f2d94cf1905124  ./Jacobian/Descent/E4/z_b_8_14.lean
 abcbfb36e1b0cb0386006b4e1f239ef4  ./Jacobian/Descent/Span/span_t1.lean
 ec8d9b1488f8acf880caf4bb9d45ec7c  ./Jacobian/Descent/Span/span_t2.lean
 041e34d452d8d8f28b0ad57df38a043d  ./MERGE_README.md
-744e7ddbd6d5eaab9f4b2d781751d2b2  ./README.md
+034347e960ca07bf4b13d8b415441856  ./README.md
 445c35bba1762e1e151023da5ba56035  ./certgen/README_descent.md
 e496be3e28695b452f8ecf0fa0fd6b6f  ./certgen/cert.json
 41cb5cb195a1521bea6c25949c21901b  ./certgen/chart_a1_0_Q.sing
@@ -179,10 +180,12 @@ f68f84691e82726f640489a150cdfc47  ./certgen/opt.gp
 46df02670468d52d9b6b3678b9ffbd1e  ./lake-manifest.json
 12460d57f4a788f2f905269e44974cb2  ./lakefile.toml
 f23d354c6cf460b595e31c94e538043d  ./lean-toolchain
-dc2f5a9b88b47d068d3eac52d8ad4c1d  ./logs/axioms_audit_with_B26.log
+8ca0a5a2da3e929173aca4719cba92e0  ./logs/axioms_audit_with_B26.log
 44fd28423141dacebcf93a4e22428aab  ./logs/axioms_verify_script_53.log
 8ce8e7f3d842affdc2cb045d5ceaff47  ./logs/axioms_verify_script_55.log
+77be91bc6fec6ba2a5fcac8e6bea6a16  ./logs/axioms_verify_script_57.log
 1659cd7027ba0cd338f6ca3c49e90bef  ./logs/b26count_build_and_axioms.log
+2894d00beb7e56f457ff5a771cd2bb51  ./logs/b26irred_build_and_axioms.log
 e4952a1af8cef8156dc21159f616660d  ./logs/chart_cas.log
 ed21b8273462a93ad7db7e9dafe8919f  ./logs/chartproof_axioms.log
 4282e8ac089dfcf53e335b630487e7b5  ./logs/chartproof_build.log
@@ -198,4 +201,4 @@ d326a7fb65430f3794b34eda378ac2c0  ./logs/lake_build_from_scratch.log
 9dbb87071d8491159fce3213a7563300  ./logs/verify_with_classification.log
 047c2fcebfcb3cddd622d8f766e4e3db  ./run_all.sh
 08a9166b98004094fcc49a2fd222a2b7  ./setup.sh
-0cf2968e95787581cb5931f037b36eba  ./verify_branch_ab_lean.sh
+fa0c688169cfae9793f6c79ccb1bfbdb  ./verify_branch_ab_lean.sh
