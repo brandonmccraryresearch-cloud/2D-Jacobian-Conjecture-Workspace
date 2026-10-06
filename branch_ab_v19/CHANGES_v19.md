@@ -374,3 +374,24 @@ reproducibility appendix names the artifact commit.
     folder.
   - Claim C2 of `scripts/a816_certificate/README.md`.
   - `TECHNICAL_MAP.md`.
+
+### 2026-10-06: PDF glyph boxes; checksums and copy identity after the fixes on `main`
+- **The fixes on `main`.** Brandon's commits `01ad644` … `3df30c3` replaced ℕ, ∀, ∃ and ∧ in the Lean listings by
+  `Nat`, `forall`, `exists` and `/\`, because Fira Mono has no glyphs for them. Three glyphs were still missing:
+  - ∈ and ₐ in the listings (`forall m ∈ P.support`, `→ₐ[K]`), which Fira Mono lacks;
+  - ⊤ in the transposes $v^\top$, which Fira Math lacks.
+- **This change.**
+  - ∈ and ₐ are now typeset with Fira Math (active characters in the preamble), so the listing text is unchanged.
+  - The transposes are written $v^{\mathrm T}$.
+  - The build reports no missing characters: 33 pages, 0 errors, 0 undefined references, 0 overfull boxes.
+  - `verify_v19.sh` now also fails if the compiled paper has a missing glyph (`GLYPHS OK`; one more passing check,
+    18 in all).
+- **Checksums and copy identity.**
+  - The fixes on `main` had changed the paper's `.tex` and `.pdf` without updating `CHECKSUMS.md5` and
+    `CHECKSUMS.sha256`, so their checks failed for those two files. They are regenerated here.
+  - `main`'s two PDFs (here and in `branch_ab_v19/`) had been built separately and differed. Both copies are
+    byte-identical again.
+- **What else this change brings to `main`.** G1 (`B26Irred.lean`), G3 (`scripts/a816_lean_feasibility/`) and the
+  Remark 8.8 certificates (`scripts/a816_rigidity/`), all described above.
+  - G1 and G3 had been merged (PR #6) into the stacked base branch `claude/abstract-and-status`.
+  - `main` received that branch at its earlier head `f135426` (merge `f10e7e9`), so they were not on `main`.

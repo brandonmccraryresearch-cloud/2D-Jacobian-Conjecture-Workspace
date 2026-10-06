@@ -84,6 +84,10 @@ for i in 1 2 3; do run xelatex -interaction=nonstopmode branch_ab_elimination_v3
 PAGES=$(grep -o '([0-9]* pages' branch_ab_elimination_v3.log | tail -1 | grep -o '[0-9]*')
 echo "### compiled pages: $PAGES (expect 33: TeX Live 2026, Fira fonts from CTAN; 2026-10-06 text)"
 if [ "$PAGES" = "33" ]; then echo "PAGECOUNT OK"; pass=$((pass+1)); else echo "PAGECOUNT MISMATCH"; fail=$((fail+1)); fi
+# every character must have a glyph in the Fira fonts (a missing one prints as an empty box in the PDF)
+MISSING=$(grep -c 'Missing character' branch_ab_elimination_v3.log)
+echo "### missing glyphs: $MISSING (expect 0)"
+if [ "$MISSING" = "0" ]; then echo "GLYPHS OK"; pass=$((pass+1)); else echo "GLYPHS MISSING"; grep 'Missing character' branch_ab_elimination_v3.log | sort | uniq -c; fail=$((fail+1)); fi
 cd "$ROOT" || exit 1
 rm -rf "$TMPD"
 
