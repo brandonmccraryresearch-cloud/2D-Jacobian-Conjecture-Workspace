@@ -27,6 +27,19 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
   `bundle_v3_1/jacobian_lean/chart_certificates/step3b_rank_lift.py` (6.5 min, 0.5 GB).
 - t₁ = 0 slice: exact certificate over K₅ (degree 2, 75 K₅-terms), checked by an
   independent FLINT script; 5 negative controls fail as required.
+- **Added 2026-10-06:** `rank_lemma_check/run.sh` passed (exit 0, `RESULT: PASS`, about 4.5 min on 2 cores).
+  - R is irreducible over ℚ.
+  - The generators of the rank computation equal the Lean conditions of `CondsC.lean` up to positive integer
+    factors, exactly; two controls are rejected.
+  - An explicit inverse of the W = 24 pivot block mod 32003 is checked by the Lean kernel.
+    - 8 data modules and 8 check modules: 6398 theorems, every `#print axioms` giving `[propext]`.
+    - About 7 CPU-minutes, at ≤ 1.8 GB per module.
+    - Five controls are rejected.
+    - The regenerated Lean files are byte-identical to `logs/MANIFEST.sha256`.
+  - The grade stays B. The kernel check covers the arithmetic, not the link to `ChartEmptyC_T1ne0`.
+- **Added 2026-10-06:** `muse_refutation/check_refutation.sh` passed. The clean copy of the refutation builds with
+  exit 0, with no error and no warning, and its axioms are `[propext, reduction_lemma, Classical.choice,
+  Quot.sound]`. The bundle copy reports one recovered error, an unknown `eval_one`, and exits 1.
 
 ## Provenance
 
@@ -40,6 +53,8 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
   - This was found and recorded on 2026-10-06.
   - The "not applied" lines in `GUIDE.md` and inside `bundle_v3_1/` predate this check. Those files are byte-for-byte
     copies of the v3.1 bundle and are left unchanged.
+  - *Updated 2026-10-06.* Since then, `GUIDE.md` and `paper/BRANCH_C_GUIDE.md` are maintained copies, and their
+    three "not applied" lines carry a correction. The copies inside `bundle_v3_1/` stay unchanged.
 - This package itself pushed, published, uploaded, deposited and minted nothing.
 - `CHECKSUMS.md5` and `CHECKSUMS.sha256` were regenerated on 2026-10-06, with the same rule: every committed file
   except the checksum files themselves, sorted by path.
@@ -47,3 +62,7 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
     `paper/branch_c_elimination.tex` and `.pdf`.
   - The nine files in `paper/figures/` had never been listed.
   - The lists now have 1033 entries, and all of them verify.
+  - *Regenerated again later on 2026-10-06*, with the same rule, after the additions (`rank_lemma_check/`,
+    `muse_refutation/`) and the edits to `GUIDE.md`, `paper/BRANCH_C_GUIDE.md`, `README.md` and this file. The rule
+    excludes every file named `CHECKSUMS.md5` or `CHECKSUMS.sha256`, including the two inside
+    `bundle_v3_1/v2_carryover/`. The lists now have 1087 entries, and all of them verify.
