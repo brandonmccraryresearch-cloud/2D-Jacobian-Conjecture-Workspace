@@ -12,7 +12,7 @@
 \contentsline {section}{\numberline {6}The top layer}{10}{section.6}%
 \contentsline {subsection}{\numberline {6.1}The Davenport--Stothers equation}{10}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Classification}{11}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Irreducibility and reality}{17}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.3}Irreducibility and reality}{18}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}An algebraic proof of the top-layer classification for $m=7$, and its formalization}{19}{subsection.6.4}%
 \contentsline {section}{\numberline {7}Descent}{22}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Layer $E_4$}{23}{subsection.7.1}%

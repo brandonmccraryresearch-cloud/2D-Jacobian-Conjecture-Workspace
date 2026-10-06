@@ -1,0 +1,9 @@
+wrote FlatPilot_k6.lean: 27094 bytes; products 110; s 30 terms; G 8 terms; vars 11
+wrote FlatPilot_k7.lean: 756321 bytes; products 4920; s 750 terms; G 412 terms; vars 18
+wrote FlatPilot_k19.lean: 1808411 bytes; products 12330; s 1920 terms; G 1036 terms; vars 27
+wrote FlatPilot_k27.lean: 2468429 bytes; products 17170; s 2655 terms; G 1432 terms; vars 31
+wrote StructPilot_pivot_a_1_1.lean: 71007 bytes; facts 17; products 4075; max digits 140
+wrote StructPilot_pivot_a_1_2.lean: 171476 bytes; facts 18; products 6490; max digits 220
+wrote StructPilot_pivot_b_12_24.lean: 232208 bytes; facts 12; products 5148; max digits 243
+wrote StructPilot_final.lean: 321424 bytes; facts 9; products 6410; max digits 614
+wrote StructPilot_final_control.lean: control, the first positive numeral of tgt increased by 1

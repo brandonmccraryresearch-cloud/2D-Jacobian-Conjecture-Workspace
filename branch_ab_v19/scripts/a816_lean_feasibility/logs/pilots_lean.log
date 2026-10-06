@@ -1,0 +1,20 @@
+# 2026-10-06T11:48Z. Each pilot: lake env lean, LEAN_NUM_THREADS=1, under guardrun.py --max-anon 5500.
+== FlatPilot_k6.lean
+[guardrun] exit 0  2.1s  peak RSS 1561 MB  cgroup anon peak 215 MB
+== FlatPilot_k7.lean
+[guardrun] exit 0  9.0s  peak RSS 2192 MB  cgroup anon peak 846 MB
+== FlatPilot_k19.lean
+[guardrun] exit 0  28.3s  peak RSS 3950 MB  cgroup anon peak 2604 MB
+== FlatPilot_k27.lean
+[guardrun] exit 0  46.3s  peak RSS 5548 MB  cgroup anon peak 4220 MB
+== StructPilot_pivot_a_1_1.lean
+[guardrun] exit 0  5.7s  peak RSS 1951 MB  cgroup anon peak 606 MB
+== StructPilot_pivot_a_1_2.lean
+[guardrun] exit 0  10.8s  peak RSS 2257 MB  cgroup anon peak 912 MB
+== StructPilot_pivot_b_12_24.lean
+[guardrun] exit 0  14.2s  peak RSS 2089 MB  cgroup anon peak 744 MB
+== StructPilot_final.lean
+[guardrun] exit 0  19.6s  peak RSS 2109 MB  cgroup anon peak 763 MB
+== StructPilot_final_control.lean
+StructPilot_final_control.lean:96:124: error: Tactic `decide` proved that the proposition
+[guardrun] exit 1  26.8s  peak RSS 2111 MB  cgroup anon peak 765 MB

@@ -1,0 +1,196 @@
+# G3: can the a₈,₁₆ certificate be checked by the Lean kernel? A feasibility estimate (2026-10-06)
+
+**Question (CAIC, 2026-10-06).** How large is the Lean term for the a₈,₁₆ certificate of
+`../a816_certificate/`, and how long would the kernel check take? Does it need chunking?
+
+**Answer.**
+- **Feasible**, by the route that follows the certificate's own layer structure (the *structured route*, §3).
+  - It needs about 262,500 monomial products in the kernel, in about 110 checks of at most about 6,500 products each.
+  - It needs about 2 MB of generated Lean data.
+  - Estimated build: 10–20 min on one core, at most about 1 GB per module.
+  - Four pilot identities (the largest of each layer and the final identity) already pass the Lean kernel, and a
+    perturbed control is rejected (§4).
+- **Not recommended:** checking the flat identity $a_{8,16}^2=\sum_k H_ke_k$ of `a816_lift.txt` as it stands (§2).
+  - It needs about 1.23 million products.
+  - Batches that fit in memory must write out their reduced partial results, about 130 MB of generated Lean source.
+- **Not done here:** the formalization itself. §5 lists the work that remains.
+
+Nothing in this directory is part of the Lean build or of the paper's claims. The pilots are generated into a
+temporary directory and checked there; `logs/pilots.sha256` records their hashes.
+
+## 1. Setting
+
+**The kernel-reflection check.** The certificate would be checked as the existing Lean proofs are, by
+`Jacobian/ChartProof/Reflect.lean`:
+- Polynomials are terms of type `Lean.Grind.CommRing.Expr`, with integer numerals.
+- The kernel normalizes them with `toPolyK` (`decide +kernel`; no `native_decide`).
+- `lc_zero` turns a checked identity $t=\sum_j c_jf_j$ into "$t=0$ whenever every $f_j=0$".
+
+**K₅ and its denominators.** The coefficients lie in $K_5=\mathbb Q[w]/(R)$.
+- $w$ becomes a variable, and $R(w)$ an extra fact, with an explicit quotient cofactor. Branch (c)'s `T1Zero`
+  handles $K_5$ the same way.
+- Denominators are cleared by integer factors, which are cancelled at the end in characteristic 0.
+
+**How cost is measured.** The cost unit is the **monomial product**: each `.mul` node costs
+$|\text{left}|\cdot|\text{right}|$ on normalized operands. Every count below is computed exactly from the
+certificate by the scripts in this directory.
+
+## 2. The flat route: the identity of `a816_lift.txt` as it stands
+
+Run `flat_stats.py`; log in `logs/flat_stats.log`, data in `logs/flat_stats.json`.
+
+| Quantity | Value |
+|---|---|
+| Nonzero cofactors $H_k$ | 56 (3,464 Singular terms) |
+| Terms over $\mathbb Z[w,\dots]$ ($w$ expanded) | $H$: 17,310; generators $e_k$: 2,249 |
+| Common denominators | $D_H$: 488 digits; $D_e$: 6 digits |
+| Largest numeral | 514 digits; 29,204 distinct numerals |
+| Products $\sum_k\lvert H_k\rvert\,\lvert e_k\rvert$ | **761,540** (one cofactor alone: up to 65,740) |
+| Unreduced sum | 24,444 terms; quotient by $R(w)$: 10,864 terms (54,320 more products) |
+| Lean source of the data alone | about 10.2 MB ($H$) + 0.17 MB ($e$) + 6.7 MB (quotient) ≈ 17 MB |
+
+**One single check does not fit in memory.** The kernel's memory grows with the size of a check. The flat pilots
+(§4), one cofactor each, peak at 0.85, 2.6 and 4.2 GB of anonymous memory for 4,920, 12,330 and 17,170 products.
+
+**Batching is possible but heavy.**
+- To stay near 3 GB a check must have at most about 12,000 products. Fifteen cofactors are larger than that
+  (635,775 products together) and would need splitting.
+- Every batch must also state its reduced partial result. Per cofactor these results have 144,525 terms in all,
+  and their quotients by $R$ have 93,988 terms (469,940 more products).
+- That is about **130 MB of generated Lean source** and about **1.23 million products**: roughly 0.5–0.9 h of kernel
+  time at the measured 1.4–2.6 ms per product, before the final summation.
+- Summing per layer instead of per cofactor still leaves partial results of 90, 1,830, 8,716 and 8,570 terms.
+
+## 3. The structured route: follow the certificate's layers
+
+Run `structured_stats.py`; log in `logs/structured_stats.log`, data in `logs/structured_stats.json`. It reruns
+`../a816_certificate/structured_cert.py` in a temporary copy and uses its objects.
+
+The certificate was built in two steps (`../a816_certificate/README.md` §4). The first is row reduction, layer by
+layer, which expresses every pivot unknown $x$ through the free unknowns as $x=\varphi(x)$. The free unknowns are
+$\tau=(b_{11,20},b_{12,22})$ and $\sigma=(a_{8,16},b_{11,21})$. The second is a small identity
+$a_{8,16}^2=\sum_k h'_k\,\varphi(e_k)$ with 9 multipliers. A Lean proof can follow the same order: prove
+$x=\varphi(x)$ for one pivot after another, then the final identity.
+
+**Pivot step.** There are 47 checks, 17, 18 and 12 in the layers $d=3,2,1$. Each has the form
+
+$$x_p-\varphi(x_p)=\sum_k E[p][k]\,\bigl(e_k\circ\varphi_{<L}\bigr),$$
+
+where $E$ is the row-reduction matrix (constants in $K_5$), and $\varphi_{<L}$ substitutes the pivots that are
+already established. The script checks every identity exactly.
+
+**Final step.** One check: $a_{8,16}^2=\sum_k h'_k\,(e_k\circ\varphi)$.
+
+**Integrality.** The free unknowns are rescaled by $\Delta$ (67 digits), so that every $\varphi$ has integer
+coefficients.
+
+| Layer | Checks | Products (each check expands its own substitutions) | Products (substituted generators checked once, then reused) | Largest check (reused) | Largest numeral | Quotient terms |
+|---|---|---|---|---|---|---|
+| $d=3$ | 17 | 74,272 | 62,927 + 749 | 4,086 | 141 digits | 1,204 |
+| $d=2$ | 18 | 230,424 | 104,774 + 7,975 | 6,516 | 222 digits | 1,736 |
+| $d=1$ | 12 | 162,612 | 27,344 + 34,945 | 5,189 | 244 digits | 828 |
+| final | 1 | 23,822 | 6,410 + 17,412 | 6,410 | 615 digits | 112 |
+| **total** | 48 | 491,130 | **262,536** | 6,516 | 615 digits | 3,880 |
+
+- **Product counts.** In the "reused" column, the second number counts the checks that each substituted generator
+  $e_k\circ\varphi_{<L}$ (or $e_k\circ\varphi$ for the final step) equals its written-out form.
+  - There are 65 such generators, 56 for the pivot steps and 9 for the final step, with 4,326 terms in all.
+  - The largest of these checks has 3,867 products, and the largest numeral has 279 digits.
+- **Data volume.** The written-out data are about 2.1 MB: about 0.77 MB of substituted generators and about 1.37 MB
+  of targets, cofactors and quotients.
+- **Why it is smaller.** The flat certificate's 493-digit heights and its 3,462 terms come from expanding the
+  telescoping back into the original unknowns. The structured route never makes that expansion.
+
+## 4. Pilots in the Lean kernel
+
+Run `run_all.sh LEAN_PROJECT_DIR`; output in `logs/pilots_lean.log` and `logs/pilots_generated.log`.
+
+- **Setup.** Lean 4.34.0 with Mathlib v4.34.0, using the repository's `Reflect.lean`. Each module is run with
+  `lake env lean`, `LEAN_NUM_THREADS=1`, on a 2-CPU, 7 GB host.
+- **What a pilot assumes.** In each pilot the facts $f_j$ (the generators, or the written-out substituted
+  generators) are hypotheses. The pilot checks one identity $t=\sum_j c_jf_j+g\cdot R(w)$ by `decide +kernel`.
+- **Baseline.** A module with 110 products takes 2.1 s; this is the fixed cost of loading the imports.
+
+| Pilot | Products | Largest numeral | Wall time | Anonymous memory | ms per product (above the 2.1 s baseline) |
+|---|---|---|---|---|---|
+| flat, cofactor $k=6$ | 110 | 505 digits | 2.1 s | 0.22 GB | — |
+| flat, $k=7$ | 4,920 | 509 digits | 9.0 s | 0.85 GB | 1.4 |
+| flat, $k=19$ | 12,330 | 508 digits | 28.3 s | 2.6 GB | 2.1 |
+| flat, $k=27$ | 17,170 | 507 digits | 46.3 s | 4.2 GB | 2.6 |
+| structured, pivot $a_{1,1}$ (largest, $d=3$) | 4,075 | 140 digits | 5.7 s | 0.61 GB | 0.9 |
+| structured, pivot $a_{1,2}$ (largest, $d=2$) | 6,490 | 220 digits | 10.8 s | 0.91 GB | 1.3 |
+| structured, pivot $b_{12,24}$ (largest, $d=1$) | 5,148 | 243 digits | 14.2 s | 0.74 GB | 2.4 |
+| **structured, final identity** $a_{8,16}^2=\sum h'_k(e_k\circ\varphi)$ | 6,410 | 614 digits | 19.6 s | 0.76 GB | 2.7 |
+| control: the final identity with one numeral changed by 1 | 6,410 | 614 digits | rejected (`decide` proves the proposition false) | 0.76 GB | — |
+
+**Calibration against modules already built in this repository.**
+- ChartProof Stage 2: 27,747–56,999 products per module with numerals of at most a few dozen digits; 105–335 s and
+  3.3–5.4 GB per module (`lean/CLASSIFICATION_STATUS.md` §5).
+- Branch (c)'s `T1Zero` (`logs/calibration_t1zero.log`, counts by `calibrate_modules.py`; times from branch (c)'s
+  build logs):
+  - `P_*`: 3,800–6,600 products with numerals of 5,450 digits, 61–121 s, at most 0.87 GB.
+  - `F_*`: 719–2,024 products, 3–23 s.
+- **Rate.** So 1–3 ms per product is typical, and the numeral size matters much less than the size of the check.
+
+**What this measures and what it does not.**
+- The final pilot checks, in the kernel, the identity $a_{8,16}^2=\sum_k h'_k\,(e_k\circ\varphi)$ modulo $R(w)$: the
+  core of the certificate, in rescaled variables.
+- It does not yet connect that identity to the system. The hypotheses $e_k\circ\varphi=0$ must still be derived
+  from the 75 layer equations through the 47 pivot steps (§5).
+
+## 5. The estimate, and the work that remains
+
+**Estimate for the structured route.**
+- About 262,500 products at 0.9–2.7 ms each give 4–12 min of kernel time.
+- With about 2 s of fixed cost per module and about 110 checks (48 identities and 65 substitution checks) in
+  60–80 modules, that is **10–20 min** of build time on one core.
+- Memory stays at **≤ 1 GB** per module, because no check exceeds 6,516 products.
+- Generated source: about 2–3 MB.
+
+**Work that remains.**
+1. **Substitution in Lean.** A function `subst` on `Expr` with the lemma
+   $(\text{subst}\ \sigma\ e).\text{denote}=e.\text{denote}$ whenever every substituted variable equals the
+   denotation of its image (about 50–100 lines).
+   - With this lemma, "$e_k=0$ and the earlier pivot facts" gives "$e_k\circ\varphi_{<L}=0$".
+   - The kernel then checks once that $e_k\circ\varphi_{<L}$ equals its written-out form.
+2. **The pivot facts.** From $c\,(x_p-\varphi(x_p))=0$ with an integer $c\ne0$, conclude $x_p=\varphi(x_p)$
+   (cancellation in characteristic 0, as `cancel_int` in `T1Zero`). The context takes $\tau'=\tau/\Delta$ and
+   $\sigma'=\sigma/\Delta$.
+3. **Statement fidelity.** The final theorem should take the 75 layer equations in the form of the hypotheses of
+   `BranchAb.Descent.descent_K5` (`lean/Jacobian/Descent/Main.lean`), which lists the 56 equations of the layers
+   $d=3,2,1$; the 19 equations of $d=0$ must be added.
+   - A bridge must prove that each reflected $e_k$ denotes the corresponding hypothesis.
+   - An independent statement check must confirm it, as `independent_checks.py` does for B26.
+   - Branch (c)'s `Bridge`, the module at the same point, had a generator bug: it wrote `EIdent A B 0 -1`, which
+     Lean parses as a subtraction (`branch_c/bundle_v3_1/GUIDE.md` §13). That one failed to build. The more
+     dangerous failure is a statement that builds but says something else, so this step needs the most care.
+4. **A generator** (about 500 lines of Python) that writes the modules from `structured_cert.py`'s objects. The two
+   pilot generators here are a start.
+5. **The build itself**, the axiom audit, and negative controls.
+
+**Possible reuse.** The existing `Jacobian/Descent` (84 modules) already eliminates the layers $d=3,2,1$ pivot by pivot
+for the $b_{12,24}=0$ part of the main theorem. Whether its parametrization can be reused for the 47 pivot facts here
+has not been checked.
+
+**Estimated effort and risks.** Two to four working sessions. The risks are the bridge (item 3) and the
+elaboration of the 75 hypotheses with rational $K_5$ coefficients in a general field $L$. Branch (c)'s profiling
+measured about 86 ms per such numeral; the cure there was a separate `CondsC` module. Integer numerals inside `Expr`,
+as in the pilots, are cheap.
+
+**Correction to `../a816_certificate/README.md` §7.** That section named "about 17k distinct numerals (typeclass
+inference, about 86 ms each)" as a cost driver of the certificate itself.
+- The 86 ms figure applies to numerals in a field $L$, that is, to the theorem's hypotheses.
+- It does not apply to the reflected certificate. For example, the $k=27$ pilot holds several thousand 500-digit
+  integer numerals and runs in 46 s, kernel check included.
+- The flat certificate has 29,204 distinct numerals.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `flat_stats.py` | §2: sizes of the flat identity, per cofactor and per layer. |
+| `structured_stats.py` | §3: reruns `structured_cert.py` in a temporary copy, models the structured route, checks every identity exactly, and writes the pilot data. |
+| `gen_pilot_flat.py`, `gen_pilot_structured.py` | §4: write one pilot module (flat: one or more cofactors; structured: one identity). |
+| `calibrate_modules.py` | Counts the products in existing reflective modules (here branch (c)'s `T1Zero`). |
+| `run_all.sh` | Runs everything. Python part about 2 min; the Lean part takes `LEAN_PROJECT_DIR`; the calibration needs `T1ZERO_DIR`. |
+| `logs/` | `flat_stats.*`, `structured_stats.*`, `pilots_generated.log`, `pilots.sha256`, `pilots_lean.log`, `calibration_t1zero.log`. |
