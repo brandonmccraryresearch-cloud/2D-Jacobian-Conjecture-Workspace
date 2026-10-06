@@ -2,7 +2,7 @@
 
 ## Status
 
-- **Repository copy.** This folder is the bundle `a816_certificate_bundle_v1.zip` (2026-10-05) committed under `JC2D-branches_a_b_c_unified/branches_a_b/scripts/a816_certificate/`, with Brandon McCrary's authorization. Two changes from the zip: the 36.4 MB `a816_lift_liftstd.txt` is not committed (see §2), and the scripts read P and Q from `../a816_full.sing` (or the identical copy here) instead of an absolute path.
+- **Repository copy.** This folder is the bundle `a816_certificate_bundle_v1.zip` (2026-10-05) committed under `scripts/a816_certificate/` of the branch-(a,b) package, with Brandon McCrary's authorization. The package has two identical copies in the repository: `branch_ab_v19/` and `JC2D-branches_a_b_c_unified/branches_a_b/`. Two changes from the zip: the 36.4 MB `a816_lift_liftstd.txt` is not committed (see §2), and the scripts read P and Q from `../a816_full.sing` (or the identical copy here) instead of an absolute path.
 - **This is not a proof of the Jacobian conjecture.** It certifies one step of the branch (a,b) elimination: the a₈,₁₆ = 0 part of the main theorem (`\label{thm:main}`) in `branch_ab_elimination_v3.tex`. The paper's remark `rem:conditional` calls that step "computer algebra (`a816_full.sing`), not Lean".
 - **What changes.** That step no longer depends on trusting a Gröbner-basis computation. Two explicit Nullstellensatz certificates are given, and each was checked exactly by two independent implementations.
 - **What stays.** The step is still not checked by the Lean kernel (see §7).
@@ -160,7 +160,7 @@ Grades follow this project's convention: A = checked by the Lean kernel; B = exa
 
 ## 8. Provenance and log index
 
-- Computed against repository commit `fe05a3be177048af4dc67e15a5fd2cbea4cbc0fc` (2026-09-28), source `branch_ab_v17/scripts/a816_full.sing`; the same file is `JC2D-branches_a_b_c_unified/branches_a_b/scripts/a816_full.sing` on `main` (md5 `aa68d2ffa08a8db86627a03e41f4e94d` in both).
+- Computed against repository commit `fe05a3be177048af4dc67e15a5fd2cbea4cbc0fc` (2026-09-28), source `branch_ab_v17/scripts/a816_full.sing`; the same file is `scripts/a816_full.sing` in both package copies on `main`, `branch_ab_v19/` and `JC2D-branches_a_b_c_unified/branches_a_b/` (md5 `aa68d2ffa08a8db86627a03e41f4e94d` in all three).
 - CAIC inputs: `a816_full_lift.sing` md5 `2fb1cda070257e853b6afdd5d18f5dbc`; `a816_generators.txt` md5 `bd25c75435c4ae7e812941392ce7d956`. CAIC's script has the same ring, minpoly, P, Q, J and layer loop as the repository file; only J is renamed Jp, and there are three extra writes.
 - Tools: Singular 4.3.2 (GMP 6.3.0, NTL 11.5.1, FLINT 3.0.1), Python 3.11.15, python-flint 0.9.0, sympy 1.14.0. Hardware: 2 cores, 5.98 GB memory cgroup.
 - `a816_lift.txt` md5 `a727c413e88053ec5201f9a0cac46b21`; `a816_lift_liftstd.txt` md5 `664203b5ff5a97ff2734cfb584ce73f6`. Full SHA-256 list of the committed files: `SHA256SUMS` (check with `sha256sum -c SHA256SUMS`); the sha256 of the uncommitted `a816_lift_liftstd.txt` is in the table of §2.

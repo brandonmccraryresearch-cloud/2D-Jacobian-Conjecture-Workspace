@@ -121,7 +121,7 @@ cc1139b9744c39b398f2d94cf1905124  ./Jacobian/Descent/E4/z_b_8_14.lean
 abcbfb36e1b0cb0386006b4e1f239ef4  ./Jacobian/Descent/Span/span_t1.lean
 ec8d9b1488f8acf880caf4bb9d45ec7c  ./Jacobian/Descent/Span/span_t2.lean
 041e34d452d8d8f28b0ad57df38a043d  ./MERGE_README.md
-6388e7058f3c86a6a8e91b7cf4312d56  ./README.md
+b9c101fdf9dab5793112bd00718dc615  ./README.md
 445c35bba1762e1e151023da5ba56035  ./certgen/README_descent.md
 e496be3e28695b452f8ecf0fa0fd6b6f  ./certgen/cert.json
 41cb5cb195a1521bea6c25949c21901b  ./certgen/chart_a1_0_Q.sing
@@ -179,6 +179,7 @@ f68f84691e82726f640489a150cdfc47  ./certgen/opt.gp
 12460d57f4a788f2f905269e44974cb2  ./lakefile.toml
 f23d354c6cf460b595e31c94e538043d  ./lean-toolchain
 e7ea8d820acef0f1025d6cb0ba6886fc  ./logs/axioms_audit_with_B26.log
+44fd28423141dacebcf93a4e22428aab  ./logs/axioms_verify_script_53.log
 e4952a1af8cef8156dc21159f616660d  ./logs/chart_cas.log
 ed21b8273462a93ad7db7e9dafe8919f  ./logs/chartproof_axioms.log
 4282e8ac089dfcf53e335b630487e7b5  ./logs/chartproof_build.log
@@ -194,4 +195,4 @@ d326a7fb65430f3794b34eda378ac2c0  ./logs/lake_build_from_scratch.log
 9dbb87071d8491159fce3213a7563300  ./logs/verify_with_classification.log
 047c2fcebfcb3cddd622d8f766e4e3db  ./run_all.sh
 08a9166b98004094fcc49a2fd222a2b7  ./setup.sh
-06d1d82d22b5ce63ccf4639cdc9067fa  ./verify_branch_ab_lean.sh
+0c6eaa35724ae2dec39d0c58b60bbbb6  ./verify_branch_ab_lean.sh

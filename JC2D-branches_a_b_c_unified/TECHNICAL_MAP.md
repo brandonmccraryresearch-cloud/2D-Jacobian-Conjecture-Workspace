@@ -43,15 +43,17 @@ JC2D-branches_a_b_c_unified/
 ├── README.md                      # overview + reading order
 ├── TECHNICAL_MAP.md               # this file
 ├── TODO_correspondence_guide.md   # conditional to-do (NOT started)
-├── branches_a_b/                  # branch-(a,b) elimination paper package (v19, exact copy)
+├── branches_a_b/                  # branch-(a,b) package (v19, revised 2026-10-05; identical copy: /branch_ab_v19/)
 │   ├── README.md
 │   ├── BUILD_STATUS.md
 │   ├── CHECKSUMS.md5 / CHECKSUMS.sha256
 │   ├── CHANGES_v18.md / CHANGES_v19.md
-│   ├── paper/                     # 31-page paper: branch_ab_elimination_v3.tex/.pdf
-│   ├── scripts/                   # 16 audit/analysis scripts (.sing/.py) + README
+│   ├── paper/                     # 33-page paper: branch_ab_elimination_v3.tex/.pdf
+│   ├── scripts/                   # audit/analysis scripts + README; since 2026-10-05 also
+│   │                              #   a816_certificate/, b22_structured/, b26_m5_eliminant/
 │   ├── lean/                      # Lean 4 project: proof sources, generators, verify scripts
 │   │   ├── Jacobian/ChartProof/   # the 12-module machine-checked proof (111 identities)
+│   │   ├── Jacobian/B26/          # m = 3, 5 chart classifications (10 modules, 2026-10-05)
 │   │   └── certgen/chartproof/    # exact generators + independent checks
 │   ├── audits/                    # HLRE v5.0 audit + errata
 │   ├── correspondence_guide/      # CORRESPONDENCE_GUIDE.md (exists for a,b)
@@ -96,7 +98,8 @@ while the bundle interior is untouched.
 
 ## 3. Branches (a) and (b) — elimination
 
-GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab`, the v19 package).
+GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab`, the v19 package, revised
+2026-10-05). The identical copy `branch_ab_v19/` at the repository root is the path the Zenodo record cites.
 
 ### 3.1 Symbolic elimination (Lean 4)
 
@@ -109,15 +112,22 @@ GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab
   rigidity corollary).
 - `lean/Jacobian/ChartProof/`: the 12-module machine-checked proof — Reflect plus
   11 generated modules, **111 step theorems**.
-- `verify_branch_ab_lean.sh`: 44 theorems, all on the standard axioms.
+- `lean/Jacobian/B26/` (2026-10-05): the m = 3 and m = 5 chart classifications over any field of characteristic 0.
+  `m3_chart_iff` and `m5_chart_iff` say the system holds iff T(a_{m-1}) = 0 plus explicit back-substitution; the
+  squarefree lemmas show T has no repeated root. The main theorem does not use them.
+- `verify_branch_ab_lean.sh`: 53 theorems (44 until 2026-10-05, plus the 9 B26 theorems), each using only standard
+  axioms (`lean/logs/axioms_verify_script_53.log`).
 - Controls: 14/14 as expected (3 unmodified ACCEPT, 9 perturbed REJECT, 2 sorry
   copies flagged).
 
 ### 3.2 Numerical elimination (certificates and computation)
 
-- The 31-page paper is organized around **four certificates**, with the 35-minor
+- The 33-page paper is organized around **four certificates**, with the 35-minor
   span argument and the characteristic-zero transfer made explicit (v19).
 - `scripts/a816_full.sing`: `a_{8,16} = 0` forced (G[1] = 1 once E1 is included).
+- `scripts/a816_certificate/` (2026-10-05): the explicit identity $a_{8,16}^2=\sum_k H_k e_k$ over K₅ (76 cofactors,
+  3464 terms), checked exactly by Singular and by python-flint, with negative controls (Corollary 1.2).
+- `scripts/b22_structured/` (2026-10-05): the c-recursion form of the chart system, validated exactly at the K₅ point.
 - `scripts/belyi_count*.py`: the m = 3 / m = 5 Belyi bounds sharp (vdim 3/10,
   irreducible separable eliminants).
 - `logs/k5_minor_certificate.json`: machine-readable 35×6 K₅ minor matrix with
@@ -127,8 +137,10 @@ GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab
 
 ### 3.3 Paper and verification
 
-- `paper/branch_ab_elimination_v3.pdf` (31 pp, XeLaTeX).
-- `verify_v19.sh`: one command — checksums, scripts, 111/111 identities, paper build.
+- `paper/branch_ab_elimination_v3.pdf` (33 pp, XeLaTeX, TeX Live 2026; revised 2026-10-05).
+- `verify_v19.sh`: one command. It checks the checksums, runs the scripts, checks the 111/111 identities, builds the
+  paper, and since 2026-10-05 also runs the a₈,₁₆ certificate checks, the B26 regeneration and statement checks, and
+  the B2.2 validation.
 - `correspondence_guide/CORRESPONDENCE_GUIDE.md`: proof elements mapped to their
   Lean formalization (exists for branches (a,b)).
 - Published: Zenodo 10.5281/zenodo.23023490 (v19, preprint).
@@ -233,10 +245,10 @@ Net Lean theorem (standard axioms only):
 
 | Layer | Branches (a,b) | Branch (c) |
 |---|---|---|
-| Lean kernel + Mathlib v4.34.0; axioms `propext`, `Classical.choice`, `Quot.sound` | 44 theorems audited (`logs/chartproof_axioms.log`) | 53 theorems audited (`bundle_v3_1/jacobian_lean/axioms_branch_c.log`) |
+| Lean kernel + Mathlib v4.34.0; axioms `propext`, `Classical.choice`, `Quot.sound` | 44 theorems audited (`logs/chartproof_axioms.log`); 53 since 2026-10-05, with B26 (`lean/logs/axioms_verify_script_53.log`) | 53 theorems audited (`bundle_v3_1/jacobian_lean/axioms_branch_c.log`) |
 | No `sorry` / `axiom` / `native_decide` | `grep`-checked | `verify_branch_c_lean.sh` step 4 |
 | Symbolic elimination | ChartProof (111 identities), `independent_check.py` | Descent2R (505 modules), T1Zero, Bridge, Combine |
-| Numerical elimination | Four paper certificates; 35-minor span; char-0 transfer; `a816_full.sing` | Step-1 certificates (exact K₅ slice + 3 modular); rank lemma + two-prime ranks |
+| Numerical elimination | Four paper certificates; 35-minor span; char-0 transfer; `a816_full.sing` and the explicit a₈,₁₆ certificate (`scripts/a816_certificate/`, two exact checkers) | Step-1 certificates (exact K₅ slice + 3 modular); rank lemma + two-prime ranks |
 | Controls | 14/14 (3 ACCEPT, 9 REJECT, 2 sorry-flagged) | T1Zero 5 negative controls; rank planted-zero control; step-1 perturbed/dropped controls |
 | External review | HLRE v5.0 audit + errata (`audits/`) | (deferred: p-adic argument; correspondence guide) |
 
@@ -248,10 +260,10 @@ Net Lean theorem (standard axioms only):
 
 ```bash
 cd branches_a_b
-bash verify_v19.sh                      # checksums, scripts, 111/111 identities, paper build
+bash verify_v19.sh                      # checksums, scripts, 111/111 identities, 2026-10-05 checks, paper build
 cd lean
 lake exe cache get
-LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh   # full build + 44-theorem axiom audit
+LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh   # full build + 53-theorem axiom audit
 ```
 
 ### Branch (c)
@@ -274,6 +286,11 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
   (independent blind review: no fatal flaw; ten recommendations implemented).
   Published: Zenodo 10.5281/zenodo.23023490. The v17/v18 trees are preserved on
   repo main as `branch_ab_v17/`, `branch_ab_v18/` until 2026-09-30, when both were removed and `branch_ab_v19/` renamed to `branch_ab/`.
+  - 2026-10-03: `branch_ab_v19/` was restored at the repository root as a copy of `branches_a_b/`, because the
+    Zenodo record cites that path.
+  - 2026-10-05: the a₈,₁₆ certificate, the Lean m = 3, 5 classifications (`Jacobian/B26`) and the B2.2 resolution
+    were added (PR #3), followed by the check of CAIC's B2.6 data file. `branch_ab_v19/` was synced to stay
+    byte-identical with `branches_a_b/`. See `branches_a_b/CHANGES_v19.md` §15.
 - **Branch (c):** the `branch_c/` pipeline scripts on repo main (corrected
   2026-09-29: E₁ projection, 6d κ=0, Singular hang guard) → v2 bundle → v3.0
   (bundled mid-build) → **v3.1** (2026-09-29, 23:40 CDT; every module built,

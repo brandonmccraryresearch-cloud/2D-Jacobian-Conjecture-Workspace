@@ -22,8 +22,10 @@
   declarations (`lean/logs/axioms_audit_with_B26.log`).
 - **Where it ran.** The audit and the elaboration of the root module `Jacobian.lean`, with the new import (exit 0),
   ran in a build overlay whose other modules were prebuilt.
-- **How the overlay differs.** Its sources match this tree except for 54 files in `Jacobian/Descent/E3`,
-  `Descent/E3red` and `Descent/E4`. Those files import four Mathlib modules (`Tactic.LinearCombination`,
+- **How the overlay differs.** The overlay is the branch-(c) build project. Its import change is made by the branch-(c)
+  bundle's `lighten_ab_descent_imports.py`, and `verify_branch_c_lean.sh` step 0 fingerprints these files with the
+  import block ignored (`JC2D-branches_a_b_c_unified/TECHNICAL_MAP.md` §5). Its sources match this tree except for 54
+  files in `Jacobian/Descent/E3`, `Descent/E3red` and `Descent/E4`. Those files import four Mathlib modules (`Tactic.LinearCombination`,
   `Tactic.Ring`, `Algebra.Field.Basic`, `Algebra.CharZero.Defs`) instead of `import Mathlib`. Apart from the
   `import` lines the files are identical.
 - **What this means.** Those modules were therefore not recompiled from this tree's sources in this session. Their
@@ -31,6 +33,12 @@
   (v19)" below).
 - **B26 itself.** B26 imports only `Mathlib` and its own modules, and its sources in the overlay are identical to this
   tree. So the build above is a build of these files.
+- **The 53-theorem list of `verify_branch_ab_lean.sh`.** Step 3 of the script was run on its 53 theorems in the same
+  overlay (`lean/logs/axioms_verify_script_53.log`).
+  - Every theorem uses only standard axioms: 51 use all three, and `m5_a4_ne_zero` and `m3_a2_ne_zero` use only
+    `propext` and `Quot.sound`.
+  - The script's old exact-match count would have failed on these two. It now accepts subsets of the three standard
+    axioms (`CHANGES_v19.md` §15).
 
 **Source scan.** The `sorry`/`admit`/`native_decide`/`axiom` scan of `verify_branch_ab_lean.sh` passes over all 118
 Lean files.
