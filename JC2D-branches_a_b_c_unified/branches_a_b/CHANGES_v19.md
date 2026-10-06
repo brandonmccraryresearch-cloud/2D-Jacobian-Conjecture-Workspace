@@ -240,3 +240,38 @@ reproducibility appendix names the artifact commit.
 - **`scripts/README.md`.** New entries and attribution.
 - **Checksums.** `CHECKSUMS.md5`, `CHECKSUMS.sha256` and `lean/MD5SUMS` were regenerated, with the same coverage
   rules. They now include the 2026-10-04/05 additions.
+
+### After PR #3 was merged: `scripts/b26_m5_eliminant/B26_EXPLICIT_DATA.md` (CAIC, 12c6034)
+- **Checked.** `check_explicit_data.py` compares every entry with the repository, and all are correct:
+  - r0..r3 equal the `.sing` residuals and Lean `m5r0`..`m5r3`;
+  - G1..G10 equal Singular's `std` output (not reduced);
+  - the ideal equality holds; vdim = 10; the elimination ideal is (T);
+  - det 30408 a4^3, the back-substitution, and both discriminants are right;
+  - one negative control is rejected.
+- **Note appended to the file.** It gives the reduced basis and says which three elements form the linear system
+  with determinant 30408 a4^3.
+- **Wiring.** `verify_v19.sh` step 4b runs the check. The checksums now cover the file.
+
+### Same follow-up: `branch_ab_v19/` synced, a Lean verifier fix, the paper's revision date
+- **`branch_ab_v19/` synced.**
+  - That directory, at the repository root, is the path that the Zenodo record 10.5281/zenodo.23023490 cites. It was
+    restored on 2026-10-03 as a copy of this package.
+  - It is now again byte-identical to `JC2D-branches_a_b_c_unified/branches_a_b/`.
+  - This means it now includes everything from 2026-10-04/05, so the published path shows the current results.
+- **Fix to `lean/verify_branch_ab_lean.sh`, a defect introduced in PR #3.**
+  - Step 3 counted only theorems whose axioms are exactly `[propext, Classical.choice, Quot.sound]`.
+  - `m5_a4_ne_zero` and `m3_a2_ne_zero` use only `propext` and `Quot.sound`, so a full run would have reported
+    "51 of 53" and failed.
+  - The check now accepts any subset of the three standard axioms and still rejects any other axiom. It was tested on
+    the real output for all 53 theorems, which passes, and on a control with an injected non-standard axiom, which is
+    rejected.
+  - The output is in `lean/logs/axioms_verify_script_53.log`.
+  - The theorem count in `README.md`, `lean/README.md` and the script header is now 53.
+- **Paper.**
+  - The date line reads "September 28, 2026; revised October 5, 2026".
+  - The reproducibility paragraph names both copies and keeps commit 7597700 for the first v19 release. It lists the
+    revision's additions and states exactly which Lean files changed.
+  - PDF rebuilt: 33 pages, 0 errors, 0 undefined references, 0 overfull boxes. The 3 underfull boxes were already
+    there. The abstract is unchanged.
+- **Other docs.** `README.md` now notes the two identical copies. The stale line "v18 tree preserved as
+  `branch_ab_v18/`" is corrected; that tree was removed on 2026-09-30 and is still in the git history at 42cbf03.

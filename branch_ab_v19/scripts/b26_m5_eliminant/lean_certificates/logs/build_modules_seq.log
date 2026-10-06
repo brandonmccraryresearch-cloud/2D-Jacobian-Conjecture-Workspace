@@ -1,0 +1,66 @@
+# Build record of lean/Jacobian/B26 (2026-10-05). Lean 4.34.0, Mathlib v4.34.0; host: 2 CPUs, 7 GB RAM.
+# Each module is built alone with LEAN_NUM_THREADS=1 under the memory guard guardrun.py --max-anon 5500, which
+# reports the wall time, the peak RSS (which includes the memory-mapped .olean files of the imports) and the peak
+# anonymous memory of the shell's memory cgroup (the memory a machine must actually provide).
+#
+# Part 1. Clean sequential build: the previous B26 build outputs were moved aside first, so every module was
+# compiled. (A TeX build ran at the same time as Defs and M5T, so their figures here are inflated; see Part 2.)
+lean: Lean (version 4.34.0, x86_64-unknown-linux-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)
+host: 2 cpu, 7 GB
+=== Jacobian.B26.Defs 17:57:50
+✔ [8924/8924] Built Jacobian.B26.Defs (27s)
+Build completed successfully (8924 jobs).
+[guardrun] exit 0  39.1s  peak RSS 4717 MB  cgroup anon peak 712 MB
+=== Jacobian.B26.M5T 17:58:30
+✔ [8925/8925] Built Jacobian.B26.M5T (112s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  123.9s  peak RSS 4743 MB  cgroup anon peak 4000 MB
+=== Jacobian.B26.M5Rel1 18:00:34
+✔ [8925/8925] Built Jacobian.B26.M5Rel1 (70s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  82.2s  peak RSS 4683 MB  cgroup anon peak 2430 MB
+=== Jacobian.B26.M5Rel2 18:01:56
+✔ [8925/8925] Built Jacobian.B26.M5Rel2 (64s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  76.4s  peak RSS 4779 MB  cgroup anon peak 2436 MB
+=== Jacobian.B26.M5Rel3 18:03:12
+✔ [8925/8925] Built Jacobian.B26.M5Rel3 (64s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  76.7s  peak RSS 4819 MB  cgroup anon peak 2427 MB
+=== Jacobian.B26.M5Res0 18:04:29
+✔ [8925/8925] Built Jacobian.B26.M5Res0 (34s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  46.7s  peak RSS 4761 MB  cgroup anon peak 1216 MB
+=== Jacobian.B26.M5Res1 18:05:16
+✔ [8925/8925] Built Jacobian.B26.M5Res1 (30s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  42.4s  peak RSS 4789 MB  cgroup anon peak 1169 MB
+=== Jacobian.B26.M5Res2 18:05:58
+✔ [8925/8925] Built Jacobian.B26.M5Res2 (30s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  42.1s  peak RSS 4772 MB  cgroup anon peak 1138 MB
+=== Jacobian.B26.M5Res3 18:06:40
+✔ [8925/8925] Built Jacobian.B26.M5Res3 (28s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  40.3s  peak RSS 4763 MB  cgroup anon peak 1097 MB
+=== Jacobian.B26 18:07:21
+✔ [8933/8933] Built Jacobian.B26 (21s)
+Build completed successfully (8933 jobs).
+[guardrun] exit 0  32.5s  peak RSS 4783 MB  cgroup anon peak 873 MB
+=== done 18:07:53
+#
+# Part 2. Defs and M5T re-measured with nothing else running, then an up-to-date check of the whole tree.
+# (The first attempt at this re-measurement could not write M5T.olean, 121 MB, because the session's disk
+# allowance was exhausted, after Lean had finished elaborating. After freeing space the build below succeeded.)
+=== Jacobian.B26.Defs (alone) 18:08:34
+✔ [8924/8924] Built Jacobian.B26.Defs (21s)
+Build completed successfully (8924 jobs).
+[guardrun] exit 0  32.8s  peak RSS 4780 MB  cgroup anon peak 704 MB
+=== Jacobian.B26.M5T (alone) 18:16:59
+✔ [8925/8925] Built Jacobian.B26.M5T (112s)
+Build completed successfully (8925 jobs).
+[guardrun] exit 0  123.7s  peak RSS 4887 MB  cgroup anon peak 3822 MB
+=== Jacobian.B26 (up-to-date check) 18:19:03
+Build completed successfully (8933 jobs).
+[guardrun] exit 0  11.7s  peak RSS 924 MB  cgroup anon peak 231 MB
+=== done 18:19:15

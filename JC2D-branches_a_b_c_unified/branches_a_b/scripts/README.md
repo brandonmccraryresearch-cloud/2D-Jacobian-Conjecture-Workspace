@@ -41,6 +41,11 @@ Most scripts run directly from here:
   - Check: `./regen_b26.sh` (byte-identical regeneration, about 12 s).
   - Check: `python3 independent_checks.py`, which does not use the generator. It confirms that the Lean chart
     definitions are exactly $E_1,\dots,E_{n+m}$, and it confirms the closed forms at all $d$ roots, to 60 digits.
+- **`b26_m5_eliminant/B26_EXPLICIT_DATA.md` (CAIC) — the $m=5$ data written out.**
+  - Contents: the residuals $r_0..r_3$, Singular's `std` output $G_1..G_{10}$, the eliminant, the back-substitution
+    and the discriminant correction.
+  - Check: `python3 check_explicit_data.py` (needs Singular; about 1 s), which compares every entry with the
+    repository and the Lean definitions. A verification note is appended to the file.
 - **`b22_structured/RESOLUTION.md`, `b22_validate.py` — B2.2 resolved.**
   - The B2.2 system is the Lean chart system `ChartClassification`, already classified by
     `chartClassification_holds`.

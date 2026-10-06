@@ -6,7 +6,7 @@ in one directory.
 
 | Directory | Branch | Elimination paper package |
 |---|---|---|
-| `branches_a_b/` | (a), (b) — GGHV normal form (2), degree-(8,28) case | `branch_ab` (exact copy of the v19 package): 31-page paper, Lean 4 machine-checked m = 7 chart classification (Prop. 6.1), four certificates, audits, logs, `verify_v19.sh` |
+| `branches_a_b/` | (a), (b) — GGHV normal form (2), degree-(8,28) case | The v19 package, revised 2026-10-05; the identical copy `branch_ab_v19/` at the repository root is the path the Zenodo record cites. Contents: a 33-page paper, a Lean 4 machine-checked m = 7 chart classification (Prop. 6.1), Lean m = 3, 5 classifications, four certificates, the explicit a₈,₁₆ certificate, audits, logs, `verify_v19.sh` |
 | `branch_c/` | (c) — GGHV normal form (1), degree-(72,108) case | v3.1 bundle in the branch-(a,b) paper format: symbolic elimination in Lean 4 (`Descent2R`, `T1Zero`, `Bridge`, `Combine`) + numerical elimination (exact/modular certificates, rank lemma), `verify_branch_c.sh` |
 
 ## Reading order

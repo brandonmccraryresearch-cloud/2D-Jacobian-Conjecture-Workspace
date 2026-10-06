@@ -2,12 +2,16 @@
 # verify_branch_ab_lean.sh — verification script for the branch-(a,b) Lean 4 formalization.
 # Runs the full build (unpiped, genuine exit status), checks the build log for `sorry`
 # warnings, scans all sources for sorry/admit/user axioms outside comments, and prints the
-# axiom dependencies of every theorem (must be exactly propext, Classical.choice, Quot.sound).
+# axiom dependencies of every theorem (each must be a subset of propext, Classical.choice, Quot.sound;
+# two of the B26 lemmas, m5_a4_ne_zero and m3_a2_ne_zero, use only propext and Quot.sound).
 #
 # Resources: the exact K5 descent (Jacobian/Descent, 84 modules) needs ~12 min on 4 cores and
 # ~2 GB RAM per build job (peak ~7.5 GB total with 4 jobs); outputs ~2.5 GB of .olean files.
 # The Prop. 6.1 proof (Jacobian/ChartProof, 12 modules, v17) needs ~25 min sequentially and up to
 # 5.4 GB RAM for a single module (Stage2_g7); build with LEAN_NUM_THREADS=1 on machines with < 12 GB.
+# The m = 3, 5 classifications (Jacobian/B26, 10 modules, added 2026-10-05) take ~8 min sequentially with
+# LEAN_NUM_THREADS=1 and up to ~3.8 GB RAM for a single module (M5T; M5Rel1-3 ~2.4 GB);
+# see scripts/b26_m5_eliminant/lean_certificates/.
 #
 # Usage: verify_branch_ab_lean.sh [PROJECT_DIR]
 #   PROJECT_DIR defaults to this script's directory if it holds lakefile.toml,
@@ -32,6 +36,10 @@ THEOREMS="t_zero_case minor_obstruction only_zero_transport
   BranchAb.eq_sum_layerPiece BranchAb.coeff_layerPoly BranchAb.layers_of_support BranchAb.no_completion_K5_PQ
   BranchAb.belyi_derivative BranchAb.layerTerm_top BranchAb.orbit_solves_E5
   BranchAb.main_theorem_of_classification
+  BranchAb.TopLayerSmall.m5_residual_iff BranchAb.TopLayerSmall.m5_chart_iff BranchAb.TopLayerSmall.m5_a4_ne_zero
+  BranchAb.TopLayerSmall.m5_T_squarefree BranchAb.TopLayerSmall.m5_solution_formulas
+  BranchAb.TopLayerSmall.m3_residual_iff BranchAb.TopLayerSmall.m3_chart_iff BranchAb.TopLayerSmall.m3_a2_ne_zero
+  BranchAb.TopLayerSmall.m3_T_squarefree
   BranchAb.chart_K5_identities BranchAb.chart_point_solves BranchAb.topLayerClassification_of_chart
   BranchAb.main_theorem_of_chart
   BranchAb.ChartProof.eq_of_toPolyK BranchAb.ChartProof.lc_zero BranchAb.chartClassification_holds BranchAb.main_theorem"
@@ -86,12 +94,14 @@ if grep -q "sorryAx" /tmp/axiom_check.log; then
   echo "FAIL: sorryAx present in axiom dependencies"
   exit 1
 fi
-n_ok=$(grep -c "depends on axioms: \[propext, Classical.choice, Quot.sound\]" /tmp/axiom_check.log)
+# a theorem passes if its axioms are a subset of the three standard ones (or it uses none)
+STD="(propext|Classical\.choice|Quot\.sound)"
+n_ok=$(grep -cE "depends on axioms: \[$STD(, $STD)*\][[:space:]]*$|does not depend on any axioms" /tmp/axiom_check.log)
 n_all=$(echo $THEOREMS | wc -w)
 if [ "$n_ok" -ne "$n_all" ]; then
-  echo "FAIL: $n_ok of $n_all theorems have exactly the standard axioms"
+  echo "FAIL: $n_ok of $n_all theorems depend only on standard axioms"
   exit 1
 fi
-echo "PASS: all $n_all theorems depend only on propext, Classical.choice, Quot.sound"
+echo "PASS: all $n_all theorems depend only on standard axioms (a subset of propext, Classical.choice, Quot.sound)"
 
 echo "=== ALL CHECKS PASSED ==="

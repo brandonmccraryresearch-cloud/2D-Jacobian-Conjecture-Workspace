@@ -34,7 +34,8 @@ conjecture to Prop. 4.3 are outside scope.
 | Path | Contents |
 |---|---|
 | `JC2D-branches_a_b_c_unified/` | The unified branch-elimination workspace (branches (a), (b), (c)) |
-| `JC2D-branches_a_b_c_unified/branches_a_b/` | Branch (a),(b) elimination package (v19): 31-page paper, Lean 4 machine-checked $m=7$ chart classification (Prop. 6.1), four certificates, audits, logs, `verify_v19.sh`. Published on Zenodo: 10.5281/zenodo.23023490 |
+| `JC2D-branches_a_b_c_unified/branches_a_b/` | Branch (a),(b) elimination package (v19, revised 2026-10-05). Contents: a 33-page paper, a Lean 4 machine-checked $m=7$ chart classification (Prop. 6.1), Lean $m=3,5$ classifications, four certificates, the explicit $a_{8,16}$ certificate, audits, logs, `verify_v19.sh`. Published on Zenodo: 10.5281/zenodo.23023490 |
+| `branch_ab_v19/` | Byte-identical copy of `JC2D-branches_a_b_c_unified/branches_a_b/`, at the path cited by the Zenodo record. The two copies are updated together. |
 | `JC2D-branches_a_b_c_unified/branch_c/` | Branch (c) elimination package: v3.1 bundle (byte-for-byte reviewer bundle) with Lean 4 symbolic elimination (`Descent2R`, `T1Zero`, `Bridge`, `Combine`) + numerical elimination (exact/modular certificates, Macaulay rank lemma at two primes), 18-page paper, `verify_branch_c.sh` |
 | `JC2D-branches_a_b_c_unified/TECHNICAL_MAP.md` | Exhaustive technical map: the mathematics, every component, the symbolic and numerical eliminations branch by branch, the trust base, and how to reproduce everything |
 | `JC2D-branches_a_b_c_unified/TODO_correspondence_guide.md` | Conditional to-do: the branch-(c) correspondence guide is created only after the finalized paper is drafted (not started) |
@@ -93,7 +94,7 @@ All papers are typeset with Fira Sans (text), Fira Mono (code), and Fira Math
 
 | Paper | Location | Pages |
 |---|---|---|
-| Branch (a),(b) elimination (v19) | `JC2D-branches_a_b_c_unified/branches_a_b/paper/branch_ab_elimination_v3.pdf` | 31 |
+| Branch (a),(b) elimination (v19, revised 2026-10-05) | `JC2D-branches_a_b_c_unified/branches_a_b/paper/branch_ab_elimination_v3.pdf` (same file in `branch_ab_v19/paper/`) | 33 |
 | Branch (c) elimination | `JC2D-branches_a_b_c_unified/branch_c/paper/branch_c_elimination.pdf` | 18 |
 | No Keller map admits two dicritical divisors | `branch_two_dicritical/paper/two_dicritical_closure.pdf` | 6 |
 
@@ -102,7 +103,7 @@ All papers are typeset with Fira Sans (text), Fira Mono (code), and Fira Math
 Each package ships its own verification entry point:
 
 ```bash
-# Branch (a),(b)
+# Branch (a),(b) (or branch_ab_v19/verify_v19.sh, the identical copy)
 JC2D-branches_a_b_c_unified/branches_a_b/verify_v19.sh
 
 # Branch (c)
@@ -120,3 +121,9 @@ Checksums (`CHECKSUMS.md5`, `CHECKSUMS.sha256`) and build records
 The legacy top-level `branch_ab/` and `branch_c/` directories were removed;
 their contents are superseded by `JC2D-branches_a_b_c_unified/branches_a_b/`
 and `JC2D-branches_a_b_c_unified/branch_c/` respectively.
+
+`branch_ab_v19/` was restored at the root on 2026-10-03 because the Zenodo
+record cites that path. It is kept byte-identical to
+`JC2D-branches_a_b_c_unified/branches_a_b/`; the last sync was 2026-10-05.
+To check that the two copies agree, run
+`diff -r -x __pycache__ -x .lake branch_ab_v19 JC2D-branches_a_b_c_unified/branches_a_b`.

@@ -1,0 +1,16 @@
+# 2026-10-05T14:02:13-05:00 python3 layers.py
+unknowns by depth: {1: 19, 2: 20, 3: 12}
+generators by layer: {3: 18, 2: 19, 1: 19, 0: 19}
+rank A3 (18x19) = 17
+rank A2 (19x20) = 18
+rank A1 (19x12) = 12
+structure check passed: linear parts only in the layer's own depth
+dim ker A3 = 2
+dim ker A2 = 2  dim left-ker A2 = 1
+dim ker A1 = 0  dim left-ker A1 = 7
+q2(k) = 0 ? False
+y2 . q2(k) = 0
+kernel vector k of A3 (support): ['a_1_1', 'a_2_3', 'a_3_5', 'a_4_7', 'a_5_9', 'a_6_11', 'a_7_13', 'b_2_2', 'b_3_4', 'b_4_6', 'b_5_8', 'b_6_10', 'b_7_12', 'b_8_14', 'b_9_16', 'b_10_18', 'b_11_20']
+kernel vector 0 of A2 (support): ['a_1_2', 'a_2_4', 'a_3_6', 'a_4_8', 'a_5_10', 'a_6_12', 'a_7_14', 'b_2_3', 'b_3_5', 'b_4_7', 'b_5_9', 'b_6_11', 'b_7_13', 'b_8_15', 'b_9_17', 'b_10_19', 'b_11_21']
+kernel vector 1 of A2 (support): ['a_1_2', 'a_2_4', 'a_3_6', 'a_4_8', 'a_5_10', 'a_6_12', 'a_7_14', 'a_8_16', 'b_2_3', 'b_3_5', 'b_4_7', 'b_5_9', 'b_6_11', 'b_7_13', 'b_8_15', 'b_9_17', 'b_10_19', 'b_12_23']
+a_8_16 component of A2 kernel vectors: [False, True]

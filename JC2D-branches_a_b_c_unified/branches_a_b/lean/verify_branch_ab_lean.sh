@@ -2,7 +2,8 @@
 # verify_branch_ab_lean.sh — verification script for the branch-(a,b) Lean 4 formalization.
 # Runs the full build (unpiped, genuine exit status), checks the build log for `sorry`
 # warnings, scans all sources for sorry/admit/user axioms outside comments, and prints the
-# axiom dependencies of every theorem (must be exactly propext, Classical.choice, Quot.sound).
+# axiom dependencies of every theorem (each must be a subset of propext, Classical.choice, Quot.sound;
+# two of the B26 lemmas, m5_a4_ne_zero and m3_a2_ne_zero, use only propext and Quot.sound).
 #
 # Resources: the exact K5 descent (Jacobian/Descent, 84 modules) needs ~12 min on 4 cores and
 # ~2 GB RAM per build job (peak ~7.5 GB total with 4 jobs); outputs ~2.5 GB of .olean files.
@@ -93,12 +94,14 @@ if grep -q "sorryAx" /tmp/axiom_check.log; then
   echo "FAIL: sorryAx present in axiom dependencies"
   exit 1
 fi
-n_ok=$(grep -c "depends on axioms: \[propext, Classical.choice, Quot.sound\]" /tmp/axiom_check.log)
+# a theorem passes if its axioms are a subset of the three standard ones (or it uses none)
+STD="(propext|Classical\.choice|Quot\.sound)"
+n_ok=$(grep -cE "depends on axioms: \[$STD(, $STD)*\][[:space:]]*$|does not depend on any axioms" /tmp/axiom_check.log)
 n_all=$(echo $THEOREMS | wc -w)
 if [ "$n_ok" -ne "$n_all" ]; then
-  echo "FAIL: $n_ok of $n_all theorems have exactly the standard axioms"
+  echo "FAIL: $n_ok of $n_all theorems depend only on standard axioms"
   exit 1
 fi
-echo "PASS: all $n_all theorems depend only on propext, Classical.choice, Quot.sound"
+echo "PASS: all $n_all theorems depend only on standard axioms (a subset of propext, Classical.choice, Quot.sound)"
 
 echo "=== ALL CHECKS PASSED ==="

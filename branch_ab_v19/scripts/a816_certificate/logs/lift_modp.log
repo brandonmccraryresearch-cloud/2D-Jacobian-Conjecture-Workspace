@@ -1,0 +1,18 @@
+# 2026-10-05T14:02:00-05:00 python3 /tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/guardrun.py --max-anon 5200 -- Singular -q lift_p1.sing
+equations:
+75
+time ms:
+4177
+cofactors:
+76
+total terms:
+2967
+max terms in one cofactor:
+195
+max total degree:
+5
+check sum_i I2[i]*T[i] == 1:
+1
+check time ms:
+28
+[guardrun] exit 0  4.5s  peak RSS 71 MB  cgroup anon peak 65 MB

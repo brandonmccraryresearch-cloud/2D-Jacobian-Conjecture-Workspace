@@ -1,0 +1,36 @@
+# (run on the first build of a816_certificate_bundle_v1.zip; the final zip adds only this log, its sibling and the refreshed SHA256SUMS)
+# 2026-10-05T14:20:28-05:00 verify_bundle.sh from a fresh unzip, A816_SRC = bundle copy
+source of P, Q: /tmp/claude-0/-home-claude-2d-jacobian-conjecture-workspace/3a473603-c1a6-574c-94db-ab1d05a9f323/scratchpad/caic_bundle/test_unzip/a816_certificate/a816_full.sing
+md5 aa68d2ffa08a8db86627a03e41f4e94d
+== python-flint (independent rebuild of J): a816_lift.txt
+certificate: 76 cofactors, 3464 terms; F = sum c_k g_k + c_76 (a_8_16 z - 1) - 1 has 24444 terms before reduction mod R(w)
+RESULT: F == 0 mod R(w): the certificate is VALID
+time 3.3s
+exit 0
+== python-flint (independent rebuild of J): a816_lift_liftstd.txt
+certificate: 76 cofactors, 2967 terms; F = sum c_k g_k + c_76 (a_8_16 z - 1) - 1 has 26073 terms before reduction mod R(w)
+RESULT: F == 0 mod R(w): the certificate is VALID
+time 10.9s
+exit 0
+== negative control on a816_lift.txt: perturb (must be rejected)
+RESULT: F != 0 mod R(w) (10 terms remain): the certificate is NOT valid
+exit 1
+== negative control on a816_lift.txt: drop_rabinowitsch (must be rejected)
+RESULT: F != 0 mod R(w) (2 terms remain): the certificate is NOT valid
+exit 1
+== negative control on a816_lift.txt: wrong_minpoly (must be rejected)
+RESULT: F != 0 mod R(w) (10864 terms remain): the certificate is NOT valid
+exit 1
+== Singular over Q(w), repository generators: a816_lift.txt
+SINGULAR CHECK (a816_lift.txt with the repository generators): sum_k I2[k]*L[k] == 1 over Q(w): VALID
+== Singular over Q(w), repository generators: a816_lift_liftstd.txt
+SINGULAR CHECK (a816_lift_liftstd.txt with the repository generators): sum_k I2[k]*L[k] == 1 over Q(w): VALID
+== round trip with CAIC's a816_generators.txt (caic_inputs/)
+ROUND TRIP (CAIC generators file + a816_lift.txt): 1 = sum f_i e_i + g (a_8_16 z - 1): VALID
+CAIC generators vs repository ideal, entrywise mismatches: 0
+== B2.6 eliminant checks
+factor_list(T) over Q: (1, [(9*a**10 + 37200*a**5 + 95051008, 1)])
+disc_u(f) (quadratic in u = a^5): -2037996288
+T irreducible mod 11 (degree 10 kept) -> irreducible over Q
+== overall: ALL CHECKS PASSED
+exit 0

@@ -1,0 +1,11 @@
+# 2026-10-05T14:07:34-05:00 layer_subsets_modp.sing (p = 536870813, inert)
+layer sizes d=0..3:
+19
+19
+19
+18
+layers d=3,2,1,0 (full): dim 5; smallest k <= 6 with a_8_16^k in ideal: 2 (0 = none)
+layers d=3,2,1 (no d=0): dim 7; smallest k <= 6 with a_8_16^k in ideal: 0 (0 = none)
+layers d=3,2,0 (no d=1): dim 17; smallest k <= 6 with a_8_16^k in ideal: 4 (0 = none)
+
+halt 1

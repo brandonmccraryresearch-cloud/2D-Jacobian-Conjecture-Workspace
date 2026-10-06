@@ -1,5 +1,53 @@
 # Lean Build Status (v19)
 
+## 2026-10-05 additions: `Jacobian/B26` (m = 3, 5 classifications)
+
+**Build.** Clean build: previous outputs were removed first, and every module was compiled
+(`scripts/b26_m5_eliminant/lean_certificates/logs/build_modules_seq.log`).
+- Toolchain: Lean 4.34.0, Mathlib v4.34.0, `LEAN_NUM_THREADS=1`, one module at a time
+  (`lake build Jacobian.B26.<M>`), on a 2-CPU, 7 GB host.
+- Per module (Lean time as reported by `lake`; peak anonymous memory):
+  - `Defs`: 21 s, 0.7 GB.
+  - `M5T`: 112 s, 3.8 GB, the largest.
+  - `M5Rel1`, `M5Rel2`, `M5Rel3`: 64–70 s each, 2.4 GB.
+  - `M5Res0`–`M5Res3`: 28–34 s each, 1.1–1.2 GB.
+  - Umbrella `B26`: 21 s, 0.9 GB.
+  - Total: about 8 min of Lean time, 10 min wall-clock, sequentially.
+- Result: 0 errors, 0 warnings; an immediate rebuild of `Jacobian.B26` is a no-op.
+- Building all eight certificate proofs as one module was killed at 5.5 GB of anonymous memory, which is why they are
+  split (`split_b26.py`; `logs/single_module_build_killed.log`).
+
+**Axioms.**
+- `AxiomsAudit.lean`, now with B26, prints only `propext`, `Classical.choice` and `Quot.sound` for all 22
+  declarations (`lean/logs/axioms_audit_with_B26.log`).
+- **Where it ran.** The audit and the elaboration of the root module `Jacobian.lean`, with the new import (exit 0),
+  ran in a build overlay whose other modules were prebuilt.
+- **How the overlay differs.** The overlay is the branch-(c) build project. Its import change is made by the branch-(c)
+  bundle's `lighten_ab_descent_imports.py`, and `verify_branch_c_lean.sh` step 0 fingerprints these files with the
+  import block ignored (`JC2D-branches_a_b_c_unified/TECHNICAL_MAP.md` §5). Its sources match this tree except for 54
+  files in `Jacobian/Descent/E3`, `Descent/E3red` and `Descent/E4`. Those files import four Mathlib modules (`Tactic.LinearCombination`,
+  `Tactic.Ring`, `Algebra.Field.Basic`, `Algebra.CharZero.Defs`) instead of `import Mathlib`. Apart from the
+  `import` lines the files are identical.
+- **What this means.** Those modules were therefore not recompiled from this tree's sources in this session. Their
+  full build with `import Mathlib` is the cloud build of the byte-identical v18 sources (see "Lean build record
+  (v19)" below).
+- **B26 itself.** B26 imports only `Mathlib` and its own modules, and its sources in the overlay are identical to this
+  tree. So the build above is a build of these files.
+- **The 53-theorem list of `verify_branch_ab_lean.sh`.** Step 3 of the script was run on its 53 theorems in the same
+  overlay (`lean/logs/axioms_verify_script_53.log`).
+  - Every theorem uses only standard axioms: 51 use all three, and `m5_a4_ne_zero` and `m3_a2_ne_zero` use only
+    `propext` and `Quot.sound`.
+  - The script's old exact-match count would have failed on these two. It now accepts subsets of the three standard
+    axioms (`CHANGES_v19.md` §15).
+
+**Source scan.** The `sorry`/`admit`/`native_decide`/`axiom` scan of `verify_branch_ab_lean.sh` passes over all 118
+Lean files.
+
+**Paper.**
+- Rebuilt with TeX Live 2026 (TinyTeX, xdvipdfmx 20260317) and the Fira fonts from CTAN: 33 pages, 0 errors,
+  0 undefined references, 0 overfull boxes.
+- See `CHANGES_v19.md` §15 for the page-count history (31 → 32 → 33).
+
 ## Fira-font revision (2026-10-01)
 
 Standing font rule: Fira Sans (text), Fira Mono (code), Fira Math (math) are

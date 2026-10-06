@@ -1,0 +1,8 @@
+# 2026-10-05T14:02:13-05:00 python3 b26_check.py
+factor_list(T) over Q: (1, [(9*a**10 + 37200*a**5 + 95051008, 1)])
+disc_u(f) (quadratic in u = a^5): -2037996288
+disc_a(T) (degree-10 polynomial): -183871293703933670520172957537986343802934987391516379922049040306575649978449920000000000
+real roots of T: []
+content / leading coeff: 1 9
+f irreducible: True
+T irreducible mod 11 (degree 10 kept) -> irreducible over Q

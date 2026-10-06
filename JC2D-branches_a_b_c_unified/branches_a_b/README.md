@@ -10,8 +10,18 @@ theorem now concludes only b_{12,24}=0 (a_{8,16}=0 is an independent
 rigidity corollary), the proof is organized around four certificates, the
 35-minor span argument and the characteristic-zero transfer are explicit,
 and the obstruction script emits a machine-readable K5 rank certificate.
-See `CHANGES_v19.md` for the full list. The v18 tree is preserved unchanged
-as `branch_ab_v18/`.
+See `CHANGES_v19.md` for the full list. The v18 tree is in the git history
+(commit 42cbf03); it was kept at the repository root as `branch_ab_v18/` until
+2026-09-30.
+
+**Two identical copies.** This package is in the repository twice, with identical
+contents:
+- `branch_ab_v19/` at the repository root, the path that the Zenodo record
+  10.5281/zenodo.23023490 cites;
+- `JC2D-branches_a_b_c_unified/branches_a_b/`.
+
+The 2026-10-05 revision adds the a₈,₁₆ certificate, the Lean m = 3, 5
+classifications and the B2.2 resolution. See `CHANGES_v19.md` §15.
 
 Elimination of GGHV normal form (2) [branch (a,b)] in the degree-(8,28) case of the
 two-dimensional Jacobian conjecture, with a Lean 4 machine-checked proof of the
@@ -63,7 +73,7 @@ planar Jacobian conjecture.
 ```bash
 cd lean
 lake exe cache get                              # fetch Mathlib oleans
-LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh  # full build + 44-theorem axiom audit
+LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh  # full build + 53-theorem axiom audit
 CONTROLS_JOBS=1 bash controls.sh                  # 14/14 as expected: 3 unmodified ACCEPT, 9 perturbed REJECT (expected Lean error), 2 sorry copies flagged
 bash certgen/check_regeneration.sh                # byte-identical regeneration
 ```

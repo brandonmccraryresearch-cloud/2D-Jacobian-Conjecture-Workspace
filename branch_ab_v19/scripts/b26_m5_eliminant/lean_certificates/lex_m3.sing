@@ -1,0 +1,8 @@
+ring r = 0, (a1,a2), lp;
+option(redSB);
+ideal S = -4*a1^2 + 7*a1*a2^2 - 30*a2,
+-4*a1*a2 + 7*a2^3 - 48;
+ideal G = std(S);
+"lex GB:"; G;
+"vdim:"; vdim(G); "dim:"; dim(G);
+quit;

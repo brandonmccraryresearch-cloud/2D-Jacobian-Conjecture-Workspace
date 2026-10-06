@@ -69,8 +69,9 @@ echo "=== 4b. 2026-10-05 additions: a_{8,16} certificate, B2.2 validation, B26 r
 if command -v Singular >/dev/null; then
   run bash "$ROOT/scripts/a816_certificate/verify_bundle.sh"
   run bash "$ROOT/scripts/b26_m5_eliminant/lean_certificates/regen_b26.sh"
+  run $PY "$ROOT/scripts/b26_m5_eliminant/check_explicit_data.py"
 else
-  echo "SKIP: Singular not found (needed by a816_certificate/verify_bundle.sh and regen_b26.sh)"
+  echo "SKIP: Singular not found (needed by a816_certificate/verify_bundle.sh, regen_b26.sh, check_explicit_data.py)"
 fi
 run $PY "$ROOT/scripts/b22_structured/b22_validate.py"
 run $PY "$ROOT/scripts/b26_m5_eliminant/lean_certificates/independent_checks.py"
