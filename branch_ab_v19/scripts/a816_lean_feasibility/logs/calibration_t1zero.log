@@ -1,0 +1,5 @@
+P_Psi.lean: pairs 2, products 3800, local-def terms 250, max digits 5448, source bytes 2846194
+P_Phi1.lean: pairs 2, products 5970, local-def terms 355, max digits 5453, source bytes 3878073
+P_Theta1.lean: pairs 2, products 6600, local-def terms 375, max digits 5461, source bytes 4018096
+F_Psi.lean: pairs 5, products 719, local-def terms 0, max digits 226, source bytes 67866
+F_Theta1.lean: pairs 5, products 2024, local-def terms 0, max digits 591, source bytes 444726

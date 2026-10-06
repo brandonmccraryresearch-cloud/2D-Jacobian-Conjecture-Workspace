@@ -1,0 +1,25 @@
+# 2026-10-06. lake build of Jacobian.B26 (docstring regenerated), Jacobian.B26Count and Jacobian.B26Irred, one at a time,
+# LEAN_NUM_THREADS=1, under guardrun.py --max-anon 5500 (2-CPU, 7 GB host); then #print axioms for the new declarations
+# (run after the three builds).
+=== Jacobian.B26 05:58:51
+✔ [8933/8933] Built Jacobian.B26 (23s)
+Build completed successfully (8933 jobs).
+[guardrun] exit 0  36.4s  peak RSS 4699 MB  cgroup anon peak 855 MB
+=== Jacobian.B26Count 05:59:28
+✔ [8934/8934] Built Jacobian.B26Count (19s)
+Build completed successfully (8934 jobs).
+[guardrun] exit 0  32.2s  peak RSS 4737 MB  cgroup anon peak 723 MB
+=== Jacobian.B26Irred 06:00:00
+✔ [8935/8935] Built Jacobian.B26Irred (21s)
+Build completed successfully (8935 jobs).
+[guardrun] exit 0  33.7s  peak RSS 4729 MB  cgroup anon peak 719 MB
+#
+'BranchAb.TopLayerSmall.T5poly_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.T3poly_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.T5quad_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.norm_root_T5quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.T5kummer_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.aeval_T5root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.finrank_T5Top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.adjoin_T5root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchAb.TopLayerSmall.minpoly_T5root_natDegree' depends on axioms: [propext, Classical.choice, Quot.sound]

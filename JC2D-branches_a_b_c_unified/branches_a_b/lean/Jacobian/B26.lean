@@ -34,7 +34,8 @@ Main results, over any field `L` of characteristic 0:
   `m5_chart_card` (and `m3_chart_card` for `m = 3`) in `Jacobian/B26Count.lean`.
 * the same for `m = 3` with `T₃(a₂) = 3 a₂³ - 32` and `8 a₁ = 5 a₂²` (`m3_chart_iff`, `m3_residual_iff`,
   `m3_a2_ne_zero`, `m3_T_squarefree`).
-The irreducibility of `T₅` and `T₃` over `ℚ` is not used and is not formalized here.
+The irreducibility of `T₅` and `T₃` over `ℚ` is not used here; it is proved as `T5poly_irreducible` and
+`T3poly_irreducible` in `Jacobian/B26Irred.lean`.
 -/
 
 set_option maxHeartbeats 0

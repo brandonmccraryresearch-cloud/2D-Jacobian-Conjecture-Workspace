@@ -140,11 +140,11 @@ Grades follow this project's convention: A = checked by the Lean kernel; B = exa
 | ID | Claim | Grade | Evidence and scope |
 |---|---|---|---|
 | C1 | a₈,₁₆² ∈ I over K₅, hence a₈,₁₆ = 0 on every solution (any char-0 field, any root w) | **B** | Two explicit certificates, each checked exactly by Singular 4.3.2 and by python-flint 0.9.0. The generators were rebuilt three ways from the same source text, plus CAIC's file. Three negative controls were rejected. No Gröbner, modular or reconstruction step is in the trust base. Independence: two CAS implementations; same P,Q source. |
-| C2 | V(I) = {0}: the K₅ top layer has no nontrivial lower-layer completion through d = 0. All 51 unknowns are nilpotent mod I, so P = P₂ + const and Q = Q₃ + const. This includes b₁₂,₂₄ = 0. | **B** | Exact rank 14/14 computed by one implementation (`k5.py`), plus the telescoping argument in §4. Corroborated mod one inert prime: dim = 0 in the 51 unknowns, and x^⌈4/depth⌉ ∈ I for all 51 unknowns (`probe_modp.log`, `nilpotency_modp.log`). No certificate is written out for the other unknowns. |
+| C2 | V(I) = {0}: the K₅ top layer has no nontrivial lower-layer completion through d = 0. All 51 unknowns are nilpotent mod I, so P = P₂ + const and Q = Q₃ + const. This includes b₁₂,₂₄ = 0. | **B** | Exact rank 14/14 computed by `k5.py`, plus the telescoping argument in §4. **Since 2026-10-06 written out and checked twice (`../a816_rigidity/`):** 47 pivot certificates x − φ(x) ∈ I and 14 certificates m ∈ I, one per monomial m of depth 4 in τ, σ. They are generated with `k5.py` and checked by an independent python-flint program, which rebuilds J; three negative controls are rejected. Together they give x^⌈4/depth⌉ ∈ I for all 51 unknowns. Also corroborated mod one inert prime: dim = 0 and the same nilpotency (`probe_modp.log`, `nilpotency_modp.log`). |
 | C3 | Layer d = 0 (E₁ in the paper) is needed: without it a₈,₁₆ is not forced | **C** | Mod one prime: dim 7, no a₈,₁₆ᵏ ∈ I for k ≤ 6 (`layer_subsets_modp.log`). |
 | C4 | Layer d = 1 (E₂) is not needed for a₈,₁₆: without it a₈,₁₆⁴ ∈ I | **C** | Mod one prime. The run without layer d = 2 did not finish in 280 s (`layer_subsets_modp.log`). |
 | C5 | Singular's liftstd certificate has coefficients up to 1630 digits; CRT reconstruction is feasible with about 690 primes below 2²⁹ | **B** | Reconstructed, then verified exactly (`verify_liftstd_cert.log`). |
-| C6 | B2.6: T(a₄) = 9a₄¹⁰ + 37200a₄⁵ + 95051008 is irreducible over Q and has no real root | **B** | SymPy factorization; irreducible mod 11 with the degree kept; Δ < 0 for the quadratic in u = a₄⁵. |
+| C6 | B2.6: T(a₄) = 9a₄¹⁰ + 37200a₄⁵ + 95051008 is irreducible over Q and has no real root | **A** for irreducibility (since 2026-10-06); **B** for no real root | Irreducibility is kernel-checked: `T5poly_irreducible` in `lean/Jacobian/B26Irred.lean`, a Kummer-tower proof. Outside Lean: SymPy factorization, and irreducible mod 11 with the degree kept. No real root: Δ < 0 for the quadratic in u = a₄⁵. |
 | C7 | B2.6: Δ = −2037996288 is the discriminant of 9u² + 37200u + 95051008 (u = a₄⁵), **not** of T | **B** | disc_a(T) is a 90-digit negative number (`b26_check.log`). |
 
 ## 7. Open items
@@ -153,7 +153,14 @@ Grades follow this project's convention: A = checked by the Lean kernel; B = exa
   - per-variable identities x = φ(x) + Σ c_k e_k for the 47 pivot unknowns;
   - the 14-dimensional reduced identity;
   - the final assembly.
-  - Cost drivers: about 17k distinct numerals (typeclass inference, about 86 ms each, so chunking as in `CondsC`) and a 24k-term expansion before reduction mod R.
+  - **Feasibility estimate (2026-10-06): `../a816_lean_feasibility/README.md`.**
+    - The staged route needs about 262,500 monomial products in the kernel, about 110 checks of at most 6,516 products each, and about 2 MB of generated data: an estimated 10–20 min of build time at ≤ 1 GB per module.
+    - Pilots of the largest identity of each layer, and of the final reduced identity, pass the Lean kernel (6–20 s each); a perturbed control is rejected.
+    - The flat identity of `a816_lift.txt` would need about 1.23 million products and, once batched to fit in memory, about 130 MB of generated Lean source.
+  - Correction (2026-10-06): this item used to name "about 17k distinct numerals (typeclass inference, about 86 ms each)" as a cost driver.
+    - The 86 ms per numeral applies to numerals in a general field, that is, to the hypotheses of the final theorem.
+    - Integer numerals inside reflected `Expr`s are cheap: one pilot holds several thousand 500-digit numerals and runs in 46 s, kernel check included.
+    - The 24k-term expansion before reduction mod R is the flat route's.
 - **Inherited premise.** The top-layer K₅ data in `a816_full.sing` is taken as given. It was audited earlier (chart audit, `audit_chart_v8_rerun.py`) and not re-derived here. Torus transport and the reduction to this K₅ point (Proposition 6.1) are upstream and not re-checked.
 - **B2.6 and B2.2.** These need the actual polynomial systems; see the reply to CAIC.
 - **Paper text (applied 2026-10-05 in `paper/branch_ab_elimination_v3.tex`: Corollary `cor:a816`, its proof, remark `rem:conditional` and the vertex-conditions paragraph).** The original suggestion was: in remark `rem:conditional`, replace "the a₈,₁₆ = 0 part is computer algebra (the exact Gröbner computation `a816_full.sing`, not Lean)" with "the a₈,₁₆ = 0 part is an explicit certificate a₈,₁₆² = Σ H_k e_k over K₅ (`a816_lift.txt`), checked exactly by Singular and python-flint; not Lean".

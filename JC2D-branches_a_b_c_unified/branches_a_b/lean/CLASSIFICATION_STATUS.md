@@ -9,7 +9,8 @@ theorem uses. The eliminant 𝒲 of degree 35 is not formalized. The cases m = 3
 separately since 2026-10-05 (`Jacobian/B26.lean`: `m3_chart_iff`, `m5_chart_iff`, in the chart
 `α₀ = α_m = β₀ = 1`). Since 2026-10-06 their exact solution counts, 3 and 10 over any algebraically
 closed field of characteristic 0, are proved as well (`Jacobian/B26Count.lean`: `m3_chart_card`,
-`m5_chart_card`). The main theorem does not use them.
+`m5_chart_card`), and so is the irreducibility of the two eliminants over ℚ (`Jacobian/B26Irred.lean`:
+`T3poly_irreducible`, `T5poly_irreducible`). The main theorem does not use them.
 
 ```lean
 theorem chartClassification_holds (L : Type*) [Field L] [CharZero L] : ChartClassification L

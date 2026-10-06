@@ -1,0 +1,16 @@
+layer 3: rank 17 free depth-1 unknowns (tau): ['b_11_20', 'b_12_22']
+layer 3: identically vanishing combinations: 1
+layer 2: rank 18 free depth-2 unknowns (sigma): ['a_8_16', 'b_11_21']
+layer 2: left-kernel combinations: 1
+layer 1: rank 12 (all depth-3 unknowns are pivots); left-kernel combinations: 7
+reduced system: 25 of 75 generators have phi(g) != 0 in K5[b_11_20, b_12_22, a_8_16, b_11_21]  (46.6s)
+depth-4 part of K5[tau, sigma]: 14 monomials; candidate products m * phi(g_k): 32
+rank of the depth-4 products: 14 of 14 monomials; phi(a_8_16)^2 lies in their span
+reduced certificate: phi(a)^2 = sum h'_k phi(g_k) with 9 nonzero h'_k; max height 363 digits
+FULL IDENTITY a_8_16^2 = sum_k H_k g_k: HOLDS; 56 nonzero cofactors, 3462 terms, max coefficient height 493 digits (76.8s)
+wrote structured_cert.json (Rabinowitsch form, 76 rows) and structured_reduced.json
+structured_cert.py ran in 78s
+47 pivot certificates x - phi(x) = sum_k D_x[k] e_k: all hold; 15014 cofactor terms
+14 monomial certificates m = sum_k H_m[k] e_k (all depth-4 monomials in ['b_11_20', 'b_12_22', 'a_8_16', 'b_11_21']): all hold; 36599 cofactor terms, heights up to 493 digits
+wrote 61 files (140.4 MB) and MANIFEST.sha256 in 422s
+the 61 certificate files are byte-identical to logs/MANIFEST.sha256
