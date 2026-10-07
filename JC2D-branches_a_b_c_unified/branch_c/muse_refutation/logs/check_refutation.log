@@ -1,0 +1,8 @@
+check_refutation.sh, 2026-10-06T22:40:29Z
+project: /home/claude/build/jacobian_lean (leanprover/lean4:v4.34.0; mathlib rev 5ed2965256430c3649e86755f9576b54eca72435)
+== RefuteReductionLemma.lean: exit 0, 0 error(s), 0 warning(s)
+   'reduction_lemma_proves_false' depends on axioms: [propext, reduction_lemma, Classical.choice, Quot.sound]
+   PASS: clean build, axioms as expected
+== ../bundle_v3_1/muse_refutation/RefuteReductionLemma.lean: exit 1, 1 error(s), 4 warning(s)
+../bundle_v3_1/muse_refutation/RefuteReductionLemma.lean:34:68: error(lean.unknownIdentifier): Unknown identifier `eval_one`
+   'reduction_lemma_proves_false' depends on axioms: [propext, reduction_lemma, Classical.choice, Quot.sound]

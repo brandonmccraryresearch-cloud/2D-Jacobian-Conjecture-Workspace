@@ -25,6 +25,9 @@ in one directory.
   (v3.1 verdict, GUIDE.md §1). In Lean, with no `sorry` and only the standard axioms:
   `ChartEmptyC_T1ne0 → ChartEmptyC → DescentClaimC → ¬∃ P Q λ, λ ≠ 0 ∧ NewtonNFc P Q ∧ [P,Q] = λx²`.
   Outside Lean (grade B): `ChartEmptyC` via the rank lemma + finite-field ranks at two primes.
+  Since 2026-10-06, `branch_c/rank_lemma_check/` checks the premises: R is irreducible, and the generators are
+  exactly the Lean conditions. The Lean kernel also checks the arithmetic, through an explicit inverse of the pivot
+  block. The grade stays B, because the link from that arithmetic to `ChartEmptyC_T1ne0` is not in Lean.
 - Neither branch resolves the Jacobian conjecture; GGHV Prop. 4.3's other cases and the
   reduction to it are outside scope.
 
@@ -32,3 +35,9 @@ in one directory.
 
 - `TODO_correspondence_guide.md` — the branch-(c) correspondence guide is created
   **only after** the finalized paper is drafted (conditional to-do, not started).
+- Branch (c), grade A for `ChartEmptyC_T1ne0` (plan A1–A5, about 9–15 sessions): deferred by decision on 2026-10-06.
+  The outside replication (I3) is specified in `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md` and is still open.
+  See `TECHNICAL_MAP.md` §9.
+- Closed on 2026-10-06:
+  - the p-adic argument (not needed);
+  - the Muse `char0_cert` bundle (withdrawn, superseded by v3; `branch_c/muse_refutation/`).

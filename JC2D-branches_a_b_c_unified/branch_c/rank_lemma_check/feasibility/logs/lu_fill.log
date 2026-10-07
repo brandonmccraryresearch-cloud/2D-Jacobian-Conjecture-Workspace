@@ -1,0 +1,7 @@
+rank 3199 of 3199 rows; 3199 pivot columns (14.5 s)
+pivot block (3199, 3199), nnz 105807; an explicit inverse has 10233601 entries and costs 338476593 multiply-adds to check entry by entry
+NATURAL       : nnz(L)   3581540  nnz(U)   3894159  total   7475699  check cost   5948013547 multiply-adds  (3.7 s)
+COLAMD        : nnz(L)   1866396  nnz(U)   2239105  total   4105501  check cost   1941007261 multiply-adds  (0.7 s)
+MMD_AT_PLUS_A : nnz(L)   2956018  nnz(U)   4144081  total   7100099  check cost   5111326981 multiply-adds  (3.3 s)
+MMD_ATA       : nnz(L)   1952310  nnz(U)   2256238  total   4208548  check cost   1959738191 multiply-adds  (0.7 s)
+lu_fill: exit 0, wall 23.4 s, cpu 23.6 s, max RSS 545 MB

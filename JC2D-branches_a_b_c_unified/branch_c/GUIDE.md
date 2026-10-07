@@ -7,10 +7,22 @@ Since v3.0, every Lean module has been built with `lake`, the full `verify_branc
 negative controls ran. §1.3 lists every module and its evidence. §13 records what changed after v3.0, including a
 bug in `Bridge.lean` that was found and fixed.
 
+**Maintained copy (2026-10-06).** This file and `branch_c/paper/BRANCH_C_GUIDE.md` are now the maintained copies of
+the guide. `branch_c/bundle_v3_1/GUIDE.md` keeps the v3.1 text byte for byte.
+- **Sections changed on 2026-10-06:**
+  - §1.1, §3 step 4, §5.9, §6, §7, §8, §11 and §12: the new checks in `branch_c/rank_lemma_check/`;
+  - §4.4: the p-adic argument is closed as not needed;
+  - §0, §1.2 and §4.5: the Muse bundle is withdrawn.
+- **Three corrected lines** (the Authorization paragraph below, §4.1 and §11 item 5) had said that the v2
+  corrected-commit proposal was not applied. It had been applied, as `2b77cd4` on 2026-09-29
+  (`branch_c/BUILD_STATUS.md`).
+- **Paths.** Paths in this guide are relative to the bundle root unless they begin with `branch_c/`.
+
 **Authorization.**
 - Nothing in this bundle has been pushed, committed, published, uploaded, deposited or minted. `branch_c/` is
   untouched.
-- The corrected-commit proposal from v2 is still **not applied**.
+- The corrected-commit proposal from v2 is still **not applied**. *Corrected 2026-10-06: it had been applied to repo
+  main as `2b77cd4` on 2026-09-29.*
 - Doing any of that requires Brandon's explicit word.
 
 **Scope.**
@@ -50,7 +62,7 @@ bug in `Bridge.lean` that was found and fixed.
 | `logs/` | Every log of this session's work (§9). |
 | `diag/` | The diagnostics tools: `procmon.py`, `guardrun.py`, `leanprof.sh`. |
 | `profiling/` | The Lean profiler runs and the small test files behind them. |
-| `muse_refutation/` | A Lean file showing that the `reduction_lemma` axiom of the Muse `char0_cert` bundle proves `False` (§4.5). The bundle's review is deferred. |
+| `muse_refutation/` | A Lean file showing that the `reduction_lemma` axiom of the Muse `char0_cert` bundle proves `False` (§4.5). The bundle is withdrawn (2026-10-06). A copy of the file that builds cleanly, together with the withdrawal notice, is in `branch_c/muse_refutation/`. |
 | `v2_carryover/` | v2's `branch_c_audit/`, `corrected_commit_proposal/`, `controls/`, `checks/`, unchanged. |
 
 ---
@@ -65,7 +77,7 @@ bug in `Bridge.lean` that was found and fixed.
 | 2 | `DescentClaimC`'s hypotheses imply lower_c's twelve conditions: the E₄…E₋₂ eliminations, i.e. `DescentClaimC ⇐ ChartEmptyC`. | Lean, kernel reflection (`Descent2R`, `Bridge`); **built**, axioms audited | **A** |
 | 3 | On the stratum b₁₁,₂₀ = 0 the conditions have no common zero (`chartEmpty_t1_zero`). | Lean kernel (`T1Zero`); **built**, axioms audited, 5 negative controls fail as required | **A** |
 | 4 | `ChartEmptyC ⇐ ChartEmptyC_T1ne0` | Lean (`Combine`); **built**, axioms audited | **A** |
-| 5 | The conditions have no common zero on the whole chart. This is `ChartEmptyC`, hence also `ChartEmptyC_T1ne0`. | Outside Lean. The rank lemma plus exact finite-field ranks at two primes, with two implementations, controls and exact input checks (§5.9). | **B** |
+| 5 | The conditions have no common zero on the whole chart. This is `ChartEmptyC`, hence also `ChartEmptyC_T1ne0`. | Outside Lean. The rank lemma plus exact finite-field ranks at two primes, with two implementations, controls and exact input checks (§5.9). Since 2026-10-06 there are three further checks (`branch_c/rank_lemma_check/`): an explicit inverse of the pivot block, checked by the Lean kernel (the arithmetic only); the generators matched exactly to the Lean conditions; and R irreducible. | **B** |
 | 6 | A canonical K₅ certificate for the whole chart is too large to build here. | Rigorous Hadamard bound; an extrapolated height estimate. | **C** (the estimate) |
 
 **Net.** Lean proves the following. All modules are built, the full verification script passes, and `#print axioms`
@@ -79,6 +91,10 @@ So branch (c) is closed **under the computational premises of §5.9**. They are 
 reproduced by two implementations at two primes, but they are not machine-checked in Lean. Branch (c) is not closed
 by Lean alone.
 
+Since 2026-10-06, the Lean kernel also checks the arithmetic of one of these computations: an explicit inverse of the
+pivot block modulo 32003. It does not check the link from that arithmetic to `ChartEmptyC_T1ne0`. That link is
+plan A1–A5, which is deferred (§11).
+
 ### 1.2 What is *not* claimed
 
 - Not the Jacobian conjecture, nor any other case of GGHV Prop. 4.3, nor the reduction to it.
@@ -87,7 +103,8 @@ by Lean alone.
 - The mod-p *Gröbner / lift* certificates are certificates, not proofs: 𝔽₁₀₁, 𝔽₁₀₀₀₀₀₃, 𝔽_{109⁵}. They exclude only
   solutions integral at that prime. The *rank* argument is what lifts: full row rank is an open condition. This
   distinction is essential; see §5.9.
-- Not a review of the Muse bundle or of the p-adic argument; both are deferred, as you asked.
+- Not a review of the Muse bundle or of the p-adic argument. Since 2026-10-06 the Muse bundle is withdrawn (§4.5), and
+  the p-adic argument is closed as not needed (§4.4).
 
 ### 1.3 State of every Lean module (v3.1, verified 23:28–23:36 CDT)
 
@@ -284,6 +301,7 @@ Grade C for the estimate; the Hadamard bound itself is rigorous.
 | 4a | the t₁ = 0 certificate, exactly over K₅ (step 1) | `step1/check_certB_lowerc.py` | `logs/run_step1.log` |
 | 4b | the whole chart: full row rank of the W = 24 Macaulay matrix mod p at p = 1000003 and 32003. FLINT `nmod_mat` and an independent numpy elimination agree, so a K₅ certificate exists (lemma, §5.9). | `step3b_rank_lift.py` | `step3b_rank_lift.log` |
 | 4c | the chart generators are the right polynomials: exact evaluation at 12 random points; an independent κ; exact Ω square; controls | `step3c_chart_identity.py` | `step3c_chart_identity.log` |
+| 4d | added 2026-10-06. (i) The generators are positive integer multiples of the Lean conditions of `CondsC.lean`, checked exactly from the Lean text. (ii) R is irreducible. (iii) An explicit inverse of the W = 24 pivot block mod 32003 is checked by the Lean kernel: 6398 identities, axioms `[propext]`, 5 controls rejected. (iii) checks the arithmetic, not the link to `ChartEmptyC_T1ne0`. | `branch_c/rank_lemma_check/` | `branch_c/rank_lemma_check/logs/` |
 
 ### Step 5: check in Lean, or label (done for t₁ = 0; the remainder labelled precisely)
 
@@ -305,7 +323,7 @@ Grade C for the estimate; the Hadamard bound itself is rigorous.
 | P4 `DescentClaimC` stated, not proved, with `main_theorem_c_of_claim` | now reduced in Lean to `ChartEmptyC` (B4–B5), then to `ChartEmptyC_T1ne0` (B6–B7). That statement is proved outside Lean (B8). |
 | v2 §4 "Evidence for DescentClaimC (not a proof)" | superseded by B8, a proof at grade B. The evidence items remain valid as evidence. |
 | v2 `Bridge.lean` docstring: "proved outside Lean" | **Corrected.** When v2 was written that phrase overstated the evidence (modular certificates plus the exact slice). |
-| v2 finding: the pipeline's E₁ solve drops terms, and other `branch_c/` findings | unchanged; the corrected-commit proposal is in `v2_carryover/`, **not applied** |
+| v2 finding: the pipeline's E₁ solve drops terms, and other `branch_c/` findings | unchanged; the corrected-commit proposal is in `v2_carryover/`, **not applied**. *Corrected 2026-10-06: it had been applied to repo main as `2b77cd4` on 2026-09-29 (`branch_c/BUILD_STATUS.md`).* |
 
 The tactic-based first attempt at step 2 (`certgen_c/gen_lean_c2.py`) was abandoned: 214 MB of source, chunks over
 10 min. It is kept for the record; its output was deleted.
@@ -332,25 +350,43 @@ adds two things to reflection, both in `T1Zero/Defs.lean`:
 - The v3 proof uses only lower_c's conditions, and those are derived in Lean (B5).
 - The pipeline's ⟨1⟩ results remain consistent with v3: the same supports, the same modular outcomes.
 
-### 4.4 The single-prime p-adic argument (deferred)
+### 4.4 The single-prime p-adic argument (closed: not needed)
 
-`jacobian_lean/chart_certificates/padic_DEFERRED/` contains `SINGLE_PRIME_ARGUMENT.md`, certificates and checkers,
-as they were left. At your request it was **not reviewed further**. The v3 conclusion does **not** use it: B8 needs
-only the rank lemma. §11 lists it as an open review item.
+**Status (2026-10-06): closed: not needed (independent alternative, unreviewed, unused).**
+- **The folder.** `jacobian_lean/chart_certificates/padic_DEFERRED/` contains `SINGLE_PRIME_ARGUMENT.md`,
+  certificates and checkers, as they were left. It is part of the byte-for-byte bundle copy and stays unchanged.
+- **Not used.** The v3 conclusion does **not** use it: B8 needs only the rank lemma. No script, Lean module or paper
+  depends on it.
+- **Not cited.** It is kept as an independent alternative argument for the same chart statement. It has not been
+  reviewed, and it is not cited as evidence.
+- **If it is ever cited,** it needs a review first: the inputs E1–E4 and P0–P3, then its four steps (about 1–2
+  sessions).
+- **Out of date.** Its §6 ("Status of `DescentClaimC`") predates v3. It lists the E₀–E₋₂ elimination as a premise
+  outside Lean, but that elimination is now kernel-checked (`Descent2R`, `Bridge`, B5). It also says the argument
+  is "under independent review", which it is not.
 
-### 4.5 The Muse `char0_cert` bundle (deferred)
+### 4.5 The Muse `char0_cert` bundle (withdrawn; superseded by v3)
 
-- `muse_refutation/RefuteReductionLemma.lean` copies the bundle's axiom `reduction_lemma` verbatim and derives
-  `False`:
+**Status (2026-10-06): withdrawn, superseded by v3.** The bundle is neither fixed nor reviewed further. A true
+replacement for its axiom needs a rank hypothesis, and that is v3's rank lemma (§5.9). The bundle's contents stay
+unchanged, for provenance.
+- **The withdrawal notice** is `branch_c/muse_refutation/DEPRECATED_char0_cert.md`. It goes, as `DEPRECATED.md`,
+  into every stored copy of the bundle; the original is `~/workspace/char0_cert/`.
+- **The refutation.** `muse_refutation/RefuteReductionLemma.lean` copies the bundle's axiom `reduction_lemma`
+  verbatim and derives `False`:
   - F = 1 + 109·X generates the unit ideal mod 109;
   - F vanishes at X = −1/109 over ℚ.
-- Compiled earlier today: `reduction_lemma_proves_false : False` depends on `[propext, reduction_lemma,
+- **Compiled on 2026-09-29:** `reduction_lemma_proves_false : False` depends on `[propext, reduction_lemma,
   Classical.choice, Quot.sound]`.
-- Every theorem of that bundle that uses the axiom is therefore vacuous.
-- The bundle's data (`chart_conds_simple.json`) are K₅-multiples of lower_c's chart conditions, and its κ agrees.
-- A full review is deferred, as you asked.
-- v3 contains a *correct* version of the idea behind that axiom (§5.9). The difference is exactly what the
-  counterexample exposes:
+- **The same file under Lean 4.34.0 and Mathlib v4.34.0.** It reports one recovered error, the unknown identifier
+  `eval_one` in a `simp only` list, and exits 1. The theorem is still accepted without `sorryAx`.
+- **A clean copy.** A copy with that one line fixed builds cleanly, with the same axioms
+  (`branch_c/muse_refutation/`, 2026-10-06).
+- **Consequence.** Every theorem of that bundle that uses the axiom is therefore vacuous.
+- **The bundle's data.** `chart_conds_simple.json` holds K₅-multiples of lower_c's chart conditions, and its κ
+  agrees.
+- **What v3 does instead.** v3 contains a *correct* version of the idea behind that axiom (§5.9). The difference is
+  exactly what the counterexample exposes:
   - the axiom lets a unit ideal mod p lift to ℚ with no hypothesis;
   - the rank lemma lifts only full row rank of a fixed-degree Macaulay matrix. That property is open, which is why
   it survives.
@@ -512,6 +548,25 @@ the field K₅. ∎
 | numpy elimination of the pivot block (independent code) | det ≠ 0 | det ≠ 0 |
 | planted common zero, W = 24 (control) | rank 3198, inconsistent | same |
 
+**Further checks (2026-10-06, `branch_c/rank_lemma_check/`, `run.sh`, about 4.5 min).** They leave C5 at grade B.
+
+- **H3.** R is irreducible over ℚ. The lemma uses this twice: det M_S ≠ 0 makes M_S invertible over the field K₅,
+  and K₅ → L is injective, which gives o₁(w) ≠ 0 (o₁ is not rational). Three arguments: FLINT factorization;
+  irreducibility mod 67; the degree patterns (2,3) mod 5 and (1,4) mod 23.
+- **H6.** The generators of the rank computation are the Lean conditions. `CondsC.lean`, parsed from its own text
+  and expanded exactly, equals λₙ · `conds_c.json`[n] for all twelve conditions, with λₙ a positive integer. On the
+  Lean side, Ω = o₁(S₂ − κT₂²)² holds exactly. The same holds modulo both primes at 20 random points.
+- **The kernel check.** The arithmetic of the W = 24 instance at p = 32003 is checked by the Lean kernel.
+  - **Certificate.** An explicit inverse C of the pivot block M_S.
+  - **Encoding.** Each column of C is one natural number with 3199 slots of 40 bits.
+  - **Theorems.** 6398 `decide +kernel` theorems: one slot bound per column of C, and one identity
+    Σ vₜ · Cpk_iₜ = p·Q + 2⁴⁰ʲ, with small slots of Q, per column j of M_S. Axioms: `[propext]` only.
+  - **Controls.** Five are rejected.
+  - **Meaning.** The digit argument (no slot carries) turns the identities into C·M_S ≡ I (mod p). It is on paper:
+    step A1 of the deferred plan (§11).
+- **Shared construction.** Every internal check of C5, the kernel check included, shares one construction of the
+  matrix. An outside replication (I3) is specified in `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`.
+
 **Why the Muse axiom fails and this lemma does not.**
 - A unit ideal mod p says only that the Macaulay system is *consistent* mod p. Consistency does not lift: 1 + pX
   over ℤ_(p).
@@ -526,7 +581,7 @@ the field K₅. ∎
 |---|---|---|
 | Lean statements B0–B7 | the Lean 4.34.0 kernel; Mathlib v4.34.0; axioms `propext`, `Classical.choice`, `Quot.sound` | `#print axioms` (`AxiomsAuditBranchC.lean`, 53 theorems, passed); `grep`: no `sorry`, `axiom` or `native_decide` |
 | That the Lean statements formalize GGHV Prop. 4.3 case (1), branch (c) | the repository's formalization of the case analysis | human reading of `DescentClaim.lean`, `NewtonNFc`; not re-derived here |
-| B8 | the rank lemma (proof in §5.9); FLINT `nmod_mat.rank`/`rref`; our numpy elimination; Python/FLINT exact K₅ arithmetic for the chart generators | two primes; two rank implementations; three independent input checks (§3 step 4c); controls (§7) |
+| B8 | the rank lemma (proof in §5.9); FLINT `nmod_mat.rank`/`rref`; our numpy elimination; Python/FLINT exact K₅ arithmetic for the chart generators | two primes; two rank implementations, on one shared matrix construction; three independent input checks (§3 step 4c); controls (§7). Since 2026-10-06 (§3 step 4d): the generators matched exactly to `CondsC.lean`; R irreducible; an explicit inverse checked by the Lean kernel. |
 | conds_c.json = the conditions DescentClaimC implies | nothing: Lean derives them (B5, built) | the generator also asserted term-by-term equality |
 | Step 3 estimate | calibration on three slice sizes | labelled grade C; not used by any conclusion |
 
@@ -543,6 +598,8 @@ the field K₅. ∎
 | step 4c: κ + 1 | detected | detected | `step3c_chart_identity.log` |
 | step 4c: independent κ | equal | equal | same |
 | T1Zero: Bezout constant + 1; eT1 dropped; a cofactor coefficient + 1; DD + 1; eT2 dropped | 5 kernel failures | 5 × "Tactic `decide` failed": ALL FAIL AS REQUIRED | `logs/t1z_controls.log` |
+| step 4d (2026-10-06): kernel check of the inverse. Changes: one entry of C + 1; a coefficient + 1; the column index + 1; a term dropped; a slot overflow | 5 kernel failures; the unchanged statement passes | 5 × `(kernel) application type mismatch`; the positive control passes with `[propext]` | `branch_c/rank_lemma_check/logs/check_logs.log` |
+| step 4d: generators vs `CondsC.lean`. Changes: one numeral of `cond_Psi` + 1; κ + 1 (exact); S₂ = κ + 1 (mod p) | rejected | rejected | `branch_c/rank_lemma_check/logs/exact_lean_vs_json.log`, `compare_lean_conds_*.log` |
 | the Muse axiom | `False` derivable | derived | §4.5 |
 | v2 Lean controls | fail | fail | `v2_carryover/controls/` |
 
@@ -560,10 +617,13 @@ explicit premises; C heuristic or fitted; D tautological or refuted. Independenc
 | C2 | `descentClaimC_of_chartEmpty` | formal | Lean kernel, reflective; 600 identities pre-checked in Python | A | kernel-checked |
 | C3 | `chartEmpty_t1_zero` | formal | Lean kernel; certificate from step 1 (FLINT), rechecked independently in Python; 5 controls | A | kernel-checked |
 | C4 | `chartEmptyC_of_T1ne0` | formal | Lean | A | kernel-checked |
-| C5 | `ChartEmptyC` holds (all char-0 L) | derived | rank lemma + two-prime, two-implementation ranks + input checks | **B** | I1 |
+| C5 | `ChartEmptyC` holds (all char-0 L) | derived | rank lemma + two-prime, two-implementation ranks + input checks; since 2026-10-06 also C9–C11 | **B** | I1 |
 | C6 | the canonical certificate needs about 2 × 10⁹ digits | descriptive estimate | Hadamard bound (rigorous) × calibrated ratio (fitted, 3 points) | **C** | I0 |
-| C7 | The Muse `reduction_lemma` is inconsistent | formal | Lean counterexample | A | kernel-checked |
+| C7 | The Muse `reduction_lemma` is inconsistent | formal | Lean counterexample (the bundle copy exits 1 under Lean 4.34.0 / Mathlib v4.34.0 because of one recovered error; the clean copy in `branch_c/muse_refutation/` builds with the same axioms) | A | kernel-checked |
 | C8 | `lower_c`'s ideal differs from the pipeline's in coordinates | descriptive | exact comparison | A (for what is compared) | I1 |
+| C9 | 6398 packed natural-number identities hold, which say C·M_S ≡ I (mod 32003) for the W = 24 pivot block | formal (identities) / derived (meaning) | Lean kernel, axioms `[propext]`; 5 controls; meaning by the digit argument (§5.9) | A (identities); B (meaning) | kernel-checked; the matrix construction is shared (I1) |
+| C10 | the rank computation's generators are positive integer multiples of the Lean conditions `cond_*` | descriptive | exact comparison, parsed from `CondsC.lean`; two controls | B | I1 |
+| C11 | R is irreducible over ℚ | derived | FLINT factorization; irreducible mod 67; degree patterns mod 5 and 23 | B | I1 |
 
 Verbs follow HLRE control:
 - **"proves"** only for Lean-checked or exact deductions;
@@ -587,6 +647,13 @@ Reviewer's assessment, as you asked:
 - **Its instance (C5)** is exactly as strong as the two finite-field rank computations and the chart-generator
   checks. They are independent of each other, but none is in Lean. That is the one place a hostile referee can
   still press, and the answer is an I3 replication (§11).
+  - *Corrected 2026-10-06.* The two elimination engines are independent, but they share one construction of the
+    matrix.
+  - The kernel check of an explicit inverse (C9) adds a third, machine-checked view of the arithmetic, on the same
+    matrix.
+  - C10 ties the generators exactly to the Lean conditions.
+  - What only an outside party can provide is an independent construction of the matrix (I3). It is specified in
+    `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`.
 
 ---
 
@@ -650,12 +717,25 @@ Reviewer's assessment, as you asked:
 1. ~~Finish the build, audit, controls, verification.~~ **Done in v3.1** (§1.3).
 2. **I3 replication of C5.** Someone else computes the rank of the W = 24 Macaulay matrix mod 1000003 (or any good
    prime) in Magma, Sage or Singular. Rebuild the matrix from `conds_c.json` and κ with their own code.
+   - **2026-10-06: specification written** (`branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`); awaiting an outside
+     party.
 3. Optional: formalize the rank lemma's instance in Lean.
    - The lemma is `RingHom.map_det`.
    - The instance needs the 3199 × 6054 matrix as Lean data and either kernel `decide` (likely hours or more) or
      `native_decide`, which trusts the compiler.
-4. Deferred reviews: the single-prime p-adic argument (§4.4); the Muse bundle (§4.5).
-5. The v2 corrected-commit proposal for `branch_c/`: apply only on Brandon's explicit word.
+   - **Superseded 2026-10-06; deferred by decision.**
+     - **Measured.** The arithmetic core passes the kernel in about 7 CPU-minutes, without `native_decide`
+       (`branch_c/rank_lemma_check/`): an explicit inverse of the pivot block, packed into natural numbers.
+     - **Remaining** (estimated at 9–15 sessions):
+       - A1: the digit argument;
+       - A2: the matrix built in Lean from `CondsC.lean`;
+       - A3: the determinant transfer through ℤ[X]/(R), with R irreducible, in Lean;
+       - A4: the chart reduction S₂ = κ;
+       - A5: integration.
+4. ~~Deferred reviews: the single-prime p-adic argument (§4.4); the Muse bundle (§4.5).~~ **Closed 2026-10-06:** the
+   p-adic argument is not needed (§4.4), and the Muse bundle is withdrawn, superseded by v3 (§4.5).
+5. The v2 corrected-commit proposal for `branch_c/`: apply only on Brandon's explicit word. *Corrected 2026-10-06: it
+   had been applied to repo main as `2b77cd4` on 2026-09-29 (`branch_c/BUILD_STATUS.md`).*
 6. Cosmetic: `CondsC.lean` triggers unused-variable linter warnings; some subtree definitions do not mention all
    eight parameters. The next regeneration can add `set_option linter.unusedVariables false`. That costs a rebuild
    of `Descent2R.Main` (38 min).
@@ -687,6 +767,11 @@ python3 step3_hadamard.py; python3 step3_hadamard_full.py
 cd ../certgen_c
 WRITE=1 python3 gen_refl_c.py && python3 gen_bridge_c.py && python3 gen_conds_c.py \
   && python3 gen_t1zero_lean.py && python3 gen_t1zero_combine.py
+
+# Added 2026-10-06, run from branch_c/ (outside the bundle)
+bash rank_lemma_check/run.sh                        # H3, H6, the kernel check of the inverse, controls; about 4.5 min
+bash rank_lemma_check/feasibility/run_feasibility.sh   # why packed: kernel micro-benchmarks, LU fill; about 1 min
+bash muse_refutation/check_refutation.sh            # the refutation, clean copy; needs Mathlib v4.34.0
 ```
 
 Memory: see §10.2. Build strictly one Lean process at a time on machines under about 8 GB, or under a memory cgroup.

@@ -13,7 +13,7 @@ modular certificates, finite-field rank computations).
 | branch-(a,b) component | branch-(c) location | Notes |
 |---|---|---|
 | `paper/` (.tex/.pdf) | `paper/branch_c_elimination.tex` / `paper/branch_c_elimination.pdf` | The 16-page elimination paper (2026-09-30), in the branch-(a,b) paper format exactly; `paper/BRANCH_C_GUIDE.md` remains the comprehensive v3.1 reference. |
-| `scripts/` | `bundle_v3_1/jacobian_lean/certgen_c/`, `bundle_v3_1/jacobian_lean/chart_certificates/` | Generators (exact, python-flint) and certificate/rank scripts. Kept inside `jacobian_lean/` because `verify_branch_c_lean.sh` requires `certgen_c/`, `chart_certificates/` and `Jacobian/` as siblings. |
+| `scripts/` | `bundle_v3_1/jacobian_lean/certgen_c/`, `bundle_v3_1/jacobian_lean/chart_certificates/`; since 2026-10-06 also `rank_lemma_check/` | Generators (exact, python-flint) and certificate/rank scripts. Kept inside `jacobian_lean/` because `verify_branch_c_lean.sh` requires `certgen_c/`, `chart_certificates/` and `Jacobian/` as siblings. `rank_lemma_check/` sits outside the bundle and only reads it. |
 | `lean/` | `bundle_v3_1/jacobian_lean/Jacobian/BranchC/` | v1/v2 modules, `Descent2R` (505 generated modules), `T1Zero`, `Combine`, `Bridge`, `CondsC` |
 | `audits/` | `bundle_v3_1/jacobian_lean/axioms_branch_c.log`, `bundle_v3_1/v2_carryover/branch_c_audit/` | Axiom audit (53 theorems) + v2 audit carryover |
 | `correspondence_guide/` | **deferred** | See `../TODO_correspondence_guide.md`: created only after the finalized paper is drafted. |
@@ -31,6 +31,17 @@ log, the diagnostics, the `muse_refutation/` note, and the `v2_carryover/`. It i
 intact because `verify_branch_c_lean.sh` depends on the internal relative layout
 (`certgen_c/`, `chart_certificates/`, `Jacobian/` as siblings under `jacobian_lean/`).
 
+## Additions outside the bundle (2026-10-06)
+
+| Path | What |
+|---|---|
+| `rank_lemma_check/` | Checks of the rank lemma's instance (claim C5). (1) R is irreducible. (2) The generators equal the Lean conditions of `CondsC.lean`, exactly, up to positive integer factors. (3) An explicit inverse of the W = 24 pivot block mod 32003 is checked by the Lean kernel: 6398 identities, axioms `[propext]`, 5 controls. Also an I3 replication specification and `feasibility/`. `run.sh` takes about 4.5 min. C5 stays at grade B. |
+| `muse_refutation/` | The Muse `char0_cert` bundle is withdrawn: its notice is `DEPRECATED_char0_cert.md`. A copy of the refutation builds cleanly; the bundle's copy reports one recovered error under Lean 4.34.0 and Mathlib v4.34.0. |
+| `GUIDE.md`, `paper/BRANCH_C_GUIDE.md` | Now the maintained copies of the guide, updated on 2026-10-06 (their header lists the sections). `bundle_v3_1/GUIDE.md` keeps the v3.1 text. `README.txt` and `PARTS.txt` stay byte copies of the bundle's. |
+
+The p-adic argument (`bundle_v3_1/jacobian_lean/chart_certificates/padic_DEFERRED/`) is closed as not needed. It is
+an independent alternative, unreviewed and unused; see `GUIDE.md` §4.4.
+
 ## Verdict (v3.1, 2026-09-29)
 
 - In Lean (no `sorry`, only `propext`, `Classical.choice`, `Quot.sound`):
@@ -39,6 +50,8 @@ intact because `verify_branch_c_lean.sh` depends on the internal relative layout
   what Lean does not check.
 - Outside Lean (grade B): `ChartEmptyC` follows from the rank lemma plus full row rank
   of the W = 24 Macaulay matrix mod 1000003 and mod 32003 (two implementations, controls).
+  Since 2026-10-06 there are also the premise checks of `rank_lemma_check/` and a kernel check of the arithmetic.
+  The grade is unchanged.
 - Branch (c) is therefore closed **under stated computational premises not machine-checked
   in Lean**. It is not closed by Lean alone. See `GUIDE.md` §1 for the full verdict.
 
@@ -47,6 +60,8 @@ intact because `verify_branch_c_lean.sh` depends on the internal relative layout
 ```bash
 cd branch_c
 bash verify_branch_c.sh   # delegates to bundle_v3_1/jacobian_lean/verify_branch_c_lean.sh
+bash rank_lemma_check/run.sh              # 2026-10-06: about 4.5 min; core Lean 4.34.0 only, python-flint, numpy
+bash muse_refutation/check_refutation.sh  # 2026-10-06: needs Mathlib v4.34.0 (e.g. ../branches_a_b/lean)
 ```
 
 Requirements: elan/lake (Lean 4.34.0, Mathlib v4.34.0), python3 with python-flint and sympy.
