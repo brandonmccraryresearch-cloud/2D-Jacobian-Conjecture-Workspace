@@ -22,6 +22,8 @@ contents:
 
 The 2026-10-05 revision adds the a₈,₁₆ certificate, the Lean m = 3, 5
 classifications and the B2.2 resolution. See `CHANGES_v19.md` §15.
+The 2026-10-07 revision adds the Lean proof of Corollary 1.2 (a₈,₁₆ = 0) and
+Remark 8.8 (lower-edge rigidity), `lean/Jacobian/A816/`. See `CHANGES_v19.md` §16.
 
 Elimination of GGHV normal form (2) [branch (a,b)] in the degree-(8,28) case of the
 two-dimensional Jacobian conjecture, with a Lean 4 machine-checked proof of the
@@ -39,6 +41,11 @@ proves, independently of GGHV Proposition 4.3:
   `Classical.choice`, `Quot.sound`.
 - `main_theorem`: the NewtonNF2 form of Theorem 1.1 with no remaining hypothesis,
   kernel-checked on the standard axioms only.
+- `lower_edge_rigidity` (2026-10-07): under the hypotheses of Theorem 1.1, every
+  coefficient of P and Q off the top edges vanishes except the constant terms, so
+  a₈,₁₆ = 0 (`a816_eq_zero`, Corollary 1.2) and P = P₂ + const, Q = Q₃ + const
+  (Remark 8.8); `main_theorem_lower_edge` refutes NewtonNF2 through the vertex
+  (8,16) alone. Same three axioms.
 
 Conditional on GGHV Proposition 4.3, this eliminates branch (a,b). Branch (c)
 (normal form (1)) is **not** addressed and remains open, as does the full
@@ -52,10 +59,11 @@ planar Jacobian conjecture.
 | `lean/Jacobian/ChartProof/` | The 12-module machine-checked proof (Reflect + 11 generated modules, 111 identities) |
 | `lean/certgen/chartproof/` | Exact generators (Python/SymPy/python-flint) + independent check scripts |
 | `lean/Jacobian/B26.lean`, `lean/Jacobian/B26/`, `lean/Jacobian/B26Count.lean`, `lean/Jacobian/B26Irred.lean` | (2026-10-05/06) Kernel-checked $m=3$ and $m=5$ top-layer chart classifications over any field of characteristic 0 (`m3_chart_iff`, `m5_chart_iff`, squarefree eliminants), the exact solution counts 3 and 10 over any algebraically closed field of characteristic 0 (`m3_chart_card`, `m5_chart_card`), and the irreducibility of the eliminants over $\mathbb{Q}$ (`T3poly_irreducible`, `T5poly_irreducible`); standard axioms only |
-| `paper/` | 33-page paper (XeLaTeX, TeX Live 2026), four certificates, explicit 35-minor and transfer arguments |
+| `lean/Jacobian/A816/` | (2026-10-07) Kernel-checked lower-edge rigidity: `lower_edge_rigidity`, `a816_eq_zero` (Corollary 1.2), `main_theorem_lower_edge`; generator `lean/certgen/gen_a816.py`, statement check `lean/certgen/check_a816_statement.py`, controls `lean/controls_a816.sh` |
+| `paper/` | 34-page paper (XeLaTeX, TeX Live 2026), four certificates, explicit 35-minor and transfer arguments |
 | `scripts/` | Audit and analysis scripts |
 | `scripts/a816_certificate/` | (2026-10-05) Explicit certificate $a_{8,16}^2=\sum H_k e_k$ over $K_5$ for Corollary 1.2, two independent exact checkers, controls; `./verify_bundle.sh` |
-| `scripts/a816_lean_feasibility/` | (2026-10-06) Feasibility estimate for checking that certificate in the Lean kernel: exact sizes, pilots that pass the kernel, a calibration; not part of the Lean build; `bash run_all.sh` |
+| `scripts/a816_lean_feasibility/` | (2026-10-06) Feasibility estimate for checking that certificate in the Lean kernel: exact sizes, pilots that pass the kernel, a calibration; not part of the Lean build; `bash run_all.sh`. Corollary 1.2 itself was formalized on 2026-10-07 by a shorter route (`lean/Jacobian/A816/`) |
 | `scripts/a816_rigidity/` | (2026-10-06) The 61 certificates behind Remark 8.8: all 51 lower unknowns nilpotent modulo the layer ideal. Generated with exact $K_5$ arithmetic and checked by an independent python-flint program; `bash run.sh` (about 8 min) |
 | `scripts/b26_m5_eliminant/lean_certificates/` | (2026-10-05) Generator and ideal-equality certificates for `lean/Jacobian/B26*`; `./regen_b26.sh` |
 | `scripts/b22_structured/RESOLUTION.md` | (2026-10-05) B2.2 = the Lean chart system; the exact $K_5$ point validated in the $c$-recursion form (`b22_validate.py`) |
@@ -75,9 +83,10 @@ planar Jacobian conjecture.
 ```bash
 cd lean
 lake exe cache get                              # fetch Mathlib oleans
-LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh  # full build + 57-theorem axiom audit
+LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh  # full build + 66-theorem axiom audit
 CONTROLS_JOBS=1 bash controls.sh                  # 14/14 as expected: 3 unmodified ACCEPT, 9 perturbed REJECT (expected Lean error), 2 sorry copies flagged
-bash certgen/check_regeneration.sh                # byte-identical regeneration
+CONTROLS_JOBS=1 bash controls_a816.sh             # 9/9 as expected for Jacobian/A816: 2 ACCEPT, 6 REJECT, 1 sorry copy flagged
+bash certgen/check_regeneration.sh                # byte-identical regeneration, plus the Jacobian/A816 statement check
 ```
 
 Quick checks (no Lean needed):
@@ -92,8 +101,10 @@ python3 lean/certgen/chartproof/saturation_check.py     # saturation over Q (nee
 - The main theorem's Lean proof uses the m = 7 chart classification. The
   m = 3 and m = 5 chart classifications are kernel-checked separately
   (`lean/Jacobian/B26*`, 2026-10-05); the main theorem does not use them.
-  The degree-35 eliminant, the a₈,₁₆ = 0 certificate (Corollary 1.2), and
-  GGHV Proposition 4.3 are outside the Lean formalization (see
+  The degree-35 eliminant, the explicit a₈,₁₆ certificate of
+  `scripts/a816_certificate/` (an independent second proof of Corollary 1.2;
+  the corollary itself is kernel-checked since 2026-10-07), and GGHV
+  Proposition 4.3 are outside the Lean formalization (see
   `lean/CLASSIFICATION_STATUS.md` and paper §1.3 "Logical status").
 - Nothing here claims resolution of the (8,28) case or the Jacobian conjecture.
 

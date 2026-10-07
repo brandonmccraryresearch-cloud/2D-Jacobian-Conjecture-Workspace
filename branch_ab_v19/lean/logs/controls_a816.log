@@ -1,0 +1,19 @@
+# 2026-10-07. lean/controls_a816.sh run in the build overlay described in BUILD_STATUS.md (CONTROLS_JOBS=1), after the
+# clean rebuild of Jacobian/A816. Exit 0.
+PASS  [ACCEPT] unmodified Rigidity.lean (rigidity_K5, a816_K5)
+PASS  [REJECT] E1 step s1^2 = 0: K5 multiplier numerator 713 -> 714
+      first error: neg_e1_s1.lean:256:43: error: ring failed, ring expressions not equal
+PASS  [REJECT] E1 step s2^2 = 0: K5 multiplier numerator 713 -> 714
+      first error: neg_e1_s2.lean:254:43: error: ring failed, ring expressions not equal
+PASS  [REJECT] rigidity_K5 hypothesis h1_19_38: bracket coefficient -8 -> -7
+      first error: neg_h1_eq.lean:254:43: error: ring failed, ring expressions not equal
+PASS  [REJECT] rigidity_K5 top-layer value a_3_4: numerator 315 -> 316
+      first error: neg_top.lean:133:175: error: Application type mismatch: The argument
+PASS  [REJECT] depth-3 step b_12_24 = 0: triangular coefficient 1/24 -> 1/23
+      first error: neg_depth3.lean:289:37: error: ring failed, ring expressions not equal
+PASS  [SORRY] E1 step s1^2 = 0 replaced by sorry
+PASS  [ACCEPT] unmodified Final.lean (lower_edge_rigidity, a816_eq_zero, main_theorem_lower_edge)
+PASS  [REJECT] lower_edge_rigidity claiming the top edge of P vanishes too (2i <= j + 2)
+      first error: neg_final_topedge.lean:851:2: error: Type mismatch
+controls passed: 9 / 9
+=== ALL A816 CONTROLS BEHAVED AS EXPECTED ===
