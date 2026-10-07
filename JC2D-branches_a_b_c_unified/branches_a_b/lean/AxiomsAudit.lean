@@ -19,6 +19,7 @@ import Jacobian.ChartProof.Final
 import Jacobian.B26
 import Jacobian.B26Count
 import Jacobian.B26Irred
+import Jacobian.A816.Final
 
 #print axioms BranchAb.layers_of_jac
 #print axioms BranchAb.layers_transport
@@ -49,3 +50,13 @@ import Jacobian.B26Irred
 -- irreducibility of the eliminants over ℚ (Jacobian/B26Irred.lean, added 2026-10-06)
 #print axioms BranchAb.TopLayerSmall.T5poly_irreducible
 #print axioms BranchAb.TopLayerSmall.T3poly_irreducible
+-- lower-edge rigidity, Corollary cor:a816 and Remark rem:full-rigidity (Jacobian/A816, added 2026-10-07)
+#print axioms BranchAb.A816.rigidity_K5
+#print axioms BranchAb.A816.a816_K5
+#print axioms BranchAb.layers_transport_E1
+#print axioms BranchAb.layers_K5_rigid
+#print axioms BranchAb.rigid_K5
+#print axioms BranchAb.rigid_K5_PQ
+#print axioms BranchAb.lower_edge_rigidity
+#print axioms BranchAb.a816_eq_zero
+#print axioms BranchAb.main_theorem_lower_edge

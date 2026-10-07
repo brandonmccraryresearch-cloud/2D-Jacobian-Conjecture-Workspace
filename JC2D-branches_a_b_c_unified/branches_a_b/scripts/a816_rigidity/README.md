@@ -27,6 +27,11 @@ Corollary `cor:a816`.
 **Grade B:** exact computation outside Lean, with two implementations and negative controls. It is not part of the
 Lean formalization, and nothing else uses it.
 
+**Update (2026-10-07).** The consequence above, at the level of zero sets (the only solution is P = P₂ + const,
+Q = Q₃ + const), is now kernel-checked by a different route: `rigidity_K5` and `lower_edge_rigidity` in
+`lean/Jacobian/A816/` (grade A). That route reuses the Lean descent up to t = 0. The nilpotency claim and these 61
+certificates stay grade B; checking them in Lean is route C of `../a816_lean_feasibility/README.md`.
+
 ## From the certificates to the claim
 
 Let x be an unknown of depth d, and let n = ⌈4/d⌉. For a free unknown, φ(x) = x.

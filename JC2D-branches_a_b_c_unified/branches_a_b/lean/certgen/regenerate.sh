@@ -8,6 +8,8 @@ python3 gen_lean2.py          # Jacobian/Descent/**  (83 lemma modules + Main)
 python3 gen_final.py          # Jacobian/BranchAbFinal.lean
 python3 gen_sharp.py          # Jacobian/BranchAbSharp.lean
 python3 gen_main.py           # Jacobian/BranchAbMain.lean
+python3 gen_a816.py           # Jacobian/A816/{Rigidity,Final}.lean (lower-edge rigidity, route R; 2026-10-07)
+python3 check_a816_statement.py   # independent statement check of Jacobian/A816 (sympy)
 python3 k5point.py            # chartpoint.json (K5 chart point, exact)
 python3 gen_chart.py          # Jacobian/BranchAbChart.lean
 python3 chart_cas.py write    # chart_system_{Q,p}.sing (external CAS check of the chart system)

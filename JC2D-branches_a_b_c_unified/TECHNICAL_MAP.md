@@ -48,12 +48,13 @@ JC2D-branches_a_b_c_unified/
 │   ├── BUILD_STATUS.md
 │   ├── CHECKSUMS.md5 / CHECKSUMS.sha256
 │   ├── CHANGES_v18.md / CHANGES_v19.md
-│   ├── paper/                     # 33-page paper: branch_ab_elimination_v3.tex/.pdf
+│   ├── paper/                     # 34-page paper (33 until 2026-10-06): branch_ab_elimination_v3.tex/.pdf
 │   ├── scripts/                   # audit/analysis scripts + README; since 2026-10-05 also
 │   │                              #   a816_certificate/, b22_structured/, b26_m5_eliminant/
 │   ├── lean/                      # Lean 4 project: proof sources, generators, verify scripts
 │   │   ├── Jacobian/ChartProof/   # the 12-module machine-checked proof (111 identities)
 │   │   ├── Jacobian/B26/          # m = 3, 5 chart classifications (10 modules, 2026-10-05)
+│   │   ├── Jacobian/A816/         # lower-edge rigidity, Corollary 1.2 and Remark 8.8 (2 modules, 2026-10-07)
 │   │   └── certgen/chartproof/    # exact generators + independent checks
 │   ├── audits/                    # HLRE v5.0 audit + errata
 │   ├── correspondence_guide/      # CORRESPONDENCE_GUIDE.md (exists for a,b)
@@ -116,6 +117,11 @@ GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab
 - `BranchAb.main_theorem`: the NewtonNF2 form of Theorem 1.1 **with no remaining
   hypothesis** (v19 concludes `b_{12,24} = 0`; `a_{8,16} = 0` is an independent
   rigidity corollary).
+- `lean/Jacobian/A816/` (2026-10-07): `BranchAb.lower_edge_rigidity`, kernel-checked: under the hypotheses of
+  Theorem 1.1 every coefficient of P and Q off the top edges vanishes except the constants, so `a_{8,16} = 0`
+  (`a816_eq_zero`, Corollary 1.2) and P = P₂ + const, Q = Q₃ + const (Remark 8.8). `main_theorem_lower_edge`
+  refutes NewtonNF2 through the vertex (8,16) without using (12,24). The proof reuses the descent up to t = 0
+  (Certificate III) and then E₁; it is not independent of the descent.
 - `lean/Jacobian/ChartProof/`: the 12-module machine-checked proof — Reflect plus
   11 generated modules, **111 step theorems**.
 - `lean/Jacobian/B26/` (2026-10-05): the m = 3 and m = 5 chart classifications over any field of characteristic 0.
@@ -124,18 +130,21 @@ GGHV normal form (2), degree-(8,28) case. Package: `branches_a_b/` (= `branch_ab
   `m3_chart_card` (3) and `m5_chart_card` (10) over any algebraically closed field of characteristic 0.
   `lean/Jacobian/B26Irred.lean` (2026-10-06) proves that both eliminants are irreducible over ℚ
   (`T3poly_irreducible`, `T5poly_irreducible`). The main theorem does not use them.
-- `verify_branch_ab_lean.sh`: 57 theorems (44 until 2026-10-05, the 9 B26 theorems, the 2 count theorems, the 2
-  irreducibility theorems), each using only standard axioms (`lean/logs/axioms_verify_script_57.log`).
+- `verify_branch_ab_lean.sh`: 66 theorems (44 until 2026-10-05, the 9 B26 theorems, the 2 count theorems, the 2
+  irreducibility theorems, the 9 A816 theorems), each using only standard axioms
+  (`lean/logs/axioms_verify_script_66.log`).
 - Controls: 14/14 as expected (3 unmodified ACCEPT, 9 perturbed REJECT, 2 sorry
-  copies flagged).
+  copies flagged); for `Jacobian/A816`, `controls_a816.sh`: 9/9 (2 ACCEPT, 6 REJECT, 1 sorry copy flagged).
 
 ### 3.2 Numerical elimination (certificates and computation)
 
-- The 33-page paper is organized around **four certificates**, with the 35-minor
+- The 34-page paper is organized around **four certificates**, with the 35-minor
   span argument and the characteristic-zero transfer made explicit (v19).
 - `scripts/a816_full.sing`: `a_{8,16} = 0` forced (G[1] = 1 once E1 is included).
 - `scripts/a816_certificate/` (2026-10-05): the explicit identity $a_{8,16}^2=\sum_k H_k e_k$ over K₅ (76 cofactors,
-  3464 terms), checked exactly by Singular and by python-flint, with negative controls (Corollary 1.2).
+  3464 terms), checked exactly by Singular and by python-flint, with negative controls (Corollary 1.2). Since
+  2026-10-07 the corollary itself is also kernel-checked (§3.1); the certificate stays a second proof, independent of
+  the descent, outside Lean.
 - `scripts/b22_structured/` (2026-10-05): the c-recursion form of the chart system, validated exactly at the K₅ point.
 - `scripts/belyi_count*.py`: the m = 3 / m = 5 Belyi bounds sharp (vdim 3/10,
   irreducible separable eliminants).
@@ -316,6 +325,8 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
     byte-identical with `branches_a_b/`. See `branches_a_b/CHANGES_v19.md` §15.
   - 2026-10-06: the abstract update, the Lean solution counts (`B26Count`) and the irreducibility of the eliminants
     (`B26Irred`); `branch_ab_v19/` synced again. See `branches_a_b/CHANGES_v19.md` §15.
+  - 2026-10-07: the Lean proof of Corollary 1.2 and Remark 8.8 (`Jacobian/A816`, G3 by route R) and the paper text
+    that reports it (34 pages); `branch_ab_v19/` synced again. See `branches_a_b/CHANGES_v19.md` §16.
 - **Branch (c):** the `branch_c/` pipeline scripts on repo main (corrected
   2026-09-29: E₁ projection, 6d κ=0, Singular hang guard) → v2 bundle → v3.0
   (bundled mid-build) → **v3.1** (2026-09-29, 23:40 CDT; every module built,
@@ -367,15 +378,22 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
 7. Branches (a,b) (2026-10-05/06): optional Lean extensions, none needed for `main_theorem`:
    - G1: irreducibility of the m = 3, 5 eliminants over ℚ (**done 2026-10-06**, `lean/Jacobian/B26Irred.lean`);
    - G2: the solution counts as cardinality theorems (**done 2026-10-06**, `lean/Jacobian/B26Count.lean`);
-   - G3: the a₈,₁₆ certificate (open). Feasibility estimate done 2026-10-06
-     (`branches_a_b/scripts/a816_lean_feasibility/README.md`): feasible by the staged route, with about 262,500
-     kernel products in about 110 checks; estimated 10–20 min of build time at ≤ 1 GB per module. Pilots of the
-     largest identity of each layer and of the final reduced identity pass the kernel.
+   - G3: Corollary 1.2 in Lean — **done 2026-10-07 by route R** (`lean/Jacobian/A816/`, `lower_edge_rigidity`,
+     `a816_eq_zero`, `main_theorem_lower_edge`; 66/66 theorems of the verify script on standard axioms; controls
+     9/9). Route R reuses the descent up to t = 0 and adds four small steps (depth 1; depth 2 as linear forms in
+     s = (b₁₁,₂₁, b₁₂,₂₃); E₁ gives s₂² = s₁² = 0; E₂ triangular in depth 3).
+     - **Still open (optional): route C**, the kernel check of the certificate's own route (the 47 pivot identities
+       and 14 depth-4 monomial identities of `scripts/a816_rigidity/`, then the reduced identity), which would make
+       a second Lean proof independent of the descent. Feasibility estimate done 2026-10-06
+       (`branches_a_b/scripts/a816_lean_feasibility/README.md`): about 262,500 kernel products in about 110 checks;
+       estimated 10–20 min of build time at ≤ 1 GB per module. Pilots of the largest identity of each layer and of
+       the final reduced identity pass the kernel.
 
    Remark 8.8 (all lower coefficients vanish at the K₅ point): since 2026-10-06 its 61 certificates are written out
    and checked by two independent programs (`branches_a_b/scripts/a816_rigidity/`): 47 pivot identities x − φ(x) ∈ I
    and 14 depth-4 monomials m ∈ I. Grade B (exact, outside Lean). Before that it rested on one exact rank computation,
-   corroborated mod p.
+   corroborated mod p. Since 2026-10-07 the zero-set form (the only solution is P = P₂ + const, Q = Q₃ + const) is
+   kernel-checked as `lower_edge_rigidity` (grade A); the nilpotency itself stays grade B.
 8. The Muse `char0_cert` bundle — **closed 2026-10-06: withdrawn, superseded by v3.**
    - Its axiom `reduction_lemma` proves `False`, so its theorems (`descentClaimC_holds` …) are vacuous.
    - The withdrawal notice is `branch_c/muse_refutation/DEPRECATED_char0_cert.md`. It goes, as `DEPRECATED.md`, into

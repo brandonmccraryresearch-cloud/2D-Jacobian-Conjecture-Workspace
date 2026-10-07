@@ -13,6 +13,9 @@
 # LEAN_NUM_THREADS=1 and up to ~3.8 GB RAM for a single module (M5T; M5Rel1-3 ~2.4 GB);
 # see scripts/b26_m5_eliminant/lean_certificates/.  Jacobian/B26Count (the solution counts, 2026-10-06) takes ~30 s;
 # Jacobian/B26Irred (irreducibility of the eliminants over Q, 2026-10-06) takes ~35 s.
+# Jacobian/A816 (lower-edge rigidity, Corollary cor:a816 and Remark rem:full-rigidity, 2026-10-07): Rigidity takes
+# ~45 s to build (its first build reported ~5 min, probably with a cold file cache) and Final ~2 min, each below
+# 2 GB of anonymous memory.
 #
 # Usage: verify_branch_ab_lean.sh [PROJECT_DIR]
 #   PROJECT_DIR defaults to this script's directory if it holds lakefile.toml,
@@ -44,7 +47,9 @@ THEOREMS="t_zero_case minor_obstruction only_zero_transport
   BranchAb.TopLayerSmall.T5poly_irreducible BranchAb.TopLayerSmall.T3poly_irreducible
   BranchAb.chart_K5_identities BranchAb.chart_point_solves BranchAb.topLayerClassification_of_chart
   BranchAb.main_theorem_of_chart
-  BranchAb.ChartProof.eq_of_toPolyK BranchAb.ChartProof.lc_zero BranchAb.chartClassification_holds BranchAb.main_theorem"
+  BranchAb.ChartProof.eq_of_toPolyK BranchAb.ChartProof.lc_zero BranchAb.chartClassification_holds BranchAb.main_theorem
+  BranchAb.A816.rigidity_K5 BranchAb.A816.a816_K5 BranchAb.layers_transport_E1 BranchAb.layers_K5_rigid BranchAb.rigid_K5
+  BranchAb.rigid_K5_PQ BranchAb.lower_edge_rigidity BranchAb.a816_eq_zero BranchAb.main_theorem_lower_edge"
 
 cd "$PROJ" || { echo "FAIL: cannot cd to $PROJ"; exit 1; }
 echo "project: $PROJ"
