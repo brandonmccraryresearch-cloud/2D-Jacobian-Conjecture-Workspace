@@ -1,0 +1,38 @@
+# 2026-10-07. python3 lean/certgen/check_a816_statement.py (sympy 1.14.0, python-flint 0.9.0). Exit 0.
+ok    lattice points from inNP / inNQ: 25, 47 (expected 25, 47)
+nonzero coefficients of J by weight 2A - B: {6: 0, 5: 0, 4: 17, 3: 18, 2: 19, 1: 19, 0: 19, -1: 0, -2: 0}
+ok    rigidity_K5 and a816_K5 have identical binders
+ok    a816_K5 concludes: a_8_16 = 0
+ok    75 equation binders, each equal to its coefficient of J = P_x Q_y - P_y Q_x
+ok    every nonzero coefficient of J of weight 3, 2, 1, 0 occurs exactly once (18, 19, 19, 19)
+ok    J has no nonzero coefficient below weight 0 (layer E0 vanishes identically)
+ok    top-layer variables = lattice points of the top edges j = 2i - 2 (P) and l = 2k - 3 (Q)
+ok    a816_full.sing fixes exactly the 19 top-layer coefficients of rigidity_K5
+ok    every top-layer value of rigidity_K5 equals a816_full.sing's, in K5
+ok    rigidity_K5 concludes v = 0 for exactly the 51 lower lattice points (all except the top edges and (0,0))
+ok    the unknown binders of rigidity_K5 are exactly those 51 lower lattice points
+ok    with the top layer substituted, the 75 equations equal a816_system.py's generators of E4..E1 (layers there: {3: 18, 2: 19, 1: 19, 0: 19})
+ok    layers_K5_rigid derives the same 75 equations, with a_i_j -> (A_{2i-j}.coeff i), b_k_l -> (B_{2k-l}.coeff k)
+ok    Final.lean states lower_edge_rigidity as expected
+ok    Final.lean states a816_eq_zero as expected
+ok    Final.lean states main_theorem_lower_edge as expected
+ok    Final.lean: namespace BranchAb, open MvPolynomial (the three statements above spell out MvPolynomial.C and .X)
+
+theorem lower_edge_rigidity {L : Type*} [Field L] [CharZero L] (P Q : MvPolynomial (Fin 2) L) (lam : L)
+    (hP : ∀ m ∈ P.support, inNP m) (hQ : ∀ m ∈ Q.support, inNQ m)
+    (v10 : P.coeff (mono 1 0) ≠ 0) (v814 : P.coeff (mono 8 14) ≠ 0)
+    (w21 : Q.coeff (mono 2 1) ≠ 0) (w1221 : Q.coeff (mono 12 21) ≠ 0)
+    (hJ : jac P Q = MvPolynomial.C lam * MvPolynomial.X 0 ^ 2) :
+    (∀ i j, 2 * i ≤ j + 1 → (i, j) ≠ (0, 0) → P.coeff (mono i j) = 0) ∧
+      (∀ k l, 2 * k ≤ l + 2 → (k, l) ≠ (0, 0) → Q.coeff (mono k l) = 0)
+
+theorem a816_eq_zero {L : Type*} [Field L] [CharZero L] (P Q : MvPolynomial (Fin 2) L) (lam : L)
+    (hP : ∀ m ∈ P.support, inNP m) (hQ : ∀ m ∈ Q.support, inNQ m)
+    (v10 : P.coeff (mono 1 0) ≠ 0) (v814 : P.coeff (mono 8 14) ≠ 0)
+    (w21 : Q.coeff (mono 2 1) ≠ 0) (w1221 : Q.coeff (mono 12 21) ≠ 0)
+    (hJ : jac P Q = MvPolynomial.C lam * MvPolynomial.X 0 ^ 2) : P.coeff (mono 8 16) = 0
+
+theorem main_theorem_lower_edge {L : Type*} [Field L] [CharZero L] :
+    ¬ ∃ (P Q : MvPolynomial (Fin 2) L) (lam : L), lam ≠ 0 ∧ NewtonNF2 P Q ∧ jac P Q = MvPolynomial.C lam * MvPolynomial.X 0 ^ 2
+
+PASS: the statements of Jacobian/A816 match the bracket equations, the a816 certificate's top layer and generators, and the expected final statements

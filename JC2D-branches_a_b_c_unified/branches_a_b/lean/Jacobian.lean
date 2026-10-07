@@ -13,3 +13,5 @@ import Jacobian.ChartProof.Final
 import Jacobian.B26
 import Jacobian.B26Count
 import Jacobian.B26Irred
+import Jacobian.A816.Rigidity
+import Jacobian.A816.Final

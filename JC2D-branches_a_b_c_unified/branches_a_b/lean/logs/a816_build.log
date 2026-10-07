@@ -1,0 +1,11 @@
+# 2026-10-07. Clean rebuild of Jacobian/A816 in the build overlay described in BUILD_STATUS.md (Lean 4.34.0,
+# Mathlib 5ed2965, 2 cores, guardrun memory guard), after deleting the two modules' .olean/.ilean/.trace files.
+# The first build of Rigidity on this machine, earlier the same night, reported 282 s (the file cache was probably cold).
+## lake build Jacobian.A816.Rigidity
+✔ [9008/9008] Built Jacobian.A816.Rigidity (46s)
+Build completed successfully (9008 jobs).
+[guardrun] exit 0  54.4s  peak RSS 4742 MB  cgroup anon peak 1719 MB
+## lake build Jacobian.A816.Final
+✔ [9029/9029] Built Jacobian.A816.Final (115s)
+Build completed successfully (9029 jobs).
+[guardrun] exit 0  123.6s  peak RSS 4820 MB  cgroup anon peak 1551 MB

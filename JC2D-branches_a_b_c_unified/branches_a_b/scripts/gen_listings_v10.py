@@ -284,6 +284,9 @@ DECLS = {
                        "chartClassification_holds", {}),
     "lst:unconditional": ("theorem", "Jacobian/ChartProof/Final.lean", "main_theorem", {}),
     "lst:lczero": ("theorem", "Jacobian/ChartProof/Reflect.lean", "lc_zero", {}),
+    # 2026-10-07: lower-edge rigidity (Corollary cor:a816, Remark rem:full-rigidity) and NewtonNF2 via (8,16).
+    "lst:a816": ("theorem", "Jacobian/A816/Final.lean", "lower_edge_rigidity", {}),
+    "lst:a816-nf2": ("theorem", "Jacobian/A816/Final.lean", "main_theorem_lower_edge", {}),
 }
 
 
@@ -328,6 +331,10 @@ def main() -> None:
                   file=sys.stderr)
             failed = True
             continue
+        # 2026-10-07: the ASCII replacements of commits 01ad644..3df30c3 (Fira Mono has no glyph for these four),
+        # applied here so that rerunning the generator reproduces the paper's listings byte for byte.
+        for a, b in (("ℕ", "Nat"), ("∀", "forall"), ("∃", "exists"), ("∧", "/\\")):
+            listing = listing.replace(a, b)
         tex = pattern.sub(lambda m: f"{begin}\n{listing}\n{end}", tex)
         print(f"Replaced {label} from {rel}::{decl}")
 

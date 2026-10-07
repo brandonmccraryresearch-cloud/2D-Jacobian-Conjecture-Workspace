@@ -29,7 +29,8 @@ theorem main_theorem {L : Type*} [Field L] [CharZero L] :
 
 These are in `logs/chartproof_axioms.log`. The NewtonNF2 form of Theorem 1.1 is therefore a single
 unconditional kernel-checked theorem. GGHV Proposition 4.3, which connects it to the Jacobian conjecture,
-remains outside the formal statement. So does the `a₈,₁₆ = 0` refinement, which is computer algebra.
+remains outside the formal statement. The `a₈,₁₆ = 0` refinement (Corollary 1.2) was computer algebra until
+2026-10-07; it is now kernel-checked as `lower_edge_rigidity` / `a816_eq_zero` (`Jacobian/A816/`, see `README.md` §1c).
 
 The statement `ChartClassification` is the one shipped in `Jacobian/BranchAbChart.lean`, unchanged. The
 new modules only prove it.

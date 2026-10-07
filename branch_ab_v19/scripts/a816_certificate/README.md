@@ -5,7 +5,10 @@
 - **Repository copy.** This folder is the bundle `a816_certificate_bundle_v1.zip` (2026-10-05) committed under `scripts/a816_certificate/` of the branch-(a,b) package, with Brandon McCrary's authorization. The package has two identical copies in the repository: `branch_ab_v19/` and `JC2D-branches_a_b_c_unified/branches_a_b/`. Two changes from the zip: the 36.4 MB `a816_lift_liftstd.txt` is not committed (see §2), and the scripts read P and Q from `../a816_full.sing` (or the identical copy here) instead of an absolute path.
 - **This is not a proof of the Jacobian conjecture.** It certifies one step of the branch (a,b) elimination: the a₈,₁₆ = 0 part of the main theorem (`\label{thm:main}`) in `branch_ab_elimination_v3.tex`. The paper's remark `rem:conditional` calls that step "computer algebra (`a816_full.sing`), not Lean".
 - **What changes.** That step no longer depends on trusting a Gröbner-basis computation. Two explicit Nullstellensatz certificates are given, and each was checked exactly by two independent implementations.
-- **What stays.** The step is still not checked by the Lean kernel (see §7).
+- **What stays.** This certificate is not checked by the Lean kernel (see §7).
+- **Update (2026-10-07).** The statement it proves is now kernel-checked by a different route: `a816_eq_zero` and
+  `lower_edge_rigidity` in `lean/Jacobian/A816/` (route R). That route reuses the Lean descent up to t = 0 and then the
+  layer E₁. This certificate remains the proof of a₈,₁₆ = 0 that is independent of the descent.
 
 ## 1. The statement
 
@@ -139,8 +142,8 @@ Grades follow this project's convention: A = checked by the Lean kernel; B = exa
 
 | ID | Claim | Grade | Evidence and scope |
 |---|---|---|---|
-| C1 | a₈,₁₆² ∈ I over K₅, hence a₈,₁₆ = 0 on every solution (any char-0 field, any root w) | **B** | Two explicit certificates, each checked exactly by Singular 4.3.2 and by python-flint 0.9.0. The generators were rebuilt three ways from the same source text, plus CAIC's file. Three negative controls were rejected. No Gröbner, modular or reconstruction step is in the trust base. Independence: two CAS implementations; same P,Q source. |
-| C2 | V(I) = {0}: the K₅ top layer has no nontrivial lower-layer completion through d = 0. All 51 unknowns are nilpotent mod I, so P = P₂ + const and Q = Q₃ + const. This includes b₁₂,₂₄ = 0. | **B** | Exact rank 14/14 computed by `k5.py`, plus the telescoping argument in §4. **Since 2026-10-06 written out and checked twice (`../a816_rigidity/`):** 47 pivot certificates x − φ(x) ∈ I and 14 certificates m ∈ I, one per monomial m of depth 4 in τ, σ. They are generated with `k5.py` and checked by an independent python-flint program, which rebuilds J; three negative controls are rejected. Together they give x^⌈4/depth⌉ ∈ I for all 51 unknowns. Also corroborated mod one inert prime: dim = 0 and the same nilpotency (`probe_modp.log`, `nilpotency_modp.log`). |
+| C1 | a₈,₁₆² ∈ I over K₅, hence a₈,₁₆ = 0 on every solution (any char-0 field, any root w) | **B** for the identity; **A** for the consequence a₈,₁₆ = 0 (since 2026-10-07, by another route) | Two explicit certificates, each checked exactly by Singular 4.3.2 and by python-flint 0.9.0. The generators were rebuilt three ways from the same source text, plus CAIC's file. Three negative controls were rejected. No Gröbner, modular or reconstruction step is in the trust base. Independence: two CAS implementations; same P,Q source. **Lean (2026-10-07):** a₈,₁₆ = 0 on every solution is `a816_eq_zero` / `rigidity_K5` (`lean/Jacobian/A816/`), kernel-checked on the standard axioms, by route R (the descent to t = 0, then E₁); the identity itself is not checked in Lean. |
+| C2 | V(I) = {0}: the K₅ top layer has no nontrivial lower-layer completion through d = 0. All 51 unknowns are nilpotent mod I, so P = P₂ + const and Q = Q₃ + const. This includes b₁₂,₂₄ = 0. | **A** for V(I) = {0} (since 2026-10-07); **B** for the nilpotency | Exact rank 14/14 computed by `k5.py`, plus the telescoping argument in §4. **Since 2026-10-06 written out and checked twice (`../a816_rigidity/`):** 47 pivot certificates x − φ(x) ∈ I and 14 certificates m ∈ I, one per monomial m of depth 4 in τ, σ. They are generated with `k5.py` and checked by an independent python-flint program, which rebuilds J; three negative controls are rejected. Together they give x^⌈4/depth⌉ ∈ I for all 51 unknowns. Also corroborated mod one inert prime: dim = 0 and the same nilpotency (`probe_modp.log`, `nilpotency_modp.log`). **Lean (2026-10-07):** V(I) = {0} over every field of characteristic 0, at every root w, is `rigidity_K5` (all 51 unknowns vanish on every solution), and at the level of P and Q `lower_edge_rigidity`; the nilpotency is not checked in Lean. |
 | C3 | Layer d = 0 (E₁ in the paper) is needed: without it a₈,₁₆ is not forced | **C** | Mod one prime: dim 7, no a₈,₁₆ᵏ ∈ I for k ≤ 6 (`layer_subsets_modp.log`). |
 | C4 | Layer d = 1 (E₂) is not needed for a₈,₁₆: without it a₈,₁₆⁴ ∈ I | **C** | Mod one prime. The run without layer d = 2 did not finish in 280 s (`layer_subsets_modp.log`). |
 | C5 | Singular's liftstd certificate has coefficients up to 1630 digits; CRT reconstruction is feasible with about 690 primes below 2²⁹ | **B** | Reconstructed, then verified exactly (`verify_liftstd_cert.log`). |
@@ -149,6 +152,7 @@ Grades follow this project's convention: A = checked by the Lean kernel; B = exa
 
 ## 7. Open items
 
+- **Lean (update 2026-10-07).** Corollary 1.2 and the zero-set form of C2 are kernel-checked by route R (`lean/Jacobian/A816/`; see the paper's proof of Corollary 1.2). The item below is now optional: it would check C1's own route, independently of the descent (route C).
 - **Lean.** C1 is not kernel-checked. The natural route is the repository's kernel reflection (`Jacobian/ChartProof/Reflect.lean`: `toPolyK`, `lc_zero`, `decide +kernel`), staged as in branch (c)'s T1Zero:
   - per-variable identities x = φ(x) + Σ c_k e_k for the 47 pivot unknowns;
   - the 14-dimensional reduced identity;
