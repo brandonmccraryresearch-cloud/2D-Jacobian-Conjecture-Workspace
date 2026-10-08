@@ -120,7 +120,7 @@ Back-substitution formulas (must satisfy all 10 GB elements and 4 residuals mod 
 
 | Check | Expected |
 |---|---|
-| Page count | 34 pages |
+| Page count | 35 pages |
 | Missing glyphs | 0 (Fira Sans/Mono/Math only, verified by `pdffonts`) |
 | LaTeX errors | 0 |
 | Undefined references | 0 |
@@ -178,7 +178,7 @@ Every value above is traced to a specific artifact:
 | A7 counts 10/3 | `B26Count.lean` |
 | A8 76/3464/56 | `scripts/a816_certificate/a816_lift.txt` |
 | A9 axioms | `verify_branch_ab_lean.sh` output |
-| A10 34 pages | `branch_ab_v19/paper/` build log |
+| A10 35 pages | `branch_ab_v19/paper/` build log |
 | C2 3199×3199 | `branch_c/rank_lemma_check/` outputs |
 | C2 6,398 theorems | Lean build log |
 
@@ -187,3 +187,4 @@ Every value above is traced to a specific artifact:
 ## Document history
 
 - v1.0 (2026-10-07): Initial sealed answer key. Companion to `BLIND_REPLICATION_GUIDE.md` v1.0.
+- v1.1 (2026-10-08): A10 page count 34 → 35. PR #11 (merged 2026-10-07, Route R: lower-edge rigidity in Lean) added a page to `branch_ab_v19/paper/branch_ab_elimination_v3.tex`; recompiled with TeX Live 2026 yields 35 pages, 0 missing glyphs. All other values re-verified against current main (audit 2026-10-08).

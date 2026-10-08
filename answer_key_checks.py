@@ -54,7 +54,7 @@ EXPECTED = {
         "sorry_count": 0,
         "negative_controls": "9/9",
     },
-    "A10": {"pages": 34, "missing_glyphs": 0, "latex_errors": 0},
+    "A10": {"pages": 35, "missing_glyphs": 0, "latex_errors": 0},
     # Branch (c)
     "C1": {"md5_failures": 0, "sha256_failures": 0},
     "C2": {
