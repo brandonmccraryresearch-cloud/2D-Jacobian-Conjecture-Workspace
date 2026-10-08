@@ -82,8 +82,8 @@ cp "$ROOT/paper/branch_ab_elimination_v3.tex" "$TMPD/" && cp -r "$ROOT/paper/fig
 cd "$TMPD" || exit 1
 for i in 1 2 3; do run xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex; done
 PAGES=$(grep -o '([0-9]* pages' branch_ab_elimination_v3.log | tail -1 | grep -o '[0-9]*')
-echo "### compiled pages: $PAGES (expect 34: TeX Live 2026, Fira fonts from CTAN; 2026-10-07 text)"
-if [ "$PAGES" = "34" ]; then echo "PAGECOUNT OK"; pass=$((pass+1)); else echo "PAGECOUNT MISMATCH"; fail=$((fail+1)); fi
+echo "### compiled pages: $PAGES (expect 35: TeX Live 2026, Fira fonts from CTAN; 2026-10-08 text, PR #11 added a page)"
+if [ "$PAGES" = "35" ]; then echo "PAGECOUNT OK"; pass=$((pass+1)); else echo "PAGECOUNT MISMATCH"; fail=$((fail+1)); fi
 # every character must have a glyph in the Fira fonts (a missing one prints as an empty box in the PDF)
 MISSING=$(grep -c 'Missing character' branch_ab_elimination_v3.log)
 echo "### missing glyphs: $MISSING (expect 0)"
