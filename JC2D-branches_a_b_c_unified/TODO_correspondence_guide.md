@@ -1,6 +1,9 @@
 # TODO (conditional): branch-(c) correspondence guide
 
-**Status: NOT STARTED — do not create until the trigger below fires.**
+**Status: DONE 2026-10-08** — trigger fired (branch-(c) paper finalized 2026-10-01);
+guide created at `branch_c/correspondence_guide/CORRESPONDENCE_GUIDE.md`.
+It maps the six statements (§1.1) to Lean names/files/grades, the rank-lemma
+premises (§5.9) to scripts, and the negative controls (§7) to logs.
 
 ## Trigger
 
