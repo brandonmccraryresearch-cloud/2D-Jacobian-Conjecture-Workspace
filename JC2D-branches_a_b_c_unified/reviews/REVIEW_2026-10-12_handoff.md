@@ -393,3 +393,130 @@ cd ../../branch_c && md5sum -c CHECKSUMS.md5 && (cd bundle_v3_1 && sha256sum -c 
 - **`reviews/analysis/`**: the analysis of patterns across the eliminations (`DEEP_ANALYSIS_2026-10-12.md`). It
   includes a new observation: the top-layer cover counts are Catalan numbers for m = 3, …, 11
   (`belyi_catalan_counts.py`, with its log).
+
+---
+
+## 9. Second pass (2026-10-12, evening)
+
+### 9.1 Where PRs #17 and #18 landed
+
+- PR #16 was merged into `main` at 16:08 (`af1e860`; its tree is that of `78b3c2a`).
+- PRs #17 and #18 were stacked on this review's branch. They were merged into that branch at 16:09 and 16:10
+  (`4b05238`, `d6e4c4f`), after the branch itself had been merged.
+- So GitHub shows them as merged, but `main` does not contain their 29 files.
+- The branch `claude/bridge-premises-and-landing` starts at `d6e4c4f`. Its pull request into `main` therefore carries
+  #17 and #18 unchanged (`grade_a/` is byte-identical to `4af460e`, `branch_two_dicritical/lean/` to `696e59d`)
+  together with §9.3–9.4 below.
+
+### 9.2 A cross-check of this review
+
+Brandon relayed (16:17) a report by CAIC, which had re-checked PR #16 and confirmed its five load-bearing claims:
+- `main` at `3e7c180` gives PASS=15 FAIL=3;
+- PR #11 took the paper from 33 to 34 pages (the `.tex` blob has been `8c3e45a` in both copies since);
+- the route-C statement check is genuine, controls included;
+- the corrections to the answer key, C2 included;
+- the two axioms of `Bridge.lean` are false, which CAIC accepts.
+
+That is a second agent working on the same repository with the same tools (independence I1–I2), not an outside
+replication.
+
+On C2: CAIC's I3 run of 2026-10-11 ranked M₂₄ (3199 × 6054) modulo 1000003 (`i3_replication/REPRODUCE.md`), not
+the pivot block M_S. So the statement "the pivot block was never checked at that prime" still holds.
+
+### 9.3 The main theorem, as worded, is false
+
+Theorem `thm:main` reads: "Let K be a field of characteristic 0 … with [P,Q] = c ∈ K^×. Then the resolution of the
+pencil λP + μQ contains no two distinct dicritical divisors."
+
+- **Every base point carries a dicritical.** Take a base point p. The exceptional curve over p is connected. If all
+  of it lay in one fiber Φ = t₀ of Φ = P/Q, then a member with t ≠ t₀, which passes through p, would meet it.
+- **Such a divisor is in every resolution.** A divisor on which Φ has non-constant residue appears in every
+  resolution of the pencil.
+- **Automorphisms have two.**
+  - (x − y², y) and (x, y + x²) have [P,Q] = 1.
+  - Each pencil, homogenized, has two base points: the origin and [1:0:0], respectively [0:1:0].
+  - Over the origin, Φ has residue 1/t after one blow-up.
+  - Over the point at infinity, Φ has a non-constant residue after three blow-ups (z₃, respectively −1/w₃).
+- **Control.** The identity has one base point and one dicritical.
+- **Script.** `reviews/two_dicritical/main_statement_check.py`, with its log (sympy 1.14.0).
+
+So the statement is false as worded. Read literally, it would also make every Keller map injective (two preimages
+of one point are two base points of a translated pencil), which is the Jacobian conjecture. The paper's computations
+are all at infinity; its definition of a dicritical (line 81, "exceptional divisors on which the pulled-back pencil
+has no base points") is not the standard one.
+
+The intended statement, presumably about dicriticals at infinity of a specified pencil, has to be written down
+before any proof can be checked against it. Nothing in `lean/` depends on this: `lean/` proves the bridge collapse,
+a statement about explicit equations.
+
+### 9.4 The center hypotheses of the bridge are load-bearing
+
+`bridge_collapse` assumes a₃ ≠ 0, a₄ ≠ 0 and a₃ ≠ a₄, as the paper's §5.1 does ("two distinct centers a₃ ≠ a₄ (both
+nonzero)"). The paper gives no geometric reason why a bridge center cannot have a = 0. The constant-leading-form
+sketch likewise assumes centers with u₀ ≠ 0.
+
+`branch_two_dicritical/lean/TwoDicritical/CenterHypotheses.lean` (standard axioms) shows that each hypothesis is
+needed:
+- **The witness.** For x − c·y², the weight-2 equation at a center a is a^(d−2)(a − c), and there are no others.
+- **A center at 0.** At a₃ = 0 and d ≥ 3, x − a₄y² satisfies every bridge condition. So `bridge_collapse` fails
+  without a₃ ≠ 0. With Q = y, the pair (x − a₄y², y) is a polynomial automorphism with Jacobian 1
+  (`bridge_jacobian_needs_ne_zero`).
+- **Equal centers.** At a₃ = a₄ and d ≥ 2, the same polynomial satisfies every bridge condition.
+- **Cross-check.** `lean/check_center_nonzero.py` computes the nullspace from the pullback formula: span{1, y,
+  x − a₄y²} at a₃ = 0 for d = 3…6, and span{1, y} at distinct nonzero centers.
+
+PR #18's README listed two modeling premises (the pullback formula, and ã read as an indeterminate). It should
+also have listed this one. It does now.
+
+### 9.5 Known limits of #17 and #18, recorded before CAIC's reviews of them arrived
+
+**PR #17** is generic.
+- It proves nothing about the concrete chart data, so `ChartEmptyC_T1ne0` stays grade B.
+- Its target is `∀ L [Field L] [CharZero L], ChartEmptyC_T1ne0 L`. The definition is stated for any field, but
+  every use (`Combine.lean`) carries `[CharZero L]`.
+
+**The 19 `sorry`s of the A1–A5 drafts, against #17.**
+
+| Group | Count | Status after #17 |
+|---|---|---|
+| A3-1 (`Irreducible R67`, the same polynomial) | 1 | closed |
+| SORRY-9 (`rank_of_certificate`) | 1 | stated as `(hC : True) : True`, so empty as written; its intended content is `no_left_kernel` |
+| A4-1, A4-2 | 2 | true statements over ℤ that the field argument does not need |
+| A4-3 | 1 | assumes an integer root of R: vacuous (§4); its role is taken by `no_common_zero_of_certificate` plus the concrete data |
+| A1-1…A1-3 | 3 | untouched |
+| A2: SORRY-0 (×2), 1, 2, 2b, 3, 4, 5, 6, 7, 8 | 11 | untouched; they become the hypotheses of `no_common_zero_of_certificate` |
+
+How the untouched A2 items map onto those hypotheses:
+- the generators `F`;
+- `mon`, `gen` and `mult`, with `hmon`, `hr₁` and `hsupp`;
+- `Cinv` with `hC`.
+
+**Data facts** for that work:
+- `build_matrix.py` takes the rows to be the supports of the products plus the monomial 1, so `hr₁` and `hsupp`
+  hold by construction.
+- The generators have rational, 32003-integral coefficients, so they must be scaled into ℤ[X]. The certificate then
+  transfers by a diagonal unit rescaling of the columns.
+
+A5's eight axioms are replaced by theorems.
+
+**PR #18** proves the bridge collapse only, not the main theorem.
+- Its theorems use the three standard axioms; there are no project axioms.
+- `bridgeEq` is checked against the pullback formula for d = 2…6, not for every d.
+- Its premises are the three of §9.4.
+
+### 9.6 Open items, updated (replaces §6, items 1 and 5)
+
+1. **Branch (c).** The generic half is in Lean (#17). Remaining:
+   - A1, the no-carry argument (3 routine `sorry`s);
+   - A2:
+     - the six generators with the chart reduction;
+     - the rows and pivot columns with `hsupp`;
+     - the correspondence of the kernel-checked certificate with `macaulay`, including the rescaling of §9.5.
+5. **Two-dicritical.**
+   - Correct the statement (§9.3).
+   - Justify the three modeling premises of the bridge (§9.4).
+   - m ≥ 2 has a sketch only.
+   - The adjacent case is done at d = 3 only.
+   - The E₁ order translation is not formalized.
+
+   The main theorem is open.

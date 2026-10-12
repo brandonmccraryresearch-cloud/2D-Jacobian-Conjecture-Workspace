@@ -48,3 +48,15 @@
 - The main theorem stays open (`lean/README.md`, "What is not proved").
 - `CHECKSUMS.md5` / `.sha256` regenerated with the same rule.
 
+## 2026-10-12 (second pass): the statement, and the center hypotheses
+
+- The main theorem as worded is false: the automorphisms (x − y², y) and (x, y + x²) have a dicritical over the
+  origin and one at infinity
+  (`../JC2D-branches_a_b_c_unified/reviews/two_dicritical/main_statement_check.py`, with its log). See `README.md`,
+  Status.
+- `lean/TwoDicritical/CenterHypotheses.lean` (new): none of the hypotheses a₃ ≠ 0, a₄ ≠ 0, a₃ ≠ a₄ of
+  `bridge_collapse` can be dropped; at a₃ = 0 and d ≥ 3 the Keller pair (x − a₄y², y) satisfies every bridge
+  condition. `lean/check_center_nonzero.py` (with its log) finds the same from the pullback formula, d = 2…6.
+- `build.sh`: 13 theorems on the standard axioms, no `sorry` (`lean/logs/build.log`, about 1 min).
+- `CHECKSUMS.md5` / `.sha256` regenerated with the same rule.
+

@@ -1,0 +1,15 @@
+== identity (control): P = x, Q = y; [P,Q] = 1; pencil homogenized to degree 1: X, Y
+   base points [X:Y:Z]: [(0, 0, 1)]
+   over [0:0:1], one blowup (y = x t): residue of Phi on the last divisor = 1/t; non-constant (dicritical): True
+== automorphism (x - y^2, y): P = x - y**2, Q = y; [P,Q] = 1; pencil homogenized to degree 2: X*Z - Y**2, Y*Z
+   base points [X:Y:Z]: [(0, 0, 1), (1, 0, 0)]
+   over [0:0:1], one blowup (y = x t): residue of Phi on the last divisor = 1/t; non-constant (dicritical): True
+   over [1:0:0], first blowup (Z = Y z1): residue of Phi on the last divisor = oo; non-constant (dicritical): False
+   over [1:0:0], second blowup (z1 = Y z2): residue of Phi on the last divisor = oo; non-constant (dicritical): False
+   over [1:0:0], third blowup (z2 = 1 + Y z3): residue of Phi on the last divisor = z3; non-constant (dicritical): True
+== automorphism (x, y + x^2): P = x, Q = x**2 + y; [P,Q] = 1; pencil homogenized to degree 2: X*Z, X**2 + Y*Z
+   base points [X:Y:Z]: [(0, 0, 1), (0, 1, 0)]
+   over [0:0:1], one blowup (y = x t): residue of Phi on the last divisor = 1/t; non-constant (dicritical): True
+   over [0:1:0], first blowup (Z = X w1): residue of Phi on the last divisor = 0; non-constant (dicritical): False
+   over [0:1:0], second blowup (w1 = X w2): residue of Phi on the last divisor = 0; non-constant (dicritical): False
+   over [0:1:0], third blowup (w2 = -1 + X w3): residue of Phi on the last divisor = -1/w3; non-constant (dicritical): True

@@ -8,8 +8,8 @@
 #
 # Steps:
 #   1. scan TwoDicritical/*.lean (comments stripped) for sorry, admit, native_decide and user axioms;
-#   2. compile BlockRank, E1Obstruction, BridgeCollapse, Axioms in this order, each with `lean -o`;
-#      any error or "declaration uses sorry" fails;
+#   2. compile BlockRank, E1Obstruction, BridgeCollapse, CenterHypotheses, Axioms in this order, each with
+#      `lean -o`; any error or "declaration uses sorry" fails;
 #   3. check that every `#print axioms` line of Axioms.lean names only propext, Classical.choice, Quot.sound
 #      (or a subset).
 # Exit status 0 iff all steps pass. Time on 2 cores (2026-10-12): about 1.5 min; memory below 2 GB.
@@ -21,7 +21,7 @@ export PATH="$HOME/.elan/bin:$PATH"
 OUT="$(mktemp -d)"
 trap 'rm -rf "$OUT"' EXIT
 mkdir -p "$OUT/TwoDicritical"
-MODULES="BlockRank E1Obstruction BridgeCollapse Axioms"
+MODULES="BlockRank E1Obstruction BridgeCollapse CenterHypotheses Axioms"
 
 echo "=== 1. source scan ==="
 python3 - "$HERE"/TwoDicritical/*.lean <<'PY' || { echo "FAIL: sorry/admit/native_decide/axiom found"; exit 1; }

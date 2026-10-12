@@ -69,8 +69,11 @@ Both eliminations have the same three layers.
     combinatorics behind P-B. That is what an argument independent of the degree would need.
   - *Status:* untested, a framework only.
 - **U3. The dicritical route.**
-  - *Status:* the two-dicritical bridge collapse now has a Lean proof modulo its modeling premises. The m ≥ 2 case
-    (sketch), the adjacent case beyond d = 3 and the E₁ order translation are open.
+  - *Status:* the two-dicritical bridge collapse now has a Lean proof modulo its three modeling premises, one of
+    which (both centers nonzero) is load-bearing and unjustified (`branch_two_dicritical/lean/`, review §9.4). The
+    m ≥ 2 case (sketch), the adjacent case beyond d = 3 and the E₁ order translation are open. The main theorem is
+    false as worded: polynomial automorphisms have a dicritical over the origin and one at infinity (review §9.3).
+    Its intended statement has to be fixed first.
   - *Limit:* no known theorem says that a counterexample's pencil must have two or more dicriticals. Abhyankar–Heinzer
     (arXiv:1508.06015) call the link between dicriticals and the conjecture "plausible" and give a strategy only.
     Nguyen Van Chau (arXiv:0905.3939) proves the case of irreducible rational pencils. So even a complete
