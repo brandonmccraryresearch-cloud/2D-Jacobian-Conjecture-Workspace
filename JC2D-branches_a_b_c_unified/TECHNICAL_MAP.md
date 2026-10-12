@@ -393,11 +393,6 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
      supported. The corrected architecture (over a field L of characteristic 0; κ from `T1Zero.s_sq`, `s_X2`; the
      left-kernel argument; the determinant over ℤ[X] evaluated at w₀ mod p; R | D by irreducibility) is in
      `reviews/REVIEW_2026-10-12_handoff.md`.
-   - **2026-10-12, `branch_c/grade_a/`:** the generic half is in Lean (no `sorry`, standard axioms). It contains R
-     irreducible over ℚ (H3, now grade A), the transfer through ℤ[X], and the assembly theorem
-     `no_common_zero_of_certificate`. What remains is concrete: the six generators with the chart reduction, the
-     rows and pivot columns, and the link from the packed kernel check to the Macaulay block (A1, A2). See
-     `branch_c/grade_a/README.md`. `ChartEmptyC_T1ne0` stays grade B until those are done.
 5. Branch-(c) figures — produced: `branch_c/paper/figures/` (four figures with their scripts).
 6. GGHV Prop. 4.3's other cases and the reduction from the Jacobian conjecture —
    outside scope, unchanged.

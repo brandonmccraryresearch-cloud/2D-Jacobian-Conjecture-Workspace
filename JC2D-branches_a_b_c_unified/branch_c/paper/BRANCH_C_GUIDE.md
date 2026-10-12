@@ -623,7 +623,7 @@ explicit premises; C heuristic or fitted; D tautological or refuted. Independenc
 | C8 | `lower_c`'s ideal differs from the pipeline's in coordinates | descriptive | exact comparison | A (for what is compared) | I1 |
 | C9 | 6398 packed natural-number identities hold, which say C·M_S ≡ I (mod 32003) for the W = 24 pivot block | formal (identities) / derived (meaning) | Lean kernel, axioms `[propext]`; 5 controls; meaning by the digit argument (§5.9) | A (identities); B (meaning) | kernel-checked; the matrix construction is shared (I1) |
 | C10 | the rank computation's generators are positive integer multiples of the Lean conditions `cond_*` | descriptive | exact comparison, parsed from `CondsC.lean`; two controls | B | I1 |
-| C11 | R is irreducible over ℚ | derived | FLINT factorization; irreducible mod 67; degree patterns mod 5 and 23. Since 2026-10-12 kernel-checked: `Rrat_irreducible` in `grade_a/lean/GradeA/IrreducibleR.lean` | **A** (since 2026-10-12; B before) | I1 |
+| C11 | R is irreducible over ℚ | derived | FLINT factorization; irreducible mod 67; degree patterns mod 5 and 23 | B | I1 |
 
 Verbs follow HLRE control:
 - **"proves"** only for Lean-checked or exact deductions;
