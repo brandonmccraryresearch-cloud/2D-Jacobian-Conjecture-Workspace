@@ -68,7 +68,12 @@ This argument is on paper. Formalizing it is step A1, which is deferred.
     re-implements the matrix assembly.
   - H6 ties those generators exactly to `CondsC.lean`.
   - Every internal check, including FLINT and numpy in `step3b_rank_lift.py`, shares this one matrix construction.
-    `I3_REPLICATION_SPEC.md` asks someone outside to rebuild it.
+    `I3_REPLICATION_SPEC.md` asked someone outside to rebuild it — **done 2026-10-11:**
+    an independent implementation (written from the spec alone, no project scripts read)
+    built all six Macaulay matrices from `conds_c.json` and confirmed every rank in
+    Singular 4.4.1: W=22 → 2277/2278, W=23 → 2707/2708 (controls, inconsistent as
+    required), W=24 → 3199/3199 (full row rank) at both primes; planted-zero control
+    drops to 3198 as required.
 - **Not established:** any Lean theorem about `ChartEmptyC_T1ne0`. Claim C5 stays at grade B.
 
 ### 3.4 Results (`logs/run.log`, 2026-10-06)
@@ -136,7 +141,7 @@ files with `logs/MANIFEST.sha256`; a difference sets exit 1.
 | `gen_lean.py` | the Lean modules `RCCommon`, `RCData00–07`, `RCCheck00–07`, `RCControls`, and `MANIFEST.sha256` |
 | `check_logs.py` | reads the Lean logs: exit status, errors, axioms, theorem count, controls |
 | `timed.py` | runs one step and records its exit status, time and peak memory |
-| `I3_REPLICATION_SPEC.md` | the specification for an outside replication |
+| `I3_REPLICATION_SPEC.md` | the specification for an outside replication (completed 2026-10-11: all 6 cases match) |
 | `feasibility/` | why packed: kernel micro-benchmarks and LU fill (`README.md`, `run_feasibility.sh`, `logs/`) |
 | `logs/` | the logs of the run of 2026-10-06 and `MANIFEST.sha256` |
 

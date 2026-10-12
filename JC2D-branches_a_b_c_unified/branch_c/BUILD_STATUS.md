@@ -40,6 +40,13 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
 - **Added 2026-10-06:** `muse_refutation/check_refutation.sh` passed. The clean copy of the refutation builds with
   exit 0, with no error and no warning, and its axioms are `[propext, reduction_lemma, Classical.choice,
   Quot.sound]`. The bundle copy reports one recovered error, an unknown `eval_one`, and exits 1.
+- **Added 2026-10-11:** I3 independent replication complete. An implementation written from
+  `rank_lemma_check/I3_REPLICATION_SPEC.md` alone (no project scripts read) built all six
+  weighted Macaulay matrices from `conds_c.json` and confirmed every rank in Singular 4.4.1:
+  W=22 → 2277/2278, W=23 → 2707/2708 (controls, inconsistent as required),
+  W=24 → 3199/3199 (full row rank) at both p=32003 and p=1000003; planted-zero control
+  drops rank to 3198 as required. Preprocessing (Ω square identity, κ, term counts,
+  test values) matched the spec exactly. This is the outside rebuild the spec called for.
 
 ## Provenance
 

@@ -16,7 +16,7 @@ modular certificates, finite-field rank computations).
 | `scripts/` | `bundle_v3_1/jacobian_lean/certgen_c/`, `bundle_v3_1/jacobian_lean/chart_certificates/`; since 2026-10-06 also `rank_lemma_check/` | Generators (exact, python-flint) and certificate/rank scripts. Kept inside `jacobian_lean/` because `verify_branch_c_lean.sh` requires `certgen_c/`, `chart_certificates/` and `Jacobian/` as siblings. `rank_lemma_check/` sits outside the bundle and only reads it. |
 | `lean/` | `bundle_v3_1/jacobian_lean/Jacobian/BranchC/` | v1/v2 modules, `Descent2R` (505 generated modules), `T1Zero`, `Combine`, `Bridge`, `CondsC` |
 | `audits/` | `bundle_v3_1/jacobian_lean/axioms_branch_c.log`, `bundle_v3_1/v2_carryover/branch_c_audit/` | Axiom audit (53 theorems) + v2 audit carryover |
-| `correspondence_guide/` | **deferred** | See `../TODO_correspondence_guide.md`: created only after the finalized paper is drafted. |
+| `correspondence_guide/` | `correspondence_guide/CORRESPONDENCE_GUIDE.md` | Created 2026-10-08 (trigger fired; see `../TODO_correspondence_guide.md`). Maps the six statements (§1.1) to Lean names/files/grades. |
 | `figures/` | (none) | No figures produced for branch (c) yet. |
 | `logs/` | `bundle_v3_1/logs/` | Every build / verify / control / diagnostics log (index: GUIDE.md §9) |
 | `BUILD_STATUS.md` | `BUILD_STATUS.md` | Full build and verification record |
@@ -51,6 +51,7 @@ an independent alternative, unreviewed and unused; see `GUIDE.md` §4.4.
 - Outside Lean (grade B): `ChartEmptyC` follows from the rank lemma plus full row rank
   of the W = 24 Macaulay matrix mod 1000003 and mod 32003 (two implementations, controls).
   Since 2026-10-06 there are also the premise checks of `rank_lemma_check/` and a kernel check of the arithmetic.
+  Since 2026-10-11 the I3 independent replication (Singular, all six cases) confirms the ranks.
   The grade is unchanged.
 - Branch (c) is therefore closed **under stated computational premises not machine-checked
   in Lean**. It is not closed by Lean alone. See `GUIDE.md` §1 for the full verdict.

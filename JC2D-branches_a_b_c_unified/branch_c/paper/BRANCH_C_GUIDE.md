@@ -565,7 +565,8 @@ the field K₅. ∎
   - **Meaning.** The digit argument (no slot carries) turns the identities into C·M_S ≡ I (mod p). It is on paper:
     step A1 of the deferred plan (§11).
 - **Shared construction.** Every internal check of C5, the kernel check included, shares one construction of the
-  matrix. An outside replication (I3) is specified in `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`.
+  matrix. An outside replication (I3) was specified in `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`
+  and completed 2026-10-11 (independent Singular implementation; all six cases match).
 
 **Why the Muse axiom fails and this lemma does not.**
 - A unit ideal mod p says only that the Macaulay system is *consistent* mod p. Consistency does not lift: 1 + pX
@@ -652,8 +653,10 @@ Reviewer's assessment, as you asked:
   - The kernel check of an explicit inverse (C9) adds a third, machine-checked view of the arithmetic, on the same
     matrix.
   - C10 ties the generators exactly to the Lean conditions.
-  - What only an outside party can provide is an independent construction of the matrix (I3). It is specified in
-    `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`.
+  - What only an outside party can provide is an independent construction of the matrix (I3). It was specified in
+    `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md` and completed 2026-10-11
+    (independent Singular 4.4.1 implementation from the spec alone; all six ranks match;
+    planted-zero control 3198 as required).
 
 ---
 
@@ -717,8 +720,10 @@ Reviewer's assessment, as you asked:
 1. ~~Finish the build, audit, controls, verification.~~ **Done in v3.1** (§1.3).
 2. **I3 replication of C5.** Someone else computes the rank of the W = 24 Macaulay matrix mod 1000003 (or any good
    prime) in Magma, Sage or Singular. Rebuild the matrix from `conds_c.json` and κ with their own code.
-   - **2026-10-06: specification written** (`branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`); awaiting an outside
-     party.
+   - **2026-10-06: specification written** (`branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`).
+   - **2026-10-11: completed.** Independent Singular 4.4.1 implementation (spec alone, no project scripts):
+     W=22 → 2277/2278, W=23 → 2707/2708 (controls, inconsistent), W=24 → 3199/3199
+     (full row rank) at both primes; planted-zero control 3198.
 3. Optional: formalize the rank lemma's instance in Lean.
    - The lemma is `RingHom.map_det`.
    - The instance needs the 3199 × 6054 matrix as Lean data and either kernel `decide` (likely hours or more) or
