@@ -1,0 +1,32 @@
+PASS  field.log: R irreducible over Q: 1
+PASS  field.log: polredabs(R) == R: 1
+PASS  field.log: V irreducible: 1   polredabs(V) == R: 1
+PASS  field.log: V(t^7) irreducible (degree 35): 1
+PASS  field.log: real roots: R 1, V 1, V(t^7) 1
+PASS  field.log: field discriminant: 3065712 = [2, 4; 3, 1; 13, 1; 17, 3]
+PASS  field.log: signature (r1, r2): [1, 2]
+PASS  field.log: Galois group of R: [120, -1, 1, "S5"]
+PASS  field.log: class number: 1
+PASS  top_layer_counts.log: chart alpha0=beta0=alpha7=1 (mod 32003): dim
+PASS  top_layer_counts.log: chart alpha0=beta0=alpha1=1 with alpha7 != 0 (mod 32003): dim
+PASS  top_layer_counts.log: radical check: vdim of radical
+PASS  top_layer_m35.log: m = 3: equations
+PASS  top_layer_m35.log: factorization over Q:
+PASS  top_layer_m35.log: m = 5: equations
+PASS  top_layer_m35.log: factorization over Q:
+PASS  descent_ideal.log: E4,E3,E2 equations:
+PASS  descent_ideal.log: [R5] dim of V(E4,E3,E2) in the 51 unknowns (Singular dim minus the 5 f
+PASS  descent_ideal.log: [R5] b_12_24 in the radical of I(E4,E3,E2):
+PASS  descent_ideal.log: [R5] b_12_24 in I(E4,E3,E2) itself:
+PASS  descent_ideal.log: [R5] t1 = b_11_20 and t2 = b_12_22 in the radical:
+PASS  descent_ideal.log: [R5] t1^3 in I: 0   t2^3 in I: 0
+PASS  descent_ideal.log: [R5] elimination ideal I(E4,E3,E2) cap K5[t1,t2]: degrees of its reduc
+PASS  descent_ideal.log: [R5] the elimination ideal is homogeneous in (t1, t2) (1 = yes):
+PASS  descent_ideal.log: [R5] length of K5[t1,t2]/(I cap K5[t1,t2]):
+PASS  descent_ideal.log: [R5] its Hilbert function in degrees 0..5:
+PASS  descent_ideal.log: [R5] degrees of a minimal generating set of I cap K5[t1,t2]:
+PASS  descent_ideal.log: [R6] dim of V(E4,...,E1) in the 51 unknowns:
+PASS  descent_ideal.log: [R6] a_8_16 in I(E4..E1):
+PASS  descent_ideal.log: [R6] a_8_16^2 in I(E4..E1):
+PASS  descent_ideal.log: [R6] b_12_24 in I(E4..E1):
+LOG CHECKS: 31 passed, 0 failed

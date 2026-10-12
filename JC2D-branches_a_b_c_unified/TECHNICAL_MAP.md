@@ -293,8 +293,13 @@ cd branches_a_b
 bash verify_v19.sh                      # checksums, scripts, 111/111 identities, 2026-10-05 checks, paper build
 cd lean
 lake exe cache get
-LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh   # full build + 57-theorem axiom audit
+LEAN_NUM_THREADS=1 bash verify_branch_ab_lean.sh   # full build + 66-theorem axiom audit
+bash verify_routeC.sh                   # optional (2026-10-12): route C build, axioms, statement check (~34 min)
 ```
+
+Two replication documents (2026-10-12): `../REPRODUCTION_GUIDE.md` at the repository root re-runs the project's
+scripts (reproducibility, I1); `replication/INDEPENDENT_REPLICATION_GUIDE.md` is the blind replication with the
+replicator's own code (I3 when done by an outside party).
 
 ### Branch (c)
 
@@ -327,6 +332,10 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
     (`B26Irred`); `branch_ab_v19/` synced again. See `branches_a_b/CHANGES_v19.md` §15.
   - 2026-10-07: the Lean proof of Corollary 1.2 and Remark 8.8 (`Jacobian/A816`, G3 by route R) and the paper text
     that reports it (34 pages); `branch_ab_v19/` synced again. See `branches_a_b/CHANGES_v19.md` §16.
+  - 2026-10-08 (CAIC): route C (`lean/Jacobian/A816C`, PR #15, added to `branch_ab_v19/` only) and a page-count change
+    in `verify_v19.sh` (PR #14, manifests not regenerated). Reviewed and repaired on 2026-10-12: route C copied into
+    `branches_a_b/`, built, given a statement check and `verify_routeC.sh`; page count 34 (35 accepted); manifests
+    regenerated; the two copies byte-identical again. See `branches_a_b/CHANGES_v19.md` §17.
 - **Branch (c):** the `branch_c/` pipeline scripts on repo main (corrected
   2026-09-29: E₁ projection, 6d κ=0, Singular hang guard) → v2 bundle → v3.0
   (bundled mid-build) → **v3.1** (2026-09-29, 23:40 CDT; every module built,
@@ -348,8 +357,12 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
 
 ## 9. Deferred and open items
 
-1. **Branch-(c) correspondence guide** — conditional to-do, NOT started:
-   `TODO_correspondence_guide.md`. Created only after the finalized paper is drafted.
+1. **Branch-(c) correspondence guide** — **written 2026-10-07 (CAIC, PR #13)**:
+   `branch_c/correspondence_guide/CORRESPONDENCE_GUIDE.md`. Its section mapping was corrected on 2026-10-12, and it
+   now records a discrepancy in the paper: the "Formalization seam" paragraph of the paper's §6 says degree-19
+   rigidity is not formalized in Lean, but `degree19_rigidity`, `vertex_12_24_forces_t2` and
+   `main_theorem_c_of_claim` are kernel-checked. The paper is not yet corrected. (`TODO_correspondence_guide.md` is
+   the original to-do.)
 2. The p-adic argument for branch (c) — **closed 2026-10-06: not needed** (independent alternative, unreviewed,
    unused). `branch_c/bundle_v3_1/jacobian_lean/chart_certificates/padic_DEFERRED/` stays byte-identical.
    Its `SINGLE_PRIME_ARGUMENT.md` §6 is out of date: it lists the E₀–E₋₂ elimination as a premise outside Lean, but
@@ -372,6 +385,14 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
      - A4: the chart reduction S₂ = κ, with a Bézout certificate for o₁(w) ≠ 0;
      - A5: integration.
    - **The grade stays B.**
+   - **Status 2026-10-12.** CAIC drafted A1–A5 on the unmerged branch `caic/branch-c-cleanup` (19 `sorry`s, 8 axioms
+     in the assembly). A review on 2026-10-12 found: A1 (the digit argument) genuine, with 3 `sorry`s, not yet linked
+     to the kernel-checked data; A2 stubs (`def … := sorry`); A3's transfer inapplicable as stated (it needs ℤ[X] and
+     the minimal polynomial, not ℤ); A4 and A5 stated over ℤ, where R has no root, so they are vacuous (a Lean proof
+     of `False` from their hypotheses was given); A5's assembly circular. The branch's "fidelity B+, I3" regrade is not
+     supported. The corrected architecture (over a field L of characteristic 0; κ from `T1Zero.s_sq`, `s_X2`; the
+     left-kernel argument; the determinant over ℤ[X] evaluated at w₀ mod p; R | D by irreducibility) is in
+     `reviews/REVIEW_2026-10-12_handoff.md`.
 5. Branch-(c) figures — produced: `branch_c/paper/figures/` (four figures with their scripts).
 6. GGHV Prop. 4.3's other cases and the reduction from the Jacobian conjecture —
    outside scope, unchanged.
@@ -382,12 +403,14 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
      `a816_eq_zero`, `main_theorem_lower_edge`; 66/66 theorems of the verify script on standard axioms; controls
      9/9). Route R reuses the descent up to t = 0 and adds four small steps (depth 1; depth 2 as linear forms in
      s = (b₁₁,₂₁, b₁₂,₂₃); E₁ gives s₂² = s₁² = 0; E₂ triangular in depth 3).
-     - **Still open (optional): route C**, the kernel check of the certificate's own route (the 47 pivot identities
-       and 14 depth-4 monomial identities of `scripts/a816_rigidity/`, then the reduced identity), which would make
-       a second Lean proof independent of the descent. Feasibility estimate done 2026-10-06
-       (`branches_a_b/scripts/a816_lean_feasibility/README.md`): about 262,500 kernel products in about 110 checks;
-       estimated 10–20 min of build time at ≤ 1 GB per module. Pilots of the largest identity of each layer and of
-       the final reduced identity pass the kernel.
+     - **Route C**, the kernel check of the certificate's own route — **done at the reflection level (CAIC,
+       2026-10-08; reviewed and integrated 2026-10-12).** `lean/Jacobian/A816C`: `routeC_a816` and `routeC_source`
+       (a₈,₁₆ = 0 from the 75 bracket equations, 56 of them used, independent of `Jacobian/Descent`), standard axioms,
+       built in 2020 s on 2 cores (against the 10–20 min estimate of 2026-10-06). Limits: the hypotheses are
+       reflected expressions, linked to `jac P Q` by the Python statement check `lean/certgen/check_routeC_statement.py`
+       (added 2026-10-12), not in Lean; the generator `routec_gen.py` is not in the repository; no perturbation
+       control has been run for route C (its C7 theorem shows the bridge's rescaling is needed). See
+       `branches_a_b/lean/README.md` §1d.
 
    Remark 8.8 (all lower coefficients vanish at the K₅ point): since 2026-10-06 its 61 certificates are written out
    and checked by two independent programs (`branches_a_b/scripts/a816_rigidity/`): 47 pivot identities x − φ(x) ∈ I
@@ -402,3 +425,9 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
    - The bundle itself (not in this repository) is kept unchanged, for provenance. See GUIDE.md §4.5.
 9. I3 replication of the branch-(c) rank computation — **open.** The specification was written on 2026-10-06
    (`branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md`). It needs someone outside the project.
+   - **2026-10-08/11.** An agent of the project (CAIC) implemented the specification and reproduced its numbers. The
+     numbers are right, but the work is not I3: the implementer is internal, and the specification states the
+     expected values (§§1, 3, 4, 6). It counts as I1–I2. The branch `caic/branch-c-cleanup` says "I3 complete"; that
+     claim is not accepted.
+   - **2026-10-12.** A blind guide for an outside replicator, with a separate answer key recomputed in fresh code:
+     `replication/INDEPENDENT_REPLICATION_GUIDE.md`. It replaces the specification for blind use.

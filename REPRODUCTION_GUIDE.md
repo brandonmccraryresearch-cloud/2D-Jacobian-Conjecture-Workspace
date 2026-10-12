@@ -1,20 +1,41 @@
-# Blind Replication Guide — 2D Jacobian Conjecture Workspace
+# Reproduction Guide — 2D Jacobian Conjecture Workspace
 
-**Document version:** 1.0 (draft)
-**Date:** 2026-10-07
+**Document version:** 1.1
+**Date:** 2026-10-12 (version 1.0: 2026-10-07, under the name `BLIND_REPLICATION_GUIDE.md`)
 **Scope:** Branches (a,b) and (c) of the degree-(8,28) case, GGHV Proposition 4.3
 
 ---
 
 ## 1. Purpose
 
-This document is a protocol for an **independent blind replication** of the computational results in this repository.
+This document is a protocol for **re-executing the project's own scripts** on another machine and comparing the
+outputs with the recorded values in `REPRODUCTION_ANSWER_KEY.md`. It tests computational reproducibility.
 
-**What "blind" means.** The replicator — a competent mathematician or programmer with no prior exposure to this project's expected outputs — runs every computation described below **without knowing the expected results**. After completing all runs, the replicator compares their recorded outputs against the sealed answer key (`ANSWER_KEY.md`, a separate document). The replicator must **not** open `ANSWER_KEY.md` until every computation has been run and its output recorded.
+**Why it is not called blind (changed in version 1.1).** Version 1.0 called this protocol a blind replication. It is
+not one:
+- The scripts print their own verdicts (`OK`, `PASS`, `AS REQUIRED`, `exit=0`).
+- Many of them print the expected values while they run. For example, `verify_v19.sh` prints the expected page count,
+  and `belyi_counts_m357.py` prints the counts and their remainders.
+- The person running them therefore learns the expected values during the run.
 
-**What this proves.** A blind replication guards against confirmation bias, transcription errors, and environment-specific artifacts. If an independent party, starting only from the shipped sources and this protocol, reproduces the same numbers, the results do not depend on the original author's machine, private scripts, or unstated assumptions.
+The rule "record first, open the key later" (§5) still protects against transcription errors and selective
+reporting. But the code being tested is the code that produced the claims, so the independence level is **I1** (same
+code, new machine), not I3.
 
-**What this does not prove.** Blind replication verifies *computational reproducibility* — that the same inputs produce the same outputs. It does not verify the *mathematical correctness* of the proof strategy itself (that is the role of the Lean kernel checks and peer review). A replication that reproduces an error faithfully is still a successful replication; discrepancies, when found, are reported as described in §6.
+**For a blind replication**, with code you write yourself from definitions, use
+`JC2D-branches_a_b_c_unified/replication/INDEPENDENT_REPLICATION_GUIDE.md`. That guide is blind: its answer key is in
+a separate folder, and no script you run there prints an expected value.
+
+**What a successful reproduction shows.** The recorded outputs do not depend on the original machine, its software
+installation or its file state.
+
+**What it does not show.**
+- It does not test whether the scripts compute the right thing. A bug in a script is reproduced faithfully.
+- It does not test the assumptions written into the scripts.
+- It does not verify the mathematical correctness of the proof strategy. That is the role of the Lean kernel checks,
+  of the independent replication above, and of peer review.
+
+Discrepancies, when found, are reported as described in §6.
 
 **Two branches.** This repository addresses two branches of GGHV normal form (2) / (1) in the degree-(8,28) case:
 
@@ -24,6 +45,8 @@ This document is a protocol for an **independent blind replication** of the comp
 | (c) | `JC2D-branches_a_b_c_unified/branch_c/` | Sparse rank computations mod p, Lean kernel check of an explicit inverse |
 
 The two protocols are independent. A replicator may do either or both, but must complete all steps of a branch before opening the answer key for that branch.
+
+In this guide, "replicator" means the person doing the reproduction.
 
 ---
 
@@ -128,7 +151,7 @@ sha256sum -c CHECKSUMS.sha256
 
 **Pass criterion:** Zero failures on both manifests. Any failure is a **blocking discrepancy** — do not proceed until it is resolved (re-download the bundle; see §6.3).
 
-**Note:** `CHECKSUMS.md5` / `CHECKSUMS.sha256` cover the shipped bundle files. They exclude the top-level `README.md`, `.gitignore`, and `audits/` (added for publication).
+**Note:** `CHECKSUMS.md5` / `CHECKSUMS.sha256` cover the shipped bundle files. They exclude the top-level `README.md`, `.gitignore`, and `audits/` (added for publication). From version 1.1 of this guide they also cover the route-C Lean files (`lean/Jacobian/A816C/`, merged 2026-10-08 without manifest entries) and their build logs.
 
 ### 3.2 Step 2 — Master verification script
 
@@ -156,12 +179,22 @@ bash verify_v19.sh 2>&1 | tee ../replication_logs/verify_v19.log
    - `scripts/b26_m5_eliminant/check_explicit_data.py` — B2.6 explicit data check
    - `scripts/b22_structured/b22_validate.py` — B2.2 validation
    - `scripts/b26_m5_eliminant/lean_certificates/independent_checks.py`
-6. **Paper recompile** — rebuilds the 34-page paper in a temp directory with `xelatex` (3 passes); checks page count (expect 34) and zero missing glyphs in the Fira fonts.
+6. **Paper recompile** — rebuilds the paper in a temp directory with `xelatex` (3 passes); checks the page count and zero missing glyphs in the Fira fonts. The shipped PDF has 34 pages. The script also accepts 35, a page count one other TeX Live 2026 installation produced from the same source; any other count fails.
 7. **Lean build** — only if `lean/.lake` exists (see §3.5); otherwise skipped.
+
+**Number of counted steps.** Each `run` line and each of the three explicit checks (certificate byte-identity, page
+count, glyphs) adds one to `PASS` or `FAIL`:
+- with Singular installed and no `lean/.lake`: 18 steps;
+- without Singular: 15 steps (the three Singular-dependent steps of item 5 print `SKIP` and are not counted);
+- with `lean/.lake` present: one more step (`lake build`).
 
 **Record:** The complete log, the final `PASS=`/`FAIL=` line, and the exit code of the script (0 = all pass).
 
 **Pass criterion:** `FAIL=0` and exit code 0. Note which steps were skipped (Singular-dependent steps, Lean build) — skipped steps are **not** failures, but record them as skipped.
+
+**Side effect on the tree.** `exact_obstruction_K5.py` rewrites `logs/k5_minor_certificate.json` in place; the
+script checks that the new file is byte-identical to the old one. Running the Python scripts may also create
+`__pycache__/` folders. Neither changes a checksummed file when the run succeeds.
 
 ### 3.3 Step 3 — Individual script runs
 
@@ -235,7 +268,7 @@ grep -c 'Missing character' branch_ab_elimination_v3.log
 grep -o '([0-9]* pages' branch_ab_elimination_v3.log | tail -1
 ```
 
-**Record:** Page count, missing-glyph count, and any LaTeX warnings/errors from the log. Compare against `ANSWER_KEY.md` after completing all steps.
+**Record:** Page count, missing-glyph count, and any LaTeX warnings/errors from the log. Compare against `REPRODUCTION_ANSWER_KEY.md` after completing all steps.
 
 **Note:** The paper uses only Fira Sans (text), Fira Mono (code), and Fira Math (math). Any `Missing character` warning indicates a glyph-coverage defect. Verify the embedded fonts with `pdffonts branch_ab_elimination_v3.pdf` — only Fira families should appear.
 
@@ -256,11 +289,18 @@ bash verify_branch_ab_lean.sh 2>&1 | tee ../../replication_logs/lean_build.log
 - Full `lake build` with genuine exit status
 - No `sorry` warnings in the build log
 - No `sorry`/`admit`/user `axiom` in any source file
-- `#print axioms` on every named theorem: each must be a subset of `{propext, Classical.choice, Quot.sound}`
+- `#print axioms` on the 66 theorems listed in the script: each must be a subset of `{propext, Classical.choice, Quot.sound}`
+
+**Optional further checks** (same directory, after the build):
+- `bash controls.sh` and `bash controls_a816.sh`: perturbed copies of certificate lemmas must be rejected, unperturbed
+  copies accepted, and `sorry` copies flagged.
+- `bash verify_routeC.sh`: builds the route-C modules (`Jacobian/A816C`, not imported by `Jacobian.lean`) and prints
+  the axioms of `routeC_a816` and `routeC_source`. Route C is a second, reflection-level check of the a₈,₁₆
+  certificate; `lean/README.md` explains what it does and does not prove.
 
 **Record:** The build log (large — save it, don't paste it into the report), the axiom report, and the exit code.
 
-**If you cannot run the Lean build** (insufficient RAM, no elan), record this as **skipped** with the reason. The scripts-only replication (§3.1–§3.4) is still a complete replication of the computational claims.
+**If you cannot run the Lean build** (insufficient RAM, no elan), record this as **skipped** with the reason. The scripts-only reproduction (§3.1–§3.4) still covers every script-based claim; the Lean claims are then not reproduced.
 
 ### 3.6 What to record (branch (a,b) checklist)
 
@@ -279,7 +319,7 @@ For your report (§6), you must have:
 
 All paths in this section are relative to `JC2D-branches_a_b_c_unified/branch_c/`.
 
-**Background for the replicator.** Branch (c) concerns GGHV normal form (1), case (1). Lean proves everything down to a single statement, `ChartEmptyC_T1ne0` — the emptiness of a chart. That statement is proved *outside* Lean by a finite computation: a sparse matrix M₂₄ (3199 × 6054) has full row rank modulo p = 32003 (repeated mod 1000003), and a short lemma lifts full row rank mod p to full row rank over K₅ = ℚ[w]/(w⁵−w⁴+3w³+3w²+26). This protocol replicates that computation.
+**Background for the replicator.** Branch (c) concerns GGHV normal form (1), case (1). Lean proves everything down to a single statement, `ChartEmptyC_T1ne0` — the emptiness of a chart. That statement is proved *outside* Lean by a finite computation: a sparse matrix M₂₄ (3199 × 6054) has full row rank modulo p = 32003, and a short lemma lifts full row rank mod p to full row rank over K₅ = ℚ[w]/(w⁵−w⁴+3w³+3w²+26). The full row rank was also found mod 1000003; that run is logged in `bundle_v3_1/jacobian_lean/chart_certificates/step3b_rank_lift.log` and is **not** repeated by this protocol. (Do not run `step3b_rank_lift.py` inside `bundle_v3_1/`: it rewrites its log, and that folder is frozen.) This protocol reproduces the mod-32003 computation and its Lean kernel check.
 
 ### 4.1 Step 1 — Checksum verification
 
@@ -343,17 +383,24 @@ bash verify_branch_c.sh 2>&1 | tee ../../replication_logs/verify_branch_c.log
 
 **Record:** Full log and exit code, or "skipped: <reason>".
 
-### 4.4 Step 4 — Independent replication spec (I3, advanced)
+### 4.4 Step 4 — Independent replication (I3): use the separate blind guide
 
-For replicators who want the strongest form of independence: `rank_lemma_check/I3_REPLICATION_SPEC.md` is a specification for rebuilding the rank computation **from scratch** in Magma, Sage, Singular, or any exact-arithmetic system — **without reading the project's scripts first**. This is the step no internal check can make independent, because all three internal implementations (FLINT, numpy, Lean kernel) share one matrix construction.
+This guide re-executes the project's code. The independent step — rebuilding the rank computation **from scratch**
+in Magma, Sage, Singular or any exact-arithmetic system, without reading the project's scripts — is described in
+`JC2D-branches_a_b_c_unified/replication/INDEPENDENT_REPLICATION_GUIDE.md` (target C3). No internal check can make
+this step independent: all internal implementations (FLINT, numpy, the Lean kernel) share one matrix construction.
 
-**Protocol for I3:**
-1. Read only `I3_REPLICATION_SPEC.md` §§1–7 (not the project's `build_matrix.py`).
-2. Implement the matrix construction independently in your system of choice.
-3. Compute the rank mod 32003 and mod 1000003.
-4. Only then compare against `ANSWER_KEY.md` §(branch c) and secondarily against the project's scripts.
+**Do not use `rank_lemma_check/I3_REPLICATION_SPEC.md` for a blind replication.** Version 1.0 of this guide said to
+read its §§1–7 first. Those sections state the expected values openly:
+- §1 gives the size of M₂₄ and says it has full row rank;
+- §3 gives the term counts of the six generators;
+- §4 gives the matrix sizes and the columns per generator;
+- §6 gives κ mod p, the values of the generators at a test point, the nonzero count and the ranks.
 
-**Record:** Your implementation source, your computed ranks, and a note on where your construction decisions differed from or agreed with the spec's.
+A replicator who reads them is no longer blind. The independent guide gives the same definitions without the values,
+and it keeps the values in a separate answer key.
+
+**Record:** If you do the independent replication, record it in that guide's `REPORT_TEMPLATE.md`, not here.
 
 ### 4.5 What to record (branch (c) checklist)
 
@@ -361,16 +408,16 @@ For replicators who want the strongest form of independence: `rank_lemma_check/I
 - [ ] Checksum outputs (§4.1): file counts, failure counts
 - [ ] `branch_c_rank.log`: full log, `RESULT` lines, exit code
 - [ ] `verify_branch_c.log` (§4.3), or "skipped: <reason>"
-- [ ] I3 materials (§4.4), if attempted: implementation source, computed ranks
-
 ---
 
-## 5. The Sealed Answer Key
+## 5. The Answer Key
 
-`ANSWER_KEY.md` (a separate document, **not** part of this guide) contains every expected value: checksums counts, script outputs, ranks, page counts, Lean axiom reports, and certificate hashes.
+`REPRODUCTION_ANSWER_KEY.md` (a separate document, **not** part of this guide) contains the expected values: checksum counts, script outputs, ranks, page counts, Lean axiom reports, and certificate data. It is kept separate so that you record before you compare. It is not sealed in any stronger sense, and the scripts' own output already shows most of these values (§1).
+
+The comparator `reproduction_key_checks.py` contains every expected value in its source. Do not open or run it before you have recorded your outputs.
 
 **Rules:**
-1. Do **not** open `ANSWER_KEY.md` until you have completed **all** steps for a branch and recorded your outputs.
+1. Do **not** open `REPRODUCTION_ANSWER_KEY.md` until you have completed **all** steps for a branch and recorded your outputs.
 2. Compare branch-by-branch: finish branch (a,b) §§3.1–3.4 (and §3.5 if attempted), record everything, *then* open the branch-(a,b) section of the answer key.
 3. For each item, mark **MATCH** (your output identical to expected), **MISMATCH** (differs — see §6.2), or **SKIPPED** (with reason).
 4. Never edit your recorded outputs after opening the answer key. If you re-run something, record it as a separate, dated run.
@@ -384,7 +431,7 @@ For replicators who want the strongest form of independence: `rank_lemma_check/I
 Write your replication report as `REPLICATION_REPORT.md` with these sections:
 
 ```markdown
-# Replication Report
+# Reproduction Report
 - Replicator: <name or pseudonym>
 - Date range of runs: <start> to <end> (UTC)
 - Branches replicated: (a,b) / (c) / both
@@ -413,7 +460,6 @@ Write your replication report as `REPLICATION_REPORT.md` with these sections:
 <RESULT lines, exit code>
 ### 3.3 Lean verification
 <verdict or "skipped: <reason>">
-### 3.4 I3 (if attempted)
 
 ## 4. Discrepancies
 <see §6.2; "none" if empty>
@@ -448,6 +494,7 @@ These are expected to vary harmlessly between machines. They are **not** discrep
 - **`apt`/`conda` solver chatter** — irrelevant to results.
 - **First-run vs. cached runs** — Lean builds are slower on a cold file cache; python `__pycache__` may or may not exist. Neither affects outputs.
 - **The `PYTHON` interpreter path** — `verify_v19.sh` respects the `PYTHON` environment variable; any Python 3.11+ with the required packages is acceptable.
+- **The paper's page count, 34 or 35** — the shipped PDF has 34 pages, and TeX Live 2026 with the CTAN Fira fonts reproduces 34. One other TeX Live 2026 installation produced 35 from the same source: line breaking depends on the installation. Both are accepted; any other count is a discrepancy.
 
 Anything else that differs — especially **any numeric output, any checksum, any rank, any count, any exit code** — is a real discrepancy. Report it.
 
@@ -538,8 +585,9 @@ bash verify_branch_c.sh 2>&1 | tee ../../replication_logs/verify_branch_c.log; e
 
 | Version | Date | Change |
 |---|---|---|
-| 1.0 (draft) | 2026-10-07 | Initial draft |
+| 1.0 (draft) | 2026-10-07 | Initial draft, as `BLIND_REPLICATION_GUIDE.md` |
+| 1.1 | 2026-10-12 | Renamed `REPRODUCTION_GUIDE.md` (with `REPRODUCTION_ANSWER_KEY.md` and `reproduction_key_checks.py`). §1: the protocol re-executes the project's scripts, which print their own expected values, so it is a reproducibility check (I1), not a blind replication; the blind guide is `JC2D-branches_a_b_c_unified/replication/`. §3.1: the manifests now cover the route-C Lean files. §3.2: page count 34 (35 accepted) and the number of counted steps. §4: the mod-1000003 rank is logged, not reproduced. §4.4: the I3 spec states the expected values (§§1, 3, 4, 6), so it is not used for blind work. §5: the comparator holds every expected value. §6.3: page-count variant. |
 
 ---
 
-*End of Blind Replication Guide.*
+*End of Reproduction Guide.*

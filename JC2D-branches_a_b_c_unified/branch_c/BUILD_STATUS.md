@@ -66,3 +66,6 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
     `muse_refutation/`) and the edits to `GUIDE.md`, `paper/BRANCH_C_GUIDE.md`, `README.md` and this file. The rule
     excludes every file named `CHECKSUMS.md5` or `CHECKSUMS.sha256`, including the two inside
     `bundle_v3_1/v2_carryover/`. The lists now have 1087 entries, and all of them verify.
+  - *Regenerated on 2026-10-12*, with the same rule. PR #13 (2026-10-07) had added
+    `correspondence_guide/CORRESPONDENCE_GUIDE.md` without a manifest entry; the guide's section mapping and
+    `README.md` were corrected in the same change. The lists now have 1088 entries, and all of them verify.

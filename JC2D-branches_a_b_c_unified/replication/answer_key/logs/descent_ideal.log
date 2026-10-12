@@ -1,0 +1,48 @@
+E4,E3,E2 equations:
+56
+E4..E1 equations:
+75
+[R5] dim of V(E4,E3,E2) in the 51 unknowns (Singular dim minus the 5 free ring variables a_0_0, b_0_0, z, x, y):
+2
+[R5] b_12_24 in the radical of I(E4,E3,E2):
+1
+[R5] b_12_24 in I(E4,E3,E2) itself:
+0
+[R5] t1 = b_11_20 and t2 = b_12_22 in the radical:
+1
+1
+[R5] t1^1 in I: 0   t2^1 in I: 0
+[R5] t1^2 in I: 0   t2^2 in I: 0
+[R5] t1^3 in I: 0   t2^3 in I: 0
+[R5] t1^4 in I: 1   t2^4 in I: 1
+[R5] t1^5 in I: 1   t2^5 in I: 1
+[R5] elimination ideal I(E4,E3,E2) cap K5[t1,t2]: degrees of its reduced Groebner basis (degree ordering)
+3
+3
+4
+4
+[R5] its leading monomials:
+_[1]=63651154886098676089640403794543535336*b_11_20^2*b_12_22
+_[2]=129084542109008115109790738895334289661408*b_11_20^3
+_[3]=b_12_22^4
+_[4]=b_11_20*b_12_22^3
+[R5] the elimination ideal is homogeneous in (t1, t2) (1 = yes):
+1
+[R5] length of K5[t1,t2]/(I cap K5[t1,t2]):
+8
+[R5] its Hilbert function in degrees 0..5:
+1,2,3,2,0,0
+[R5] degrees of a minimal generating set of I cap K5[t1,t2]:
+3
+3
+4
+[R6] dim of V(E4,...,E1) in the 51 unknowns:
+0
+[R6] a_8_16 in I(E4..E1):
+0
+[R6] a_8_16^2 in I(E4..E1):
+1
+[R6] b_12_24 in I(E4..E1):
+0
+seconds:
+21

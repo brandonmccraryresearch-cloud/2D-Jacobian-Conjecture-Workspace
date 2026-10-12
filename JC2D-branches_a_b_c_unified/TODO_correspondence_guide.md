@@ -1,7 +1,8 @@
 # TODO (conditional): branch-(c) correspondence guide
 
-**Status: DONE 2026-10-08** — trigger fired (branch-(c) paper finalized 2026-10-01);
-guide created at `branch_c/correspondence_guide/CORRESPONDENCE_GUIDE.md`.
+**Status: DONE 2026-10-07** (commit `02081b7`, PR #13) — trigger fired (branch-(c) paper finalized 2026-10-01);
+guide created at `branch_c/correspondence_guide/CORRESPONDENCE_GUIDE.md`. Its section mapping was corrected on
+2026-10-12 (see the guide).
 It maps the six statements (§1.1) to Lean names/files/grades, the rank-lemma
 premises (§5.9) to scripts, and the negative controls (§7) to logs.
 

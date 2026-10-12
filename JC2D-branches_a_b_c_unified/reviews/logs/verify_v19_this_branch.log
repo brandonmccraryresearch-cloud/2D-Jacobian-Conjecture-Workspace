@@ -1,0 +1,50 @@
+# verify_v19.sh on this branch, in JC2D-branches_a_b_c_unified/branches_a_b/, 2026-10-12 (filtered as above).
+=== 1. checksum verification ===
+### md5sum -c CHECKSUMS.md5
+exit=0
+### sha256sum -c CHECKSUMS.sha256
+exit=0
+=== 2. exact K5 scripts (from lean/certgen) ===
+### python3 ../../scripts/belyi_counts_m357.py
+exit=0
+### python3 ../../scripts/exact_ranks_K5.py
+exit=0
+### python3 ../../scripts/exact_obstruction_K5.py
+exit=0
+### certificate byte-reproducibility: before=4ead0d7b36f38bddac4952469a15d5c6 after=4ead0d7b36f38bddac4952469a15d5c6
+BYTE-IDENTICAL
+=== 3. machine-readable certificate structural check ===
+### python3 -
+certificate: 6x6 minor determinant nonzero over K5 (exact check)
+certificate check PASS
+exit=0
+=== 4. 111/111 independent identities ===
+### python3 chartproof/independent_check.py
+exit=0
+=== 4b. 2026-10-05 additions: a_{8,16} certificate, B2.2 validation, B26 regeneration and statement check ===
+### bash /home/claude/wt_rev/JC2D-branches_a_b_c_unified/branches_a_b/scripts/a816_certificate/verify_bundle.sh
+certificate: 76 cofactors, 3464 terms; F = sum c_k g_k + c_76 (a_8_16 z - 1) - 1 has 24444 terms before reduction mod R(w)
+exit=0
+### bash /home/claude/wt_rev/JC2D-branches_a_b_c_unified/branches_a_b/scripts/b26_m5_eliminant/lean_certificates/regen_b26.sh
+exit=0
+### python3 /home/claude/wt_rev/JC2D-branches_a_b_c_unified/branches_a_b/scripts/b26_m5_eliminant/check_explicit_data.py
+exit=0
+### python3 /home/claude/wt_rev/JC2D-branches_a_b_c_unified/branches_a_b/scripts/b22_structured/b22_validate.py
+exit=0
+### python3 /home/claude/wt_rev/JC2D-branches_a_b_c_unified/branches_a_b/scripts/b26_m5_eliminant/lean_certificates/independent_checks.py
+exit=0
+=== 5. paper recompile (in temp dir, tree untouched) ===
+### xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex
+exit=0
+### xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex
+exit=0
+### xelatex -interaction=nonstopmode branch_ab_elimination_v3.tex
+exit=0
+### compiled pages: 34 (expect 34, the shipped PDF; 35 is a known environment variant)
+PAGECOUNT OK
+### missing glyphs: 0 (expect 0)
+GLYPHS OK
+=== 6. Lean build (only if .lake present) ===
+SKIP: lean/.lake not present (run 'lake exe cache get' first)
+verify_v19.sh: PASS=18 FAIL=0
+exit=0 seconds=79

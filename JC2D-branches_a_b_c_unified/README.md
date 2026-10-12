@@ -33,10 +33,12 @@ in one directory.
 
 ## Deferred
 
-- `TODO_correspondence_guide.md` — the branch-(c) correspondence guide is created
-  **only after** the finalized paper is drafted (conditional to-do, not started).
+- `TODO_correspondence_guide.md` — the branch-(c) correspondence guide: **done** 2026-10-07 (PR #13),
+  `branch_c/correspondence_guide/CORRESPONDENCE_GUIDE.md`; section mapping corrected 2026-10-12.
 - Branch (c), grade A for `ChartEmptyC_T1ne0` (plan A1–A5, about 9–15 sessions): deferred by decision on 2026-10-06.
-  The outside replication (I3) is specified in `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md` and is still open.
+  The outside replication (I3) is specified in `branch_c/rank_lemma_check/I3_REPLICATION_SPEC.md` and is still open;
+  for a blind replication use `replication/INDEPENDENT_REPLICATION_GUIDE.md` (2026-10-12), because the specification
+  states its expected values.
   See `TECHNICAL_MAP.md` §9.
 - Closed on 2026-10-06:
   - the p-adic argument (not needed);

@@ -1,0 +1,70 @@
+# Route C (Jacobian/A816C, 55 files): build log, 2026-10-12.
+# Command, in a copy of branches_a_b/lean with the Mathlib cache and the branch-(a,b) modules already built:
+#   lake build Jacobian.A816C.Bridge Jacobian.A816C.Control.C7
+# Lean 4.34.0 (commit 293d5d0c), Mathlib v4.34.0 (lake-manifest.json of this tree); 2 cores, 7 GB RAM.
+# The A816C sources built are byte-identical to lean/Jacobian/A816C (diff -r).
+# Result: exit=0, wall 2020 s. No errors; no 'declaration uses sorry'.
+# Warnings, 819 in all, of three kinds (full log not kept):
+#   763 linter.unusedSectionVars ('automatically included section variable(s) unused', [CharZero L]);
+#    37 deprecations ('... has been deprecated: Use ... instead');
+#    19 unused hypotheses of routeC_a816 (RouteC.lean, lines 15-87): hE_1_2 hE_5_10 hE_6_12 hE_7_14 hE_8_16
+#       hE_9_18 hE_10_20 hE_11_22 hE_12_24 hE_13_26 hE_14_28 hE_15_30 hE_16_32 hE_17_34 hE_18_36 hE_19_35
+#       hE_19_36 hE_19_37 hE_19_38. By weight d = 2i - j = 3, 2, 1, 0 that is 1, 1, 1, 16 unused, so 17, 18, 18, 3
+#       used: the same counts as the nonzero cofactors of the certificate (scripts/a816_certificate/README.md).
+# Per-module lines (jobs 1-737 are Mathlib and branch-(a,b) modules already built, not listed):
+✔ [738/792] Built Jacobian.A816C.Cancel (82s)
+✔ [739/792] Built Jacobian.A816C.Subst (83s)
+✔ [740/792] Built Jacobian.A816C.Data (92s)
+✔ [741/792] Built Jacobian.A816C.BridgeData (5.6s)
+⚠ [742/792] Built Jacobian.A816C.Pivot.P01 (17s)
+⚠ [743/792] Built Jacobian.A816C.Pivot.P02 (16s)
+⚠ [744/792] Built Jacobian.A816C.Pivot.P03 (15s)
+⚠ [745/792] Built Jacobian.A816C.Pivot.P04 (15s)
+⚠ [746/792] Built Jacobian.A816C.Pivot.P05 (15s)
+⚠ [747/792] Built Jacobian.A816C.Pivot.P06 (15s)
+⚠ [748/792] Built Jacobian.A816C.Pivot.P07 (3.6s)
+⚠ [749/792] Built Jacobian.A816C.Pivot.P08 (3.9s)
+⚠ [750/792] Built Jacobian.A816C.Pivot.P09 (15s)
+⚠ [751/792] Built Jacobian.A816C.Pivot.P10 (15s)
+⚠ [752/792] Built Jacobian.A816C.Pivot.P11 (15s)
+⚠ [753/792] Built Jacobian.A816C.Pivot.P12 (16s)
+⚠ [754/792] Built Jacobian.A816C.Pivot.P13 (15s)
+⚠ [755/792] Built Jacobian.A816C.Pivot.P14 (15s)
+⚠ [756/792] Built Jacobian.A816C.Pivot.P15 (14s)
+⚠ [757/792] Built Jacobian.A816C.Pivot.P16 (15s)
+⚠ [758/792] Built Jacobian.A816C.Pivot.P17 (15s)
+⚠ [759/792] Built Jacobian.A816C.Pivot.P18 (41s)
+⚠ [760/792] Built Jacobian.A816C.Pivot.P19 (42s)
+⚠ [761/792] Built Jacobian.A816C.Pivot.P20 (46s)
+⚠ [762/792] Built Jacobian.A816C.Pivot.P21 (47s)
+⚠ [763/792] Built Jacobian.A816C.Pivot.P22 (45s)
+⚠ [764/792] Built Jacobian.A816C.Pivot.P23 (42s)
+⚠ [765/792] Built Jacobian.A816C.Pivot.P24 (21s)
+⚠ [766/792] Built Jacobian.A816C.Pivot.P25 (2.3s)
+⚠ [767/792] Built Jacobian.A816C.Pivot.P26 (43s)
+⚠ [768/792] Built Jacobian.A816C.Pivot.P27 (41s)
+⚠ [769/792] Built Jacobian.A816C.Pivot.P28 (42s)
+⚠ [770/792] Built Jacobian.A816C.Pivot.P29 (41s)
+⚠ [771/792] Built Jacobian.A816C.Pivot.P30 (44s)
+⚠ [772/792] Built Jacobian.A816C.Pivot.P31 (43s)
+⚠ [773/792] Built Jacobian.A816C.Pivot.P32 (43s)
+⚠ [774/792] Built Jacobian.A816C.Pivot.P33 (42s)
+⚠ [775/792] Built Jacobian.A816C.Pivot.P34 (44s)
+⚠ [776/792] Built Jacobian.A816C.Pivot.P35 (22s)
+⚠ [777/792] Built Jacobian.A816C.Pivot.P36 (3.4s)
+⚠ [778/792] Built Jacobian.A816C.Pivot.P37 (4.0s)
+⚠ [779/792] Built Jacobian.A816C.Pivot.P38 (7.7s)
+⚠ [780/792] Built Jacobian.A816C.Pivot.P39 (13s)
+⚠ [781/792] Built Jacobian.A816C.Pivot.P40 (22s)
+⚠ [782/792] Built Jacobian.A816C.Pivot.P41 (31s)
+⚠ [783/792] Built Jacobian.A816C.Pivot.P42 (45s)
+⚠ [784/792] Built Jacobian.A816C.Pivot.P43 (62s)
+⚠ [785/792] Built Jacobian.A816C.Pivot.P44 (80s)
+⚠ [786/792] Built Jacobian.A816C.Pivot.P45 (103s)
+⚠ [787/792] Built Jacobian.A816C.Pivot.P46 (121s)
+⚠ [788/792] Built Jacobian.A816C.Pivot.P47 (134s)
+⚠ [789/792] Built Jacobian.A816C.Final (116s)
+⚠ [790/792] Built Jacobian.A816C.RouteC (1.8s)
+⚠ [791/792] Built Jacobian.A816C.Bridge (32s)
+⚠ [792/792] Built Jacobian.A816C.Control.C7 (1.9s)
+exit=0 seconds=2020

@@ -1,0 +1,5 @@
+primes 101 <= p < 700: 90 pairs (p, w0) with R(w0) = 0 mod p
+bad pairs (a denominator divisible by p): 5: [(151, 21), (151, 95), (311, 183), (311, 208), (311, 211)]
+good pairs: 85; the six chart generators give the unit ideal at 85 of them
+good pairs without the unit ideal: []
+excluding p = 101 (the range of the project's lower_c.py): unit ideal at 84 of 89 pairs

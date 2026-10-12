@@ -1,0 +1,20 @@
+// top_layer_counts.sing -- answer key R3: number of top-layer solutions mod 32003 in two charts. Run: Singular -q top_layer_counts.sing
+option(redSB); LIB "elim.lib";
+proc topsys(list A)
+{ // A = alpha_0..alpha_7 (polys); beta solved recursively from k=1..10 (beta_0 = 1); returns C_11..C_16
+  list B = 1; int k; int i; poly f;
+  for (k = 1; k <= 10; k++) { f = 0; for (i = 1; i <= 7; i++) { if (k-i >= 0) { f = f + (1 + 2*(k-i) - 3*i)*A[i+1]*B[k-i+1]; } } B = B + list(-f/(1+2*k)); }
+  ideal I;
+  for (k = 11; k <= 16; k++) { f = 0; for (i = 0; i <= 7; i++) { if (k-i >= 0 && k-i <= 10) { f = f + (1 + 2*(k-i) - 3*i)*A[i+1]*B[k-i+1]; } } I = I, f; }
+  return(simplify(I,2));
+}
+ring r1 = 32003,(a1,a2,a3,a4,a5,a6),dp;
+ideal I1 = topsys(list(1,a1,a2,a3,a4,a5,a6,1)); ideal G1 = std(I1);
+"chart alpha0=beta0=alpha7=1 (mod 32003): dim"; dim(G1); "vdim"; vdim(G1);
+ideal E1 = eliminate(G1, a1*a2*a3*a4*a5); "deg of eliminant in a6:"; deg(E1[1]);
+ring r2 = 32003,(a2,a3,a4,a5,a6,a7,T),dp;
+ideal I2 = topsys(list(1,1,a2,a3,a4,a5,a6,a7)); ideal G2 = std(I2 + ideal(a7*T - 1));
+"chart alpha0=beta0=alpha1=1 with alpha7 != 0 (mod 32003): dim"; dim(G2); "vdim"; vdim(G2);
+ideal E2 = eliminate(G2, a2*a3*a4*a5*a6*T); "eliminant in a7:"; E2;
+ring r3 = 32003,(a2,a3,a4,a5,a6,a7,T),lp; ideal G3 = fglm(r2, G2); "radical check: vdim of radical"; vdim(std(radical(G3)));  // radical() is in primdec.lib, which elim.lib loads
+quit;

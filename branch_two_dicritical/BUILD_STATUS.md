@@ -25,3 +25,14 @@
 
 - `CHECKSUMS.md5`: 41 files
 - `CHECKSUMS.sha256`: 41 files
+
+## 2026-10-12 (review)
+
+- The paper was changed three times after the checksums were recorded (2026-10-01, `d7ec383`, `c07bd18`,
+  `e3df420`: the Fira Math scale), so `CHECKSUMS.md5` / `.sha256` failed on `paper/two_dicritical_closure.tex` and
+  `.pdf`. Regenerated with the same rule (every file except the two checksum files, sorted by path).
+- `verify_all.sh` used `~/miniconda3/envs/physics/bin/python`, which exists on one machine only. It now uses
+  `$PYTHON` (default `python3`) and also compares each output with `outputs/`. With Python 3.11.15 and sympy 1.14.0
+  all 18 scripts exit 0 and reproduce their recorded outputs byte for byte.
+- `README.md`: the font line said Noto; the paper uses Fira only. A status section now says that the main theorem's
+  proof is incomplete (see `../JC2D-branches_a_b_c_unified/reviews/REVIEW_2026-10-12_handoff.md`, §5).

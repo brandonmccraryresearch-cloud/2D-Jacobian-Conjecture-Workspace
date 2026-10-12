@@ -1,7 +1,7 @@
-dc17a9ac94b59154dcc4254018df6351  ./BUILD_STATUS.md
+98ef3ceaa86abb19494bf6d4b02796e5  ./BUILD_STATUS.md
 c6b651a6c09f5acd05ef652dc42a113c  ./GUIDE.md
 a0d6a926194ced14b3b99b8b7737589e  ./PARTS.txt
-9fc5c4aeb7d08c7d78dfa0fddcf1346d  ./README.md
+ac45ee6e63940bf20ec2eea91c7b6c9c  ./README.md
 a146b02c8efd86faf103a81a08093deb  ./README.txt
 cc2d3d0ec5c305a6f9fee47e4f87fa93  ./V3_1_PROVENANCE.md
 6ab1e710d8b8d9ed05db4de2c8fa0672  ./bundle_v3_1/GUIDE.md
@@ -1017,6 +1017,7 @@ c77441c615a20db51e053dd10c09686a  ./bundle_v3_1/v2_carryover/corrected_commit_pr
 7cdb37e0cc98e6728cb5f5717efd8b40  ./bundle_v3_1/v2_carryover/corrected_commit_proposal/tests/phi_stage6_vs_6b.log
 e04d819b03353ffc47a8ef3ad9bedd8c  ./bundle_v3_1/v2_carryover/corrected_commit_proposal/tests/phi_stage6_vs_6b.py
 ebaddc66bc51c89bcf608b4fc2a8066a  ./bundle_v3_1/v2_carryover/corrected_commit_proposal/tests/phi_stage6_vs_6b_paths_control.log
+b811395c54d54d411001004f155c96de  ./correspondence_guide/CORRESPONDENCE_GUIDE.md
 6a02772a90dcf6c9b8025cf7db50ee3d  ./muse_refutation/DEPRECATED_char0_cert.md
 bccbd2b21f9bb4373baeee8e540b4413  ./muse_refutation/README.md
 7ba59672b2cf8122e01cd2152a97d6c2  ./muse_refutation/RefuteReductionLemma.lean

@@ -1,0 +1,7 @@
+PASS  random point 1, b_12_23 random: weights 3, 2, 1 consistent; weight 0 inconsistent: {3: True, 2: True, 1: True, 0: False, -1: False}
+PASS  random point 2, b_12_23 random: weights 3, 2, 1 consistent; weight 0 inconsistent: {3: True, 2: True, 1: True, 0: False, -1: False}
+PASS  random point 3, b_12_23 random: weights 3, 2, 1 consistent; weight 0 inconsistent: {3: True, 2: True, 1: True, 0: False, -1: False}
+PASS  random point 11, b_12_23 = kappa b_12_22^2: weights 3..0 consistent; weight -1 inconsistent: {3: True, 2: True, 1: True, 0: True, -1: False}
+PASS  random point 12, b_12_23 = kappa b_12_22^2: weights 3..0 consistent; weight -1 inconsistent: {3: True, 2: True, 1: True, 0: True, -1: False}
+PASS  random point 13, b_12_23 = kappa b_12_22^2: weights 3..0 consistent; weight -1 inconsistent: {3: True, 2: True, 1: True, 0: True, -1: False}
+LAYER CONSISTENCY CHECKS: 6 passed, 0 failed

@@ -1,0 +1,6 @@
+PASS  moved point is in the chart alpha_0 = alpha_1 = beta_0 = 1: True
+PASS  the moved point solves C_11..C_16 exactly over K5: True
+PASS  its beta_1..beta_10 are those of the recursion: True
+PASS  det of the 6 x 6 Jacobian (dC_k/dalpha_j) at the point is a nonzero element of K5: True
+  a nonzero element of the field K5 stays nonzero under all five embeddings, so all five conjugate points are simple
+TOP LAYER SIMPLE CHECKS: 4 passed, 0 failed

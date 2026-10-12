@@ -1,0 +1,32 @@
+m = 3: equations
+2
+dim
+0
+vdim (solutions with multiplicity)
+3
+eliminant in alpha_2 (monic):
+a(2)^3-32/3
+factorization over Q:
+[1]:
+   _[1]=1
+   _[2]=3*a(2)^3-32
+[2]:
+   1,1
+vdim of the radical (distinct solutions):
+3
+m = 5: equations
+4
+dim
+0
+vdim (solutions with multiplicity)
+10
+eliminant in alpha_4 (monic):
+a(4)^10+12400/3*a(4)^5+95051008/9
+factorization over Q:
+[1]:
+   _[1]=1
+   _[2]=9*a(4)^10+37200*a(4)^5+95051008
+[2]:
+   1,1
+vdim of the radical (distinct solutions):
+10
