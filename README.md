@@ -3,7 +3,7 @@
 Research workspace for the two-dimensional Jacobian conjecture, organized around
 the elimination of the surviving degree-$(72,108)$ candidate configurations of
 Guccione–Guccione–Horruitiner–Valqui (GGHV) Proposition 4.3, case (1), plus a
-closed theorem on dicritical divisors of Keller maps and an independent blind
+claimed theorem on dicritical divisors of Keller maps (proof incomplete, see below) and an independent blind
 verification of GGHV Proposition 4.3, normal form (2).
 
 **Author:** Brandon D. McCrary (ORCID: 0009-0008-2804-7165)
@@ -38,8 +38,11 @@ conjecture to Prop. 4.3 are outside scope.
 | `branch_ab_v19/` | Byte-identical copy of `JC2D-branches_a_b_c_unified/branches_a_b/`, at the path cited by the Zenodo record. The two copies are updated together. |
 | `JC2D-branches_a_b_c_unified/branch_c/` | Branch (c) elimination package: v3.1 bundle (byte-for-byte reviewer bundle) with Lean 4 symbolic elimination (`Descent2R`, `T1Zero`, `Bridge`, `Combine`) + numerical elimination (exact/modular certificates, Macaulay rank lemma at two primes), 18-page paper, `verify_branch_c.sh` |
 | `JC2D-branches_a_b_c_unified/TECHNICAL_MAP.md` | Exhaustive technical map: the mathematics, every component, the symbolic and numerical eliminations branch by branch, the trust base, and how to reproduce everything |
-| `JC2D-branches_a_b_c_unified/TODO_correspondence_guide.md` | Conditional to-do: the branch-(c) correspondence guide is created only after the finalized paper is drafted (not started) |
-| `branch_two_dicritical/` | **Closed theorem:** no Keller map admits two dicritical divisors. 6-page paper, 18 executed SymPy scripts with outputs, `verify_all.sh`, `CORRESPONDENCE.md` mapping each script to its paper statement |
+| `JC2D-branches_a_b_c_unified/TODO_correspondence_guide.md` | The original to-do for the branch-(c) correspondence guide: done 2026-10-07 (`branch_c/correspondence_guide/`), corrected 2026-10-12 |
+| `JC2D-branches_a_b_c_unified/replication/` | Blind replication guide for an outside party, with a separate answer key recomputed in fresh code (2026-10-12) |
+| `JC2D-branches_a_b_c_unified/reviews/` | Reviews of the work, with their evidence (the review of 2026-10-12 covers PRs #12–#15 and the A1–A5 and two-dicritical drafts) |
+| `REPRODUCTION_GUIDE.md`, `REPRODUCTION_ANSWER_KEY.md`, `reproduction_key_checks.py` | Protocol for re-running the project's own scripts on another machine (reproducibility, I1), with its answer key and comparator |
+| `branch_two_dicritical/` | **Claimed** theorem: no Keller map admits two dicritical divisors. The proof is incomplete (see the status section below). 6-page paper, 18 executed SymPy scripts with outputs, `verify_all.sh`, `CORRESPONDENCE.md` mapping each script to its paper statement |
 | `tier1_blind_gghv43_nf2/` | Independent blind verification of GGHV Proposition 4.3, normal form (2): verdict DO NOT EXIST (run 2026-09-25, logged in `LOG.md`) |
 | `environment.yml`, `lean.toml`, `setup.sh` | Compute environment setup (conda environment, Lean 4 toolchain) |
 
@@ -73,19 +76,28 @@ exactly what Lean does not check. Outside Lean (grade B): `ChartEmptyC` follows
 from the fixed-degree Macaulay rank lemma plus full row rank of the Macaulay
 matrix at two primes ($p = 1000003$ and $p = 32003$), with two independent
 implementations and planted-zero controls. The 18-page paper
-(`branch_c/paper/branch_c_elimination.pdf`) carries the full account, including
-the E5 formalization seam (parity-constrained Davenport–Stothers via an external
-certified point) and four finished figures.
+(`branch_c/paper/branch_c_elimination.pdf`) carries the full account and four finished figures. Its §6
+paragraph "Formalization seam" (degree-19 rigidity not in Lean) is out of date: `degree19_rigidity`,
+`vertex_12_24_forces_t2` and the branch-(a,b) classification are kernel-checked and used by
+`main_theorem_c_of_claim` (`branch_c/correspondence_guide/CORRESPONDENCE_GUIDE.md`, §6).
 
-### Two dicritical divisors — closed
+### Two dicritical divisors — claimed; the proof is incomplete
 
-Let $K$ be a field of characteristic $0$ and $P, Q \in K[x,y]$ with
+The claim: let $K$ be a field of characteristic $0$ and $P, Q \in K[x,y]$ with
 $[P,Q] = c \in K^\times$ (a Keller map). Then the resolution of the pencil
-$\lambda P + \mu Q$ contains no two distinct dicritical divisors. The proof:
+$\lambda P + \mu Q$ contains no two distinct dicritical divisors. The proposed proof:
 $m \geq 2$ is impossible (constant-leading-form on $E_k$, $k \geq 2$; $E_1$
 degree obstruction), and the $m = 1$ bridge is empty for every $d \geq 2$
 (descending induction on $W = 2J+K$; diagonal blocks reduce to scaled
 Vandermonde, full rank; nullspace $= \mathrm{span}\{1,y\}$, $J = 0$).
+
+Status (review of 2026-10-12, `JC2D-branches_a_b_c_unified/reviews/REVIEW_2026-10-12_handoff.md` §5):
+- the adjacent $m = 1$ case is computed at $d = 3$ only, while the theorem is stated for every degree;
+- the constant-leading-form proposition, which carries $m \geq 2$, has a proof sketch only;
+- the Lean drafts (not in this repository) prove the $E_1$ obstruction and the block-rank lemma, but their bridge
+  induction rests on two axioms that are false as stated.
+
+So the theorem is open.
 
 ## Papers
 

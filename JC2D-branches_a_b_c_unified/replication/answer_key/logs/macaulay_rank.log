@@ -1,0 +1,21 @@
+PASS  F_n over K5: nonzero terms, weighted degrees: ([22, 35, 35, 52, 52, 52], [5, 6, 6, 7, 7, 7])
+PASS  R(w0) = 0 mod 32003 (w0 = 11147): True
+PASS  mod 32003: every coefficient of every F_n is p-integral and nonzero mod p: True
+PASS  mod 32003, W = 22: rows, columns, rank, rank of [M | e_1]: (2281, 3934, 2277, 2278)
+PASS  mod 32003, W = 23: rows, columns, rank, rank of [M | e_1]: (2708, 4904, 2707, 2708)
+PASS  mod 32003, W = 24: rows, columns, rank, rank of [M | e_1]: (3199, 6054, 3199, 3199)
+PASS  mod 32003, W = 24: nonzero entries: 239154
+PASS  mod 32003, W = 24: columns per generator: [1308, 1071, 1071, 868, 868, 868]
+PASS  mod 32003, planted common zero x = [11920, 15873, 10879, 3588, 22346]: rank of M_24 drops below 3199: 3198
+  [52 s elapsed]
+PASS  R(w0) = 0 mod 1000003 (w0 = 806739): True
+PASS  mod 1000003: every coefficient of every F_n is p-integral and nonzero mod p: True
+PASS  mod 1000003, W = 22: rows, columns, rank, rank of [M | e_1]: (2281, 3934, 2277, 2278)
+PASS  mod 1000003, W = 23: rows, columns, rank, rank of [M | e_1]: (2708, 4904, 2707, 2708)
+PASS  mod 1000003, W = 24: rows, columns, rank, rank of [M | e_1]: (3199, 6054, 3199, 3199)
+PASS  mod 1000003, W = 24: nonzero entries: 239154
+PASS  mod 1000003, W = 24: columns per generator: [1308, 1071, 1071, 868, 868, 868]
+PASS  mod 1000003, planted common zero x = [786, 816891, 257753, 833476, 213442]: rank of M_24 drops below 3199: 3198
+  [103 s elapsed]
+peak memory: 339 MB
+MACAULAY CHECKS: 17 passed, 0 failed

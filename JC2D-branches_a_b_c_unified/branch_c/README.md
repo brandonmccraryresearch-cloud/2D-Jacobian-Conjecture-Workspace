@@ -12,12 +12,12 @@ modular certificates, finite-field rank computations).
 
 | branch-(a,b) component | branch-(c) location | Notes |
 |---|---|---|
-| `paper/` (.tex/.pdf) | `paper/branch_c_elimination.tex` / `paper/branch_c_elimination.pdf` | The 16-page elimination paper (2026-09-30), in the branch-(a,b) paper format exactly; `paper/BRANCH_C_GUIDE.md` remains the comprehensive v3.1 reference. |
+| `paper/` (.tex/.pdf) | `paper/branch_c_elimination.tex` / `paper/branch_c_elimination.pdf` | The elimination paper (2026-09-30; 16 pages then, 18 pages in Fira since 2026-10-01), in the branch-(a,b) paper format; `paper/BRANCH_C_GUIDE.md` remains the comprehensive v3.1 reference. |
 | `scripts/` | `bundle_v3_1/jacobian_lean/certgen_c/`, `bundle_v3_1/jacobian_lean/chart_certificates/`; since 2026-10-06 also `rank_lemma_check/` | Generators (exact, python-flint) and certificate/rank scripts. Kept inside `jacobian_lean/` because `verify_branch_c_lean.sh` requires `certgen_c/`, `chart_certificates/` and `Jacobian/` as siblings. `rank_lemma_check/` sits outside the bundle and only reads it. |
 | `lean/` | `bundle_v3_1/jacobian_lean/Jacobian/BranchC/` | v1/v2 modules, `Descent2R` (505 generated modules), `T1Zero`, `Combine`, `Bridge`, `CondsC` |
 | `audits/` | `bundle_v3_1/jacobian_lean/axioms_branch_c.log`, `bundle_v3_1/v2_carryover/branch_c_audit/` | Axiom audit (53 theorems) + v2 audit carryover |
-| `correspondence_guide/` | **deferred** | See `../TODO_correspondence_guide.md`: created only after the finalized paper is drafted. |
-| `figures/` | (none) | No figures produced for branch (c) yet. |
+| `correspondence_guide/` | `correspondence_guide/CORRESPONDENCE_GUIDE.md` | Created 2026-10-07 (PR #13); section mapping corrected 2026-10-12. Maps the paper's sections and the six statements to Lean names, files and grades. |
+| `figures/` | `paper/figures/` | Four figures of the paper, with the scripts that render them (2026-10-01). |
 | `logs/` | `bundle_v3_1/logs/` | Every build / verify / control / diagnostics log (index: GUIDE.md §9) |
 | `BUILD_STATUS.md` | `BUILD_STATUS.md` | Full build and verification record |
 | `CHECKSUMS.md5` / `CHECKSUMS.sha256` | `CHECKSUMS.md5` / `CHECKSUMS.sha256` | Generated over this `branch_c/` tree |

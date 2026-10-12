@@ -1,0 +1,9 @@
+110 definitions translated; conditions: ['cond_Omega', 'cond_Psi', 'cond_Phi1', 'cond_Phi2', 'cond_Theta1', 'cond_Theta2', 'cond_Theta3', 'cond_E0pure_18_37', 'cond_Em1pure_17_36', 'cond_Em1pure_18_38', 'cond_Em2pure_16_35', 'cond_Em2pure_17_37']
+PASS  CondsC.lean: 110 definitions, 12 conditions: (110, 12)
+PASS  mod 32003: Lean cond_Omega vanishes at b_12_23 = kappa b_12_22^2 (5 random points): True
+PASS  mod 32003: control, cond_Omega at b_12_23 = (kappa + 1) b_12_22^2 is nonzero: 15375
+PASS  mod 32003: route-B F_n(1,2,3,4,5) (Psi, Phi1, Phi2, Theta1, Theta2, Theta3): [12299, 5562, 26403, 9106, 14593, 18204]
+PASS  mod 1000003: Lean cond_Omega vanishes at b_12_23 = kappa b_12_22^2 (5 random points): True
+PASS  mod 1000003: control, cond_Omega at b_12_23 = (kappa + 1) b_12_22^2 is nonzero: 896531
+PASS  mod 1000003: route-B F_n(1,2,3,4,5) (Psi, Phi1, Phi2, Theta1, Theta2, Theta3): [858748, 624037, 277344, 197562, 721531, 531493]
+ROUTE B CHECKS: 7 passed, 0 failed

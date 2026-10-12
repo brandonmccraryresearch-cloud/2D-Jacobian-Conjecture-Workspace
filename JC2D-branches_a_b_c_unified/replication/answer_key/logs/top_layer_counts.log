@@ -1,0 +1,14 @@
+chart alpha0=beta0=alpha7=1 (mod 32003): dim
+0
+vdim
+35
+deg of eliminant in a6:
+35
+chart alpha0=beta0=alpha1=1 with alpha7 != 0 (mod 32003): dim
+0
+vdim
+5
+eliminant in a7:
+E2[1]=a7^5-1714*a7^4-14472*a7^3+5116*a7^2-9165*a7-9966
+radical check: vdim of radical
+5

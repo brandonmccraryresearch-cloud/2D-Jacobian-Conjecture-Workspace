@@ -1,0 +1,20 @@
+# certgen/check_routeC_statement.py, 2026-10-12 (python3 -I; Python 3.11.15, sympy 1.14.0); exit 0.
+ok    a816_full.sing: 53 unknowns before z (expected 53); the 17th is a_8_16 (expected a_8_16)
+ok    minpoly of a816_full.sing: w**5 - w**4 + 3*w**3 + 3*w**2 + 26
+nonzero coefficients of J in K5[unknowns], by weight 2i - j: {3: 18, 2: 19, 1: 19, 0: 19}  (7.0 s)
+parsed 75 definitions G_i_j from BridgeData.lean (8.0 s)
+ok    eR (Data.lean) = w**5 - w**4 + 3*w**3 + 3*w**2 + 26
+ok    variables used by eR and the G_i_j: 0..53 (must lie in 0..53)
+ok    labels of the G_i_j = nonzero J coefficients of weight 3..0: 75 labels, missing [], extra []
+ok    G_i_j = L * coeff(J, x^i y^j) in K5[unknowns] with L a nonzero rational: 75 of 75 (11.5 s); failing []
+the factors L: 75 found; integers: 75; |L| from 1 to 268736
+ok    routeC_source binder hR: ['eR.denote ctx = 0']
+ok    routeC_source binders: 76 (hR and 75 hG_i_j : G_i_j.denote ctx = 0, labels as in BridgeData.lean: True)
+ok    routeC_source conclusion: '(Expr.var 17).denote ctx = 0', and var 17 = a_8_16
+controls (each must FAIL):
+FAIL  [control: G_3_6 with one integer +1] G_i_j = L * coeff(J, x^i y^j) in K5[unknowns] with L a nonzero rational: 74 of 75 (16.3 s); failing [(3, 6)]
+FAIL  [control: encoding with b_11_20 and b_11_21 swapped] G_i_j = L * coeff(J, x^i y^j) in K5[unknowns] with L a nonzero rational: 43 of 75 (21.7 s); failing [(11, 19), (11, 20), (11, 21), (11, 22), (12, 21)]
+FAIL  [control: one label dropped] labels of the G_i_j = nonzero J coefficients of weight 3..0: 74 labels, missing [(1, 0)], extra []
+ok    controls: 3 of 3 failed, as required
+total 21.7 s
+PASS

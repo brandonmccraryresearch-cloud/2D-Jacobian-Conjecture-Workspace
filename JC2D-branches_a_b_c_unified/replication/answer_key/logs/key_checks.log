@@ -1,0 +1,40 @@
+PASS  R1 (a,b) lattice points |N(P)|, |N(Q)|: (25, 47)
+PASS  C1 (c) lattice points |N(P)|, |N(Q)|: (61, 125)
+PASS  R1/C1 hull code and half-plane description give the same lattice points: [True, True, True, True]
+PASS  R1 (a,b) unknowns that never occur in [P,Q]: ['a_0_0', 'b_0_0']
+PASS  R1 (a,b) occurring unknowns by depth (0 = top layer): {0: 19, 1: 19, 2: 20, 3: 12}
+PASS  R2 (a,b) nonzero coefficients of [P,Q] by weight 2A-B: {4: 17, 3: 18, 2: 19, 1: 19, 0: 19}
+PASS  R2 (a,b) the same count from pairs of terms: True
+PASS  R5/R6 (a,b) the weight-d equation is homogeneous of degree 4 - d in the depth grading: True
+PASS  C1 (c) nonzero coefficients: total, and weights 3..-3: (302, 132)
+PASS  C1 (c) nonzero coefficients by weight: {4: 17, 3: 18, 2: 19, 1: 19, 0: 20, -1: 19, -2: 19, -3: 18, -4: 17, -5: 16, -6: 15, -7: 14, -8: 13, -9: 12, -10: 11, -11: 10, -12: 9, -13: 8, -14: 7, -15: 6, -16: 5, -17: 4, -18: 3, -19: 2, -20: 1}
+PASS  C1 (c) the same count from pairs of terms: True
+PASS  C1 (c) the weight -20 equation (coefficient of y^20): [((0, 20), -8*a_0_8*b_1_13 + 12*a_1_9*b_0_12)]
+PASS  C1 (c) unknowns that never occur in [P,Q]: ['a_0_0', 'b_0_0']
+PASS  C2 (c) the weight-d equation is homogeneous of degree 4 - d in the depth grading: True
+PASS  R3 input: the K5 point of cert.json solves E5 with lambda = 1: True
+PASS  R4 E4 operator at the K5 point: rows x columns, rank over K5: (18, 19, 17)
+PASS  R4 E3 operator at the K5 point: rows x columns, rank over K5: (19, 20, 18)
+PASS  R4 E2 operator at the K5 point: rows x columns, rank over K5: (19, 12, 12)
+PASS  C2 (c) weight  3 operator: rows, new unknowns, rank over K5, rows without new unknowns: (18, 19, 17, 0)
+PASS  C2 (c) weight  2 operator: rows, new unknowns, rank over K5, rows without new unknowns: (19, 20, 18, 0)
+PASS  C2 (c) weight  1 operator: rows, new unknowns, rank over K5, rows without new unknowns: (19, 20, 18, 0)
+PASS  C2 (c) weight  0 operator: rows, new unknowns, rank over K5, rows without new unknowns: (20, 19, 18, 1)
+PASS  C2 (c) weight -1 operator: rows, new unknowns, rank over K5, rows without new unknowns: (19, 17, 17, 1)
+PASS  C2 (c) weight -2 operator: rows, new unknowns, rank over K5, rows without new unknowns: (19, 15, 15, 2)
+PASS  C2 (c) weight -3 operator: rows, new unknowns, rank over K5, rows without new unknowns: (18, 13, 13, 2)
+PASS  C3 Omega is o1 (S2 - kappa T2^2)^2: o2^2 = 4 o1 o3 in K5: True
+PASS  C3 kappa = -o2/(2 o1) in K5 (coefficients of 1, w, ..., w^4): ['26267455159/851565312', '-7888899791/425782656', '16286392/1108809', '-2241077929/425782656', '1681963865/851565312']
+PASS  C2 kappa * 3 * b_12_21 = 1 (Omega = 0 <=> b_12_22^2 = 3 b_12_21 b_12_23): True
+PASS  C2 the weight-0 row without new unknowns (x^19 y^38) is a K5-multiple of Omega: True
+PASS  C3 R(w0) = 0 mod p (p = 32003, w0 = 11147): True
+PASS  C3 kappa mod 32003: 2737
+PASS  C3 nonzero K5 terms of the six chart generators: [22, 35, 35, 52, 52, 52]
+PASS  C3 weighted degrees (t,s,r,u,q weights 1,2,3,3,4): [5, 6, 6, 7, 7, 7]
+PASS  C3 F_n(1,2,3,4,5) mod 32003 (Psi, Phi1, Phi2, Theta1, Theta2, Theta3): [12952, 31121, 12695, 13510, 428, 25110]
+PASS  C3 R(w0) = 0 mod p (p = 1000003, w0 = 806739): True
+PASS  C3 kappa mod 1000003: 993853
+PASS  C3 nonzero K5 terms of the six chart generators: [22, 35, 35, 52, 52, 52]
+PASS  C3 weighted degrees (t,s,r,u,q weights 1,2,3,3,4): [5, 6, 6, 7, 7, 7]
+PASS  C3 F_n(1,2,3,4,5) mod 1000003 (Psi, Phi1, Phi2, Theta1, Theta2, Theta3): [762014, 374785, 255877, 471424, 29370, 7420]
+ANSWER KEY CHECKS: 39 passed, 0 failed

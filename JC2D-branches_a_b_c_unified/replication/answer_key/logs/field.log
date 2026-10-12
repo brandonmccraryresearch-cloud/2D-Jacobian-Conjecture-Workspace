@@ -1,0 +1,9 @@
+R irreducible over Q: 1
+polredabs(R) == R: 1
+V irreducible: 1   polredabs(V) == R: 1
+V(t^7) irreducible (degree 35): 1
+real roots: R 1, V 1, V(t^7) 1
+field discriminant: 3065712 = [2, 4; 3, 1; 13, 1; 17, 3]
+signature (r1, r2): [1, 2]
+Galois group of R: [120, -1, 1, "S5"]
+class number: 1

@@ -1,0 +1,6 @@
+# Route C: #print axioms, 2026-10-12 (lake env lean on a file importing Jacobian.A816C.Bridge and
+# Jacobian.A816C.Control.C7, after the build in routeC_build.log; exit 0, 2 s).
+'A816C.routeC_a816' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A816C.Bridge.routeC_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'A816C.Bridge.transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'C7_transfer_fails_without_divCtx' depends on axioms: [propext, Classical.choice, Quot.sound]

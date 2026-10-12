@@ -486,3 +486,32 @@ checks). Brandon chose to do a shorter route first (route R) and the bundle rout
 - Regenerated with their existing rules: `lean/MD5SUMS`, `CHECKSUMS.md5`, `CHECKSUMS.sha256`,
   `scripts/a816_certificate/SHA256SUMS`. `branch_ab_v19/` synced, byte-identical.
 - Nothing was minted, published, deposited or uploaded.
+
+## 17. 2026-10-12: review of the work merged on 2026-10-08 (PRs #14 and #15) (branch `claude/review-handoff-2026-10-12`)
+
+### `verify_v19.sh` (PR #14)
+- PR #14 changed the expected page count from 34 to 35, citing a 35th page added by PR #11. PR #11 took the paper from
+  33 to 34 pages (§16 above), and the shipped PDF has 34. A TeX Live 2026 build (TinyTeX, CTAN Fira fonts) of the
+  current source gives 34 pages and 0 missing glyphs; one other TeX Live 2026 installation gave 35. The script now
+  accepts 34 or 35 and says why; any other count fails.
+- PR #14 did not regenerate `CHECKSUMS.md5` / `CHECKSUMS.sha256`, so both manifest checks failed on `main`
+  (`verify_v19.sh`: PASS=15 FAIL=3 with a 34-page build). Regenerated below.
+
+### Route C, `lean/Jacobian/A816C/` (PR #15)
+- PR #15 added the 55 files to `branch_ab_v19/` only, which broke the byte identity of the two copies of this
+  package, and listed them in no manifest. They are now in both copies and in the manifests.
+- **Build:** exit 0 in 2020 s on 2 cores (`lean/logs/routeC_build.log`); `#print axioms` gives the three standard
+  axioms for `routeC_a816`, `routeC_source`, `transfer` and the C7 theorem (`lean/logs/routeC_axioms.log`).
+- **New statement check** `lean/certgen/check_routeC_statement.py` (the generator `routec_gen.py` is not in the
+  repository): the 75 hypotheses of `routeC_source` are nonzero integer multiples of the bracket equations of
+  weights 3, 2, 1, 0 for P, Q of `scripts/a816_full.sing`, none missing; the conclusion is a₈,₁₆ = 0; three controls
+  fail as required (`lean/logs/routeC_statement_check.log`).
+- **New script** `lean/verify_routeC.sh` (build, axioms, statement check), and `lean/README.md` §1d, which states the
+  scope: route C is a reflection-level check, linked to `jac P Q` by the Python statement check only; route R
+  remains the Lean proof at the level of P and Q. `C7_transfer_fails_without_divCtx` shows that the bridge's
+  rescaling is needed; it is not a perturbation control of the certificate.
+
+### Checksums
+- Regenerated with their existing rules: `lean/MD5SUMS`, `CHECKSUMS.md5`, `CHECKSUMS.sha256`. `branch_ab_v19/` synced,
+  byte-identical.
+- Nothing was minted, published, deposited or uploaded.
