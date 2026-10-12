@@ -74,7 +74,7 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
 
 - New folder `grade_a/` (outside the bundle, which is unchanged): `R67Data`, `IrreducibleR`, `Transfer`, `Macaulay`,
   `Axioms`. Lean 4.34.0, Mathlib v4.34.0, no `sorry`, 12 theorems on the standard axioms (`grade_a/logs/build.log`,
-  106 s on 2 cores).
+  119 s on 2 cores, from scratch).
 - R irreducible over ℚ (H3, C11) is now grade A (`Rrat_irreducible`).
 - `no_common_zero_of_certificate`: a modular left inverse of a Macaulay block, at a root of R mod p, excludes common
   zeros of the generators at every root of R in every field of characteristic 0. The transfer goes through ℤ[X].

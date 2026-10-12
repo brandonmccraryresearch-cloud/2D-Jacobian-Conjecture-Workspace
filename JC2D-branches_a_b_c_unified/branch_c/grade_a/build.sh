@@ -41,7 +41,7 @@ cd "$PROJ" || exit 1
 LP="$(lake env printenv LEAN_PATH)" || { echo "FAIL: lake env"; exit 1; }
 for m in $MODULES; do
   t0=$(date +%s)
-  LEAN_PATH="$LP:$OUT" lean --root="$HERE/lean" -o "$OUT/GradeA/$m.olean" "$HERE/lean/GradeA/$m.lean" \
+  LEAN_PATH="$OUT:$LP" lean --root="$HERE/lean" -o "$OUT/GradeA/$m.olean" "$HERE/lean/GradeA/$m.lean" \
     > "$OUT/$m.log" 2>&1
   rc=$?
   echo "GradeA.$m: exit $rc, $(( $(date +%s) - t0 )) s"
