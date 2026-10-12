@@ -1,8 +1,8 @@
 === 1. source scan ===
 PASS: no sorry, admit, native_decide or axiom
 === 2. compile (project: /home/claude/build/jacobian_lean) ===
-TwoDicritical.BlockRank: exit 0, 2 s
-TwoDicritical.E1Obstruction: exit 0, 2 s
+TwoDicritical.BlockRank: exit 0, 3 s
+TwoDicritical.E1Obstruction: exit 0, 1 s
 TwoDicritical.BridgeCollapse: exit 0, 19 s
 TwoDicritical.CenterHypotheses: exit 0, 18 s
 TwoDicritical.Axioms: exit 0, 18 s

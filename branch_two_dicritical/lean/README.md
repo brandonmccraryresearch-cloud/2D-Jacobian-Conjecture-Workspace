@@ -46,7 +46,7 @@ W ≥ 3, n ≤ m and one center suffices (`block_vanish`).
    - the pullback formula (eq:bridge-pullback);
    - the reading of ã as an indeterminate, so that each ã^i b^t coefficient vanishes separately, as the paper's
      equation (eq:block) assumes;
-   - **both centers nonzero.** The paper's §5.1 states "two distinct centers a₃ ≠ a₄ (both nonzero)" as part of the
+   - **both centers nonzero.** The paper's §3.1 states "two distinct centers a₃ ≠ a₄ (both nonzero)" as part of the
      setup and gives no geometric reason why a bridge center cannot have a = 0. The hypothesis is load-bearing:
      `CenterHypotheses.lean` shows that at a₃ = 0 and d ≥ 3 the automorphism (x − a₄y², y) satisfies every bridge
      condition. Computed from the pullback formula, `check_center_nonzero.py` finds the nullspace

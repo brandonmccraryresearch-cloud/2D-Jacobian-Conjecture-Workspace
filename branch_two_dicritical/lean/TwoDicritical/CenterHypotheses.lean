@@ -3,7 +3,7 @@ import TwoDicritical.BridgeCollapse
 /-!
 # The center hypotheses of `bridge_collapse` cannot be dropped
 
-`bridge_collapse` and `bridge_jacobian_eq_zero` assume `a₃ ≠ 0`, `a₄ ≠ 0` and `a₃ ≠ a₄`. The paper's §5.1 states
+`bridge_collapse` and `bridge_jacobian_eq_zero` assume `a₃ ≠ 0`, `a₄ ≠ 0` and `a₃ ≠ a₄`. The paper's §3.1 states
 them as part of the setup ("two distinct centers a₃ ≠ a₄ (both nonzero)") and gives no geometric reason why a bridge
 center cannot sit at `a = 0`. This file shows that each of the three is needed.
 

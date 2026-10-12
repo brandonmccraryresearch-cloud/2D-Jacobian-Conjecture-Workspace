@@ -451,7 +451,7 @@ a statement about explicit equations.
 
 ### 9.4 The center hypotheses of the bridge are load-bearing
 
-`bridge_collapse` assumes a₃ ≠ 0, a₄ ≠ 0 and a₃ ≠ a₄, as the paper's §5.1 does ("two distinct centers a₃ ≠ a₄ (both
+`bridge_collapse` assumes a₃ ≠ 0, a₄ ≠ 0 and a₃ ≠ a₄, as the paper's §3.1 does ("two distinct centers a₃ ≠ a₄ (both
 nonzero)"). The paper gives no geometric reason why a bridge center cannot have a = 0. The constant-leading-form
 sketch likewise assumes centers with u₀ ≠ 0.
 
