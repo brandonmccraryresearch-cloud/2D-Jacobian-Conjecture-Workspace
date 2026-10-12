@@ -12,8 +12,11 @@ The theorem below is **claimed, and its proof is incomplete**
 - the paper closes the adjacent $m = 1$ case by a computation at $d = 3$ only (`e3_adjacent.py`,
   `routeB_cancellation.py`), while the theorem is stated for every degree;
 - the constant-leading-form proposition, which carries the case $m \geq 2$, has a proof sketch only;
-- the Lean drafts of 2026-10-12 (not in this repository) prove the $E_1$ degree obstruction and the block-rank lemma,
-  but their bridge induction rests on two axioms that are false as stated.
+- the Lean drafts of 2026-10-12 proved the $E_1$ degree obstruction and the block-rank lemma, but their bridge
+  induction rested on two axioms that are false as stated. **Since 2026-10-12, `lean/` proves the bridge collapse
+  (Theorem `thm:bridge`) from the paper's explicit equations, with no axioms.** That proof also closes a gap in the
+  paper's proof at weight $W = 2$, where the block-rank lemma does not apply. The bridge's modeling premises (the
+  pullback formula, and $\tilde a$ read as an indeterminate) are taken as given. See `lean/README.md`.
 
 The 18 scripts reproduce exactly (`verify_all.sh`, outputs compared byte for byte), but they are computations at
 fixed degrees and do not prove the general statements.

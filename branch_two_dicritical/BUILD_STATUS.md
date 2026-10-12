@@ -36,3 +36,15 @@
   all 18 scripts exit 0 and reproduce their recorded outputs byte for byte.
 - `README.md`: the font line said Noto; the paper uses Fira only. A status section now says that the main theorem's
   proof is incomplete (see `../JC2D-branches_a_b_c_unified/reviews/REVIEW_2026-10-12_handoff.md`, §5).
+
+## 2026-10-12: `lean/` (Lean 4.34.0, Mathlib v4.34.0)
+
+- `TwoDicritical/BlockRank.lean` and `E1Obstruction.lean` from the handoff of 2026-10-12 (CAIC), unchanged.
+  `BridgeCollapse.lean` is new: `bridge_collapse` (Theorem `thm:bridge`) and `bridge_jacobian_eq_zero` from the
+  explicit equations, with no axioms. It replaces the handoff's `Bridge.lean`, whose two axioms are false as stated.
+- `build.sh`: 8 theorems on the standard axioms, no `sorry` (`lean/logs/build.log`).
+- `check_bridgeEq.py`: the definition `bridgeEq` equals the coefficients of the paper's pullback for d = 2..6;
+  nullity 2 at the centers 2 and 5 (`lean/logs/check_bridgeEq.log`).
+- The main theorem stays open (`lean/README.md`, "What is not proved").
+- `CHECKSUMS.md5` / `.sha256` regenerated with the same rule.
+
