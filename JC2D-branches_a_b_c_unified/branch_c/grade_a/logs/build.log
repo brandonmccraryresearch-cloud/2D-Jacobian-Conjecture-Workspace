@@ -1,0 +1,23 @@
+=== 1. source scan ===
+PASS: no sorry, admit, native_decide or axiom
+=== 2. compile (project: /home/claude/build/jacobian_lean) ===
+GradeA.R67Data: exit 0, 32 s
+GradeA.IrreducibleR: exit 0, 22 s
+GradeA.Transfer: exit 0, 20 s
+GradeA.Macaulay: exit 0, 22 s
+GradeA.Axioms: exit 0, 21 s
+=== 3. axioms ===
+'BranchC.GradeA.R_no_root_int' depends on axioms: [propext]
+'BranchC.GradeA.rem_not_both_zero' depends on axioms: [propext]
+'BranchC.GradeA.R67_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.Rint_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.Rrat_irreducible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.minpoly_eq_Rrat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.Rrat_dvd_of_aeval_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.eval_eq_zero_of_eval_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.no_left_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.evalAt_eq_sum_rows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.macaulay_vecMul_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchC.GradeA.no_common_zero_of_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 12 of 12 theorems on the standard axioms (or a subset)
+=== GRADE A MODULES: ALL CHECKS PASSED ===

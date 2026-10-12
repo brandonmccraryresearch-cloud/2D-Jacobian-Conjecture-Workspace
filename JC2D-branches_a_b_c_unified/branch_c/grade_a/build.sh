@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# build.sh -- compile the branch-(c) grade-A modules (Lean 4.34.0, Mathlib v4.34.0) and audit them.
+#
+# Usage: build.sh [LEAN_PROJECT]
+#   LEAN_PROJECT is any Lake project with Mathlib v4.34.0 available (default: ../../branches_a_b/lean, after
+#   `lake exe cache get` there). Nothing is written into it: the .olean files go to a temporary directory.
+#
+# Steps:
+#   1. scan lean/GradeA/*.lean (comments stripped) for sorry, admit, native_decide and user axioms;
+#   2. compile R67Data, IrreducibleR, Transfer, Macaulay, Axioms in this order, each with `lean -o`;
+#      any error or "declaration uses sorry" fails;
+#   3. check that every `#print axioms` line of Axioms.lean names only propext, Classical.choice, Quot.sound
+#      (or a subset).
+# Exit status 0 iff all steps pass. Time on 2 cores (2026-10-12): about 2 min; memory below 2 GB.
+set -u
+HERE="$(cd "$(dirname "$0")" && pwd)"
+PROJ="${1:-$HERE/../../branches_a_b/lean}"
+PROJ="$(cd "$PROJ" && pwd)" || { echo "FAIL: no Lean project at $PROJ"; exit 1; }
+export PATH="$HOME/.elan/bin:$PATH"
+OUT="$(mktemp -d)"
+trap 'rm -rf "$OUT"' EXIT
+mkdir -p "$OUT/GradeA"
+MODULES="R67Data IrreducibleR Transfer Macaulay Axioms"
+
+echo "=== 1. source scan ==="
+python3 - "$HERE"/lean/GradeA/*.lean <<'PY' || { echo "FAIL: sorry/admit/native_decide/axiom found"; exit 1; }
+import re, sys
+bad = 0
+for f in sys.argv[1:]:
+    s = re.sub(r'/-.*?-/', '', open(f).read(), flags=re.S)
+    s = re.sub(r'--[^\n]*', '', s)
+    for l in s.splitlines():
+        if re.search(r'\b(sorry|admit|native_decide)\b', l) or re.match(r'\s*(private\s+)?axiom\s', l):
+            print(f"  {f}: {l.strip()}"); bad = 1
+sys.exit(bad)
+PY
+echo "PASS: no sorry, admit, native_decide or axiom"
+
+echo "=== 2. compile (project: $PROJ) ==="
+cd "$PROJ" || exit 1
+LP="$(lake env printenv LEAN_PATH)" || { echo "FAIL: lake env"; exit 1; }
+for m in $MODULES; do
+  t0=$(date +%s)
+  LEAN_PATH="$OUT:$LP" lean --root="$HERE/lean" -o "$OUT/GradeA/$m.olean" "$HERE/lean/GradeA/$m.lean" \
+    > "$OUT/$m.log" 2>&1
+  rc=$?
+  echo "GradeA.$m: exit $rc, $(( $(date +%s) - t0 )) s"
+  if [ $rc -ne 0 ] || grep -qE "error|declaration uses .sorry." "$OUT/$m.log"; then
+    echo "FAIL: GradeA.$m"; cat "$OUT/$m.log"; exit 1
+  fi
+done
+
+echo "=== 3. axioms ==="
+cat "$OUT/Axioms.log"
+STD="(propext|Classical\.choice|Quot\.sound)"
+n_all=$(grep -c "^#print axioms" "$HERE/lean/GradeA/Axioms.lean")
+n_ok=$(grep -cE "depends on axioms: \[$STD(, $STD)*\][[:space:]]*$|does not depend on any axioms" "$OUT/Axioms.log")
+if [ "$n_ok" -ne "$n_all" ]; then echo "FAIL: $n_ok of $n_all theorems on the standard axioms"; exit 1; fi
+echo "PASS: $n_all of $n_all theorems on the standard axioms (or a subset)"
+echo "=== GRADE A MODULES: ALL CHECKS PASSED ==="
