@@ -1,0 +1,7 @@
+bridgeEq matches the pullback coefficients for d = 2..6: True
+d=2: variables 6, rank 4, nullity 2
+d=3: variables 10, rank 8, nullity 2
+d=4: variables 15, rank 13, nullity 2
+d=5: variables 21, rank 19, nullity 2
+d=6: variables 28, rank 26, nullity 2
+PASS

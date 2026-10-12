@@ -1,0 +1,18 @@
+=== 1. source scan ===
+PASS: no sorry, admit, native_decide or axiom
+=== 2. compile (project: /home/claude/build/jacobian_lean) ===
+TwoDicritical.BlockRank: exit 0, 3 s
+TwoDicritical.E1Obstruction: exit 0, 2 s
+TwoDicritical.BridgeCollapse: exit 0, 22 s
+TwoDicritical.Axioms: exit 0, 21 s
+=== 3. axioms ===
+'choose_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'block_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.block_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.block_vanish_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridge_collapse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridge_jacobian_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'e1_degree_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'not_keller_of_noLowTerms' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 8 of 8 theorems on the standard axioms (or a subset)
+=== TWO-DICRITICAL LEAN: ALL CHECKS PASSED ===

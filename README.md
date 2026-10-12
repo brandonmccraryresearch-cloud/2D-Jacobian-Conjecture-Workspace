@@ -94,8 +94,10 @@ Vandermonde, full rank; nullspace $= \mathrm{span}\{1,y\}$, $J = 0$).
 Status (review of 2026-10-12, `JC2D-branches_a_b_c_unified/reviews/REVIEW_2026-10-12_handoff.md` §5):
 - the adjacent $m = 1$ case is computed at $d = 3$ only, while the theorem is stated for every degree;
 - the constant-leading-form proposition, which carries $m \geq 2$, has a proof sketch only;
-- the Lean drafts (not in this repository) prove the $E_1$ obstruction and the block-rank lemma, but their bridge
-  induction rests on two axioms that are false as stated.
+- the Lean drafts of 2026-10-12 rested their bridge induction on two axioms that are false as stated. Since
+  2026-10-12, `branch_two_dicritical/lean/` proves the bridge collapse from the paper's explicit equations with no
+  axioms, together with the block-rank lemma and the algebraic step of the $E_1$ obstruction. That proof also closes
+  a gap at weight $W = 2$. The bridge's modeling premises and the items above remain open.
 
 So the theorem is open.
 

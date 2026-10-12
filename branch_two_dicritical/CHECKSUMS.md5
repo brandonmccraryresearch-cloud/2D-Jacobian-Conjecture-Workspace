@@ -1,6 +1,15 @@
-085e89b408df203580cf7b0bc425d772  ./BUILD_STATUS.md
+8f94b565a5ab05cd06bcdb7df2c3f995  ./BUILD_STATUS.md
 72bd662c351875d7f3c09e3b27db9072  ./CORRESPONDENCE.md
-3a78d7d76dd34c295555ef4fa9a8f684  ./README.md
+3870a3ec95dd9a3e6053eaed1bdf0d7e  ./README.md
+29bffcba6e17a519a2c0598e97af1b5f  ./lean/README.md
+a1f8712f206a399c7b183e4db9499a52  ./lean/TwoDicritical/Axioms.lean
+1384681e3e10e9820fbd273865b0a0e2  ./lean/TwoDicritical/BlockRank.lean
+4945a76606eee5d751441a2640edb7c5  ./lean/TwoDicritical/BridgeCollapse.lean
+b9959361b5dd99fe0c00213a3b253191  ./lean/TwoDicritical/E1Obstruction.lean
+81b1b923153271df7a37158b8bc74cf6  ./lean/build.sh
+073dfcada3b7036e849f4b9cd227de5c  ./lean/check_bridgeEq.py
+6528ef14be1210cbc4a771ef04659297  ./lean/logs/build.log
+12b4ddd116f25c49de1e3026db8acc59  ./lean/logs/check_bridgeEq.log
 e8d8133d276ca7cc22dd7754881bcfcf  ./outputs/at_degree_bound.out
 afe0818f4091c290fdcc2ca737a09ce5  ./outputs/at_degree_bound_m5.out
 ee8166a4e12bfb43daa4944eba4117d9  ./outputs/depth5_global.out
