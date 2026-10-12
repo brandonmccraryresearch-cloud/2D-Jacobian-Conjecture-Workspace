@@ -378,3 +378,18 @@ cd ../../replication/answer_key && bash run_key.sh
 # manifests
 cd ../../branch_c && md5sum -c CHECKSUMS.md5 && (cd bundle_v3_1 && sha256sum -c MANIFEST.sha256)
 ```
+
+---
+
+## 8. Follow-ups opened the same day
+
+- **PR #17** (stacked on this branch), `branch_c/grade_a/`: the generic half of `ChartEmptyC_T1ne0` in Lean.
+  - R is irreducible over ℚ, so H3 is grade A.
+  - The transfer through ℤ[X] (`eval_eq_zero_of_eval_root`, `no_left_kernel`).
+  - The assembly `no_common_zero_of_certificate`.
+  - What remains: the concrete generators, the rows and pivot columns, and A1/A2.
+- **PR #18** (stacked on this branch), `branch_two_dicritical/lean/`: the bridge collapse proved from the paper's
+  explicit equations, with no axioms. It also closes the W = 2 gap of the paper's proof.
+- **`reviews/analysis/`**: the analysis of patterns across the eliminations (`DEEP_ANALYSIS_2026-10-12.md`). It
+  includes a new observation: the top-layer cover counts are Catalan numbers for m = 3, …, 11
+  (`belyi_catalan_counts.py`, with its log).

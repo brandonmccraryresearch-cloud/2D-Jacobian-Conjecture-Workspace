@@ -1,0 +1,92 @@
+# What the eliminations have in common, and what could generalize (2026-10-12)
+
+An analysis of the patterns in this repository's work, with every claim graded. **Nothing here proves the Jacobian
+conjecture, and no claim below says it does.** HLRE labels: *observed*, *descriptive regularity*, *candidate
+mechanism*, *postulate (exploratory)*. Independence: everything is I1 (one team, one pipeline) unless stated.
+
+## 0. Where the work sits
+
+- **The literature result.** GGHV (Guccione, Guccione, Horruitiner, Valqui, arXiv:2204.14178, "Increasing the degree
+  of a possible counterexample to the Jacobian Conjecture from 100 to 108") list every degree pair with maximum degree
+  below 125 that a counterexample could have. They exclude all of them except (72,108) and (108,72). Of the two
+  (72,108) cases they exclude one; they could not solve the other. Excluding it raises the lower bound from 108 to
+  125. [observed: their abstract]
+- **This repository's work.**
+  - Branch (a,b) is eliminated in Lean (`main_theorem`, standard axioms).
+  - Branch (c) is eliminated with one premise outside Lean, `ChartEmptyC_T1ne0` (grade B).
+- **What follows, under two conditions.** If the reduction of GGHV's open case to these branches is correct and
+  exhaustive, and the grade-B premise holds, then the result is: **no counterexample with maximum degree < 125.**
+  That is the honest ceiling of this program as it stands: a degree bound, not a resolution.
+
+## 1. Anatomy of an elimination
+
+Both eliminations have the same three layers.
+
+1. **Top layer: a Davenport–Zannier / Belyi problem.** [derived]
+   - The weight-4 equation αβ + u(2αβ′ − 3α′β) = λ says exactly that φ = uβ²/α³ has φ′ = λβ/α⁴.
+   - So φ is a Belyi map of genus 0 with passport [2^((3m−1)/2) 1] | [3^m] | [(5m−1)/2, 1^((m+1)/2)].
+   - These are the "squares and cubes" weighted plane trees of Pakovich–Zvonkin (Minimum degree of the difference of
+     two polynomials over ℚ, and weighted plane trees, 2013): black vertices of degree 3, white of degree 2.
+   - The top layer is finite and arithmetic. For m = 7 it is the field K₅ (Galois group S₅,
+     discriminant 2⁴·3·13·17³, class number 1).
+2. **Middle layers: a graded linear descent.** [derived; Lean in (a,b)]
+   - Each weight layer is linear in its new unknowns. Its conditions are left-kernel functionals, the cokernel of
+     the bracket linearized at the top layer.
+   - A depth grading makes every lower-layer equation homogeneous, so the solution set is a cone under a residual
+     torus. "Zero-dimensional" therefore means "{0}": that is rigidity.
+   - Branch (a,b): V(I) = {0}, so P = P₂ + const and Q = Q₃ + const (`lower_edge_rigidity`).
+   - Branch (c): twelve conditions in seven parameters.
+3. **Bottom: a unit ideal.** [B; Lean for the generic half since 2026-10-12]
+   - ⟨F₁, …, F₆⟩ = (1). It is certified by one modular rank (W = 24, p = 32003) and a transfer through ℤ[X].
+   - The transfer is now a Lean theorem (`no_common_zero_of_certificate`, `branch_c/grade_a/`).
+
+## 2. Patterns
+
+| ID | Pattern | Status | Evidence |
+|---|---|---|---|
+| P-A | **The descent re-derives the classical edge conditions first.** At weight 0, Ω = o₁(b₁₂,₂₃ − κb₁₂,₂₂²)² gives b₁₂,₂₂² = 3b₁₂,₂₁b₁₂,₂₃, the first condition for the x¹²-edge polynomial of Q to be a perfect cube. `Edge19.lean` has the second, 27b₁₂,₂₁²b₁₂,₂₄ = b₁₂,₂₂³. These are the Abhyankar–Moh-type "edge polynomials are powers of one polynomial" conditions. The genuinely new obstruction appears only after them (Ψ, Φ, Θ at weights −1 to −3). | derived | `replication/answer_key/` (κ·3b₁₂,₂₁ = 1); `Edge19.lean` |
+| P-B | **Catalan counts.** The number of top-layer covers is 1, 2, 5, 14, 42 for m = 3, 5, 7, 9, 11, that is, the Catalan number C_((m−1)/2). | descriptive regularity, 5 exact data points | `belyi_catalan_counts.py` (Frobenius counts; `.log`) |
+| P-C | **One Galois orbit.** For m = 3, 5, 7 the chart eliminant is irreducible over ℚ of degree m·C_((m−1)/2) = 3, 10, 35. So Galois acts transitively on all chart points, and one conjugate decides everything (as used: one root w₀ per prime). | descriptive, 3 data points | `B26Irred.lean` (m = 3, 5); `field.gp`, `compare_V.gp` (m = 7) |
+| P-D | **Cone rigidity.** Homogeneity turns dimension 0 into {0}. Nilpotency orders are small: x^⌈4/depth⌉ ∈ I. Weight 0 (E₁) is needed for a₈,₁₆ (without it a₈,₁₆ is not forced), and weight 1 (E₂) is not. | B (exact) / C (mod p) | `scripts/a816_rigidity/`, `a816_certificate/README.md` C2–C4 |
+| P-E | **One good prime suffices.** Full row rank at one root mod one prime implies the characteristic-0 statement through ℤ[X]. So each elimination's final step is one finite, kernel-checkable computation (about 7 CPU-minutes here). | A (generic, since 2026-10-12) | `branch_c/grade_a/` |
+| P-F | **The bridge is block-diagonal.** In the two-dicritical bridge, each ã^i b^t coefficient involves one weight 2J + K. The collapse is a Vandermonde argument per block, plus a two-center step at W = 2. | A (modulo the modeling premises) | `branch_two_dicritical/lean/` |
+
+## 3. What could generalize (postulates; exploratory)
+
+- **U1. Uniform rigidity at Davenport–Zannier top layers.**
+  - *Claim:* for the NF2-type family (odd m), at every top-layer chart point, the lower layers through weight 0 are
+    rigid (V = {0}).
+  - *Evidence:* m = 7 only (Lean).
+  - *Novelty budget:* a definition of the normal form for general m. It was introduced to generalize, so it is
+    target-directed.
+  - *Discriminating test:* a single m with a positive-dimensional completion refutes U1.
+  - *Cheap test:* for m = 3, 5, 9, compute the descent ideal at one root modulo one prime and check dimension 0 (P-C
+    and P-E make one conjugate sufficient, as evidence).
+- **U2. The conditions are the cokernel of the bracket's linearization.**
+  - *Claim:* the left-kernel conditions are the cokernel of ad(P_top, Q_top) on the graded pieces of negative weight.
+    Rigidity would then be the vanishing of an obstruction map in a graded deformation complex.
+  - *Why it would matter:* a uniform proof of U1 could come from this structure, for instance from the plane-tree
+    combinatorics behind P-B. That is what an argument independent of the degree would need.
+  - *Status:* untested, a framework only.
+- **U3. The dicritical route.**
+  - *Status:* the two-dicritical bridge collapse now has a Lean proof modulo its modeling premises. The m ≥ 2 case
+    (sketch), the adjacent case beyond d = 3 and the E₁ order translation are open.
+  - *Limit:* no known theorem says that a counterexample's pencil must have two or more dicriticals. Abhyankar–Heinzer
+    (arXiv:1508.06015) call the link between dicriticals and the conjecture "plausible" and give a strategy only.
+    Nguyen Van Chau (arXiv:0905.3939) proves the case of irreducible rational pencils. So even a complete
+    two-dicritical theorem would not by itself settle anything about the conjecture.
+
+## 4. What cannot be concluded
+
+- Nothing here bears on the conjecture beyond the degree bound of §0, and that bound needs its premises.
+- P-B and P-C are regularities on 5 and 3 data points of a family. The relation of that family to other GGHV
+  candidate degree pairs is **not established**: which parameter m, if any, other pairs lead to is open.
+
+## 5. Next experiments (predictions registered before running them)
+
+| ID | Experiment | Prediction | Refuted if |
+|---|---|---|---|
+| X1 | m = 9 top-layer classification (msolve / Gröbner) | 126 chart points, one Galois orbit (eliminant irreducible of degree 126) | count ≠ 126, or the eliminant factors |
+| X2 | Descent rigidity at m = 3, 5, 9, mod p at one root | dimension 0 (U1) | positive dimension at some m |
+| X3 | The map from GGHV candidate degree pairs (≥ 125) to normal forms and m | unknown, to be determined | — |
+| X4 | Branch (c), A2 (`branch_c/grade_a/README.md`) | `ChartEmptyC_T1ne0` reaches grade A | a kernel check fails |

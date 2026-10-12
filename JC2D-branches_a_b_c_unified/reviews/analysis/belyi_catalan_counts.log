@@ -1,0 +1,6 @@
+m= 3: n=9, passport [2^4 1] [3^3] [7 1^2], genus 0: covers = 1 (remainder 0), Catalan C_1 = 1, m*covers = 3 (0.0 s)
+m= 5: n=15, passport [2^7 1] [3^5] [12 1^3], genus 0: covers = 2 (remainder 0), Catalan C_2 = 2, m*covers = 10 (0.0 s)
+m= 7: n=21, passport [2^10 1] [3^7] [17 1^4], genus 0: covers = 5 (remainder 0), Catalan C_3 = 5, m*covers = 35 (0.2 s)
+m= 9: n=27, passport [2^13 1] [3^9] [22 1^5], genus 0: covers = 14 (remainder 0), Catalan C_4 = 14, m*covers = 126 (1.2 s)
+m=11: n=33, passport [2^16 1] [3^11] [27 1^6], genus 0: covers = 42 (remainder 0), Catalan C_5 = 42, m*covers = 462 (5.6 s)
+covers = Catalan C_{(m-1)/2} for m = 3..11: True
