@@ -69,3 +69,17 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
   - *Regenerated on 2026-10-12*, with the same rule. PR #13 (2026-10-07) had added
     `correspondence_guide/CORRESPONDENCE_GUIDE.md` without a manifest entry; the guide's section mapping and
     `README.md` were corrected in the same change. The lists now have 1088 entries, and all of them verify.
+
+## 2026-10-12: `grade_a/`, the generic half of `ChartEmptyC_T1ne0` in Lean
+
+- New folder `grade_a/` (outside the bundle, which is unchanged): `R67Data`, `IrreducibleR`, `Transfer`, `Macaulay`,
+  `Axioms`. Lean 4.34.0, Mathlib v4.34.0, no `sorry`, 12 theorems on the standard axioms (`grade_a/logs/build.log`,
+  106 s on 2 cores).
+- R irreducible over ℚ (H3, C11) is now grade A (`Rrat_irreducible`).
+- `no_common_zero_of_certificate`: a modular left inverse of a Macaulay block, at a root of R mod p, excludes common
+  zeros of the generators at every root of R in every field of characteristic 0. The transfer goes through ℤ[X].
+  What remains for `ChartEmptyC_T1ne0` is listed in `grade_a/README.md`: the six generators and the chart reduction,
+  the rows and pivot columns, and the link from the packed kernel check to the Macaulay block (A1, A2). The grade
+  of `ChartEmptyC_T1ne0` stays B.
+- `CHECKSUMS.md5` / `CHECKSUMS.sha256` regenerated with the same rule.
+
