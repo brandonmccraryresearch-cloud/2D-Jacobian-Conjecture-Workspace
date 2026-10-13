@@ -36,6 +36,19 @@ This file maps each script to the exact arithmetic statement in the paper
 | `routeB_cancellation.py` | Thm. 5.1 | Adjacent $m=1$ pair: $d=3$ computation showing $E_2$ dicritical forces $E_3$ constant. |
 | `e3_adjacent.py` | Thm. 5.1 | $E_2$--$E_3$ adjacent $m=1$ pair analysis. |
 
+
+### Note of 2026-10-13 on the E₁ rows (§3.2)
+
+- `e1_solitary.py` multiplies its unknown $p_{JK}$ by $X^{d-J-K}Y^JZ^K$, that is, by the affine monomial
+  $x^{d-J-K}y^J$, so its condition (i) is "$x$-degree $\leq 2$". Its printed supports, and the pair of
+  `e1_global.py`, label $p_{JK}$ as $x^Jy^K$: those are the chart coordinates $(s,t)=(y/x,1/x)$, not the affine ones.
+  In affine terms the pair of `e1_global.py` is $(x^2,\ x^2(1+y))$. Its restrictions $t_1^2$ and $t_1^2+t_1$ share a
+  factor, so $P/Q$ has degree 1 on $E_1$, not 2.
+- `e1_keller_search.py` reads the same set as "total degree $\geq 2$". The arithmetic it certifies holds for that
+  set, which is not the $E_1$ condition. Theorem 3.3 (`thm:e1`) is false as stated: $P=(x+y^2)^2+y$, $Q=P+x+y^2$ lie
+  in its open subset and $[P,Q]=-1$.
+- See `lean/README.md` (item 2), `lean/check_e1_index.py` and `lean/TwoDicritical/E1Keller.lean`.
+
 ---
 
 ## Execution record

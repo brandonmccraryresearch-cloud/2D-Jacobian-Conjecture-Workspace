@@ -1,0 +1,29 @@
+1. The pullback formula is a chart
+[PASS] eq:bridge-pullback = S^h(1, b, b^2 (a + at b)); raising d multiplies it by b^2 (a + at b); d = 2..5
+2. Valuations at a free point and at a = 0
+[PASS] free point: nu(x) = -2, nu(y) = -1
+[PASS] a = 0: nu(x) = -3, nu(y) = -2
+[PASS] ord_b S_a = 2d + nu_E(a)(S) at a free point, 3d + nu_E(0)(S) at a = 0 (60 random S)
+3. The witness (x - a4 y^2, y)
+[PASS] nu(x - a4 y^2) = -4 over a = 0 (= -(d+1) at d = 3) and -1 over a = a4
+[PASS] over a = 0, nu(P/Q) = -2: P/Q is the constant infinity on E(0), not dicritical
+[PASS] over a = a4, P/Q restricts to at/a4: E(a4) is its dicritical, of degree 1: at/a4
+4. The conditions at a = 0, read as nu >= -1
+[PASS] d = 2: centers (0, 5) with ord_b S_0 >= 3d - 1 leave span{1}: [1]
+[PASS] d = 2: the center 5 alone leaves span{1, y, x - 5y^2}: [1, y, x - 5*y**2]
+[PASS] d = 3: centers (0, 5) with ord_b S_0 >= 3d - 1 leave span{1}: [1]
+[PASS] d = 3: the center 5 alone leaves span{1, y, x - 5y^2}: [1, y, x - 5*y**2]
+[PASS] d = 4: centers (0, 5) with ord_b S_0 >= 3d - 1 leave span{1}: [1]
+[PASS] d = 4: the center 5 alone leaves span{1, y, x - 5y^2}: [1, y, x - 5*y**2]
+[PASS] d = 5: centers (0, 5) with ord_b S_0 >= 3d - 1 leave span{1}: [1]
+[PASS] d = 5: the center 5 alone leaves span{1, y, x - 5y^2}: [1, y, x - 5*y**2]
+[PASS] d = 6: centers (0, 5) with ord_b S_0 >= 3d - 1 leave span{1}: [1]
+[PASS] d = 6: the center 5 alone leaves span{1, y, x - 5y^2}: [1, y, x - 5*y**2]
+5. The valuation over a free point
+[PASS] (x - a y^2)^j y^k = at^j b^-(j+k) (a + at b)^(-2j-k) along E(a), j, k <= 4
+[PASS] nu_E(a)(S) = -(degree of S in x - a y^2, y) on 240 random S of degree <= 5, random a != 0
+6. A dicritical over a satellite point
+[PASS] (x + y^3, y): on every member x = lam y - y^3, w2 = x/y^2 -> -infinity as y -> infinity
+7. Degree 1 on E(a) with pole order 2
+[PASS] P = (x - a4 y^2) y + 1, Q = y^2 + 1: nu = -2 for both on E(a4), and P/Q restricts to at/a4 (degree 1): at/a4
+RESULT: PASS

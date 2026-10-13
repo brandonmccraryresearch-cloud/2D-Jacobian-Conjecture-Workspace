@@ -1,0 +1,34 @@
+=== 1. source scan ===
+PASS: no sorry, admit, native_decide or axiom
+=== 2. compile (project: /home/claude/build/jacobian_lean) ===
+TwoDicritical.BlockRank: exit 0, 3 s
+TwoDicritical.E1Obstruction: exit 0, 2 s
+TwoDicritical.BridgeCollapse: exit 0, 21 s
+TwoDicritical.CenterHypotheses: exit 0, 23 s
+TwoDicritical.OneCenter: exit 0, 22 s
+TwoDicritical.E1Keller: exit 0, 24 s
+TwoDicritical.Axioms: exit 0, 20 s
+=== 3. axioms ===
+'choose_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'block_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.block_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.block_vanish_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridge_collapse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridge_jacobian_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridgeConditions_pAuto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridge_collapse_needs_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridge_collapse_needs_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.jacobian_auto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridge_jacobian_needs_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'e1_degree_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'not_keller_of_noLowTerms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.bridge_one_center' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.zero_center_no_top_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.thm_e1_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.e1P_not_noLowTerms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.eq_C_mul_of_wronskian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.jac2_coeff_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.e1_lead_proportional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TwoDicritical.jac2_eq_zero_of_natDegree_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 21 of 21 theorems on the standard axioms (or a subset)
+=== TWO-DICRITICAL LEAN: ALL CHECKS PASSED ===

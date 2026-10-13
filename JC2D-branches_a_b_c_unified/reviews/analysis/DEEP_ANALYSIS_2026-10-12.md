@@ -49,7 +49,8 @@ Both eliminations have the same three layers.
 | P-C | **One Galois orbit.** For m = 3, 5, 7 the chart eliminant is irreducible over ℚ of degree m·C_((m−1)/2) = 3, 10, 35. So Galois acts transitively on all chart points, and one conjugate decides everything (as used: one root w₀ per prime). | descriptive, 3 data points | `B26Irred.lean` (m = 3, 5); `field.gp`, `compare_V.gp` (m = 7) |
 | P-D | **Cone rigidity.** Homogeneity turns dimension 0 into {0}. Nilpotency orders are small: x^⌈4/depth⌉ ∈ I. Weight 0 (E₁) is needed for a₈,₁₆ (without it a₈,₁₆ is not forced), and weight 1 (E₂) is not. | B (exact) / C (mod p) | `scripts/a816_rigidity/`, `a816_certificate/README.md` C2–C4 |
 | P-E | **One good prime suffices.** Full row rank at one root mod one prime implies the characteristic-0 statement through ℤ[X]. So each elimination's final step is one finite, kernel-checkable computation (about 7 CPU-minutes here). | A (generic, since 2026-10-12) | `branch_c/grade_a/` |
-| P-F | **The bridge is block-diagonal.** In the two-dicritical bridge, each ã^i b^t coefficient involves one weight 2J + K. The collapse is a Vandermonde argument per block, plus a two-center step at W = 2. | A (modulo the modeling premises) | `branch_two_dicritical/lean/` |
+| P-F | **The bridge is block-diagonal.** In the two-dicritical bridge, each ã^i b^t coefficient involves one weight 2J + K. The collapse is a Vandermonde argument per block, plus a two-center step at W = 2. *Updated 2026-10-13:* the blocks are the valuation of a divisor over a free point a of E₂, which is minus the degree in (x − ay², y); so one center already forces degree ≤ 2 and the theorem covers pencils of degree ≤ 2 only. | A for the equations; the geometric reading needs (P1), (P2) | `branch_two_dicritical/lean/` (`OneCenter.lean`, `check_satellite.py`) |
+| P-G | **First blow-ups at infinity are never dicritical for a Keller map** (2026-10-13). On E₁ over a point at infinity, P/Q restricts to the ratio of the leading x-coefficients A, D (reversed), and a constant Jacobian forces AD′ − A′D = 0, hence A ∝ D in characteristic 0. With the top-form argument for the line at infinity itself, every dicritical at infinity of a non-affine Keller map lies at depth ≥ 2. | A for the algebra (`e1_lead_proportional`); the chart step executed | `branch_two_dicritical/lean/TwoDicritical/E1Keller.lean`, `check_e1_index.py` |
 
 ## 3. What could generalize (postulates; exploratory)
 
@@ -69,8 +70,21 @@ Both eliminations have the same three layers.
     combinatorics behind P-B. That is what an argument independent of the degree would need.
   - *Status:* untested, a framework only.
 - **U3. The dicritical route.**
-  - *Status:* the two-dicritical bridge collapse now has a Lean proof modulo its modeling premises. The m ≥ 2 case
-    (sketch), the adjacent case beyond d = 3 and the E₁ order translation are open.
+  - *Status (corrected 2026-10-13, after an outside referee's report on PR #19):*
+    - The two-dicritical bridge collapse is a Lean theorem about the paper's equations. Read geometrically, it
+      assumes (P1) two dicriticals over free points of E₂ and (P2) pole order at most 1 for every member of the
+      pencil. (P2) is asserted, not derived.
+    - Under (P1) and (P2), one such dicritical already forces degree ≤ 2. So the bridge, even if complete, says
+      nothing about pencils of degree ≥ 3, and it buys little toward the main theorem.
+    - Earlier text called "both centers nonzero" load-bearing and unjustified. That was wrong: a = 0 is a satellite
+      point, where the formula does not express the m = 1 condition (review §9.4).
+    - Dicriticals over satellite points of E₂ and deeper are not treated, and that is where real ones occur: the
+      automorphism (x + y³, y) has its dicritical at infinity over a = ∞.
+    - Theorem `thm:e1` is false as stated. Its intended conclusion is now proved for every m, modulo an executed
+      chart step (P-G).
+    - The m ≥ 2 case (sketch) and the adjacent case beyond d = 3 are open.
+    - The main theorem is false as worded for every Keller map of degree ≥ 2 (review §9.3). Its intended statement
+      has to be fixed first.
   - *Limit:* no known theorem says that a counterexample's pencil must have two or more dicriticals. Abhyankar–Heinzer
     (arXiv:1508.06015) call the link between dicriticals and the conjecture "plausible" and give a strategy only.
     Nguyen Van Chau (arXiv:0905.3939) proves the case of irreducible rational pencils. So even a complete
