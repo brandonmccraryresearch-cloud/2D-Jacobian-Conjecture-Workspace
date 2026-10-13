@@ -19,8 +19,10 @@ incomplete** (`../JC2D-branches_a_b_c_unified/reviews/REVIEW_2026-10-12_handoff.
     (`../JC2D-branches_a_b_c_unified/reviews/two_dicritical/main_statement_check.py`; the identity is the control,
     with one base point).
   - Read literally, the statement would imply the Jacobian conjecture outright, and every non-affine automorphism
-    refutes it. The paper's computations all take place at infinity. The intended statement, presumably about
-    dicriticals at infinity, has to be written down before any proof can be checked against it.
+    refutes it. The paper's computations all take place at infinity.
+  - **The intended statement is now written down** (2026-10-13): `RESTATEMENT.md`, Theorem R: the pencil has at most
+    one dicritical at infinity. It is equivalent to the plane Jacobian conjecture (Proposition 3.2 there), so a
+    complete proof of it would prove the conjecture.
 - **Theorem `thm:e1` is false as stated** (corrected 2026-10-13, after an outside referee's report on PR #19).
   - Its proof reads the order condition $\nu_{E_1}\geq -2$ as "total degree $\geq 2$"; it means "$x$-degree
     $\leq 2$". `e1_solitary.py` indexes its unknowns by $X^{d-J-K}Y^JZ^K$, and the proof read them as $x^Jy^K$.
@@ -54,6 +56,8 @@ The 18 scripts reproduce exactly (`verify_all.sh`, outputs compared byte for byt
 fixed degrees and do not prove the general statements.
 
 ### Main theorem (as worded in the paper; false as worded, see Status)
+
+The corrected statement, with what is proved toward it and what is missing, is in `RESTATEMENT.md`.
 
 Let $K$ be a field of characteristic $0$. Let $P,Q\in K[x,y]$ with
 $[P,Q]=c\in K^\times$ (a Keller map). Then the resolution of the pencil

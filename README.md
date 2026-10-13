@@ -109,8 +109,9 @@ Status (review of 2026-10-12, corrected 2026-10-13; `JC2D-branches_a_b_c_unified
   infinity and, once the target is translated so that $0$ is a value, an affine one; every base point carries a
   dicritical (`JC2D-branches_a_b_c_unified/reviews/two_dicritical/base_point_at_infinity_check.py`;
   `main_statement_check.py` there works out $(x-y^2,\ y)$ and $(x,\ y+x^2)$). Read literally, the statement would
-  imply the Jacobian conjecture outright, and every non-affine automorphism refutes it. The intended statement
-  (presumably about dicriticals at infinity) has to be written down;
+  imply the Jacobian conjecture outright, and every non-affine automorphism refutes it. The intended statement, at
+  most one dicritical at infinity, is written down in `branch_two_dicritical/RESTATEMENT.md` (2026-10-13). It is
+  equivalent to the plane Jacobian conjecture;
 - **Theorem `thm:e1` (the $E_1$ obstruction) is false as stated.** Its proof reads $\nu_{E_1}\geq -2$ as "total
   degree $\geq 2$" instead of "$x$-degree $\leq 2$", and $P=(x+y^2)^2+y$, $Q=P+x+y^2$ is a Keller pair in its open
   subset. The intended conclusion holds for every $m$: $E_1$ is never dicritical for a Keller map. Its algebraic step

@@ -1,0 +1,17 @@
+1. (x + y^3, y), c = 0
+[PASS] [P, Q] = 1
+[PASS] the only base point at infinity is [1:0:0]: ['[1:0:0]']
+  E1: s = s, t = s*w1: residue of Phi = oo
+  E2: s = w1*sigma (the members met E1 at w1 = 0 = E1 ∩ L, a satellite point): residue of Phi = oo
+  E3: sigma = w1*tau (the members met E2 at sigma = 0 = E2 ∩ E1, a satellite point: a = infinity): residue of Phi = oo
+  E4: tau = -1 + w1*rho (the members met E3 at tau = -1, a free point): residue of Phi = oo
+  E5: rho = w1*kappa (the members met E4 at rho = 0, a free point): residue of Phi = -kappa
+[PASS] the residue is constant on E1 .. E4: [oo, oo, oo, oo]
+[PASS] on E5 the residue is a function of degree 1 (E5 is the dicritical): -kappa
+2. (x, x*y), c = (1, 1)
+[PASS] [P, Q] = x: not a Keller map
+[PASS] non-proper along u = 0: F(eps, v/eps) = (eps, v)
+[PASS] base points at infinity: [0:1:0] and [1:0:0]: ['[0:1:0]', '[1:0:0]']
+[PASS] over [1:0:0]: after one blow-up the residue is non-constant (degree 1): 1/w1
+[PASS] over [0:1:0]: constant residue after one blow-up, degree 1 after the second: 0, then -1/(s2 - 1)
+RESULT: PASS
