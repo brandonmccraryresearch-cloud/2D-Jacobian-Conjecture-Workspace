@@ -1,0 +1,8 @@
+m = 7, n = 10: |N(P)| = 25, |N(Q)| = 47 lattice points
+top layer mod 32003: vdim 35, univariate degree 35, factor degrees [1, 1, 2, 2, 2, 2, 2, 2, 3, 6, 6, 6], simple linear factors 2
+top-layer point (normalization am): a6 = 7729; E5 rechecked: True; vertex conditions: True
+descent: 53 unknowns (51 occur in J); generators by layer d = 0,1,2,3: [19, 19, 19, 18]; layer 4 residual terms: 0; other layers: 0
+every layer-d generator homogeneous of depth 4 - d (so V is a cone): True
+NEGATIVE CONTROL: layer d = 0 left out
+dim V = 2 (std basis of 84 elements); nilpotent unknowns: 32 of 51; least exponent <= ceil(4/depth) for 32, = ceil(4/depth) for 29; max exponent 4; depths [1, 2, 3]
+{"E5_rechecked": true, "alpha": [1, 22111, 27109, 1910, 26021, 27090, 7729, 1], "beta": [1, 4073, 27109, 29614, 25370, 31582, 17495, 21952, 7272, 20107, 24397], "depths": [1, 2, 3], "dim": 2, "dropped_layer": 0, "eliminated_to": "a6", "engine": "std", "exponent_at_most_ceil_4_over_depth": 32, "exponent_equals_ceil_4_over_depth": 29, "factor_degrees": [1, 1, 2, 2, 2, 2, 2, 2, 3, 6, 6, 6], "generators_by_layer_d0_d1_d2_d3": [19, 19, 19, 18], "generators_used": 56, "layer_d_homogeneous_of_depth_4_minus_d": true, "m": 7, "max_exponent": 4, "n": 10, "nilpotent_unknowns": 32, "normalization": "am", "other_layer_terms": 0, "p": 32003, "root": 7729, "simple_linear_factors": 2, "std_size": 84, "top_layer_residual_terms": 0, "univariate_degree": 35, "unknowns_occurring": 51, "unknowns_total": 53, "vdim": 35, "vertex_conditions": true}

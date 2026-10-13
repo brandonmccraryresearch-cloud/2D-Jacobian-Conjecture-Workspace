@@ -399,6 +399,10 @@ cd ../../branch_c && md5sum -c CHECKSUMS.md5 && (cd bundle_v3_1 && sha256sum -c 
 - **`reviews/analysis/`**: the analysis of patterns across the eliminations (`DEEP_ANALYSIS_2026-10-12.md`). It
   includes a new observation: the top-layer cover counts are Catalan numbers for m = 3, …, 11
   (`belyi_catalan_counts.py`, with its log).
+  - *Update (2026-10-13), `reviews/analysis/x2_descent/`:*
+    - The counts are proved for every m.
+    - Experiments X1 and X2 are done. At m = 3, 5, 7, 9 the lower layers are rigid at every chart point (grade B),
+      and the 126 chart points of m = 9 form one Galois orbit.
 
 ---
 

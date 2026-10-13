@@ -1,0 +1,7 @@
+m = 9: expected 14 covers, 126 points
+p = 32003: vdim 126; point eliminant factor degrees [1, 2, 2, 2, 2, 7, 14, 14, 14, 14, 54] (squarefree True); cover eliminant (z = a1^9) degree 14, factor degrees [1, 6, 7] (squarefree True); good reduction: True
+p = 32009: vdim 126; point eliminant factor degrees [126] (squarefree True); cover eliminant (z = a1^9) degree 14, factor degrees [14] (squarefree True); good reduction: True
+orbit-size multisets on the covers compatible with every Frobenius cycle type: [[14]]
+transitive on the 14 covers (forced by these cycle types): True
+transitive on the 126 chart points (some Frobenius element is a 126-cycle): yes, p = 32009
+{"m": 9, "covers": 14, "frobenius_cycle_types": [[1, 6, 7], [14]], "compatible_orbit_sizes": [[14]], "transitive_on_covers": true, "point_eliminant_irreducible_at": [32009]}

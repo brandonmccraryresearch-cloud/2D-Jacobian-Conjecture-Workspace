@@ -1,0 +1,38 @@
+[PASS] m = 3: 1 trees, Catalan C_1 = 1
+[PASS] m = 3: passport [2^4 1] [3^3] [7 1^2], transitive, genus 0
+[PASS] m = 3: the 1 triples are pairwise non-isomorphic
+[PASS] m = 3: equals the Frobenius count of belyi_catalan_counts.log: 1 covers
+       m = 3: mirror-symmetric trees (real covers): 1; mirror pairs: 0
+       m = 3: monodromy groups: {'504': 1}
+[PASS] m = 3: one monodromy group for all trees
+[PASS] m = 5: 2 trees, Catalan C_2 = 2
+[PASS] m = 5: passport [2^7 1] [3^5] [12 1^3], transitive, genus 0
+[PASS] m = 5: the 2 triples are pairwise non-isomorphic
+[PASS] m = 5: equals the Frobenius count of belyi_catalan_counts.log: 2 covers
+       m = 5: mirror-symmetric trees (real covers): 0; mirror pairs: 1
+       m = 5: monodromy groups: {'S_15': 2}
+[PASS] m = 5: one monodromy group for all trees
+[PASS] m = 7: 5 trees, Catalan C_3 = 5
+[PASS] m = 7: passport [2^10 1] [3^7] [17 1^4], transitive, genus 0
+[PASS] m = 7: the 5 triples are pairwise non-isomorphic
+[PASS] m = 7: equals the Frobenius count of belyi_catalan_counts.log: 5 covers
+       m = 7: mirror-symmetric trees (real covers): 1; mirror pairs: 2
+       m = 7: monodromy groups: {'A_21': 5}
+[PASS] m = 7: one monodromy group for all trees
+[PASS] m = 9: 14 trees, Catalan C_4 = 14
+[PASS] m = 9: passport [2^13 1] [3^9] [22 1^5], transitive, genus 0
+[PASS] m = 9: the 14 triples are pairwise non-isomorphic
+[PASS] m = 9: equals the Frobenius count of belyi_catalan_counts.log: 14 covers
+       m = 9: mirror-symmetric trees (real covers): 0; mirror pairs: 7
+       m = 9: monodromy groups: {'S_27': 14}
+[PASS] m = 9: one monodromy group for all trees
+[PASS] m = 11: 42 trees, Catalan C_5 = 42
+[PASS] m = 11: passport [2^16 1] [3^11] [27 1^6], transitive, genus 0
+[PASS] m = 11: the 42 triples are pairwise non-isomorphic
+[PASS] m = 11: equals the Frobenius count of belyi_catalan_counts.log: 42 covers
+       m = 11: mirror-symmetric trees (real covers): 2; mirror pairs: 20
+[PASS] m = 3: one real cover (the cover eliminant over Q is linear: a_3 = 9/250 when alpha_1 = 1): 250*a3-9
+[PASS] m = 5: no real cover (the cover eliminant over Q has negative discriminant): 7601366709*a5^2+878448*a5+256, discriminant -7012128621312 = {2: 8, 3: 7, 3539: 2, -1: 1}
+[PASS] m = 7: one real cover (K5 = Q[w]/(w^5 - w^4 + 3*w^3 + 3*w^2 + 26) has one real embedding)
+m = 9: no tree is mirror-symmetric, so no cover is real and every Galois orbit of covers has even size
+RESULT: PASS
