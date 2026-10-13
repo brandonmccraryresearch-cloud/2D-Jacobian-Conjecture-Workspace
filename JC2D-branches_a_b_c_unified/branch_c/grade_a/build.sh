@@ -6,7 +6,8 @@
 #   `lake exe cache get` there). Nothing is written into it: the .olean files go to a temporary directory.
 #
 # Steps:
-#   1. scan lean/GradeA/*.lean (comments stripped) for sorry, admit, native_decide and user axioms;
+#   1. scan lean/GradeA/*.lean (comments stripped) for sorry, admit, native_decide and the keyword `axiom`
+#      anywhere on a line;
 #   2. compile R67Data, IrreducibleR, Transfer, Macaulay, Axioms in this order, each with `lean -o`;
 #      any error or "declaration uses sorry" fails;
 #   3. check that every `#print axioms` line of Axioms.lean names only propext, Classical.choice, Quot.sound
@@ -37,7 +38,7 @@ for f in sys.argv[1:]:
     s = re.sub(r'/-.*?-/', '', open(f).read(), flags=re.S)
     s = re.sub(r'--[^\n]*', '', s)
     for l in s.splitlines():
-        if re.search(r'\b(sorry|admit|native_decide)\b', l) or re.match(r'\s*(private\s+)?axiom\s', l):
+        if re.search(r'\b(sorry|admit|native_decide)\b', l) or re.search(r'(?<![\w.])axiom(?![\w.])', l):
             print(f"  {f}: {l.strip()}"); bad = 1
 sys.exit(bad)
 PY

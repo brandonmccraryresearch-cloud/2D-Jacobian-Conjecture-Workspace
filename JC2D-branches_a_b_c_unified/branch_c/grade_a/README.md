@@ -26,9 +26,10 @@ A1, A2 are supplied ("What remains").
 
 `build.sh` compiles the five modules in a temporary directory against any Lake project with Mathlib v4.34.0
 (default `../../branches_a_b/lean`, after `lake exe cache get` there), scans for `sorry`/`admit`/`native_decide`/
-`axiom`, and checks the axioms of the 12 theorems listed in `lean/GradeA/Axioms.lean`. If the project has no compiled
+`axiom` (the keyword anywhere on a line, since 2026-10-13), and checks the axioms of the 12 theorems listed in
+`lean/GradeA/Axioms.lean`. If the project has no compiled
 Mathlib, it stops with exit status 2 before calling `lake`, which would otherwise start cloning Mathlib.
-`logs/build.log` (2026-10-12): all checks pass, about 2 min on 2 cores, from scratch.
+`logs/build.log` (rerun 2026-10-13): all checks pass, about 2 min on 2 cores, from scratch.
 
 **H3 is now grade A.** "R is irreducible over ℚ" (premise H3 of `../rank_lemma_check/README.md`), until now checked
 by FLINT and in Python, is `Rrat_irreducible`.
@@ -61,7 +62,7 @@ which does not exist.
 - **Build.** `build_chart.sh [BUNDLE_PROJECT]` regenerates the generated modules and compares them byte for byte,
   scans, compiles the 4 base and 12 chart modules, and checks the axioms of the 13 theorems in `Chart/Axioms.lean`.
   The chart modules import the bundle's `CondsC` and `T1Zero` modules (read-only), so the project must have the
-  bundle built. `logs/build_chart.log` (2026-10-12): all checks pass, about 4 min on 2 cores, from scratch.
+  bundle built. `logs/build_chart.log` (rerun 2026-10-13): all checks pass, about 4.5 min on 2 cores, from scratch.
 
 ## What remains for `ChartEmptyC_T1ne0` (grade B today)
 
@@ -73,6 +74,10 @@ The hypotheses of `chartEmptyC_T1ne0_of_certificate`, for p = 32003 and w₀ = 1
    - The 3199 pivot columns (generator, multiplier) of `branch_c/rank_lemma_check/`.
    - `hsupp`: every monomial of `mult c · F_{gen c}` is a row. This is decidable from a sparse representation of
      the F_n.
+   - **The F_n must stay reduced modulo R** (an outside referee's caution, 2026-10-13). `hsupp` is about the
+     ℤ[X]-support, while `build_matrix.py` builds the rows from K₅-supports. A coefficient that is a nonzero multiple
+     of R would add a monomial that is not a row. The generators of `Chart/Gens.lean` have every w-exponent below 5,
+     so the two supports agree; `gen_chart.py` checks this (check 5).
 3. **The left inverse modulo 32003**, in two parts that meet at one matrix `MS`, the pivot block of the rank check
    as written in its data (unscaled generators G_n, the rank check's row order):
    - **(A1, CAIC)** `hA1 : Cinv * MS = 1` over `ZMod 32003`, with `Cinv k i` the k-th 40-bit digit of `Cpk_i`. The
@@ -104,7 +109,7 @@ of the generated check modules. `../rank_lemma_check/gen_lean.py` will be extend
 | `lean/GradeA/Chart/Axioms.lean` | `#print axioms` for the 13 chart and interface theorems |
 | `certgen/gen_chart.py`, `certgen/gen_chart_lean.py`, `certgen/shim/make_cert_c.py` | the certificate computation and checks; the Lean writer; the two functions of the bundle's `make_cert_c.py` it needs |
 | `build.sh`, `build_chart.sh` | build and audit (the base modules against any Mathlib project; the chart modules against the bundle's project) |
-| `logs/build.log`, `logs/build_chart.log` | the runs of 2026-10-12 |
+| `logs/build.log`, `logs/build_chart.log` | the runs of 2026-10-13 |
 
 The frozen bundle `../bundle_v3_1/` is not touched: the base modules import Mathlib only, and the chart modules import
 the bundle's `CondsC` and `T1Zero` modules and run its generator code read-only.

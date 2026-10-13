@@ -625,3 +625,10 @@ Further points in CAIC's reports, checked:
   - this review: the Macaulay data and A2, and the review of CAIC's work.
 - **Open item 1 of §9.6 now reads:** the rows, pivot columns and `hsupp` in Lean; A1; A2. The first step of both A1
   and A2 is to emit the column data of M_S as a Lean definition (`rank_lemma_check/gen_lean.py`).
+- **2026-10-13, after an outside referee's report on PR #19.**
+  - The caution for A2 is recorded in `grade_a/README.md`: the generators must stay reduced modulo R, since `hsupp`
+    is about ℤ[X]-supports and the rows are K₅-supports.
+  - `gen_chart.py` now checks this (check 5: every w-exponent below 5, every coefficient nonzero), with two negative
+    controls run by hand: a w⁵ term and a zero coefficient are both rejected.
+  - The source scans of `grade_a/build.sh` and `build_chart.sh` catch the keyword `axiom` anywhere on a line. Both
+    builds were rerun: 12/12 and 13/13 on the standard axioms.

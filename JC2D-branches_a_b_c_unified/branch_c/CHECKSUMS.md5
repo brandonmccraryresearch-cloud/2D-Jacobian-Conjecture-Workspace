@@ -1,4 +1,4 @@
-09923d88dccfcd377dd8450b79195be3  ./BUILD_STATUS.md
+5f90a66dde751c8b481de7c8ee5b1ad2  ./BUILD_STATUS.md
 2bf6929287251e2599f5ddbf84d495df  ./GUIDE.md
 a0d6a926194ced14b3b99b8b7737589e  ./PARTS.txt
 ac45ee6e63940bf20ec2eea91c7b6c9c  ./README.md
@@ -1018,10 +1018,10 @@ c77441c615a20db51e053dd10c09686a  ./bundle_v3_1/v2_carryover/corrected_commit_pr
 e04d819b03353ffc47a8ef3ad9bedd8c  ./bundle_v3_1/v2_carryover/corrected_commit_proposal/tests/phi_stage6_vs_6b.py
 ebaddc66bc51c89bcf608b4fc2a8066a  ./bundle_v3_1/v2_carryover/corrected_commit_proposal/tests/phi_stage6_vs_6b_paths_control.log
 b811395c54d54d411001004f155c96de  ./correspondence_guide/CORRESPONDENCE_GUIDE.md
-80b90700f3a6b7713c454e70e5328160  ./grade_a/README.md
-2e092775f2cb3e0695f81c7cc2c443ba  ./grade_a/build.sh
-a92f3650806ee35f95b4a43c5be91205  ./grade_a/build_chart.sh
-e1ce5b556f2b93c4580bd5f780f56633  ./grade_a/certgen/gen_chart.py
+27569261d59edbc68d233bb43d75cc14  ./grade_a/README.md
+7d52f0f334cd5d8e9e125634e6c6e824  ./grade_a/build.sh
+13380cec822a87b98d12175dae8f84f0  ./grade_a/build_chart.sh
+5ad1e986897f81b1b10089bab80f5976  ./grade_a/certgen/gen_chart.py
 0e679690277d64919b749a6858e1283d  ./grade_a/certgen/gen_chart_lean.py
 8c829b4a8920facb5302cd6f7c07ad31  ./grade_a/certgen/shim/make_cert_c.py
 65bddadbdf993df9472c69c48fbab046  ./grade_a/lean/GradeA/Axioms.lean
@@ -1041,8 +1041,8 @@ da9f70b288ffaf05e33bf1354e101aaa  ./grade_a/lean/GradeA/Chart/Gens.lean
 ac6068be5e2800cfbdaffa08bf09b9ba  ./grade_a/lean/GradeA/Macaulay.lean
 317c923a300791dccb71e4ece0a47296  ./grade_a/lean/GradeA/R67Data.lean
 4aa45de257488b0702d9b9f709beb918  ./grade_a/lean/GradeA/Transfer.lean
-db76cc0efe688e435ff543dcc4f84257  ./grade_a/logs/build.log
-c8a66724851fd348de7ef3afe53ef370  ./grade_a/logs/build_chart.log
+25e5fc4882a5ac2329c713573ca2121d  ./grade_a/logs/build.log
+d90e7323c9fa480275a2e6f223baeb3b  ./grade_a/logs/build_chart.log
 6a02772a90dcf6c9b8025cf7db50ee3d  ./muse_refutation/DEPRECATED_char0_cert.md
 bccbd2b21f9bb4373baeee8e540b4413  ./muse_refutation/README.md
 7ba59672b2cf8122e01cd2152a97d6c2  ./muse_refutation/RefuteReductionLemma.lean

@@ -20,7 +20,11 @@ Checks (all must pass; exit status 1 otherwise):
      bundle's step3b_rank_lift.py, from conds_c.json) and c_n = Dk^d D_n mod p != 0;
   4. the top weight of f_n in t s r u q (weights 1 2 3 3 4) is the generator's weight (5, 6, 6, 7, 7, 7), the
      weight the Macaulay columns are built with (wdeg(m) <= W - wt(F_n)). f_n is not homogeneous: T2 = 1 breaks the
-     torus symmetry, which is why the ideal can be the unit ideal at all.
+     torus symmetry, which is why the ideal can be the unit ideal at all;
+  5. f_n is reduced modulo R: every term has w-exponent < 5 and a nonzero coefficient. Then a monomial of f_n has a
+     nonzero coefficient in Z[X] exactly when it has one in K5, so the support condition `hsupp` of the interface
+     theorem (about Z[X]-supports) matches the rows of build_matrix.py (built from K5-supports). (Added 2026-10-13,
+     after an outside referee's caution.)
 Imported by gen_chart_lean.py, which writes the Lean modules GradeA/Chart/*.lean.
 """
 import os, sys, io, json, contextlib
@@ -60,6 +64,8 @@ for n in NAMES:
         fail.append(f"{n}: certificate"); continue
     if not all(C.expo(m, T2) == 0 and C.expo(m, S2) == 0 for (m, i) in f):
         fail.append(f"{n}: f contains b_12_22 or b_12_23")    # 2.
+    if not all(0 <= i < 5 and c != 0 for (m, i), c in f.items()):
+        fail.append(f"{n}: f is not reduced modulo R")       # 5.
     wts = {sum(WT[v] * e for v, e in m) for (m, i) in f}
     if max(wts) != WTF[n]:
         fail.append(f"{n}: top weight {max(wts)}, expected {WTF[n]}")   # 4.
@@ -93,5 +99,5 @@ sizes = {n: (gens[n][0], len(gens[n][1]), {f: len(m) for m, f in certs[n]}) for 
 print("S2-degrees d, terms of f_n, and multiplier sizes:", sizes)
 if fail:
     print("FAIL:", fail); sys.exit(1)
-print("PASS: six certificates exact; generators free of b_12_22, b_12_23; top weights 5 6 6 7 7 7; equal to the "
-      "rank check's generators up to Dk^d D_n at both primes")
+print("PASS: six certificates exact; generators free of b_12_22, b_12_23, reduced modulo R; top weights 5 6 6 7 7 7; "
+      "equal to the rank check's generators up to Dk^d D_n at both primes")

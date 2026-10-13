@@ -1,27 +1,27 @@
 === 0. regenerate the generated modules and compare ===
 p = 32003: f_n(w0) = (Dk^d D_n) * G_n mod p for every generator: True
 p = 1000003: f_n(w0) = (Dk^d D_n) * G_n mod p for every generator: True
-PASS: six certificates exact; generators free of b_12_22, b_12_23; top weights 5 6 6 7 7 7; equal to the rank check's generators up to Dk^d D_n at both primes
+PASS: six certificates exact; generators free of b_12_22, b_12_23, reduced modulo R; top weights 5 6 6 7 7 7; equal to the rank check's generators up to Dk^d D_n at both primes
 PASS: the 8 generated modules are byte-identical to the generator's output
 === 1. source scan ===
 PASS: no sorry, admit, native_decide or axiom
 === 2. compile (project: /home/claude/build/jacobian_lean) ===
-GradeA.R67Data: exit 0, 28 s
-GradeA.IrreducibleR: exit 0, 21 s
-GradeA.Transfer: exit 0, 20 s
-GradeA.Macaulay: exit 0, 21 s
-GradeA.Chart.Terms: exit 0, 2 s
+GradeA.R67Data: exit 0, 33 s
+GradeA.IrreducibleR: exit 0, 24 s
+GradeA.Transfer: exit 0, 21 s
+GradeA.Macaulay: exit 0, 22 s
+GradeA.Chart.Terms: exit 0, 3 s
 GradeA.Chart.Gens: exit 0, 4 s
 GradeA.Chart.F_Psi: exit 0, 3 s
-GradeA.Chart.F_Phi1: exit 0, 5 s
-GradeA.Chart.F_Phi2: exit 0, 5 s
-GradeA.Chart.F_Theta1: exit 0, 9 s
+GradeA.Chart.F_Phi1: exit 0, 6 s
+GradeA.Chart.F_Phi2: exit 0, 6 s
+GradeA.Chart.F_Theta1: exit 0, 10 s
 GradeA.Chart.F_Theta2: exit 0, 10 s
 GradeA.Chart.F_Theta3: exit 0, 9 s
-GradeA.Chart.Main: exit 0, 48 s
-GradeA.Chart.Poly: exit 0, 20 s
-GradeA.Chart.Assembly: exit 0, 22 s
-GradeA.Chart.Axioms: exit 0, 19 s
+GradeA.Chart.Main: exit 0, 52 s
+GradeA.Chart.Poly: exit 0, 18 s
+GradeA.Chart.Assembly: exit 0, 40 s
+GradeA.Chart.Axioms: exit 0, 6 s
 === 3. axioms ===
 'BranchC.GradeA.Chart.denote_exprOfTerms' depends on axioms: [propext, Classical.choice, Quot.sound]
 'BranchC.GradeA.Chart.s_F_Psi' depends on axioms: [propext, Classical.choice, Quot.sound]

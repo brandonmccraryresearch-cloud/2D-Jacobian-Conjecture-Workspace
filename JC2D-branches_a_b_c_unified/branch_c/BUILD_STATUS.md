@@ -100,3 +100,13 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
   for `build_chart.sh`, the built bundle), instead of letting `lake` start cloning it.
 - `CHECKSUMS.md5` / `CHECKSUMS.sha256` regenerated with the same rule.
 
+## 2026-10-13: an outside referee's caution for A2, and the source scan
+
+- `grade_a/certgen/gen_chart.py` checks that the six generators are reduced modulo R: every w-exponent is below 5,
+  and every coefficient is nonzero (check 5). This makes the ℤ[X]-support of each F_n equal to its K₅-support, which
+  the support condition `hsupp` of A2 needs, since `build_matrix.py` builds the rows from K₅-supports. The caution is
+  recorded in `grade_a/README.md`.
+- `grade_a/build.sh` and `build_chart.sh`: the source scan catches the keyword `axiom` anywhere on a line
+  (`noncomputable axiom`, `protected axiom`). Both were rerun: 12/12 and 13/13 theorems on the standard axioms
+  (`grade_a/logs/build.log`, `logs/build_chart.log`).
+- `CHECKSUMS.md5` / `CHECKSUMS.sha256` regenerated with the same rule.

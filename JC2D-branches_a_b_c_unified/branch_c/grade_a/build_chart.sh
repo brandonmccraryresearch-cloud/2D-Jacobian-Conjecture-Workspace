@@ -11,7 +11,7 @@
 #      (which re-checks every certificate by exact integer arithmetic, and the generators against the rank check's
 #      at p = 32003 and 1000003) and compare them byte for byte with the committed files;
 #   1. scan lean/GradeA/*.lean and lean/GradeA/Chart/*.lean (comments stripped) for sorry, admit, native_decide and
-#      user axioms;
+#      the keyword `axiom` anywhere on a line;
 #   2. compile R67Data, IrreducibleR, Transfer, Macaulay, then Chart.Terms, Chart.Gens, Chart.F_* (six), Chart.Main,
 #      Chart.Poly, Chart.Assembly, Chart.Axioms, each with `lean -o`; any error or "declaration uses sorry" fails;
 #   3. check that every `#print axioms` line of Chart/Axioms.lean names only propext, Classical.choice, Quot.sound
@@ -55,7 +55,7 @@ for f in sys.argv[1:]:
     s = re.sub(r'/-.*?-/', '', open(f).read(), flags=re.S)
     s = re.sub(r'--[^\n]*', '', s)
     for l in s.splitlines():
-        if re.search(r'\b(sorry|admit|native_decide)\b', l) or re.match(r'\s*(private\s+)?axiom\s', l):
+        if re.search(r'\b(sorry|admit|native_decide)\b', l) or re.search(r'(?<![\w.])axiom(?![\w.])', l):
             print(f"  {f}: {l.strip()[:120]}"); bad = 1
 sys.exit(bad)
 PY
