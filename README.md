@@ -86,9 +86,12 @@ paragraph "Formalization seam" (degree-19 rigidity not in Lean) is out of date: 
 Since 2026-10-12, `branch_c/grade_a/` proves the generic half of `ChartEmptyC_T1ne0` in Lean: $R$ is irreducible
 over $\mathbb{Q}$; a polynomial in $\mathbb{Z}[X]$ that vanishes at a root of $R$ in characteristic $0$ vanishes at
 every root of $R$ in every ring; and a modular left inverse of a Macaulay block at one prime excludes common zeros in
-characteristic $0$ (`no_common_zero_of_certificate`). The concrete data are not yet connected (the six generators
-with the chart reduction, the rows and pivot columns, the correspondence with the kernel-checked certificate), so
-the premise stays grade B (`branch_c/grade_a/README.md`).
+characteristic $0$ (`no_common_zero_of_certificate`). The chart reduction is kernel-checked too: a chart point is a
+common zero of the six chart generators, with $b_{11,20}$ free (`chart_gens_vanish`). The interface theorem
+`chartEmptyC_T1ne0_of_certificate` then gives the premise from the Macaulay data (rows, pivot columns, support) and
+two finite deliverables: A1, the packed kernel check read as $C\cdot M_S = I$ modulo 32003; and A2, $M_S$ is the
+evaluated Macaulay block of the generators, up to one nonzero scale per generator. Until those are supplied, the
+premise stays grade B (`branch_c/grade_a/README.md`).
 
 ### Two dicritical divisors — claimed; false as worded, and the proof is incomplete
 

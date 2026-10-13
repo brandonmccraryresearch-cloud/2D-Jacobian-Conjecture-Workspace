@@ -83,3 +83,30 @@ Full record: `bundle_v3_1/jacobian_lean/BRANCH_C_LEAN_STATUS.md`; comprehensive 
   of `ChartEmptyC_T1ne0` stays B.
 - `CHECKSUMS.md5` / `CHECKSUMS.sha256` regenerated with the same rule.
 
+## 2026-10-12 (evening): the chart reduction and the interface theorem
+
+- `grade_a/certgen/gen_chart.py` computes the six chart generators with b₁₁,₂₀ free and their certificates from the
+  bundle's own generator code (read-only), checks them by exact integer arithmetic, and checks that they are the
+  rank check's generators up to one constant each (at p = 32003 and 1000003). `gen_chart_lean.py` writes
+  `grade_a/lean/GradeA/Chart/{Gens,F_*,Main}.lean`.
+- Kernel-checked (no `sorry`, standard axioms, 13 theorems; `grade_a/logs/build_chart.log`, about 4 min):
+  - `chart_gens_vanish`: a chart point is a common zero of the six generators;
+  - `denote_exprOfTerms_chartCtx`: the bridge to `MvPolynomial (Fin 5) ℤ[X]`;
+  - `chartEmptyC_T1ne0_of_certificate`: `ChartEmptyC_T1ne0 L` for every field of characteristic 0, from the
+    Macaulay data and the deliverables A1 and A2.
+- What remains is listed in `grade_a/README.md`: the rows, pivot columns and support condition; A1; A2. The grade of
+  `ChartEmptyC_T1ne0` stays B until they are supplied.
+- `grade_a/build.sh` and `build_chart.sh` stop with exit status 2 when the given project lacks compiled Mathlib (or,
+  for `build_chart.sh`, the built bundle), instead of letting `lake` start cloning it.
+- `CHECKSUMS.md5` / `CHECKSUMS.sha256` regenerated with the same rule.
+
+## 2026-10-13: an outside referee's caution for A2, and the source scan
+
+- `grade_a/certgen/gen_chart.py` checks that the six generators are reduced modulo R: every w-exponent is below 5,
+  and every coefficient is nonzero (check 5). This makes the ℤ[X]-support of each F_n equal to its K₅-support, which
+  the support condition `hsupp` of A2 needs, since `build_matrix.py` builds the rows from K₅-supports. The caution is
+  recorded in `grade_a/README.md`.
+- `grade_a/build.sh` and `build_chart.sh`: the source scan catches the keyword `axiom` anywhere on a line
+  (`noncomputable axiom`, `protected axiom`). Both were rerun: 12/12 and 13/13 theorems on the standard axioms
+  (`grade_a/logs/build.log`, `logs/build_chart.log`).
+- `CHECKSUMS.md5` / `CHECKSUMS.sha256` regenerated with the same rule.

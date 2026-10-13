@@ -1,11 +1,11 @@
 === 1. source scan ===
 PASS: no sorry, admit, native_decide or axiom
 === 2. compile (project: /home/claude/build/jacobian_lean) ===
-GradeA.R67Data: exit 0, 29 s
-GradeA.IrreducibleR: exit 0, 20 s
-GradeA.Transfer: exit 0, 19 s
-GradeA.Macaulay: exit 0, 18 s
-GradeA.Axioms: exit 0, 18 s
+GradeA.R67Data: exit 0, 33 s
+GradeA.IrreducibleR: exit 0, 23 s
+GradeA.Transfer: exit 0, 21 s
+GradeA.Macaulay: exit 0, 22 s
+GradeA.Axioms: exit 0, 22 s
 === 3. axioms ===
 'BranchC.GradeA.R_no_root_int' depends on axioms: [propext]
 'BranchC.GradeA.rem_not_both_zero' depends on axioms: [propext]
