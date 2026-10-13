@@ -203,7 +203,7 @@ merged. The I3 item stays **open**; `replication/` is the guide for the outside 
 | `a2_macaulay/Macaulay.lean` | 12 | 0 | Definitions are `sorry` stubs. The data correspondence (the crux) is not started. |
 | `a3_irreducibility_transfer/IrreducibleR.lean` | 1 | 0 | Sound. The `sorry` is the degree case analysis (degree-1 factor → root; degree-2 factor → monic quadratic); both computational facts are proved. Closeable. |
 | `a3_irreducibility_transfer/Transfer.lean` | 0 | 0 | Correct but **inapplicable**: `det_transfer_of_minor` needs a ring hom from the field K₅ to 𝔽_p, and there is none (characteristic 0 → p). |
-| `a4_bezout_t1/BezoutT1.lean` | 3 | 0 | **Vacuous.** Stated over `Int`, where R has no root. |
+| `a4_bezout_t1/BezoutT1.lean` | 3 | 0 | Stated over `Int`. **A4-3 is vacuous**: it assumes a root of R in `Int`, where R has none. (Corrected in §9.5: A4-1 and A4-2 are true facts about `Int`, not vacuous, but the field argument does not need them.) |
 | `a5_assembly/Assembly.lean` | 0 | 8 | **Circular.** `a4_chart_contradiction` is the claim itself, as an axiom; four axioms have type `True` or `True → True`. |
 
 19 `sorry`s and 8 axioms in all, as CAIC's inventory says. The branch's `REGRADE.md` ("fidelity B+, I3") is not
@@ -370,9 +370,10 @@ outside Lean (grade B).
 cd JC2D-branches_a_b_c_unified/branches_a_b && bash verify_v19.sh
 # route C: build (~34 min on 2 cores), axioms, statement check
 cd lean && bash verify_routeC.sh
-# the two review witnesses (any Lean 4.34 + Mathlib v4.34 project)
+# the review witnesses (any Lean 4.34 + Mathlib v4.34 project); the third was added in §9.7
 lake env lean ../../reviews/lean/A4A5StatementsVacuous.lean
 lake env lean ../../reviews/lean/BridgeAxiomsInconsistent.lean
+lake env lean ../../reviews/lean/CleanupSorrysAsStated.lean
 # the blind replication's answer key (~3.5 min; read the guide first)
 cd ../../replication/answer_key && bash run_key.sh
 # manifests
@@ -486,6 +487,9 @@ also have listed this one. It does now.
 | A1-1…A1-3 | 3 | untouched |
 | A2: SORRY-0 (×2), 1, 2, 2b, 3, 4, 5, 6, 7, 8 | 11 | untouched; they become the hypotheses of `no_common_zero_of_certificate` |
 
+Witness for the second, third and fourth rows: `reviews/lean/CleanupSorrysAsStated.lean` (added in §9.7) closes
+SORRY-9 and A4-1…A4-3 as stated, in one line each.
+
 How the untouched A2 items map onto those hypotheses:
 - the generators `F`;
 - `mon`, `gen` and `mult`, with `hmon`, `hr₁` and `hsupp`;
@@ -520,3 +524,27 @@ A5's eight axioms are replaced by theorems.
    - The E₁ order translation is not formalized.
 
    The main theorem is open.
+
+### 9.7 CAIC's verdicts on #17 and #18, against §9.5
+
+Brandon relayed CAIC's reports on #17 and #18 at 20:43. Their text predates §9.3–9.4 and PR #19: they recommend
+merging #16–#18 "in stack order", although all three were merged at 16:08–16:10. CAIC counts 18 claims across
+#16–#18, all confirmed. Against the expectations of §9.5:
+
+| §9.5 expectation | CAIC's verdict | Agreement |
+|---|---|---|
+| #17 is generic; `ChartEmptyC_T1ne0` stays grade B | the same | yes |
+| #17 closes one `sorry` (A3-1) | "exactly one sorry closed (A3's)" | yes |
+| of the other 18: SORRY-9 empty as stated, A4 retired, 14 untouched | "18 remain (A1: 3, A2: 12, A4: 3)" | **no**: a count of `sorry` tokens, not of obligations. `reviews/lean/CleanupSorrysAsStated.lean` closes A4-1, A4-2, A4-3 and SORRY-9 as stated, in one line each, and none of the four says anything about the target |
+| #18 uses the standard axioms and does not import `Bridge.lean` | the same, from CAIC's own `#print axioms` | yes |
+| `bridgeEq` is checked for d = 2…6 only | "independent computation … not circular" | the finite range is not mentioned |
+| the bridge has three modeling premises | "five open items, nothing material omitted" | **no**: both centers nonzero is load-bearing (§9.4), and the statement is false as worded (§9.3). CAIC's verdict passed the list in PR #18's README, which was incomplete; the omission was this review's |
+| #18 proves the bridge lemma, not the main theorem | the same | yes |
+
+Further points in CAIC's reports, checked:
+- **Build time.** #17's description said the build took 106 s, while the committed log (the from-scratch rebuild at
+  `4af460e`) sums to 117 s, and 119 s with the scan and the axiom step. CAIC is right; the description is corrected.
+- **W = 2 is the only failing weight.** For W ≥ 3 a block has at most ⌊W/2⌋ + 1 ≤ W − 1 unknowns. This is what the
+  `omega` step of `bridge_collapse` checks. CAIC places the bridge in the paper's §4; it is §3, with the gap in §3.2.
+- **BlockRank warnings.** `BlockRank.lean` emits four cosmetic warnings: one deprecated `push_neg` and three unused
+  section variables. CAIC reports a cleaned version, which is not yet in the repository.
