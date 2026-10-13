@@ -19,8 +19,9 @@ Started 2026-10-12. This folder follows the corrected architecture of
 
 `build.sh` compiles the five modules in a temporary directory against any Lake project with Mathlib v4.34.0
 (default `../../branches_a_b/lean`, after `lake exe cache get` there), scans for `sorry`/`admit`/`native_decide`/
-`axiom`, and checks the axioms of the 12 theorems listed in `lean/GradeA/Axioms.lean`.
-`logs/build.log` (2026-10-12): all checks pass, 119 s on 2 cores, from scratch.
+`axiom`, and checks the axioms of the 12 theorems listed in `lean/GradeA/Axioms.lean`. If the project has no compiled
+Mathlib, it stops with exit status 2 before calling `lake`, which would otherwise start cloning Mathlib.
+`logs/build.log` (2026-10-12): all checks pass, about 2 min on 2 cores, from scratch.
 
 **H3 is now grade A.** "R is irreducible over ℚ" (premise H3 of `../rank_lemma_check/README.md`), until now checked
 by FLINT and in Python, is `Rrat_irreducible`.

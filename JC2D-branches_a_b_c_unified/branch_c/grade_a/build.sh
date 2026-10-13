@@ -11,11 +11,18 @@
 #      any error or "declaration uses sorry" fails;
 #   3. check that every `#print axioms` line of Axioms.lean names only propext, Classical.choice, Quot.sound
 #      (or a subset).
-# Exit status 0 iff all steps pass. Time on 2 cores (2026-10-12): about 2 min; memory below 2 GB.
+# Exit status 0 iff all steps pass; 2 if the project has no compiled Mathlib (checked first, so that `lake` does not
+# start cloning Mathlib in a fresh checkout). Time on 2 cores (2026-10-12): about 2 min; memory below 2 GB.
 set -u
 HERE="$(cd "$(dirname "$0")" && pwd)"
 PROJ="${1:-$HERE/../../branches_a_b/lean}"
 PROJ="$(cd "$PROJ" && pwd)" || { echo "FAIL: no Lean project at $PROJ"; exit 1; }
+if [ ! -f "$PROJ/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean" ]; then
+  echo "FAIL: no compiled Mathlib in $PROJ (.lake/packages/mathlib/.lake/build/lib/lean/Mathlib.olean is missing)."
+  echo "      Run 'lake exe cache get' in that project first (it fetches Mathlib v4.34.0 with prebuilt .olean files),"
+  echo "      or pass a Lake project that already has it: build.sh /path/to/project"
+  exit 2
+fi
 export PATH="$HOME/.elan/bin:$PATH"
 OUT="$(mktemp -d)"
 trap 'rm -rf "$OUT"' EXIT

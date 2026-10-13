@@ -3,7 +3,9 @@
 Added 2026-10-12. Lean 4.34.0, Mathlib v4.34.0; no `sorry`; 13 theorems on the standard axioms
 (`logs/build.log`, about 1 min on 2 cores). `build.sh` compiles the modules in a temporary directory against any Lake
 project with Mathlib v4.34.0 (default `../../JC2D-branches_a_b_c_unified/branches_a_b/lean`, after
-`lake exe cache get` there), scans for `sorry`/`admit`/`native_decide`/`axiom`, and checks the axioms.
+`lake exe cache get` there), scans for `sorry`/`admit`/`native_decide`/`axiom`, and checks the axioms. If the project
+has no compiled Mathlib, it stops with exit status 2 before calling `lake`, which would otherwise start cloning
+Mathlib (CAIC's review).
 
 ## What is proved
 

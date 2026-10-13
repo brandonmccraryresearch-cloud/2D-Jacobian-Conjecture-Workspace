@@ -2,10 +2,10 @@
 PASS: no sorry, admit, native_decide or axiom
 === 2. compile (project: /home/claude/build/jacobian_lean) ===
 TwoDicritical.BlockRank: exit 0, 3 s
-TwoDicritical.E1Obstruction: exit 0, 1 s
-TwoDicritical.BridgeCollapse: exit 0, 19 s
-TwoDicritical.CenterHypotheses: exit 0, 18 s
-TwoDicritical.Axioms: exit 0, 18 s
+TwoDicritical.E1Obstruction: exit 0, 2 s
+TwoDicritical.BridgeCollapse: exit 0, 16 s
+TwoDicritical.CenterHypotheses: exit 0, 19 s
+TwoDicritical.Axioms: exit 0, 16 s
 === 3. axioms ===
 'choose_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
 'block_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
