@@ -1,0 +1,6 @@
+m = 7, n = 10: |N(P)| = 25, |N(Q)| = 47 lattice points
+top layer given in a816_top_32003.json (p = 32003): E5 rechecked: True; vertex conditions: True
+descent: 53 unknowns (51 occur in J); generators by layer d = 0,1,2,3: [19, 19, 19, 18]; layer 4 residual terms: 0; other layers: 0
+every layer-d generator homogeneous of depth 4 - d (so V is a cone): True
+dim V = 0 (std basis of 87 elements); nilpotent unknowns: 51 of 51; least exponent <= ceil(4/depth) for 51, = ceil(4/depth) for 48; max exponent 4; depths [1, 2, 3]
+{"E5_rechecked": true, "alpha": [1, 10545, 5794, 9505, 18711, 10386, 5753, 5989], "beta": [1, 7030, 5794, 6291, 1656, 2062, 10848, 6641, 11575, 9256, 13509], "depths": [1, 2, 3], "dim": 0, "dropped_layer": null, "exponent_at_most_ceil_4_over_depth": 51, "exponent_equals_ceil_4_over_depth": 48, "generators_by_layer_d0_d1_d2_d3": [19, 19, 19, 18], "generators_used": 75, "layer_d_homogeneous_of_depth_4_minus_d": true, "m": 7, "max_exponent": 4, "n": 10, "nilpotent_unknowns": 51, "other_layer_terms": 0, "p": 32003, "std_size": 87, "top_layer": "given in a816_top_32003.json", "top_layer_residual_terms": 0, "unknowns_occurring": 51, "unknowns_total": 53, "vertex_conditions": true}
