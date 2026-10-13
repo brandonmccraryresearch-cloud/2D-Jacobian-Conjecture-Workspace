@@ -548,3 +548,19 @@ Further points in CAIC's reports, checked:
   `omega` step of `bridge_collapse` checks. CAIC places the bridge in the paper's §4; it is §3, with the gap in §3.2.
 - **BlockRank warnings.** `BlockRank.lean` emits four cosmetic warnings: one deprecated `push_neg` and three unused
   section variables. CAIC reports a cleaned version, which is not yet in the repository.
+
+### 9.8 Later the same evening: the chart reduction, and the split of the remaining work
+
+- **The chart reduction is kernel-checked** (`branch_c/grade_a/lean/GradeA/Chart/`; `build_chart.sh`, 13 theorems on
+  the standard axioms). A chart point of `ChartEmptyC_T1ne0` is a common zero of the six chart generators, with
+  b₁₁,₂₀ free (`chart_gens_vanish`). The interface theorem `chartEmptyC_T1ne0_of_certificate` derives
+  `ChartEmptyC_T1ne0 L`, for every field of characteristic 0, from the Macaulay data and two finite deliverables.
+- **The generators are the rank check's**, up to one constant each: F_n(w₀) = D_k^d D_n · G_n mod p at both primes
+  (`grade_a/certgen/gen_chart.py`). So the existing packed certificate can be kept: A2 absorbs the constants as a
+  diagonal (§9.5's "rescaling").
+- **Split agreed with CAIC (20:57):**
+  - CAIC: A1 (`Cinv * MS = 1` from the packed kernel check), and the restatement of the two-dicritical main theorem
+    with Brandon;
+  - this review: the Macaulay data and A2, and the review of CAIC's work.
+- **Open item 1 of §9.6 now reads:** the rows, pivot columns and `hsupp` in Lean; A1; A2. The first step of both A1
+  and A2 is to emit the column data of M_S as a Lean definition (`rank_lemma_check/gen_lean.py`).

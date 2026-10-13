@@ -395,9 +395,13 @@ be present underneath `jacobian_lean/` (see GUIDE.md §12 for the overlay proced
      `reviews/REVIEW_2026-10-12_handoff.md`.
    - **2026-10-12, `branch_c/grade_a/`:** the generic half is in Lean (no `sorry`, standard axioms). It contains R
      irreducible over ℚ (H3, now grade A), the transfer through ℤ[X], and the assembly theorem
-     `no_common_zero_of_certificate`. What remains is concrete: the six generators with the chart reduction, the
-     rows and pivot columns, and the link from the packed kernel check to the Macaulay block (A1, A2). See
-     `branch_c/grade_a/README.md`. `ChartEmptyC_T1ne0` stays grade B until those are done.
+     `no_common_zero_of_certificate`. Later the same day the chart reduction was added (`grade_a/lean/GradeA/Chart/`,
+     kernel-checked: a chart point is a common zero of the six generators, with b₁₁,₂₀ free), and the interface
+     theorem `chartEmptyC_T1ne0_of_certificate`. It proves `ChartEmptyC_T1ne0` for every field of characteristic 0
+     from the Macaulay data (rows, pivot columns, support) and two finite deliverables: A1 (`Cinv * MS = 1` mod
+     32003, from the packed kernel check) and A2 (`MS` is the evaluated Macaulay block of the generators, up to one
+     nonzero scale per generator). See `branch_c/grade_a/README.md`. `ChartEmptyC_T1ne0` stays grade B until those
+     are supplied.
 5. Branch-(c) figures — produced: `branch_c/paper/figures/` (four figures with their scripts).
 6. GGHV Prop. 4.3's other cases and the reduction from the Jacobian conjecture —
    outside scope, unchanged.
