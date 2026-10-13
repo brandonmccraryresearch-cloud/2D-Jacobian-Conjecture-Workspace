@@ -72,8 +72,9 @@ exact image of each monomial). This proof is the referee's.
    - Every base point carries a dicritical. Read literally, the statement would imply the Jacobian conjecture
      outright, and every non-affine automorphism refutes it (`main_statement_check.py` there:
      (x − y², y) and (x, y + x²)).
-   - The intended statement, presumably about dicriticals at infinity, has to be fixed before items 1–5 can be
-     assembled into a proof of it.
+   - The intended statement is written down in `../RESTATEMENT.md` (Theorem R: at most one dicritical at
+     infinity). It is equivalent to the plane Jacobian conjecture, so items 1–5 cannot be assembled into a proof of
+     it without proving the conjecture.
 1. **What the bridge theorem assumes, and what it covers.** `bridge_collapse` is a theorem about the equations
    `bridgeEq`.
    - **The chart.** The paper's pullback is Sʰ(1, b, b²(a + ã b)) (`check_satellite.py`), the chart at the point

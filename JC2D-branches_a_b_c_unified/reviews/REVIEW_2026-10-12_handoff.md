@@ -470,7 +470,8 @@ the pulled-back pencil has no base points") is not the standard one.
 
 The intended statement, presumably about dicriticals at infinity of a specified pencil, has to be written down
 before any proof can be checked against it. Nothing in `lean/` depends on this: `lean/` proves the bridge collapse,
-a statement about explicit equations.
+a statement about explicit equations. (Written down on 2026-10-13: `branch_two_dicritical/RESTATEMENT.md`. Its
+Theorem R, at most one dicritical at infinity, is equivalent to the plane Jacobian conjecture.)
 
 ### 9.4 The bridge's center hypotheses, and Theorem `thm:e1` (corrected 2026-10-13)
 
@@ -576,7 +577,8 @@ A5's eight axioms are replaced by theorems.
      - the rows and pivot columns with `hsupp`;
      - the correspondence of the kernel-checked certificate with `macaulay`, including the rescaling of §9.5.
 5. **Two-dicritical** (corrected 2026-10-13).
-   - Correct the statement (§9.3).
+   - Correct the statement (§9.3). Drafted on 2026-10-13: `branch_two_dicritical/RESTATEMENT.md`, Theorem R, which
+     is equivalent to the plane Jacobian conjecture.
    - The bridge: derive (P2) from the definition of m, or state it as a hypothesis; treat dicriticals over the
      satellite points of E₂ and deeper (§9.4).
    - m ≥ 2 on E_k, k ≥ 2, has a sketch only, and for free centers only.

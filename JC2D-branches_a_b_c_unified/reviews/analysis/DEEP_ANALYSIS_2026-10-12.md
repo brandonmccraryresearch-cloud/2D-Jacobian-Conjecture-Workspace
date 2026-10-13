@@ -83,12 +83,20 @@ Both eliminations have the same three layers.
     - Theorem `thm:e1` is false as stated. Its intended conclusion is now proved for every m, modulo an executed
       chart step (P-G).
     - The m ≥ 2 case (sketch) and the adjacent case beyond d = 3 are open.
-    - The main theorem is false as worded for every Keller map of degree ≥ 2 (review §9.3). Its intended statement
-      has to be fixed first.
-  - *Limit:* no known theorem says that a counterexample's pencil must have two or more dicriticals. Abhyankar–Heinzer
-    (arXiv:1508.06015) call the link between dicriticals and the conjecture "plausible" and give a strategy only.
-    Nguyen Van Chau (arXiv:0905.3939) proves the case of irreducible rational pencils. So even a complete
-    two-dicritical theorem would not by itself settle anything about the conjecture.
+    - The main theorem is false as worded for every Keller map of degree ≥ 2 (review §9.3). Its corrected form,
+      Theorem R of `branch_two_dicritical/RESTATEMENT.md` (at most one dicritical at infinity), is equivalent to the
+      conjecture.
+  - *Limit (corrected 2026-10-13).* The first version of this bullet said that no known theorem forces two
+    dicriticals on a counterexample's pencil, and that even a complete two-dicritical theorem would not by itself
+    settle the conjecture. **Both statements were wrong.**
+    - For a Keller map that is not an automorphism and a point c outside its non-properness set, the pencil through c
+      has at least two dicriticals at infinity: one over the target's line at infinity, and one over each component
+      of the non-properness set. This is elementary, from Jelonek's description of that set
+      (`RESTATEMENT.md`, Proposition 2.1).
+    - So Theorem R is equivalent to the conjecture (Proposition 3.2 there). A complete two-dicritical theorem in that
+      form would settle it, and it is exactly as hard.
+    - Abhyankar–Heinzer (arXiv:1508.06015) and the survey arXiv:1707.06733 discuss dicriticals and the conjecture
+      without such an equivalence. Nguyen Van Chau (arXiv:0905.3939) proves the case of irreducible rational pencils.
 
 ## 4. What cannot be concluded
 

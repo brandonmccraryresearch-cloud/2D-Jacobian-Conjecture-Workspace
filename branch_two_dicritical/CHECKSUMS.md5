@@ -1,7 +1,8 @@
-04068c7db5db5d416d07e2e24ce771fb  ./BUILD_STATUS.md
+180c974c47206c74a8a1828952033c90  ./BUILD_STATUS.md
 c20fea0823d9d258027f51608b2f5075  ./CORRESPONDENCE.md
-b227c9adfaaec8c07e891aa86e26407b  ./README.md
-68014c1bbfd71bab1ece2b44981ec96e  ./lean/README.md
+db8bfc7bd8718bf1d2dc8741967c144c  ./README.md
+0e52414cb8706596e2b1f817387950f8  ./RESTATEMENT.md
+8822b08140e85b853c4f0d3534ffe923  ./lean/README.md
 72113021a8774be34cba25d475a3bf43  ./lean/TwoDicritical/Axioms.lean
 1384681e3e10e9820fbd273865b0a0e2  ./lean/TwoDicritical/BlockRank.lean
 4945a76606eee5d751441a2640edb7c5  ./lean/TwoDicritical/BridgeCollapse.lean
@@ -39,6 +40,8 @@ a16faf520c98951b85d4a436d6feb2e1  ./outputs/middle_e2.out
 587246a923950baa3b5e46ae10a4f914  ./outputs/routeB_cancellation.out
 5ef121241a27195be3bb382c06059dd4  ./paper/two_dicritical_closure.pdf
 e70e43efbf4f6bcc551907b6012c2efe  ./paper/two_dicritical_closure.tex
+d8d0ba973faddee1e8e7652e0a1cdbf7  ./restatement_checks.log
+efa3aa889ac3053510c9a9c575a72f5e  ./restatement_checks.py
 03407f7c30a68b519359a6ed967b7776  ./scripts/at_degree_bound.py
 b729ada9daf94cfff5defbd4100d8b1e  ./scripts/at_degree_bound_m5.py
 e860f5194762dcb51cf6959a5227bec9  ./scripts/depth5_global.py

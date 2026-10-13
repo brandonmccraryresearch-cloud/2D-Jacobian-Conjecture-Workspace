@@ -89,3 +89,18 @@ Each point was re-derived and executed here before it was accepted.
     corrected step);
   - the source scan now catches the keyword `axiom` anywhere on a line (`noncomputable axiom`, `protected axiom`).
 - `CHECKSUMS.md5` / `.sha256` regenerated with the same rule.
+
+## 2026-10-13 (later): the restatement
+
+- `RESTATEMENT.md` (new) restates the main theorem as Theorem R: the pencil λP + μQ of a Keller map has at most one
+  dicritical at infinity.
+  - It counts the dicriticals of the pencil through a point outside the non-properness set (Proposition 2.1, a proof
+    from standard facts).
+  - It shows that Theorem R is equivalent to the plane Jacobian conjecture (Proposition 3.2).
+  - It lists what is proved toward Theorem R, what is missing, the tests any proof must pass, and two ways the paper
+    could be restated (the author's decision).
+- `restatement_checks.py` (new, with `restatement_checks.log`) executes its examples:
+  - (x + y³, y) has its dicritical at infinity at depth 5, over the satellite point a = ∞ of E₂;
+  - the non-Keller map (x, xy) has two dicriticals at infinity.
+- `README.md`, `lean/README.md`: pointers to the restatement.
+- `CHECKSUMS.md5` / `.sha256` regenerated with the same rule.
