@@ -17,6 +17,12 @@ GGHV's open degree pairs; that is X3.
   So for m = 3, 5, 7 and 9, every Jacobian pair of the family (§2.1, with α_m ≠ 0) has P = P₂ + const and
   Q = Q₃ + const. **Grade B:** the computations are exact (Singular) but not kernel-checked; the transfer is proved
   below.
+- **What this eliminates.**
+  - The upper vertices of the two polygons, x^(m+1)y^(2m+2) for N(P) and x^(n+2)y^(2n+4) for N(Q), carry lower
+    coefficients (depths 2 and 3), so rigidity forces them to 0. At m = 7 these are a₈,₁₆ and b₁₂,₂₄.
+  - So no pair with [P, Q] = x² has Newton polygons exactly N(P) and N(Q), for m = 3, 5, 7, 9.
+  - At m = 7 this is the elimination of branch (a,b) (`lower_edge_rigidity`, a₈,₁₆ = 0). At m = 3, 5, 9 it is new,
+    but whether these polygons arise from any open GGHV case is X3, which is open.
 - **By-products.**
   - A proof that the top layer has exactly C₍ₘ₋₁₎/₂ covers for every odd m (§2.2). P-B had observed this for
     m ≤ 11.
@@ -250,6 +256,8 @@ ideal at a point t.
   1/α₀ and Q by α₀ makes α₀ = β₀ = 1. Then (x, y) ↦ (sx, s⁻³y), with P scaled by 1/s and Q by s, keeps [P, Q] = x²
   and multiplies α_k by s⁻⁵ᵏ, so a suitable s makes α_m = 1. Hence P = P₂ + const and Q = Q₃ + const for every
   Jacobian pair of the family with these m.
+- In particular the vertex coefficients of x^(m+1)y^(2m+2) and x^(n+2)y^(2n+4) are among the unknowns, and they
+  vanish. So no pair with [P, Q] = x² has Newton polygons exactly N(P) and N(Q).
 
 ## 6. Exploratory observations (modulo p; not registered)
 

@@ -61,6 +61,8 @@ Both eliminations have the same three layers.
     - m = 7, in Lean.
     - X2 (2026-10-13): m = 3, 5, 9, at one chart point modulo one prime each. The result transfers to
       characteristic 0, and by P-C to every chart point (`x2_descent/README.md`).
+    - As at m = 7, rigidity kills the upper vertex coefficients of both polygons (a₈,₁₆ and b₁₂,₂₄ at m = 7). So no
+      pair with [P, Q] = x² has exactly these Newton polygons, for m = 3, 5, 7, 9.
     - U1 survived its registered test, but it remains a postulate for general m.
   - *Novelty budget:* a definition of the normal form for general m. It was introduced to generalize, so it is
     target-directed.
