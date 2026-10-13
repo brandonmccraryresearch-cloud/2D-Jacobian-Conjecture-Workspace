@@ -374,6 +374,11 @@ cd lean && bash verify_routeC.sh
 lake env lean ../../reviews/lean/A4A5StatementsVacuous.lean
 lake env lean ../../reviews/lean/BridgeAxiomsInconsistent.lean
 lake env lean ../../reviews/lean/CleanupSorrysAsStated.lean
+# two-dicritical (§9.3–9.4, corrected 2026-10-13): the statement, then the Lean build (~2 min) and its checks
+python3 ../../reviews/two_dicritical/main_statement_check.py
+python3 ../../reviews/two_dicritical/base_point_at_infinity_check.py
+bash ../../../branch_two_dicritical/lean/build.sh "$PWD"
+(cd ../../../branch_two_dicritical/lean && python3 check_satellite.py && python3 check_e1_index.py)
 # the blind replication's answer key (~3.5 min; read the guide first)
 cd ../../replication/answer_key && bash run_key.sh
 # manifests
@@ -406,8 +411,10 @@ cd ../../branch_c && md5sum -c CHECKSUMS.md5 && (cd bundle_v3_1 && sha256sum -c 
   (`4b05238`, `d6e4c4f`), after the branch itself had been merged.
 - So GitHub shows them as merged, but `main` does not contain their 29 files.
 - The branch `claude/bridge-premises-and-landing` starts at `d6e4c4f`. Its pull request into `main` therefore carries
-  #17 and #18 unchanged (`grade_a/` is byte-identical to `4af460e`, `branch_two_dicritical/lean/` to `696e59d`)
-  together with §9.3–9.4 below.
+  #17 and #18 together with §9.3–9.4 below. At `d6e4c4f`, `grade_a/` was byte-identical to `4af460e` and
+  `branch_two_dicritical/lean/` to `696e59d`. Later commits on the branch changed `grade_a/README.md`, `build.sh` and
+  `logs/build.log` (`0a6c001`), and changed and added to `branch_two_dicritical/lean/`; the Lean sources of #17, and
+  `BlockRank.lean`, `E1Obstruction.lean` and `BridgeCollapse.lean` of #18, are unchanged.
 
 ### 9.2 A cross-check of this review
 
@@ -441,33 +448,84 @@ pencil λP + μQ contains no two distinct dicritical divisors."
 - **Control.** The identity has one base point and one dicritical.
 - **Script.** `reviews/two_dicritical/main_statement_check.py`, with its log (sympy 1.14.0).
 
-So the statement is false as worded. Read literally, it would also make every Keller map injective (two preimages
-of one point are two base points of a translated pencil), which is the Jacobian conjecture. The paper's computations
-are all at infinity; its definition of a dicritical (line 81, "exceptional divisors on which the pulled-back pencil
-has no base points") is not the standard one.
+So the statement is false as worded, and not only for these two maps (strengthened on 2026-10-13, after an outside
+referee's report on PR #19):
+- **Every Keller map of degree ≥ 2 has a base point at infinity.**
+  - With equal degrees d ≥ 2, the Jacobian of the top forms is the degree-(2d − 2) part of [P,Q], so it vanishes,
+    and two binary forms of the same degree with vanishing Jacobian are proportional.
+  - With unequal degrees, Qʰ vanishes on the whole line at infinity.
+  - `reviews/two_dicritical/base_point_at_infinity_check.py` has the argument in its header and checks it on 30
+    random automorphisms, with affine maps as the control.
+- **An affine base point.** After a translation of the target that makes 0 a value (none is needed for an
+  automorphism), there is also an affine base point.
+- **Consequence.** Every Keller map of degree ≥ 2 refutes the statement as worded. Read literally, the statement
+  would also imply the Jacobian conjecture outright (two preimages of one point are two base points of a translated
+  pencil). That alone would not make it false; the base point at infinity does.
+- **The referee's sketch, not checked here.** An automorphism of degree ≥ 2 has exactly two dicriticals, one over
+  F⁻¹(0) and one at infinity (pull back the pencil of lines through the origin). If true, any corrected statement
+  must pass this test first.
+
+The paper's computations are all at infinity; its definition of a dicritical (line 81, "exceptional divisors on which
+the pulled-back pencil has no base points") is not the standard one.
 
 The intended statement, presumably about dicriticals at infinity of a specified pencil, has to be written down
 before any proof can be checked against it. Nothing in `lean/` depends on this: `lean/` proves the bridge collapse,
 a statement about explicit equations.
 
-### 9.4 The center hypotheses of the bridge are load-bearing
+### 9.4 The bridge's center hypotheses, and Theorem `thm:e1` (corrected 2026-10-13)
+
+*Corrected on 2026-10-13, after an outside referee's report on PR #19. Each point below was re-derived and executed
+before it was accepted (`branch_two_dicritical/lean/check_satellite.py`, `check_e1_index.py`, with their logs).*
 
 `bridge_collapse` assumes a₃ ≠ 0, a₄ ≠ 0 and a₃ ≠ a₄, as the paper's §3.1 does ("two distinct centers a₃ ≠ a₄ (both
-nonzero)"). The paper gives no geometric reason why a bridge center cannot have a = 0. The constant-leading-form
-sketch likewise assumes centers with u₀ ≠ 0.
-
-`branch_two_dicritical/lean/TwoDicritical/CenterHypotheses.lean` (standard axioms) shows that each hypothesis is
-needed:
+nonzero)"). `branch_two_dicritical/lean/TwoDicritical/CenterHypotheses.lean` (standard axioms) shows that none of them
+can be dropped from the theorem about the equations:
 - **The witness.** For x − c·y², the weight-2 equation at a center a is a^(d−2)(a − c), and there are no others.
-- **A center at 0.** At a₃ = 0 and d ≥ 3, x − a₄y² satisfies every bridge condition. So `bridge_collapse` fails
-  without a₃ ≠ 0. With Q = y, the pair (x − a₄y², y) is a polynomial automorphism with Jacobian 1
-  (`bridge_jacobian_needs_ne_zero`).
-- **Equal centers.** At a₃ = a₄ and d ≥ 2, the same polynomial satisfies every bridge condition.
+- **A center at 0.** At a₃ = 0 and d ≥ 3, x − a₄y² satisfies every equation. With Q = y the pair (x − a₄y², y) has
+  Jacobian 1 (`bridge_jacobian_needs_ne_zero`).
+- **Equal centers.** At a₃ = a₄ and d ≥ 2, the same polynomial satisfies every equation.
 - **Cross-check.** `lean/check_center_nonzero.py` computes the nullspace from the pullback formula: span{1, y,
   x − a₄y²} at a₃ = 0 for d = 3…6, and span{1, y} at distinct nonzero centers.
 
-PR #18's README listed two modeling premises (the pullback formula, and ã read as an indeterminate). It should
-also have listed this one. It does now.
+The first version of this section concluded that "both centers nonzero" is load-bearing and unjustified, and that the
+paper must show a bridge center cannot sit at a = 0. **That reading was wrong.**
+- **The formula is a chart.** The pullback formula is Sʰ(1, b, b²(a + ãb)): the chart at the point w₂ = a of E₂, the
+  second exceptional curve over [1:0:0], with w₂ = x/y². For a ≠ 0 the point is free, and ord_b S_a ≥ 2d − 1 says
+  ν ≥ −1 on the divisor over a.
+- **a = 0 is a satellite point**, where E₂ meets the line at infinity. There the factor Zᵈ is ãᵈb^(3d), so the same
+  threshold says ν ≥ −(d + 1), and raising d weakens it. The witness has degree 2 and works only for d ≥ 3.
+- **The witness is not a bridge.** Over a = 0 its P/Q has a pole. Its only dicritical at infinity lies over the free
+  point a₄, where P/Q restricts to ã/a₄: a one-center configuration.
+- **The right condition at 0 empties the system.** Read as ν ≥ −1 (ord_b S₀ ≥ 3d − 1), the conditions at the centers
+  0 and 5 leave only constants (d = 2…6). With d read as the exact degree, the hypothesis is not needed for d ≥ 3
+  (`OneCenter.lean`, `zero_center_no_top_degree`).
+
+Read through this chart, the bridge rests on two premises:
+- (P1) the two dicriticals are the divisors over two distinct free points of this E₂;
+- (P2) every member of the pencil has ν ≥ −1 on them.
+
+Reading ã as an indeterminate is not a further premise: it is how ν is computed.
+- **(P2) is asserted, not derived.** The paper defines m as the degree of the pencil's restriction, and degree 1 does
+  not force pole order 1 (`check_satellite.py`, check 7).
+- **Scope.** Under (P1) and (P2), one dicritical already forces degree ≤ 2 (`bridge_one_center`), so the bridge says
+  nothing about pencils of degree ≥ 3.
+- **What is not treated.** Dicriticals over the satellite points of E₂ and deeper are treated neither by the bridge
+  nor by the constant-leading-form sketch (which assumes centers with u₀ ≠ 0). The automorphism (x + y³, y) has its
+  dicritical at infinity over a = ∞.
+
+**Theorem `thm:e1` is false as stated.** This review had not checked it.
+- **The index mix-up.** ν_{E₁}(x^i y^j) = −i, so ν_{E₁} ≥ −2 means x-degree ≤ 2. `e1_solitary.py` indexes its unknowns
+  by X^(d−J−K)Y^J Z^K. The paper's proof, `e1_keller_search.py` and `E1Obstruction.lean` read them as x^J y^K, which
+  gives "total degree ≥ 2". At d = 4 both sets have 12 monomials.
+- **The counterexample.** P = (x + y²)² + y and Q = P + x + y² satisfy the paper's definition of the E₁ m = 2 open
+  subset and have [P,Q] = −1 (`thm_e1_false` in `E1Keller.lean`).
+- **The intended conclusion is true for every m: E₁ is never dicritical for a Keller map.**
+  - The x^(2n−1)-coefficient of [P,Q] is n(AD′ − A′D) for the leading x-coefficients A, D, and a vanishing
+    Wronskian forces A ∝ D (`e1_lead_proportional`).
+  - The chart step, that P/Q restricts to A/D on E₁, is executed, not formalized.
+
+PR #18's README listed two modeling premises (the pullback formula, and ã read as an indeterminate), and the first
+version of this section added "both centers nonzero". The list is now (P1) and (P2).
 
 ### 9.5 Known limits of #17 and #18, recorded before CAIC's reviews of them arrived
 
@@ -488,7 +546,8 @@ also have listed this one. It does now.
 | A2: SORRY-0 (×2), 1, 2, 2b, 3, 4, 5, 6, 7, 8 | 11 | untouched; they become the hypotheses of `no_common_zero_of_certificate` |
 
 Witness for the second, third and fourth rows: `reviews/lean/CleanupSorrysAsStated.lean` (added in §9.7) closes
-SORRY-9 and A4-1…A4-3 as stated, in one line each.
+SORRY-9 and A4-1…A4-3 as stated, in one line each. Since 2026-10-13 it also closes SORRY-0 (×2) and SORRY-4, which
+the last row lists as untouched (§9.7).
 
 How the untouched A2 items map onto those hypotheses:
 - the generators `F`;
@@ -506,7 +565,7 @@ A5's eight axioms are replaced by theorems.
 **PR #18** proves the bridge collapse only, not the main theorem.
 - Its theorems use the three standard axioms; there are no project axioms.
 - `bridgeEq` is checked against the pullback formula for d = 2…6, not for every d.
-- Its premises are the three of §9.4.
+- Its premises are (P1) and (P2) of §9.4 (as corrected on 2026-10-13).
 
 ### 9.6 Open items, updated (replaces §6, items 1 and 5)
 
@@ -516,12 +575,14 @@ A5's eight axioms are replaced by theorems.
      - the six generators with the chart reduction;
      - the rows and pivot columns with `hsupp`;
      - the correspondence of the kernel-checked certificate with `macaulay`, including the rescaling of §9.5.
-5. **Two-dicritical.**
+5. **Two-dicritical** (corrected 2026-10-13).
    - Correct the statement (§9.3).
-   - Justify the three modeling premises of the bridge (§9.4).
-   - m ≥ 2 has a sketch only.
+   - The bridge: derive (P2) from the definition of m, or state it as a hypothesis; treat dicriticals over the
+     satellite points of E₂ and deeper (§9.4).
+   - m ≥ 2 on E_k, k ≥ 2, has a sketch only, and for free centers only.
    - The adjacent case is done at d = 3 only.
-   - The E₁ order translation is not formalized.
+   - E₁: Theorem `thm:e1` is false as stated. The corrected statement, that E₁ is never dicritical for a Keller map,
+     has its algebraic step in Lean; its chart step is executed only (§9.4).
 
    The main theorem is open.
 
@@ -535,10 +596,10 @@ merging #16–#18 "in stack order", although all three were merged at 16:08–16
 |---|---|---|
 | #17 is generic; `ChartEmptyC_T1ne0` stays grade B | the same | yes |
 | #17 closes one `sorry` (A3-1) | "exactly one sorry closed (A3's)" | yes |
-| of the other 18: SORRY-9 empty as stated, A4 retired, 14 untouched | "18 remain (A1: 3, A2: 12, A4: 3)" | **no**: a count of `sorry` tokens, not of obligations. `reviews/lean/CleanupSorrysAsStated.lean` closes A4-1, A4-2, A4-3 and SORRY-9 as stated, in one line each, and none of the four says anything about the target |
+| of the other 18: SORRY-9 empty as stated, A4 retired, 14 untouched | "18 remain (A1: 3, A2: 12, A4: 3)" | **half** (corrected 2026-10-13): both counts are of `sorry` tokens, this review's "14 untouched" included. By kind: seven close in one line each as stated (A4-1…A4-3, SORRY-9, SORRY-0 ×2, SORRY-4; `reviews/lean/CleanupSorrysAsStated.lean`), and none of them says anything about the target; six are definitions still to be supplied (SORRY-1, 2, 2b, 3, 5, 8); two are theorems about those definitions (SORRY-6, 7); three are proof obligations (A1) |
 | #18 uses the standard axioms and does not import `Bridge.lean` | the same, from CAIC's own `#print axioms` | yes |
 | `bridgeEq` is checked for d = 2…6 only | "independent computation … not circular" | the finite range is not mentioned |
-| the bridge has three modeling premises | "five open items, nothing material omitted" | **no**: both centers nonzero is load-bearing (§9.4), and the statement is false as worded (§9.3). CAIC's verdict passed the list in PR #18's README, which was incomplete; the omission was this review's |
+| the bridge has three modeling premises | "five open items, nothing material omitted" | **half** (corrected 2026-10-13): on the centers CAIC was right, since "both centers nonzero" marks where the formula applies (§9.4). CAIC's verdict missed that the statement is false as worded (§9.3), and both reviews missed that Theorem `thm:e1` is false as stated (§9.4) |
 | #18 proves the bridge lemma, not the main theorem | the same | yes |
 
 Further points in CAIC's reports, checked:

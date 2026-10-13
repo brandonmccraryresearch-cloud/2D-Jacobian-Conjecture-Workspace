@@ -1,4 +1,9 @@
-"""Is the hypothesis "both centers nonzero" load-bearing for the bridge collapse?
+"""Is the hypothesis "both centers nonzero" needed in the bridge collapse, read as a theorem about these equations?
+
+Read geometrically (2026-10-13): at a = 0 these equations are not the m = 1 condition. The point a = 0 of E2 is a
+satellite point (E2 meets the line at infinity), where the threshold 2d - 1 means nu >= -(d+1), not nu >= -1
+(check_satellite.py). So a nonzero nullspace at a3 = 0 shows that the formal theorem needs a3 != 0; it is not a
+geometric bridge with a center at 0.
 
 Computed directly from the paper's pullback formula (eq:bridge-pullback), independently of `bridgeEq`:
 

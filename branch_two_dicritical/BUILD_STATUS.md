@@ -60,3 +60,32 @@
 - `build.sh`: 13 theorems on the standard axioms, no `sorry` (`lean/logs/build.log`, about 1 min).
 - `CHECKSUMS.md5` / `.sha256` regenerated with the same rule.
 
+## 2026-10-13: an outside referee's report on PR #19, checked and applied
+
+Each point was re-derived and executed here before it was accepted.
+- **Theorem `thm:e1` is false as stated.**
+  - The order condition ν_{E₁} ≥ −2 means x-degree ≤ 2. The paper's proof, `e1_keller_search.py` and
+    `E1Obstruction.lean` read it as total degree ≥ 2, because `e1_solitary.py`'s unknowns p[J,K] multiply
+    X^{d−J−K}Y^J Z^K, not x^J y^K.
+  - P = (x + y²)² + y, Q = P + x + y² satisfy the paper's definition of the E₁ m = 2 open subset, and [P,Q] = −1.
+  - `lean/check_e1_index.py` (with its log) checks this, and `lean/TwoDicritical/E1Keller.lean` proves it
+    (`thm_e1_false`).
+  - The intended conclusion, that E₁ is never dicritical for a Keller map, holds for every m. Its algebraic step is
+    proved (`e1_lead_proportional`: the leading x-coefficients are proportional); its chart step is executed only.
+- **The center hypotheses of the bridge, read geometrically.**
+  - The pullback formula is the chart at a point of E₂. At a = 0, a satellite point, its threshold means
+    ν ≥ −(d + 1), not ν ≥ −1, so the witness (x − a₄y², y) of `CenterHypotheses.lean` is not a geometric bridge.
+  - The theorems of that file are unchanged; its header and the READMEs no longer call the hypothesis unjustified.
+  - The bridge's premises are restated as (P1) two free points of E₂ and (P2) pole order at most 1 for every member.
+  - `lean/TwoDicritical/OneCenter.lean`: one center already forces degree ≤ 2 (`bridge_one_center`).
+  - `lean/check_satellite.py`, with its log: the chart identity, the valuations, the valuation identity behind a
+    shorter proof of the bridge, and a dicritical over a satellite point.
+- **The statement.** It fails for every Keller map of degree ≥ 2 (after a translation of the target that makes 0 a
+  value; an automorphism needs none), not only for the two examples
+  (`../JC2D-branches_a_b_c_unified/reviews/two_dicritical/base_point_at_infinity_check.py`).
+- `lean/build.sh`:
+  - 21 theorems on the standard axioms, no `sorry` (`lean/logs/build.log`, about 2 min): 8 on the bridge
+    equations, 5 witnesses, and 8 on E₁ (2 about a different set of monomials, 2 for the counterexample, 4 for the
+    corrected step);
+  - the source scan now catches the keyword `axiom` anywhere on a line (`noncomputable axiom`, `protected axiom`).
+- `CHECKSUMS.md5` / `.sha256` regenerated with the same rule.

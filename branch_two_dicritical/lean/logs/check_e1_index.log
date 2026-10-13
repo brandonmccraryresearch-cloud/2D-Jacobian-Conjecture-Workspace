@@ -1,0 +1,25 @@
+1. The order condition
+[PASS] nu_E1(x^i y^j) = -i for 0 <= i, j <= 4
+2. The two monomial sets at d = 4
+[PASS] e1_solitary.py's condition (i), in affine terms, is x-degree <= 2: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 2), (1, 3), (2, 0), (2, 1), (2, 2)]
+[PASS] read as x^J y^K it is total degree >= 2: [(0, 2), (0, 3), (0, 4), (1, 1), (1, 2), (1, 3), (2, 0), (2, 1), (2, 2), (3, 0), (3, 1), (4, 0)]
+[PASS] both sets have 12 elements
+[PASS] the sets differ: only in the true set: [(0, 0), (0, 1), (1, 0)]; only in the other: [(3, 0), (3, 1), (4, 0)]
+3. The counterexample
+  P = x**2 + 2*x*y**2 + y**4 + y
+  Q = x**2 + 2*x*y**2 + x + y**4 + y**2 + y
+[PASS] [P, Q] = -1
+[PASS] deg P = deg Q = 4
+[PASS] nu_E1(P) = nu_E1(Q) = -2
+[PASS] C_P = C_Q = t1^2: each of exact degree 2: C_P = t1**2, C_Q = t1**2
+[PASS] P satisfies e1_solitary.py's conditions (i), (ii) and its open condition p[d-4,2] != 0
+[PASS] Q satisfies e1_solitary.py's conditions (i), (ii) and its open condition p[d-4,2] != 0
+[PASS] P/Q restricted to E1 is constant: C_P/C_Q = 1, so E1 is not dicritical for this pair
+[PASS] P contains y (total degree 1), so it violates noLowTerms
+4. The top x-coefficient of the Jacobian
+[PASS] x^(2n-1)-coefficient of [P, Q] = n (A D' - A' D), nothing above it, n = 1..4
+5. The restriction to E1
+[PASS] nu_E1(S) = -deg_x S and the restriction is t1^(d-n) A(1/t1), 40 random S
+6. e1_global.py's pair, in affine terms
+[PASS] C_P = t1^2, C_Q = t1^2 + t1, and C_P/C_Q = t1/(t1 + 1) has degree 1: t1/(t1 + 1)
+RESULT: PASS
