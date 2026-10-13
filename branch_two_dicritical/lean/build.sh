@@ -7,13 +7,14 @@
 #   `lake exe cache get` there). Nothing is written into it: the .olean files go to a temporary directory.
 #
 # Steps:
-#   1. scan TwoDicritical/*.lean (comments stripped) for sorry, admit, native_decide and user axioms;
-#   2. compile BlockRank, E1Obstruction, BridgeCollapse, CenterHypotheses, Axioms in this order, each with
-#      `lean -o`; any error or "declaration uses sorry" fails;
+#   1. scan TwoDicritical/*.lean (comments stripped) for sorry, admit, native_decide and the keyword `axiom`
+#      anywhere on a line (so `noncomputable axiom`, `protected axiom` and attributes are caught too);
+#   2. compile BlockRank, E1Obstruction, BridgeCollapse, CenterHypotheses, OneCenter, E1Keller, Axioms in this
+#      order, each with `lean -o`; any error or "declaration uses sorry" fails;
 #   3. check that every `#print axioms` line of Axioms.lean names only propext, Classical.choice, Quot.sound
 #      (or a subset).
 # Exit status 0 iff all steps pass; 2 if the project has no compiled Mathlib (checked first, so that `lake` does not
-# start cloning Mathlib in a fresh checkout). Time on 2 cores (2026-10-12): about 1.5 min; memory below 2 GB.
+# start cloning Mathlib in a fresh checkout). Time on 2 cores (2026-10-13): about 2 min; memory below 2 GB.
 set -u
 HERE="$(cd "$(dirname "$0")" && pwd)"
 PROJ="${1:-$HERE/../../JC2D-branches_a_b_c_unified/branches_a_b/lean}"
@@ -28,7 +29,7 @@ export PATH="$HOME/.elan/bin:$PATH"
 OUT="$(mktemp -d)"
 trap 'rm -rf "$OUT"' EXIT
 mkdir -p "$OUT/TwoDicritical"
-MODULES="BlockRank E1Obstruction BridgeCollapse CenterHypotheses Axioms"
+MODULES="BlockRank E1Obstruction BridgeCollapse CenterHypotheses OneCenter E1Keller Axioms"
 
 echo "=== 1. source scan ==="
 python3 - "$HERE"/TwoDicritical/*.lean <<'PY' || { echo "FAIL: sorry/admit/native_decide/axiom found"; exit 1; }
@@ -38,7 +39,7 @@ for f in sys.argv[1:]:
     s = re.sub(r'/-.*?-/', '', open(f).read(), flags=re.S)
     s = re.sub(r'--[^\n]*', '', s)
     for l in s.splitlines():
-        if re.search(r'\b(sorry|admit|native_decide)\b', l) or re.match(r'\s*(private\s+)?axiom\s', l):
+        if re.search(r'\b(sorry|admit|native_decide)\b', l) or re.search(r'(?<![\w.])axiom(?![\w.])', l):
             print(f"  {f}: {l.strip()}"); bad = 1
 sys.exit(bad)
 PY

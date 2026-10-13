@@ -103,20 +103,28 @@ degree obstruction), and the $m = 1$ bridge is empty for every $d \geq 2$
 (descending induction on $W = 2J+K$; diagonal blocks reduce to scaled
 Vandermonde, full rank; nullspace $= \mathrm{span}\{1,y\}$, $J = 0$).
 
-Status (review of 2026-10-12, `JC2D-branches_a_b_c_unified/reviews/REVIEW_2026-10-12_handoff.md` §5 and §9):
-- **as worded, the statement is false.** The automorphisms $(x-y^2,\ y)$ and $(x,\ y+x^2)$ are Keller maps whose
-  pencils $\lambda P+\mu Q$ have a dicritical over the origin and another over a point at infinity
-  (`JC2D-branches_a_b_c_unified/reviews/two_dicritical/main_statement_check.py`). Read literally, the statement would
-  make every Keller map injective, i.e. it would contain the Jacobian conjecture. The intended statement (presumably
-  about dicriticals at infinity) has to be written down;
+Status (review of 2026-10-12, corrected 2026-10-13; `JC2D-branches_a_b_c_unified/reviews/REVIEW_2026-10-12_handoff.md`
+§5 and §9, and `branch_two_dicritical/lean/README.md`):
+- **as worded, the statement is false for every Keller map of degree $\geq 2$.** Its pencil has a base point at
+  infinity and, once the target is translated so that $0$ is a value, an affine one; every base point carries a
+  dicritical (`JC2D-branches_a_b_c_unified/reviews/two_dicritical/base_point_at_infinity_check.py`;
+  `main_statement_check.py` there works out $(x-y^2,\ y)$ and $(x,\ y+x^2)$). Read literally, the statement would
+  imply the Jacobian conjecture outright, and every non-affine automorphism refutes it. The intended statement
+  (presumably about dicriticals at infinity) has to be written down;
+- **Theorem `thm:e1` (the $E_1$ obstruction) is false as stated.** Its proof reads $\nu_{E_1}\geq -2$ as "total
+  degree $\geq 2$" instead of "$x$-degree $\leq 2$", and $P=(x+y^2)^2+y$, $Q=P+x+y^2$ is a Keller pair in its open
+  subset. The intended conclusion holds for every $m$: $E_1$ is never dicritical for a Keller map. Its algebraic step
+  is now proved in Lean (`E1Keller.lean`); the chart step is executed only;
 - the adjacent $m = 1$ case is computed at $d = 3$ only, while the theorem is stated for every degree;
 - the constant-leading-form proposition, which carries $m \geq 2$, has a proof sketch only;
 - the Lean drafts of 2026-10-12 rested their bridge induction on two axioms that are false as stated. Since
   2026-10-12, `branch_two_dicritical/lean/` proves the bridge collapse from the paper's explicit equations with no
-  axioms, together with the block-rank lemma and the algebraic step of the $E_1$ obstruction. That proof also closes
-  a gap at weight $W = 2$. The bridge's three modeling premises remain open: the pullback formula, $\tilde a$ read as
-  an indeterminate, and both centers nonzero. The last is load-bearing: with a center at $a = 0$ the Keller pair
-  $(x-a_4y^2,\ y)$ satisfies every bridge condition (`branch_two_dicritical/lean/TwoDicritical/CenterHypotheses.lean`).
+  axioms, together with the block-rank lemma. That proof also closes a gap at weight $W = 2$. Read geometrically, the
+  bridge assumes two dicriticals over **free** points of the second exceptional curve $E_2$, with pole order at most
+  1 for every member of the pencil. The second premise is asserted, not derived. Under these premises one such
+  dicritical already forces degree $\leq 2$. Dicriticals over the satellite points of $E_2$ are not treated. The
+  hypothesis "both centers nonzero" marks where the formula applies: the formal witness $(x-a_4y^2,\ y)$ with a center
+  at $a = 0$ is not a geometric bridge (`branch_two_dicritical/lean/check_satellite.py`).
 
 So the theorem is open, and its statement must first be corrected.
 

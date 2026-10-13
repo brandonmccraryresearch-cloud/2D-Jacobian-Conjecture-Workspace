@@ -1,17 +1,34 @@
 import TwoDicritical.BridgeCollapse
 
 /-!
-# The center hypotheses of `bridge_collapse` cannot be dropped
+# The center hypotheses cannot be dropped from `bridge_collapse`, a theorem about equations
 
-`bridge_collapse` and `bridge_jacobian_eq_zero` assume `a₃ ≠ 0`, `a₄ ≠ 0` and `a₃ ≠ a₄`. The paper's §3.1 states
-them as part of the setup ("two distinct centers a₃ ≠ a₄ (both nonzero)") and gives no geometric reason why a bridge
-center cannot sit at `a = 0`. This file shows that each of the three is needed.
+`bridge_collapse` and `bridge_jacobian_eq_zero` assume `a₃ ≠ 0`, `a₄ ≠ 0` and `a₃ ≠ a₄`, as the paper's §3.1 does
+("two distinct centers a₃ ≠ a₄ (both nonzero)"). This file shows that none of the three can be dropped from the
+theorem about the equations `bridgeEq`.
+
+**What this means geometrically** (corrected on 2026-10-13, after an outside referee's report on PR #19; executed in
+`check_satellite.py`). The paper's pullback (eq:bridge-pullback) is `Sʰ(1, b, b²(a + ã b))`: the chart at the point
+`w₂ = a` of the second exceptional curve `E₂` over `[1:0:0]`, where `w₂ = x/y²`.
+* For `a ≠ 0` the point is free. The normalizing factor `Zᵈ` becomes `b^(2d)` times a unit, and `ord_b S_a ≥ 2d − 1`
+  says `ν ≥ −1` on the divisor over `a`.
+* The point `a = 0` is where `E₂` meets the line at infinity, a satellite point. There `Zᵈ` becomes `ãᵈ b^(3d)`, and
+  the same threshold says `ν ≥ −(d + 1)`. That condition weakens as the bound `d` grows, so it is not a property of
+  the pencil.
+
+So a center at `0` in these equations is not a bridge center. The witness below has degree 2 and satisfies the
+equations only for `d ≥ 3`. Over `a = 0` its `P/Q` has a pole, and its only dicritical at infinity lies over the free
+point `a₄`. The hypothesis `a ≠ 0` marks where the formula applies; it does not mark a missing argument that a center
+cannot sit at `0`. What the paper does not treat are dicriticals over the satellite points `a = 0` and `a = ∞` of
+`E₂`, and over deeper ones. `OneCenter.lean` gives what the equations say with one center, and with `d` read as the
+exact degree.
 
 The witness is `x − c·y²` (coefficient vector `pAuto c`). At weight `W = 2` its bridge equation at a center `a` is
 `a^(d−2)·(a − c)` (`bridgeEq_two_pAuto`); at every other weight it has no variable. So the bridge conditions hold
 whenever both centers satisfy `a^(d−2)·(a − c) = 0` (`bridgeConditions_pAuto`):
 
-* `a₃ = 0`, `c = a₄`, `d ≥ 3` (`0^(d−2) = 0`): `a₃ ≠ 0` is needed (and `a₄ ≠ 0`, by symmetry);
+* `a₃ = 0`, `c = a₄`, `d ≥ 3` (`0^(d−2) = 0`): `a₃ ≠ 0` is needed in the formal theorem (and `a₄ ≠ 0`, by
+  symmetry);
 * `a₃ = a₄ = c`, `d ≥ 2`: `a₃ ≠ a₄` is needed.
 
 In each case the coefficient of `x` is `1`, so `bridge_collapse` fails without the hypothesis
