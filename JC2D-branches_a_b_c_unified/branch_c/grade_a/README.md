@@ -23,6 +23,10 @@ A1, A2 are supplied ("What remains").
 | | `no_left_kernel` | if a square matrix M over ℤ[X] has a left inverse at a root w₀ of R mod p, then M(w) has no nonzero left kernel vector at any root w of R in any field of characteristic 0 |
 | `Macaulay` | `macaulay_vecMul_eq_zero` | at a common zero z of F₁ … F_k ∈ ℤ[X][z] (at X = w), the vector of row-monomial values is a left kernel vector of the Macaulay block `coeff_{mon r}(mult c · F_{gen c})` |
 | | `no_common_zero_of_certificate` | **the assembly:** if the Macaulay block has a left inverse mod p at a root w₀ of R, the F_n have no common zero at any root of R in any field of characteristic 0 |
+| `R109Data` | `bezout_lin`, `bezout_quad_small`, `quad_mod` | Bézout certificates for `gcd(R, X^109-X) = 1` and `gcd(R, X^(109²)-X) = 1` (via modular reduction); kernel-verified identities |
+| `IrreducibleR109` | `R109_irreducible` | R is irreducible over 𝔽₁₀₉ (from the two Bézout certificates; no `decide` on 11881 pairs) |
+| | `det_transfer_109` | determinant transfer through `ℤ[X]/(R) →+* 𝔽₁₀₉[X]/(R̄)` (`RingHom.map_det`); a nonzero minor mod 109 lifts |
+| `K5Field` | `K5_gcd_isUnit`, `K5_bezout`, `K5_isUnit_mk` | K₅ = ℚ[w]/(R) is a field (`AdjoinRoot.instField`); explicit extended-GCD inversion via `EuclideanDomain.gcdA`/`gcdB` |
 
 `build.sh` compiles the five modules in a temporary directory against any Lake project with Mathlib v4.34.0
 (default `../../branches_a_b/lean`, after `lake exe cache get` there), scans for `sorry`/`admit`/`native_decide`/
