@@ -28,7 +28,7 @@ export PATH="$HOME/.elan/bin:$PATH"
 OUT="$(mktemp -d)"
 trap 'rm -rf "$OUT"' EXIT
 mkdir -p "$OUT/GradeA"
-MODULES="R67Data IrreducibleR Transfer Macaulay Axioms"
+MODULES="R67Data R109Data IrreducibleR IrreducibleR109 K5Field Transfer Macaulay Axioms"
 
 echo "=== 1. source scan ==="
 python3 - "$HERE"/lean/GradeA/*.lean <<'PY' || { echo "FAIL: sorry/admit/native_decide/axiom found"; exit 1; }
