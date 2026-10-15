@@ -9,7 +9,7 @@
 # Steps:
 #   1. scan TwoDicritical/*.lean (comments stripped) for sorry, admit, native_decide and the keyword `axiom`
 #      anywhere on a line (so `noncomputable axiom`, `protected axiom` and attributes are caught too);
-#   2. compile BlockRank, E1Obstruction, BridgeCollapse, CenterHypotheses, OneCenter, E1Keller, Axioms in this
+#   2. compile BlockRank, E1Obstruction, BridgeCollapse, CenterHypotheses, OneCenter, E1Keller, E1Valuation, Axioms in this
 #      order, each with `lean -o`; any error or "declaration uses sorry" fails;
 #   3. check that every `#print axioms` line of Axioms.lean names only propext, Classical.choice, Quot.sound
 #      (or a subset).
@@ -29,7 +29,7 @@ export PATH="$HOME/.elan/bin:$PATH"
 OUT="$(mktemp -d)"
 trap 'rm -rf "$OUT"' EXIT
 mkdir -p "$OUT/TwoDicritical"
-MODULES="BlockRank E1Obstruction BridgeCollapse CenterHypotheses OneCenter E1Keller Axioms"
+MODULES="BlockRank E1Obstruction BridgeCollapse CenterHypotheses OneCenter E1Keller E1Valuation Axioms"
 
 echo "=== 1. source scan ==="
 python3 - "$HERE"/TwoDicritical/*.lean <<'PY' || { echo "FAIL: sorry/admit/native_decide/axiom found"; exit 1; }
