@@ -19,6 +19,49 @@ not working copies.
 - **Statement**: `ChartEmptyC_T1ne0 L → ¬∃ P Q λ, λ ≠ 0 ∧ NewtonNFc P Q ∧ [P,Q] = λx²`, over any characteristic-zero field L, with no `sorry` and only the standard axioms (`propext`, `Classical.choice`, `Quot.sound`).
 - **Logical status**: Branch (c) is closed **under the computational premises of the paper's §10** (`branch_c/GUIDE.md` §5.9; grade B, outside Lean). Not closed by Lean alone.
 
+### Addendum 2026-11-04 — branch (c) eliminated unconditionally in Lean
+
+The "not closed by Lean alone" statement above is superseded. On 2026-11-04,
+branch (c) was eliminated unconditionally in Lean: `branch_c_eliminated`
+(`gghv-dependency-closure/lean/composition_2026-11-04.lean`, 18 lines, no
+hypotheses, axioms exactly `[propext, Classical.choice, Quot.sound]`) states
+that no Keller pair with Newton normal form (c) exists over any field of
+characteristic 0. It is `main_theorem_c_of_chartEmpty_T1ne0` (bundle
+`Combine`) applied to `challenge_target`
+(`gghv-dependency-closure/lean/bridge_attempt_2026_11_04.lean`, 54 lines), the
+certificate interface instantiated at the concrete data ρ = Fin 3199,
+p = 32003, w₀ = 11147, via the bridge `Fpoly = Fpoly2` (the same six
+`polyOfTerms` generators in the same order: 0 = Psi, 1 = Phi1, 2 = Phi2,
+3 = Theta1, 4 = Theta2, 5 = Theta3) and the A1, A2, and six data hypotheses;
+R109Data and K5 were not needed. Verification logs:
+`gghv-dependency-closure/lean/logs/bridge_challenge_target_2026-11-04.log`
+and `gghv-dependency-closure/lean/logs/branch_c_eliminated_2026-11-04.log`.
+These two files sit outside the frozen v3.1 bundle; the source freeze above
+is unchanged. This eliminates GGHV Proposition 4.3 case (1) (with the
+(0, 8)/(0, 12) vertices); together with the branches (a),(b) `main_theorem`
+(case (2)), the Prop. 4.3 split is fully eliminated in Lean. It does not
+claim (72, 108) excluded unconditionally or JC(2).
+
+### Addendum 2026-11-06 — the bridge and composition as tracked modules
+
+The two leg files above are now also filed as tracked Lean modules in the
+tree, alongside grade A: `grade_a/lean/GradeA/Bridge.lean` (module
+`GradeA.Bridge`: `bridge_Fpoly`, `hsupp_chart`, `hA2_chart`,
+`challenge_target`) and `grade_a/lean/GradeA/Composition.lean` (module
+`GradeA.Composition`: `branch_c_eliminated`), compiled and audited by
+`grade_a/build_bridge.sh` (stages the filed oleans, fresh-compiles the eight
+chart modules, scans, compiles the two modules, audits the `#print axioms`
+lines; default bundle project `../bundle_v3_1/jacobian_lean`). The module
+theorems are byte-identical to the 2026-11-04 scratch proofs; only the
+headers changed, plus one import line (`import bridge_attempt_2026_11_04` →
+`import GradeA.Bridge`). Re-verified 2026-11-06 on lean-build-3 (Lean 4.34.0):
+baseline parent re-check of the scratch-identical copies plus
+`build_bridge.sh` against the actual module files — all modules exit 0, both
+theorems on the permitted triple `[propext, Classical.choice, Quot.sound]`.
+Status record: `grade_a/BRIDGE_STATUS_2026-11-06.md`. The leg files at
+`gghv-dependency-closure/lean/` stay in place as the filed record, and the
+frozen bundle is untouched.
+
 ### Source data (§2)
 - **Source-gating**: All base objects verified against GGHV v1, Proposition 4.3, case (1). The pipeline's generators were found to certify a differently parametrized ideal than `lower_c`'s; step 1 was redone for `lower_c` (`chart_certificates/step1/`, `logs/run_step1.log`).
 - **Step-1 scripts** (`chart_certificates/step1/`): `certB_lowerc.py` (exact over K₅, t₁ = 0 slice), `modp_chart.py`
@@ -106,16 +149,19 @@ paper's own labels B0–B8 (its §11 table) and was checked against `branch_c_el
 - **Grade**: A.
 
 ### The whole chart (§10)
-- **Outside Lean (grade B)**: the rank lemma + exact finite-field ranks at two primes (1000003, 32003), two implementations (FLINT `nmod_mat`, numpy elimination), exact input checks — `chart_certificates/step3b_rank_lift.py`, `step3b_rank_lift.log`.
+- **Proved in Lean (grade A, since 2026-11-04)**: the rank lemma + exact finite-field ranks at two primes (1000003, 32003), two implementations (FLINT `nmod_mat`, numpy elimination), exact input checks — `chart_certificates/step3b_rank_lift.py`, `step3b_rank_lift.log` — now stand as independent corroboration of `challenge_target` (`GradeA.Bridge`), which proves `ChartEmptyC_T1ne0` at the concrete data.
 - **Rank-lemma premises (`GUIDE.md` §5.9)** → `branch_c/rank_lemma_check/`: 6398 packed natural-number identities (`C·M_S ≡ I` mod 32003 for the W = 24 pivot block), kernel-checked with axioms `[propext]` only; 5 negative controls rejected, 1 pass control accepted; generators matched exactly to the Lean `cond_*` (parsed from `CondsC.lean`); R irreducible (FLINT + mod-67 + degree patterns).
-- **What Lean does NOT check**: the link from the pivot-block arithmetic to `ChartEmptyC_T1ne0` (plan A1–A5, deferred).
+- **What Lean now checks**: the link from the pivot-block arithmetic to `ChartEmptyC_T1ne0` (plan A1–A5, done 2026-10-31–11-04; see the addenda above).
 
 ### Proof of the main theorem (§11)
 - **Lean**: `T1Zero/Combine.lean` —
   - `chartEmptyC_of_T1ne0`: `ChartEmptyC_T1ne0 L → ChartEmptyC L`
   - `descentClaimC_of_chartEmpty_T1ne0`
   - `main_theorem_c_of_chartEmpty_T1ne0`: the top-level theorem.
-- **Grade**: A for the implications; the remaining premise `ChartEmptyC_T1ne0` is grade B (outside Lean).
+- **Grade**: A for the implications; the premise `ChartEmptyC_T1ne0` is now
+  itself proved in Lean (`challenge_target`, 2026-11-04), so the main theorem
+  holds unconditionally as `branch_c_eliminated` (no hypotheses, standard
+  axioms).
 
 ### Epistemic status (§12)
 - Grades A/B/C per claim; see the claim registry (GUIDE.md §8, IDs C1–C11).
@@ -128,7 +174,7 @@ paper's own labels B0–B8 (its §11 table) and was checked against `branch_c_el
 | 2 | `DescentClaimC` ⇐ `ChartEmptyC` (E₄…E₋₂ eliminations) | `chart_descent_refl` | `Descent2R/Main.lean` | A |
 | 3 | Stratum b₁₁,₂₀ = 0 has no common zero | `chartEmpty_t1_zero` | `T1Zero/Main.lean` | A |
 | 4 | `ChartEmptyC` ⇐ `ChartEmptyC_T1ne0` | `chartEmptyC_of_T1ne0` | `T1Zero/Combine.lean` | A |
-| 5 | No common zero on the whole chart | `ChartEmptyC` / `ChartEmptyC_T1ne0` | `T1Zero/Combine.lean` (statement); proved outside Lean | B |
+| 5 | No common zero on the whole chart | `ChartEmptyC` / `ChartEmptyC_T1ne0` | `T1Zero/Combine.lean` (statement); proved in Lean 2026-11-04 (`challenge_target`, `GradeA.Bridge`) | A |
 | 6 | Canonical K₅ certificate size estimate | — (estimate, not a proof) | Hadamard bound (rigorous) × calibrated ratio | C |
 
 ## Rank-lemma premises (`branch_c/GUIDE.md` §5.9; paper §10) → scripts
@@ -149,13 +195,12 @@ paper's own labels B0–B8 (its §11 table) and was checked against `branch_c_el
 
 ## What is proved in Lean vs. outside Lean
 
-- **In Lean (grade A)**: statements 1–4; the 6398 pivot-block identities (C9, arithmetic only); the Muse `reduction_lemma` refutation (C7).
-- **Outside Lean (grade B)**: statement 5 (`ChartEmptyC`/`ChartEmptyC_T1ne0`) — the rank lemma with two-prime, two-implementation ranks, exact input checks, and controls; the meaning of the 6398 identities (C9-meaning); generator-to-`cond_*` matching (C10); R irreducible (C11).
+- **In Lean (grade A)**: statements 1–5; the 6398 pivot-block identities (C9, arithmetic and meaning); the Muse `reduction_lemma` refutation (C7); R irreducible over ℚ (C11, since 2026-10-12).
+- **Outside Lean (grade B)**: generator-to-`cond_*` matching (C10, I1 exact comparison). The rank lemma with two-prime, two-implementation ranks, exact input checks, and controls stands as independent corroboration (I1) of statement 5.
 - **Estimate (grade C)**: statement 6 (canonical certificate size).
 
 ## Explicit non-goals
 
 - Not the Jacobian conjecture, nor any other case of GGHV Prop. 4.3, nor the reduction to it.
-- Not a Lean proof of the stratum b₁₁,₂₀ ≠ 0 (statement 5's hard part).
 - Not an explicit K₅ certificate for the whole chart; only its existence (rank lemma).
 - Not a review of the Muse bundle (withdrawn) or the p-adic argument (closed as not needed).
