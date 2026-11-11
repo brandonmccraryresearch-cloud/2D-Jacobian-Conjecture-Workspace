@@ -174,14 +174,23 @@ logs, carried premises, exclusions — is in `lean/MANIFEST.md` (§ Phase
 | `gghv_full_assembly_2026-11-06.lean` | Assembly: Theorem 2.1 from `MinimalPremises2` | `theorem21_minimal_v2`; `link_924_derived`; `link_927_derived` | CONDITIONAL (20-field premises; fields 9–10 refined, not discharged). All [triple] except `prop41_shape_of` / `prop41_conditional` / `prop43_conditional` [propext, Quot.sound] and `cor52_conditional` []. FULL_EXIT=0 (135 s), AXIOMS_EXIT=0 (50 s). |
 | `r8_axioms_2026-11-06.lean` | (R8 axioms-print companion) | `esq3_dir_b2/b1/b0`; `esq3_lform_endpoint_lo/hi`; `esq3_lform_Q` | [] / [propext] / [propext, Quot.sound]. rc=0, 15 s. |
 
-**Leg H — explicit maximal minor (PARTIAL, narrowed):** filed at
+**Leg H — explicit maximal minor + leg-9 K₅ value (COMPLETE):** filed at
 `JC2D-branches_a_b_c_unified/branch_c/rank_lemma_check/` —
 `minor_spec_2026-11-06.md` + `extract_minor.py` + `det_minor.py` +
 det jsons (`rows.json`, `piv.json`, `pivcols.json`, `colv.json`,
 `det_p32003.json`, `det_p1000003.json`) + `summary.json` /
 `globals.txt`. Indices + modular determinants DONE (p=32003 →
 29127; p=1000003 → 262898; both routes agree); the K₅ determinant
-value is NOT done — full leg-9 multimodular run ordered 2026-11-07.
+value is DONE — leg-9 multimodular run (relaunch 2026-11-10 02:32 CST,
+23 workers, no outer timeout) ended SUCCESS 2026-11-11 07:36 CST: the
+same candidate verified at attempts 121 and 124
+(x_bits [2835028, 2835027, 2835027, 2835026, 2835024]); 250,000
+equations, M_bits 15,250,000; `result.json` gates all_equations /
+known_values / fresh_primes all true, denominator_check true.
+**§6.3(a) as amended is SATISFIED.** Filed at
+`gghv-dependency-closure/leg9/` (`LEG9_RESULT_2026-11-11.md` +
+`result.json` + `attempt_b121.json` + `attempt_b124.json` +
+`state.json` + driver log).
 §6.3(a) outside-rebuild clause REMOVED by Brandon's ruling
 2026-11-07 (protocol §6.3 amendment), so satisfaction now turns on
 the K₅ value. I1 identification, not a kernel

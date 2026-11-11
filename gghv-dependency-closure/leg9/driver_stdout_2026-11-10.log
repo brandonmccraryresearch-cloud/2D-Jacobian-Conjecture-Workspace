@@ -1,0 +1,400 @@
+[2026-11-10 08:32:02] driver start: queue=250000 D_bits=2800648 batch_size=2000 cap=250000 nworkers=23
+[2026-11-10 08:32:02] chart loaded
+[2026-11-10 08:32:02] batch 0: marker present, skipping workers
+[2026-11-10 10:56:20] batch 0: total equations=222000 M_bits=13542000
+[2026-11-10 10:58:00] spotcheck batch 0: p=1000037 flint=25005 numpy=25005 OK numpy_seconds=96.2
+[2026-11-10 11:09:12] attempt batch 0: cands=1 lll=669.81s total=671.72s
+[2026-11-10 11:46:25] batch 0 complete; status=running
+[2026-11-10 11:46:25] batch 1: marker present, skipping workers
+[2026-11-10 11:46:27] batch 1: total equations=222000 M_bits=13542000
+[2026-11-10 11:57:51] attempt batch 1: cands=1 lll=681.93s total=683.85s
+[2026-11-10 12:34:59] batch 1 complete; status=running
+[2026-11-10 12:34:59] batch 2: marker present, skipping workers
+[2026-11-10 12:35:01] batch 2: total equations=222000 M_bits=13542000
+[2026-11-10 12:46:30] attempt batch 2: cands=1 lll=687.48s total=689.4s
+[2026-11-10 13:23:38] batch 2 complete; status=running
+[2026-11-10 13:23:38] batch 3: marker present, skipping workers
+[2026-11-10 13:23:40] batch 3: total equations=222000 M_bits=13542000
+[2026-11-10 13:23:40] batch 3 complete; status=running
+[2026-11-10 13:23:40] batch 4: marker present, skipping workers
+[2026-11-10 13:23:41] batch 4: total equations=222000 M_bits=13542000
+[2026-11-10 13:35:22] attempt batch 4: cands=1 lll=698.92s total=700.84s
+[2026-11-10 14:12:31] batch 4 complete; status=running
+[2026-11-10 14:12:31] batch 5: marker present, skipping workers
+[2026-11-10 14:12:33] batch 5: total equations=222000 M_bits=13542000
+[2026-11-10 14:12:33] batch 5 complete; status=running
+[2026-11-10 14:12:33] batch 6: marker present, skipping workers
+[2026-11-10 14:12:34] batch 6: total equations=222000 M_bits=13542000
+[2026-11-10 14:12:34] batch 6 complete; status=running
+[2026-11-10 14:12:34] batch 7: marker present, skipping workers
+[2026-11-10 14:12:35] batch 7: total equations=222000 M_bits=13542000
+[2026-11-10 14:23:42] attempt batch 7: cands=1 lll=664.85s total=666.77s
+[2026-11-10 15:01:03] batch 7 complete; status=running
+[2026-11-10 15:01:03] batch 8: marker present, skipping workers
+[2026-11-10 15:01:05] batch 8: total equations=222000 M_bits=13542000
+[2026-11-10 15:01:05] batch 8 complete; status=running
+[2026-11-10 15:01:05] batch 9: marker present, skipping workers
+[2026-11-10 15:01:06] batch 9: total equations=222000 M_bits=13542000
+[2026-11-10 15:01:06] batch 9 complete; status=running
+[2026-11-10 15:01:06] batch 10: marker present, skipping workers
+[2026-11-10 15:01:07] batch 10: total equations=222000 M_bits=13542000
+[2026-11-10 15:01:07] batch 10 complete; status=running
+[2026-11-10 15:01:07] batch 11: marker present, skipping workers
+[2026-11-10 15:01:08] batch 11: total equations=222000 M_bits=13542000
+[2026-11-10 15:12:10] attempt batch 11: cands=1 lll=659.36s total=661.26s
+[2026-11-10 15:49:23] batch 11 complete; status=running
+[2026-11-10 15:49:23] batch 12: marker present, skipping workers
+[2026-11-10 15:49:24] batch 12: total equations=222000 M_bits=13542000
+[2026-11-10 15:49:24] batch 12 complete; status=running
+[2026-11-10 15:49:24] batch 13: marker present, skipping workers
+[2026-11-10 15:49:26] batch 13: total equations=222000 M_bits=13542000
+[2026-11-10 15:49:26] batch 13 complete; status=running
+[2026-11-10 15:49:26] batch 14: marker present, skipping workers
+[2026-11-10 15:49:27] batch 14: total equations=222000 M_bits=13542000
+[2026-11-10 15:49:27] batch 14 complete; status=running
+[2026-11-10 15:49:27] batch 15: marker present, skipping workers
+[2026-11-10 15:49:28] batch 15: total equations=222000 M_bits=13542000
+[2026-11-10 15:49:28] batch 15 complete; status=running
+[2026-11-10 15:49:28] batch 16: marker present, skipping workers
+[2026-11-10 15:49:30] batch 16: total equations=222000 M_bits=13542000
+[2026-11-10 16:01:20] attempt batch 16: cands=1 lll=708.38s total=710.34s
+[2026-11-10 16:38:36] batch 16 complete; status=running
+[2026-11-10 16:38:36] batch 17: marker present, skipping workers
+[2026-11-10 16:38:37] batch 17: total equations=222000 M_bits=13542000
+[2026-11-10 16:38:37] batch 17 complete; status=running
+[2026-11-10 16:38:37] batch 18: marker present, skipping workers
+[2026-11-10 16:38:38] batch 18: total equations=222000 M_bits=13542000
+[2026-11-10 16:38:38] batch 18 complete; status=running
+[2026-11-10 16:38:38] batch 19: marker present, skipping workers
+[2026-11-10 16:38:40] batch 19: total equations=222000 M_bits=13542000
+[2026-11-10 16:38:40] batch 19 complete; status=running
+[2026-11-10 16:38:40] batch 20: marker present, skipping workers
+[2026-11-10 16:38:41] batch 20: total equations=222000 M_bits=13542000
+[2026-11-10 16:38:41] batch 20 complete; status=running
+[2026-11-10 16:38:41] batch 21: marker present, skipping workers
+[2026-11-10 16:38:42] batch 21: total equations=222000 M_bits=13542000
+[2026-11-10 16:38:42] batch 21 complete; status=running
+[2026-11-10 16:38:42] batch 22: marker present, skipping workers
+[2026-11-10 16:38:44] batch 22: total equations=222000 M_bits=13542000
+[2026-11-10 16:50:15] attempt batch 22: cands=1 lll=689.5s total=691.41s
+[2026-11-10 17:27:32] batch 22 complete; status=running
+[2026-11-10 17:27:32] batch 23: marker present, skipping workers
+[2026-11-10 17:27:34] batch 23: total equations=222000 M_bits=13542000
+[2026-11-10 17:27:34] batch 23 complete; status=running
+[2026-11-10 17:27:34] batch 24: marker present, skipping workers
+[2026-11-10 17:27:35] batch 24: total equations=222000 M_bits=13542000
+[2026-11-10 17:27:35] batch 24 complete; status=running
+[2026-11-10 17:27:35] batch 25: marker present, skipping workers
+[2026-11-10 17:27:36] batch 25: total equations=222000 M_bits=13542000
+[2026-11-10 17:27:36] batch 25 complete; status=running
+[2026-11-10 17:27:36] batch 26: marker present, skipping workers
+[2026-11-10 17:27:38] batch 26: total equations=222000 M_bits=13542000
+[2026-11-10 17:27:38] batch 26 complete; status=running
+[2026-11-10 17:27:38] batch 27: marker present, skipping workers
+[2026-11-10 17:27:39] batch 27: total equations=222000 M_bits=13542000
+[2026-11-10 17:27:39] batch 27 complete; status=running
+[2026-11-10 17:27:39] batch 28: marker present, skipping workers
+[2026-11-10 17:27:40] batch 28: total equations=222000 M_bits=13542000
+[2026-11-10 17:27:40] batch 28 complete; status=running
+[2026-11-10 17:27:40] batch 29: marker present, skipping workers
+[2026-11-10 17:27:42] batch 29: total equations=222000 M_bits=13542000
+[2026-11-10 17:39:11] attempt batch 29: cands=1 lll=686.86s total=688.8s
+[2026-11-10 18:16:30] batch 29 complete; status=running
+[2026-11-10 18:16:30] batch 30: marker present, skipping workers
+[2026-11-10 18:16:31] batch 30: total equations=222000 M_bits=13542000
+[2026-11-10 18:16:31] batch 30 complete; status=running
+[2026-11-10 18:16:31] batch 31: marker present, skipping workers
+[2026-11-10 18:16:32] batch 31: total equations=222000 M_bits=13542000
+[2026-11-10 18:16:32] batch 31 complete; status=running
+[2026-11-10 18:16:32] batch 32: marker present, skipping workers
+[2026-11-10 18:16:34] batch 32: total equations=222000 M_bits=13542000
+[2026-11-10 18:16:34] batch 32 complete; status=running
+[2026-11-10 18:16:34] batch 33: marker present, skipping workers
+[2026-11-10 18:16:35] batch 33: total equations=222000 M_bits=13542000
+[2026-11-10 18:16:35] batch 33 complete; status=running
+[2026-11-10 18:16:35] batch 34: marker present, skipping workers
+[2026-11-10 18:16:36] batch 34: total equations=222000 M_bits=13542000
+[2026-11-10 18:16:36] batch 34 complete; status=running
+[2026-11-10 18:16:36] batch 35: marker present, skipping workers
+[2026-11-10 18:16:38] batch 35: total equations=222000 M_bits=13542000
+[2026-11-10 18:16:38] batch 35 complete; status=running
+[2026-11-10 18:16:38] batch 36: marker present, skipping workers
+[2026-11-10 18:16:39] batch 36: total equations=222000 M_bits=13542000
+[2026-11-10 18:16:39] batch 36 complete; status=running
+[2026-11-10 18:16:39] batch 37: marker present, skipping workers
+[2026-11-10 18:16:40] batch 37: total equations=222000 M_bits=13542000
+[2026-11-10 18:28:50] attempt batch 37: cands=1 lll=727.9s total=729.81s
+[2026-11-10 19:06:02] batch 37 complete; status=running
+[2026-11-10 19:06:02] batch 38: marker present, skipping workers
+[2026-11-10 19:06:03] batch 38: total equations=222000 M_bits=13542000
+[2026-11-10 19:06:03] batch 38 complete; status=running
+[2026-11-10 19:06:03] batch 39: marker present, skipping workers
+[2026-11-10 19:06:04] batch 39: total equations=222000 M_bits=13542000
+[2026-11-10 19:06:04] batch 39 complete; status=running
+[2026-11-10 19:06:04] batch 40: marker present, skipping workers
+[2026-11-10 19:06:06] batch 40: total equations=222000 M_bits=13542000
+[2026-11-10 19:07:47] spotcheck batch 40: p=1000039 flint=887106 numpy=887106 OK numpy_seconds=96.8
+[2026-11-10 19:07:47] batch 40 complete; status=running
+[2026-11-10 19:07:47] batch 41: marker present, skipping workers
+[2026-11-10 19:07:49] batch 41: total equations=222000 M_bits=13542000
+[2026-11-10 19:07:49] batch 41 complete; status=running
+[2026-11-10 19:07:49] batch 42: marker present, skipping workers
+[2026-11-10 19:07:50] batch 42: total equations=222000 M_bits=13542000
+[2026-11-10 19:07:50] batch 42 complete; status=running
+[2026-11-10 19:07:50] batch 43: marker present, skipping workers
+[2026-11-10 19:07:51] batch 43: total equations=222000 M_bits=13542000
+[2026-11-10 19:07:51] batch 43 complete; status=running
+[2026-11-10 19:07:51] batch 44: marker present, skipping workers
+[2026-11-10 19:07:53] batch 44: total equations=222000 M_bits=13542000
+[2026-11-10 19:07:53] batch 44 complete; status=running
+[2026-11-10 19:07:53] batch 45: marker present, skipping workers
+[2026-11-10 19:07:54] batch 45: total equations=222000 M_bits=13542000
+[2026-11-10 19:07:54] batch 45 complete; status=running
+[2026-11-10 19:07:54] batch 46: marker present, skipping workers
+[2026-11-10 19:07:55] batch 46: total equations=222000 M_bits=13542000
+[2026-11-10 19:19:49] attempt batch 46: cands=1 lll=712.24s total=714.15s
+[2026-11-10 19:57:00] batch 46 complete; status=running
+[2026-11-10 19:57:00] batch 47: marker present, skipping workers
+[2026-11-10 19:57:01] batch 47: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:01] batch 47 complete; status=running
+[2026-11-10 19:57:01] batch 48: marker present, skipping workers
+[2026-11-10 19:57:02] batch 48: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:02] batch 48 complete; status=running
+[2026-11-10 19:57:02] batch 49: marker present, skipping workers
+[2026-11-10 19:57:04] batch 49: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:04] batch 49 complete; status=running
+[2026-11-10 19:57:04] batch 50: marker present, skipping workers
+[2026-11-10 19:57:05] batch 50: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:05] batch 50 complete; status=running
+[2026-11-10 19:57:05] batch 51: marker present, skipping workers
+[2026-11-10 19:57:06] batch 51: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:06] batch 51 complete; status=running
+[2026-11-10 19:57:06] batch 52: marker present, skipping workers
+[2026-11-10 19:57:08] batch 52: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:08] batch 52 complete; status=running
+[2026-11-10 19:57:08] batch 53: marker present, skipping workers
+[2026-11-10 19:57:09] batch 53: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:09] batch 53 complete; status=running
+[2026-11-10 19:57:09] batch 54: marker present, skipping workers
+[2026-11-10 19:57:10] batch 54: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:10] batch 54 complete; status=running
+[2026-11-10 19:57:10] batch 55: marker present, skipping workers
+[2026-11-10 19:57:12] batch 55: total equations=222000 M_bits=13542000
+[2026-11-10 19:57:12] batch 55 complete; status=running
+[2026-11-10 19:57:12] batch 56: marker present, skipping workers
+[2026-11-10 19:57:13] batch 56: total equations=222000 M_bits=13542000
+[2026-11-10 20:09:10] attempt batch 56: cands=1 lll=714.74s total=716.67s
+[2026-11-10 20:46:21] batch 56 complete; status=running
+[2026-11-10 20:46:21] batch 57: marker present, skipping workers
+[2026-11-10 20:46:22] batch 57: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:22] batch 57 complete; status=running
+[2026-11-10 20:46:22] batch 58: marker present, skipping workers
+[2026-11-10 20:46:24] batch 58: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:24] batch 58 complete; status=running
+[2026-11-10 20:46:24] batch 59: marker present, skipping workers
+[2026-11-10 20:46:25] batch 59: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:25] batch 59 complete; status=running
+[2026-11-10 20:46:25] batch 60: marker present, skipping workers
+[2026-11-10 20:46:26] batch 60: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:26] batch 60 complete; status=running
+[2026-11-10 20:46:26] batch 61: marker present, skipping workers
+[2026-11-10 20:46:28] batch 61: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:28] batch 61 complete; status=running
+[2026-11-10 20:46:28] batch 62: marker present, skipping workers
+[2026-11-10 20:46:29] batch 62: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:29] batch 62 complete; status=running
+[2026-11-10 20:46:29] batch 63: marker present, skipping workers
+[2026-11-10 20:46:30] batch 63: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:30] batch 63 complete; status=running
+[2026-11-10 20:46:30] batch 64: marker present, skipping workers
+[2026-11-10 20:46:32] batch 64: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:32] batch 64 complete; status=running
+[2026-11-10 20:46:32] batch 65: marker present, skipping workers
+[2026-11-10 20:46:33] batch 65: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:33] batch 65 complete; status=running
+[2026-11-10 20:46:33] batch 66: marker present, skipping workers
+[2026-11-10 20:46:34] batch 66: total equations=222000 M_bits=13542000
+[2026-11-10 20:46:34] batch 66 complete; status=running
+[2026-11-10 20:46:34] batch 67: marker present, skipping workers
+[2026-11-10 20:46:36] batch 67: total equations=222000 M_bits=13542000
+[2026-11-10 20:58:07] attempt batch 67: cands=1 lll=688.93s total=690.87s
+[2026-11-10 21:35:20] batch 67 complete; status=running
+[2026-11-10 21:35:20] batch 68: marker present, skipping workers
+[2026-11-10 21:35:21] batch 68: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:21] batch 68 complete; status=running
+[2026-11-10 21:35:21] batch 69: marker present, skipping workers
+[2026-11-10 21:35:23] batch 69: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:23] batch 69 complete; status=running
+[2026-11-10 21:35:23] batch 70: marker present, skipping workers
+[2026-11-10 21:35:24] batch 70: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:24] batch 70 complete; status=running
+[2026-11-10 21:35:24] batch 71: marker present, skipping workers
+[2026-11-10 21:35:25] batch 71: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:25] batch 71 complete; status=running
+[2026-11-10 21:35:25] batch 72: marker present, skipping workers
+[2026-11-10 21:35:27] batch 72: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:27] batch 72 complete; status=running
+[2026-11-10 21:35:27] batch 73: marker present, skipping workers
+[2026-11-10 21:35:28] batch 73: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:28] batch 73 complete; status=running
+[2026-11-10 21:35:28] batch 74: marker present, skipping workers
+[2026-11-10 21:35:29] batch 74: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:29] batch 74 complete; status=running
+[2026-11-10 21:35:29] batch 75: marker present, skipping workers
+[2026-11-10 21:35:31] batch 75: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:31] batch 75 complete; status=running
+[2026-11-10 21:35:31] batch 76: marker present, skipping workers
+[2026-11-10 21:35:32] batch 76: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:32] batch 76 complete; status=running
+[2026-11-10 21:35:32] batch 77: marker present, skipping workers
+[2026-11-10 21:35:33] batch 77: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:33] batch 77 complete; status=running
+[2026-11-10 21:35:33] batch 78: marker present, skipping workers
+[2026-11-10 21:35:35] batch 78: total equations=222000 M_bits=13542000
+[2026-11-10 21:35:35] batch 78 complete; status=running
+[2026-11-10 21:35:35] batch 79: marker present, skipping workers
+[2026-11-10 21:35:36] batch 79: total equations=222000 M_bits=13542000
+[2026-11-10 21:47:04] attempt batch 79: cands=1 lll=686.38s total=688.3s
+[2026-11-10 22:24:14] batch 79 complete; status=running
+[2026-11-10 22:24:14] batch 80: marker present, skipping workers
+[2026-11-10 22:24:16] batch 80: total equations=222000 M_bits=13542000
+[2026-11-10 22:25:57] spotcheck batch 80: p=1000081 flint=207318 numpy=207318 OK numpy_seconds=96.4
+[2026-11-10 22:25:57] batch 80 complete; status=running
+[2026-11-10 22:25:57] batch 81: marker present, skipping workers
+[2026-11-10 22:25:58] batch 81: total equations=222000 M_bits=13542000
+[2026-11-10 22:25:58] batch 81 complete; status=running
+[2026-11-10 22:25:58] batch 82: marker present, skipping workers
+[2026-11-10 22:25:59] batch 82: total equations=222000 M_bits=13542000
+[2026-11-10 22:25:59] batch 82 complete; status=running
+[2026-11-10 22:25:59] batch 83: marker present, skipping workers
+[2026-11-10 22:26:01] batch 83: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:01] batch 83 complete; status=running
+[2026-11-10 22:26:01] batch 84: marker present, skipping workers
+[2026-11-10 22:26:02] batch 84: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:02] batch 84 complete; status=running
+[2026-11-10 22:26:02] batch 85: marker present, skipping workers
+[2026-11-10 22:26:03] batch 85: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:03] batch 85 complete; status=running
+[2026-11-10 22:26:03] batch 86: marker present, skipping workers
+[2026-11-10 22:26:05] batch 86: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:05] batch 86 complete; status=running
+[2026-11-10 22:26:05] batch 87: marker present, skipping workers
+[2026-11-10 22:26:06] batch 87: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:06] batch 87 complete; status=running
+[2026-11-10 22:26:06] batch 88: marker present, skipping workers
+[2026-11-10 22:26:07] batch 88: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:07] batch 88 complete; status=running
+[2026-11-10 22:26:07] batch 89: marker present, skipping workers
+[2026-11-10 22:26:08] batch 89: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:08] batch 89 complete; status=running
+[2026-11-10 22:26:08] batch 90: marker present, skipping workers
+[2026-11-10 22:26:10] batch 90: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:10] batch 90 complete; status=running
+[2026-11-10 22:26:10] batch 91: marker present, skipping workers
+[2026-11-10 22:26:11] batch 91: total equations=222000 M_bits=13542000
+[2026-11-10 22:26:11] batch 91 complete; status=running
+[2026-11-10 22:26:11] batch 92: marker present, skipping workers
+[2026-11-10 22:26:12] batch 92: total equations=222000 M_bits=13542000
+[2026-11-10 22:37:37] attempt batch 92: cands=1 lll=683.08s total=684.99s
+[2026-11-10 23:14:52] batch 92 complete; status=running
+[2026-11-10 23:14:52] batch 93: marker present, skipping workers
+[2026-11-10 23:14:54] batch 93: total equations=222000 M_bits=13542000
+[2026-11-10 23:14:54] batch 93 complete; status=running
+[2026-11-10 23:14:54] batch 94: marker present, skipping workers
+[2026-11-10 23:14:55] batch 94: total equations=222000 M_bits=13542000
+[2026-11-10 23:14:55] batch 94 complete; status=running
+[2026-11-10 23:14:55] batch 95: marker present, skipping workers
+[2026-11-10 23:14:56] batch 95: total equations=222000 M_bits=13542000
+[2026-11-10 23:14:56] batch 95 complete; status=running
+[2026-11-10 23:14:56] batch 96: marker present, skipping workers
+[2026-11-10 23:14:58] batch 96: total equations=222000 M_bits=13542000
+[2026-11-10 23:14:58] batch 96 complete; status=running
+[2026-11-10 23:14:58] batch 97: marker present, skipping workers
+[2026-11-10 23:14:59] batch 97: total equations=222000 M_bits=13542000
+[2026-11-10 23:14:59] batch 97 complete; status=running
+[2026-11-10 23:14:59] batch 98: marker present, skipping workers
+[2026-11-10 23:15:00] batch 98: total equations=222000 M_bits=13542000
+[2026-11-10 23:15:00] batch 98 complete; status=running
+[2026-11-10 23:15:00] batch 99: marker present, skipping workers
+[2026-11-10 23:15:02] batch 99: total equations=222000 M_bits=13542000
+[2026-11-10 23:15:02] batch 99 complete; status=running
+[2026-11-10 23:15:02] batch 100: marker present, skipping workers
+[2026-11-10 23:15:03] batch 100: total equations=222000 M_bits=13542000
+[2026-11-10 23:15:03] batch 100 complete; status=running
+[2026-11-10 23:15:03] batch 101: marker present, skipping workers
+[2026-11-10 23:15:04] batch 101: total equations=222000 M_bits=13542000
+[2026-11-10 23:15:04] batch 101 complete; status=running
+[2026-11-10 23:15:04] batch 102: marker present, skipping workers
+[2026-11-10 23:15:06] batch 102: total equations=222000 M_bits=13542000
+[2026-11-10 23:15:06] batch 102 complete; status=running
+[2026-11-10 23:15:06] batch 103: marker present, skipping workers
+[2026-11-10 23:15:07] batch 103: total equations=222000 M_bits=13542000
+[2026-11-10 23:15:07] batch 103 complete; status=running
+[2026-11-10 23:15:07] batch 104: marker present, skipping workers
+[2026-11-10 23:15:08] batch 104: total equations=222000 M_bits=13542000
+[2026-11-10 23:15:08] batch 104 complete; status=running
+[2026-11-10 23:15:08] batch 105: marker present, skipping workers
+[2026-11-10 23:15:10] batch 105: total equations=222000 M_bits=13542000
+[2026-11-10 23:15:10] batch 105 complete; status=running
+[2026-11-10 23:15:10] batch 106: marker present, skipping workers
+[2026-11-10 23:15:11] batch 106: total equations=222000 M_bits=13542000
+[2026-11-10 23:26:42] attempt batch 106: cands=1 lll=688.96s total=690.87s
+[2026-11-11 00:03:56] batch 106 complete; status=running
+[2026-11-11 00:03:56] batch 107: marker present, skipping workers
+[2026-11-11 00:03:57] batch 107: total equations=222000 M_bits=13542000
+[2026-11-11 00:03:57] batch 107 complete; status=running
+[2026-11-11 00:03:57] batch 108: marker present, skipping workers
+[2026-11-11 00:03:59] batch 108: total equations=222000 M_bits=13542000
+[2026-11-11 00:03:59] batch 108 complete; status=running
+[2026-11-11 00:03:59] batch 109: marker present, skipping workers
+[2026-11-11 00:04:00] batch 109: total equations=222000 M_bits=13542000
+[2026-11-11 00:04:00] batch 109 complete; status=running
+[2026-11-11 00:04:00] batch 110: marker present, skipping workers
+[2026-11-11 00:04:01] batch 110: total equations=222000 M_bits=13542000
+[2026-11-11 00:04:01] batch 110 complete; status=running
+[2026-11-11 00:20:53] batch 111 done in 1011.5s (items 222000..223999)
+[2026-11-11 00:49:41] batch 111: total equations=224000 M_bits=13664000
+[2026-11-11 00:49:41] batch 111 complete; status=running
+[2026-11-11 01:06:33] batch 112 done in 1011.3s (items 224000..225999)
+[2026-11-11 01:35:51] batch 112: total equations=226000 M_bits=13786000
+[2026-11-11 01:35:51] batch 112 complete; status=running
+[2026-11-11 01:52:46] batch 113 done in 1014.8s (items 226000..227999)
+[2026-11-11 02:22:35] batch 113: total equations=228000 M_bits=13908000
+[2026-11-11 02:22:35] batch 113 complete; status=running
+[2026-11-11 02:39:27] batch 114 done in 1012.1s (items 228000..229999)
+[2026-11-11 03:09:46] batch 114: total equations=230000 M_bits=14030000
+[2026-11-11 03:09:46] batch 114 complete; status=running
+[2026-11-11 03:26:42] batch 115 done in 1016.4s (items 230000..231999)
+[2026-11-11 03:57:32] batch 115: total equations=232000 M_bits=14152000
+[2026-11-11 03:57:32] batch 115 complete; status=running
+[2026-11-11 04:14:21] batch 116 done in 1009.1s (items 232000..233999)
+[2026-11-11 04:45:42] batch 116: total equations=234000 M_bits=14274000
+[2026-11-11 04:45:42] batch 116 complete; status=running
+[2026-11-11 05:02:37] batch 117 done in 1015.0s (items 234000..235999)
+[2026-11-11 05:34:29] batch 117: total equations=236000 M_bits=14396000
+[2026-11-11 05:34:29] batch 117 complete; status=running
+[2026-11-11 05:51:23] batch 118 done in 1014.1s (items 236000..237999)
+[2026-11-11 06:23:46] batch 118: total equations=238000 M_bits=14518000
+[2026-11-11 06:23:46] batch 118 complete; status=running
+[2026-11-11 06:40:41] batch 119 done in 1014.7s (items 238000..239999)
+[2026-11-11 07:13:36] batch 119: total equations=240000 M_bits=14640000
+[2026-11-11 07:13:36] batch 119 complete; status=running
+[2026-11-11 07:30:32] batch 120 done in 1015.6s (items 240000..241999)
+[2026-11-11 08:03:59] batch 120: total equations=242000 M_bits=14762000
+[2026-11-11 08:03:59] batch 120 complete; status=running
+[2026-11-11 08:20:52] batch 121 done in 1013.1s (items 242000..243999)
+[2026-11-11 08:54:51] batch 121: total equations=244000 M_bits=14884000
+[2026-11-11 09:10:04] attempt batch 121: cands=1 lll=910.82s total=912.93s
+[2026-11-11 09:54:46] attempt batch 121: VERIFIED candidate (x_bits=[2835028, 2835027, 2835027, 2835026, 2835024])
+[2026-11-11 09:54:46] batch 121 complete; status=running
+[2026-11-11 10:11:46] batch 122 done in 1019.4s (items 244000..245999)
+[2026-11-11 10:46:19] batch 122: total equations=246000 M_bits=15006000
+[2026-11-11 10:46:19] batch 122 complete; status=running
+[2026-11-11 11:03:28] batch 123 done in 1029.0s (items 246000..247999)
+[2026-11-11 11:38:33] batch 123: total equations=248000 M_bits=15128000
+[2026-11-11 11:38:33] batch 123 complete; status=running
+[2026-11-11 11:55:28] batch 124 done in 1015.1s (items 248000..249999)
+[2026-11-11 12:31:05] batch 124: total equations=250000 M_bits=15250000
+[2026-11-11 12:47:10] attempt batch 124: cands=1 lll=963.1s total=965.27s
+[2026-11-11 13:32:44] attempt batch 124: VERIFIED candidate (x_bits=[2835028, 2835027, 2835027, 2835026, 2835024])
+[2026-11-11 13:36:23] SUCCESS at batch 124: candidate stable across two attempts; result written to run/result.json
