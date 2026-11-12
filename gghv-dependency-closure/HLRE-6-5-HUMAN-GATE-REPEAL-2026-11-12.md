@@ -45,10 +45,11 @@ machine route now suffices for F2 without any human gate.
 
 ## 3. What does NOT change
 
-- **Independence levels are untouched.** All-artificial verification stays max
-  I1. The Track E independence bound (I1 → C) still caps every Track E claim
-  at C — the Hark review's F5 conclusion survives on this ground alone, and
-  WS-A's A/B grades still fall to C regardless of this repeal.
+- **Independence levels are untouched** [SUPERSEDED 2026-11-12 14:45–14:47 CST
+  by `HLRE-I1-BOUND-REPEAL-2026-11-12.md`: the I1 → C bound is repealed and
+  replaced by external verification by a capable HLRE-constrained agent.
+  The other levels (I0→D, I2→B, I3→B, I4→A) are unchanged; Track E is no
+  longer capped at C merely because verification is artificial.]
 - **Premise ledgers are still required** for Track F claims.
 - **The §7 disclosure stands:** any deposit still states that all verification
   is artificial (I1), with the independence level of every pipeline stated.
