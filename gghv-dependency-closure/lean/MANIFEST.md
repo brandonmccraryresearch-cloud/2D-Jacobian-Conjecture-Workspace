@@ -942,6 +942,20 @@ at filing: the only "sorry" hits are header-comment words). The
   **Brandon's judgement call** (this gate does not decide it).
   Outside-project rebuild (§6.3b) is NOT DONE. A Lean formalization
   of this minor (`RingHom.map_det` instance) is un-ordered.
+
+  ADDENDUM 2026-11-11 (leg-9 SUCCESS; G2-C5/F16(iii)): C1(b) is SUPERSEDED
+  in both halves. (a) The determinant value as an explicit element of K₅
+  (5 rational coefficients) IS now exhibited — leg-9 multimodular
+  reconstruction, filed as `gghv-dependency-closure/leg9/result.json`
+  (7,599,593 bytes, sha256
+  `e7813e7896fff29466461446ded89499e4dd17f8d7d2ccc9a071e8903e96795c`,
+  commit 87a9b93, 2026-11-11; DOI 10.5281/zenodo.24157382, published
+  2026-11-12); the "no feasible route exists" statement is superseded, and
+  §6.3(a) as amended is SATISFIED. (b) The outside-rebuild clause was
+  removed by Brandon's ruling of 2026-11-07, so §6.3(b) no longer gates
+  §6.3(a) satisfaction. Grade: Track F, F1, I1. The PARTIAL text above
+  stays verbatim. Enacted as a step record in the combined paper
+  2026-11-12 (branch `g2-enactment-step-record-2026-11-12`).
 - **Filed files (sizes + SHA-256, first 16 hex):**
 
 | File | Bytes | sha256 |
