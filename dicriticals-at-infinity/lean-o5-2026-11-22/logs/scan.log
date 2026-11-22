@@ -1,0 +1,9 @@
+# runlog start_utc=2026-11-22T08:48:44Z user=hatch host=lean-build-4 cwd=/home/hatch/workspace/theorem-r-campaign/o5
+# invocation: bash scan.sh
+# input_sha256 13f458d849c506a0c01231643d8a30c6648c130af169c8699c11ac2bc18edf0f  scan.sh
+# binary /usr/bin/bash sha256=55b89ab22bee4792a210f493a53fb066accd5d30b69837c28d98be5ff863efcf
+# ---- output ----
+FORBIDDEN: none
+# ---- end ----
+# end_utc=2026-11-22T08:48:44Z
+EXIT=0

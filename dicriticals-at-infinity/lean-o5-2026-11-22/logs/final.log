@@ -1,0 +1,129 @@
+# runlog start_utc=2026-11-22T08:47:49Z user=hatch host=lean-build-4 cwd=/home/hatch/workspace/theorem-r-campaign/o5
+# invocation: bash compile.sh O5/O5.lean
+# input_sha256 ef4eeae32ecb5711645ff5c665864d24bf86618a325db5e80ebc741faf505d61  compile.sh
+# input_sha256 ac2c43b1c5712f9e3a58307114f4bf18501d797f6317f1e6b469e1e9d5f165cf  O5/O5.lean
+# binary /usr/bin/bash sha256=55b89ab22bee4792a210f493a53fb066accd5d30b69837c28d98be5ff863efcf
+# ---- output ----
+Lean (version 4.34.0, x86_64-unknown-linux-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)
+O5/O5.lean:30:10: warning: This simp argument is unused:
+  h0
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+O5/O5.lean:105:0: warning: automatically included section variable(s) unused in theorem `O5.dehomog_X0`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:108:0: warning: automatically included section variable(s) unused in theorem `O5.dehomog_X1`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:111:0: warning: automatically included section variable(s) unused in theorem `O5.dehomog_C`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:114:0: warning: automatically included section variable(s) unused in theorem `O5.dehomog_zero`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:116:0: warning: automatically included section variable(s) unused in theorem `O5.dehomog_one`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:118:0: warning: automatically included section variable(s) unused in theorem `O5.dehomog_add`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:121:0: warning: automatically included section variable(s) unused in theorem `O5.dehomog_sub`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:124:0: warning: automatically included section variable(s) unused in theorem `O5.dehomog_mul`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:163:0: warning: automatically included section variable(s) unused in theorem `O5.homog_support`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:169:0: warning: automatically included section variable(s) unused in theorem `O5.coeff_dehomog`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:250:0: warning: automatically included section variable(s) unused in theorem `O5.coeff_coeff_e1Section`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:261:0: warning: automatically included section variable(s) unused in theorem `O5.support_sum_le`:
+  [CharZero K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharZero K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+O5/O5.lean:274:6: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+O5/O5.lean:293:10: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+O5/O5.lean:297:10: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+O5/O5.lean:309:8: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+O5/O5.lean:326:10: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+O5/O5.lean:330:29: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+O5/O5.lean:330:29: warning: Unused tactic linter: `omega` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+O5/O5.lean:346:6: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+O5/O5.lean:354:35: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+'O5.eq_C_mul_of_wronskian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.derivative_dehomog' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.dehomog_pderiv_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.eq_zero_of_dehomog_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.binary_form_proportional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.binary_form_needs_g_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.coeff_coeff_e1Section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.e1Section_coeff_eq_zero_of_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.e1Section_coeff_top_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.e1Section_coeff_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.e1Section_top_ne_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.e1Section_top_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.e1_restriction_degenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.e1_restriction_proportional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'O5.e1Section_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+# ---- end ----
+# end_utc=2026-11-22T08:48:03Z
+EXIT=0

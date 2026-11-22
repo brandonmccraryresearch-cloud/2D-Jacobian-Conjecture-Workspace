@@ -1,0 +1,12 @@
+# runlog start_utc=2026-11-22T08:49:45Z user=hatch host=lean-build-4 cwd=/home/hatch/workspace/theorem-r-campaign/o5
+# invocation: bash compile.sh O5/Control.lean
+# input_sha256 ef4eeae32ecb5711645ff5c665864d24bf86618a325db5e80ebc741faf505d61  compile.sh
+# input_sha256 8376ad27cc57a864584bb157e51b043c3e8e94c4c214bca5a59294ab4b54c5ab  O5/Control.lean
+# binary /usr/bin/bash sha256=55b89ab22bee4792a210f493a53fb066accd5d30b69837c28d98be5ff863efcf
+# ---- output ----
+Lean (version 4.34.0, x86_64-unknown-linux-gnu, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b, Release)
+O5/Control.lean:4:8: warning: declaration uses `sorry`
+'control_binary_without_g_ne_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+# ---- end ----
+# end_utc=2026-11-22T08:49:55Z
+EXIT=0
