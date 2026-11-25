@@ -79,3 +79,21 @@ The per-part logs give old/new wording, Lean name file:line, check scripts and e
 - **Bibliography:** Helali title corrected; BranchABv19 full title; Restatement path → `dicriticals-at-infinity/RESTATEMENT.md`; ClaudeBlind cited neutrally as a repository folder; JC125note authors "B. D. McCrary et al.".
 - **New bibitems:** Borisov2009, Borisov2011, Borisov2015author, Chau2007, Formanek1987, GGV1, GGV2, Keller1939, Orevkov2001, RD2024 (L. O. Rodríguez Díaz), vdE2000, Wright1997.
 - **Style:** all `itemize` converted to prose; bold limited to bibliography volume numbers; filler words and em-dashes removed. See `AI_TELL_AUDIT.md`.
+
+## Revision 2026-11-25 (evening): (P2) settlement imported; Part IV reader vocabulary
+
+102 pp. (was 99). XeLaTeX, 3 passes: 0 errors, 0 undefined references, 0 missing characters, 0 overfull boxes.
+
+**Fix 1 — (P2).** The record settled premise (P2) of the bridge theorem on 2026-11-11 at grade B, I1, by a proof by hand with SymPy 1.14.0 corroboration (`goals/gghv-dependency-closure/hidden_files/phase4/phase1_p2.md` §3–§4; `phase1_gaps_2026-11-11.md` §2; `~/memory/2026-11-11.md` l.358; `theorem-r-campaign/legs/SHARED_CONTEXT.md` l.15). Not kernel-checked; no grade raised.
+- Part III §4 (bridge), intro paragraph: "(P2) is not derived in this paper; it is obligation O2" → "(P2) was obligation O2 when this part was first written. It was settled for Keller maps on November 11, 2026 (Proposition td:prop:P2, grade B, I1), so for a Keller map only (P1) remains."
+- Part III §4.1: (P2) "not a consequence of our definitions" now scoped to arbitrary polynomials; "for Keller maps it is a consequence of (P1), by Proposition td:prop:P2".
+- New Part III §4.2 "Premise (P2) for Keller maps" (`td:sec:P2`): chart computation $u=\tilde a/(bw^2)$, $v=1/(bw)$, restriction formula (`td:eq:P2-restriction`), Proposition `td:prop:P2` (status grade B, I1; proof by hand Nov 11; SymPy check, exit 0, re-run Nov 25; not in Lean) with a four-step proof, and the remark that check 7's pair is not Keller ($[P_7,Q_7]=2y^2$).
+- Part III §4.6 (scope): "because (P2) is not derived …" replaced by the consequence under (P1) alone (no Keller map has two degree-1 dicriticals over two distinct free points of one $E_2$; none of degree ≥3 has one of this chart type), within the grade-B geometric reading.
+- Part III §5, O2: status line "discharged for Keller maps on November 11, 2026, by Proposition td:prop:P2 (grade B, I1)". Closing note of §5 updated accordingly.
+- Part III Lemma td:lem:binary: "the only use" → its two uses (Case 2 and Prop. td:prop:P2), both with $g\ne0$. Appendix B (Part III paragraph) updated the same way and records the (P2) settlement.
+- Part IV: imported in the Introduction, in "What is and is not established", and as a new first row of Table `rp:tab:status`.
+- Bridge theorem title, its grades (equations A, reading B) and Theorem R's status unchanged.
+
+**Fix 2 — Part IV vocabulary.** "Wave N" → dates (US Central); "the record"/"campaign record" → "the project's verification log" (defined in §1) or removed; errata list defined in §1; PASS/FAIL/NA → *unblocked*/*blocked* rows and the off-diagonal class, defined from W15-CERT/REPORT.md l.71–73; *terminal* theorem defined; "wired" → "applied/rewired/supplied"; "the campaign" → "we"; "record calls X" → "we call/label X" (R-def = row definition; C1; hF; SP-W4; case Z; R∞); slices B and C identified as $t_1=5/4$, $t_1=2$ (CAMPAIGN_PLAN l.908, l.1176); section title "Wave 19: the CN-only rows and the cover" → "The CN-only rows and the cover". JC125note bibitem untouched. Methods/history appendices not changed for vocabulary.
+
+Edit scripts and logs: `combined-paper-v2026-11-25/notes/fix_p2_vocab/` (edit_part4.py, edit_part3_history.py, check_p2_text.py, claim_text_check.py, number_check.log).

@@ -69,3 +69,13 @@ The grade rules hold. No grade is printed above the record. CommutingDerivations
 - Galley audit record: "505 generated + Main" is off by one against the repo (504 + Main + Bridge = 506). The paper uses the repo count.
 - (P2): the record's L9 says it was settled 2026-11-11 at grade B. Part III keeps O2 as stated ("not derived in this paper") and Part IV does not import it.
 - The errata v17 addendum has not passed its outside gate.
+
+## Validation of the 2026-11-25 evening revision ((P2) import; Part IV vocabulary)
+
+- Record check for (P2): every source agrees on "SETTLED, proved, grade B, I1, 2026-11-11, not kernel-verified" (phase1_p2.md §3 remarks; phase1_gaps_2026-11-11.md l.26, l.81; memory 2026-11-11 l.358; SHARED_CONTEXT.md l.15; W1-VAL re-derivation grade B). No discrepancy with "B, I1".
+- Re-run of the record's script `phase1_p2_check.py` (SymPy 1.14.0, Python 3.11.16): EXIT 0, "RESULT: PASS", 19 [PASS] lines, 0 FAIL (log `notes/fix_p2_vocab/phase1_p2_check_rerun_2026-11-25.log`). The record says 21 assertions; the script prints 19 PASS lines (some lines cover more than one assertion). The paper prints no count.
+- New check of every symbolic step printed in the new §4.2: `check_p2_text.py`, 17 checks + 1 planted wrong exponent rejected, EXIT 0.
+- Mechanical claim/vocabulary check `claim_text_check.py` on Parts III, IV and Appendix B: EXIT 0 (no grade token removed; only B / I1 tokens added; no "wave", "the record", PASS/FAIL/NA, "campaign", "leg", "wired" left in Part IV outside Lean names; (P2) never called kernel-checked; bridge title and grade unchanged; Theorem R still open; JC125note byte-identical; no filler, no new \textbf).
+- Existing checkers re-run: checks_part3/check_part3_steps.py EXIT 0 (RESULT: PASS); checks_part4/part4_checks.py EXIT 0 (FAILS: []); checks_part4/part4_plants.py EXIT 0 (4/4 plants caught); validation_b_checks.py EXIT 0 (fails: []).
+- Number check (digit tokens, whole .tex, old vs new): no number new to the document; the only decreases are wave numbers removed by Fix 2 (after discounting wave mentions, nothing removed). Increases are dates, the new chart/proof exponents, and repeats of 166 and 27.
+- Pages rendered and inspected (pdftoppm, 70 dpi): 68, 74, 75, 78, 79, 81, 83, 90, 96, 98.
