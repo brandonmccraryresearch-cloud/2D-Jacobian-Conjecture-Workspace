@@ -97,3 +97,17 @@ The per-part logs give old/new wording, Lean name file:line, check scripts and e
 **Fix 2 — Part IV vocabulary.** "Wave N" → dates (US Central); "the record"/"campaign record" → "the project's verification log" (defined in §1) or removed; errata list defined in §1; PASS/FAIL/NA → *unblocked*/*blocked* rows and the off-diagonal class, defined from W15-CERT/REPORT.md l.71–73; *terminal* theorem defined; "wired" → "applied/rewired/supplied"; "the campaign" → "we"; "record calls X" → "we call/label X" (R-def = row definition; C1; hF; SP-W4; case Z; R∞); slices B and C identified as $t_1=5/4$, $t_1=2$ (CAMPAIGN_PLAN l.908, l.1176); section title "Wave 19: the CN-only rows and the cover" → "The CN-only rows and the cover". JC125note bibitem untouched. Methods/history appendices not changed for vocabulary.
 
 Edit scripts and logs: `combined-paper-v2026-11-25/notes/fix_p2_vocab/` (edit_part4.py, edit_part3_history.py, check_p2_text.py, claim_text_check.py, number_check.log).
+
+## 2026-11-25 evening — figures J1–J6 and the slot X convention
+
+**Figures (record-computed, built by `paper-figures-2026-11-25/jacobian/scripts/build_all.py`; PDFs in `figures_jac/`).** Inserted by `combined-paper-v2026-11-25/notes/figs_integration/insert_figs.py`, each with a pointer sentence in the text:
+- J1 `ab:fig:polygons-layers` (Part I §1.2, p. 10): Newton polygons at corner $(8,28)$, lattice points coloured by layer, case (1) overlay.
+- J4 `td:fig:dicritical` (Part III §1.3, p. 65): pencil $\Lambda_c$ for the non-Keller map $F=(x,xy)$, the two kinds of branch at infinity.
+- J6 `rp:fig:cstar` (Part IV §3, p. 86): $C^*$ support geometry and the $\mu\neq0$ counterexample $G=x+x^2y$.
+- J5 `rp:fig:slot` (Part IV §11.1, p. 96): the slot chart through four blow-ups.
+- J3 `rp:fig:kappa` (Part IV §11.2, p. 98): $\kappa$-law curves, collapse, $\Sigma$, residuals (284 values, residual 0); caption states B/I1 conditional on L1–L5 and a generic-pattern hypothesis, off $\Sigma$, and that 284/284 is a check on eight $t_1$ slices, not a proof.
+- J2 `rp:fig:status` (Part IV §13, p. 100): status map of the three routes, snapshot at the close of the 25 November 2026 work (14:05 CST), rows stay grade B.
+
+**Slot X convention (Part IV §11.2).** The draft said the generic-$t_1$ middle streams were "rational functions of $(X,t_1)$ with $X=m-12$". Record: `theorem-r-campaign/legs/W12-SLOT/REPORT.md` l.8 (run-A engine over $\mathbb Q(X)$, $X=m-12$, layers 0..13, l.71) and `legs/W18-SLOTK/REPORT.md` §1b l.45–47 (generic-$t_1$ engine, K=6, $m=X+5$). SymPy check: the four GS6 entries equal the $\kappa$ closed forms only at $X=m-5$. Text now says "rational functions of $(m,t_1)$" and adds one sentence defining $X$ in both derivations. Nothing else of substance changed.
+
+**Other.** Contents page-number width widened (`\@pnumwidth` 2.2em, `\@tocrmarg` 3em) to remove four 1.8 pt overfull boxes caused by three-digit page numbers. 102 → 108 pp.

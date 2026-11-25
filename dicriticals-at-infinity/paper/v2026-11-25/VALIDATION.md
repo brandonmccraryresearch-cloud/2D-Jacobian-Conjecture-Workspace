@@ -79,3 +79,13 @@ The grade rules hold. No grade is printed above the record. CommutingDerivations
 - Existing checkers re-run: checks_part3/check_part3_steps.py EXIT 0 (RESULT: PASS); checks_part4/part4_checks.py EXIT 0 (FAILS: []); checks_part4/part4_plants.py EXIT 0 (4/4 plants caught); validation_b_checks.py EXIT 0 (fails: []).
 - Number check (digit tokens, whole .tex, old vs new): no number new to the document; the only decreases are wave numbers removed by Fix 2 (after discounting wave mentions, nothing removed). Increases are dates, the new chart/proof exponents, and repeats of 166 and 27.
 - Pages rendered and inspected (pdftoppm, 70 dpi): 68, 74, 75, 78, 79, 81, 83, 90, 96, 98.
+
+## 2026-11-25 evening — figures J1–J6 + slot X convention
+- Build (xelatex ×3, conda env jacobian-conjecture-2d): errors 0, undefined refs 0, missing chars 0, overfull boxes 0, no "Float too large"; 108 pages.
+- Figure checks `paper-figures-2026-11-25/jacobian/scripts/check_all.py` against the current draft: EXIT 0, ALL_OK True, 30/30 (24 real + 6 planted variants caught).
+- Font audit (printed minimum at `\linewidth`, `\textwidth`=16.2 cm): J1 9.32, J2 8.02, J3 8.13, J4 9.16, J5 8.30, J6 8.07 pt (all ≥ 8).
+- Colour vision `scripts/cvd_check.py` (colorspacious 1.1.2, Machado 2009 severity 100; deutan/protan/tritan; CAM02-UCS greyscale; planted red/green control rejected): EXIT 0. Min categorical ΔE: J1 9.82 (deutan), J2 11.73 (tritan), J3 Σ markers 13.96, J4 classes ≥ 49, J5 ≥ 56, J6 12.48. Sequential: J3 viridis adjacent ΔE ≥ 10.15, J4 cividis ≥ 4.31 (tritan), J5 ≥ 11.25. Greyscale: J1, J2, J3-Σ rely on non-colour cues (position/markers, status words in every box).
+- `notes/figs_integration/check_figs_text.py` (new): EXIT 0 — six figure blocks and labels, each referenced with a pointer sentence, caption vocabulary (no wave/record/PASS/FAIL/ELIM/bold), J2/J3 status wording, no grade token removed or new to its part, X fix present, other parts byte-identical; 2 planted caption variants rejected.
+- Existing checkers: check_part3_steps.py EXIT 0 (RESULT: PASS); part4_checks.py EXIT 0; part4_plants.py EXIT 0 (4/4 caught); validation_b_checks.py EXIT 0; check_p2_text.py EXIT 0; claim_text_check.py EXIT 0 (first run failed on caption tokens "grade~C"/"4K/I1"/"grade~B"; captions reworded, re-run EXIT 0).
+- Pages rendered (pdftoppm) and inspected: 9, 10, 65, 86, 96, 97 (X fix), 98, 99, 100, 101, 102.
+- Known cosmetic: in J3 the "dotted: $L(m-2)=0$" label touches two curves in the collapse panel.

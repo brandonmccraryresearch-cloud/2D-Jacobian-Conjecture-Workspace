@@ -70,6 +70,10 @@
 \@addtoreset{leanlisting}{part}
 \@addtoreset{codelisting}{part}
 \makeatother
+\makeatletter
+\renewcommand{\@pnumwidth}{2.2em}% three-digit page numbers in the contents
+\renewcommand{\@tocrmarg}{3em}
+\makeatother
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\theHsection}{\thepart.\arabic{section}}
 \renewcommand{\theHequation}{\thepart.\arabic{equation}}
@@ -157,13 +161,20 @@ N(P)&=\operatorname{conv}\{(0,0),(1,0),(8,14),(8,16)\},\\
 N(Q)&=\operatorname{conv}\{(0,0),(2,1),(12,21),(12,24)\},
 \end{aligned}
 \end{equation}
-with $[P,Q]=x^2$ in the coordinates after $\varphi$. Here $N(\cdot)$ denotes the Newton polygon, defined in~\S\ref{ab:sec:notation}. Figure~\ref{ab:fig:polygons} shows the two polygons.
+with $[P,Q]=x^2$ in the coordinates after $\varphi$. Here $N(\cdot)$ denotes the Newton polygon, defined in~\S\ref{ab:sec:notation}. Figure~\ref{ab:fig:polygons} shows the two polygons. Figure~\ref{ab:fig:polygons-layers} draws them again as lattice points coloured by the layer $k=2i-j$ used in the layer descent below; read along a slope-$2$ line to see one layer, and compare the filled dots with the grey ones to see how much larger the case-(1) polygons of Part~II are.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\linewidth]{figures_ab/fig1_newton_polygons.png}
 \caption{The branch~(a,b) Newton polygons of~\cite[Proposition~4.3(2)]{GGHV}, checked against v1, lines~495 and 599--600 of the text extraction. $N(P)$ contains $25$ lattice points and $N(Q)$ contains $47$.}
 \label{ab:fig:polygons}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures_jac/figJ1_newton_layers.pdf}
+\caption{Case~(1) of GGHV Proposition~4.3 at the corner $(8,28)$ is case~(2) enlarged by one wedge at $i=0$. The panels show the lattice points of $N(P)$ (left) and $N(Q)$ (right) for the two normal forms, in the coordinates after $\varphi$ in which $[P,Q]=x^2$. Filled dots are case~(2): $N(P)=\mathrm{conv}\{(0,0),(1,0),(8,14),(8,16)\}$ with $25$ lattice points and $N(Q)=\mathrm{conv}\{(0,0),(2,1),(12,21),(12,24)\}$ with $47$. Each dot is coloured by its layer $k=2i-j$ in $P=\sum_k y^{-k}A_k(u)$, $Q=\sum_\ell y^{-\ell}B_\ell(u)$, $u=xy^2$; a layer is a line of slope $2$, the direction of $u$. Open grey dots and the dashed outline are the extra points of case~(1), with the added vertex $(0,8)$ ($61$ points) and $(0,12)$ ($125$ points). The points are generated from the half-plane predicates \texttt{inNP}, \texttt{inNQ}, \texttt{inNPc} and \texttt{inNQc} of the Lean sources, and their numbers agree with the lattice counts proved in the kernel. Case~(2) is excluded by \texttt{main\_theorem} (Theorem~\ref{ab:thm:main}) and case~(1) by \texttt{branch\_c\_eliminated}, both Lean kernel theorems on the standard axioms. Applying them to $(72,108)$ needs GGHV Proposition~4.3 to be exhaustive, which has not been verified, so the figure does not show $(72,108)$ excluded.}
+\label{ab:fig:polygons-layers}
 \end{figure}
 
 \subsection{Main result}
@@ -1809,6 +1820,16 @@ pencil has no base points.'' That is not the standard notion, and
 Definition~\ref{td:def:dicritical} replaces it throughout.
 \end{remark}
 
+Figure~\ref{td:fig:dicritical} shows both kinds of branch at infinity on an explicit map that is not Keller: follow one member of the pencil from the left panel to its image line on the right, and see where its two ends land, one on $S_F$ (round marker) and one on the line at infinity (square marker).
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures_jac/figJ4_dicritical_concept.pdf}
+\caption{The members of a pencil $\Lambda_c$ have branches at infinity of two kinds: those that $F$ sends onto the non-properness set $S_F$, and those it sends to the line at infinity. The figure illustrates Definition~\ref{td:def:dicritical} and Proposition~\ref{td:prop:count}(b) on the map $F(x,y)=(x,xy)$. This map is not a Keller map, since $\det JF=x$; it is used only because every curve is explicit, and it is not an example of the results of this part. Here $S_F=\{u=0\}$, $c=(1,0)$ and $F^{-1}(c)=\{(1,0)\}$. Left: the members $F^{-1}(\ell_\theta)=\{y=\tan\theta\,(x-1)/x\}$ for ten directions $\theta$. Right: the lines $\ell_\theta$ through $c$. As $x\to0$ a member runs to $[0{:}1{:}0]$ and its image tends to $\ell_\theta\cap S_F=(0,-\tan\theta)$ (round markers); as $\theta$ varies these branches sweep out $S_F$. As $x\to\pm\infty$ it runs to $[1{:}0{:}0]$ and its image tends to $[1{:}\tan\theta{:}0]$ on $L'_\infty$ (square markers). Both panels use the disc model $p\mapsto p/(1+|p|)$, whose boundary circle is the line at infinity with antipodes identified; it distorts distances, not incidences. Only real points are drawn.}
+\label{td:fig:dicritical}
+\end{figure}
+
 \subsection{Counting dicriticals}
 
 The first result counts the dicriticals of $\Lambda_c$ when $c$ lies outside the
@@ -2906,6 +2927,14 @@ The condition $\mu\ne0$ cannot be dropped, and a two-line computation shows why.
 [P,Q]=2GG_x\cdot3G^2G_y-2GG_y\cdot3G^2G_x=6G^3(G_xG_y-G_yG_x)=0 .
 \]
 The supports of $G^2$ and $G^3$ satisfy the half-plane conditions of the theorem (checked on November 23, 2026), so a statement without $\mu\ne0$ would be false. The same argument gives $[G^a,G^b]=0$ for all exponents; we checked $1\le a,b\le6$ in SymPy.
+ Figure~\ref{rp:fig:cstar} draws the two supports and the counterexample: the dots of $G^2$ and $G^3$ sit exactly on the boundary lines, and the circled vertex coefficients are present.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures_jac/figJ6_cstar_support.pdf}
+\caption{The chain $C^*$ at degree $(56,84)$ is excluded by half-plane support conditions, and the hypothesis $\mu\neq0$ cannot be dropped. Left and centre: the supports $S_P=\{i-j\le2,\ 4i-j\le14\}$ and $S_Q=\{i-j\le3,\ 4i-j\le21\}$, cut at total degree $56$ and $84$ for orientation. The thick edge is the first edge $(7,21)\to(2,1)$ scaled by $2$ and $3$: $(14,42)$--$(4,2)$ and $(21,63)$--$(6,3)$. Right: a zoom on the corner, with the coefficients $p_{20}$, $p_{42}$, $q_{30}$ (circled) that the theorem requires to be nonzero, and the supports of $G^2$ and $G^3$ for $G=x+x^2y$. These supports lie on the boundary lines and satisfy every hypothesis except $\mu\neq0$, while $[G^2,G^3]=0$. The statements \texttt{cstar\_no\_pair\_firstEdge} and \texttt{cstar\_no\_pair\_deg} are Lean kernel theorems. The row stays at grade B, because the passage from the printed row to \texttt{FirstEdgeCstar} is a reading and because the row matters only if the enumeration premise and the reduction chain hold.}
+\label{rp:fig:cstar}
+\end{figure}
 
 \subsection{The certificate}
 
@@ -3074,19 +3103,37 @@ One computation explains why the slot resists the residue arguments that work at
 \]
 A nonzero constant is a sum of brackets of elements of $\mathcal O$. Hence no linear functional $L$ on $\mathcal O$ with $L([P,Q])=0$ for all $P,Q\in\mathcal O$ can have $L(1)\ne0$, and no obstruction that is linear in the Jacobian (a residue, a period, a twisted residue) can exclude the slot (grade B, November 22, 2026).
 
+Figure~\ref{rp:fig:slot} follows the curves $\tau=\mathrm{const}$ through the four blow-ups: in each panel watch whether the curves still meet in the circled centre; they part only in the last panel, on $E_4$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures_jac/figJ5_slot_chain.pdf}
+\caption{In the slot, the curves $x^3y-cx=\tau$ all pass through the first three centres and separate only on the fourth exceptional curve $E_4$, where $\tau$ is a coordinate. The chart is the one above, with $c=-1$, Wright's case. Top left: the real curves $\tau=\mathrm{const}$ for $x>0$, approaching $[1{:}0{:}0]$. The other panels use $u=1/x$, $v=y/x$ and then the successive blow-up charts $v_1=v/u$, $v_2=v_1/u$, $v_3=v_2/u$ and $v_4=(v_3-c)/u$; in them the curve is $v=cu^3+\tau u^4$, $v_1=cu^2+\tau u^3$, $v_2=cu+\tau u^2$, $v_3=c+\tau u$ and $v_4=\tau$. The vertical line is $L_\infty$ or $E_k=\{u=0\}$, and the open circle marks the next centre: $(0,0)$ three times, then $(0,c)$. Each centre is a free point of the newest exceptional curve. Every $E_S$ has depth at least $4$ (B/I1); the slot itself, condition R$\infty$, is open. The figure shows the geometry of the chart only, and says nothing about whether a Keller pair realizes it.}
+\label{rp:fig:slot}
+\end{figure}
+
 \subsection{The formal computations}
 
 We attacked the slot through a formal expansion. In the grading of $\mathcal O$ by $\deg X=-1$, $\deg Y=2$ that Wright suggests, one fixes the shape of a hypothetical pair (we work with the $(2,5)$ shape of genus~$1$) and solves $[P,Q]=c$ layer by layer in a band variable. At each order $m$ the new equations are linear in the new unknowns and are eliminated against pivots. A \emph{pivot stream} is the sequence, indexed by $m$, of the pivot coefficients at a fixed offset from the current order; six streams occur, at offsets $m-12$, $m-10$ and $m-5,\dots,m-2$. The \emph{run-A slice} fixes $t_1=1$ and a small set of other parameters. A \emph{window termination at $J$} would mean that the formal solution stops after layer $J$, so that $P,Q$ are polynomials of bounded degree; excluding it at $J$ excludes such pairs of the corresponding degree on the slice.
 
-The results, with their grades, are these. All six pivot streams have exact closed forms (C/I1, empirical: fitted on $m\le25$ and matched exactly for $m=26,\dots,40$ on two slices, with a refit in Wolfram Engine over $m=26,\dots,45$). These forms were then derived for every $m\ge13$ on the run-A slice, by hand lemmas reducing order $m$ to a finite computation from order $m-13$ and an identity check in SymPy and Wolfram Engine (B/I1). For generic $t_1$ the four middle streams are rational functions of $(X,t_1)$ with $X=m-12$, and they depend on $t_1$ through
+The results, with their grades, are these. All six pivot streams have exact closed forms (C/I1, empirical: fitted on $m\le25$ and matched exactly for $m=26,\dots,40$ on two slices, with a refit in Wolfram Engine over $m=26,\dots,45$). These forms were then derived for every $m\ge13$ on the run-A slice, by hand lemmas reducing order $m$ to a finite computation from order $m-13$ and an identity check in SymPy and Wolfram Engine (B/I1). For generic $t_1$ the four middle streams are rational functions of $(m,t_1)$, and they depend on $t_1$ through
 \[
 \kappa(t_1)=25-2t_1^2 ,
 \]
-which enters at the coefficient $p_{2,0}=(2t_1^2-25)/50=-\kappa/50$. With $q(m)=\kappa\,m(m+1)-1200$, one has, for instance, $L(m-2)=\frac{t_1}{3125}\cdot\frac{q(m)}{m}$. These forms are B/I1, conditional on the hand lemmas of November 23 and on a generic-pattern hypothesis. The pivots vanish only on the countable exceptional set
+which enters at the coefficient $p_{2,0}=(2t_1^2-25)/50=-\kappa/50$. With $q(m)=\kappa\,m(m+1)-1200$, one has, for instance, $L(m-2)=\frac{t_1}{3125}\cdot\frac{q(m)}{m}$. (The symbolic computations work in a shifted order variable $X$, fixed by how many layers they keep: $X=m-12$ in the run-A derivation, which keeps layers up to $13$, and $X=m-5$ in the generic-$t_1$ derivation, which keeps layers up to $6$; the forms printed here are in $m$.) These forms are B/I1, conditional on the hand lemmas of November 23 and on a generic-pattern hypothesis. The pivots vanish only on the countable exceptional set
 \[
 \Sigma=\{t_1\kappa(12t_1^2-25)=0\}\ \cup\ \{t_1:\ q(j)\,r(j)=0\ \text{for some integer } j\ge10\},
 \]
 where $r$ is an explicit cubic in $j$ with coefficients in $\kappa$. The second set starts at $j=10$ because the pivots at offset $m-3$ already involve $q(10)$ at $m=13$. That point is genuine: $q(10)=110\kappa-1200=0$ gives $\kappa=120/11$, and $120/11\ne1200/(j(j+1))$ for $j\ge13$. Earlier transient values belong to the same families; for example $q(7)/1000=(56\kappa-1200)/1000=\tfrac15-\tfrac{14}{125}t_1^2$, so the transient $t_1^2=25/14$ found on November 23 is the zero of $q(7)$. On November 25 we showed that the branches of $\Sigma$ are isolated for starting order $m_0\ge13$ (B/I1).
+
+Figure~\ref{rp:fig:kappa} plots the four forms against the solver values; look at the bottom-left panel, where all seven values of $t_1$ fall on straight lines whose slopes are $\kappa(t_1)$, and at the residual panel, which is identically zero.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures_jac/figJ3_kappa_law.pdf}
+\caption{For generic $t_1$, the four middle pivot streams of the slot depend on $t_1$ only through $\kappa(t_1)=25-2t_1^2$, and they agree with the exact solver values. Top: the closed forms $L(m-2)=\tfrac{t_1}{3125}\tfrac{q(m)}{m}$, $L(m-3)=-\tfrac{r(m)}{1250\,m(m-1)}$, $L(m-4)=\tfrac{\kappa^3(m-6)\cdots(m-9)}{2500\,t_1(m-2)\,q(m-1)}$ and $L(m-5)=\tfrac{\kappa^4(m-6)\cdots(m-10)}{12500\,(m-3)\,r(m-1)}$, with $q(m)=\kappa m(m+1)-1200$ and $r(m)=\kappa^2m^3-350\kappa m^2+(1225\kappa-\kappa^2)m+7875(25-\kappa)$. The lines extend the forms to real $m$ as a guide; only integer $m$ is meaningful. The markers are the $284$ coefficients with $m\ge13$ at offsets $2,\dots,5$ from eight independent solver runs at $t_1\in\{\tfrac12,1,\tfrac54,\tfrac32,2,3,4\}$ (two runs at $t_1=1$). The vertical axis is symmetric-logarithmic, linear for $|L|<10^{-3}$. Bottom left: the collapse $3125\,m\,L(m-2)/t_1+1200=\kappa\,m(m+1)$, a line through the origin of slope $\kappa$. Bottom centre: real points of $\Sigma$ for $10\le j\le80$, namely the zeros of $q(j)$, $t_1^2=\tfrac{25}{2}-\tfrac{600}{j(j+1)}$, and the real roots of $r(j)$ read as a quadratic in $\kappa$; both accumulate at $t_1^2=25/2$. Complex points are not shown, and the dotted lines mark the sampled $t_1^2$. Bottom right: solver value minus closed form, in exact rationals; all $284$ differences are $0$. The $\kappa$ law is grade B/I1, conditional on the five hand lemmas L1--L5 of November 23 and on a generic-pattern hypothesis, and it holds off $\Sigma$. The agreement $284/284$ is a check on eight $t_1$ slices, not a proof.}
+\label{rp:fig:kappa}
+\end{figure}
 
 On the side of exclusions, the truncated systems of the second face case at caps $2$ and $3$ were settled: cap~$2$ has dimension~$0$ with $287$ solutions (B), and cap~$3$ has a real point (B/I1). These are consistency results; they show that small truncations prove nothing, as Moh's analysis warns. Window termination is excluded over $\mathbb Q$ on the run-A slice for $J=15,\dots,20$ (B/I1) and then for $J=21,\dots,24$, and on the two further slices B and C, which fix $t_1=5/4$ and $t_1=2$, for $J=15,\dots,19$; on slice~B, and later slice~C, for $J=20,\dots,24$ the systems have dimension $0$ at two primes in Singular and msolve (B/I1, finite range only). The passage from characteristic $p$ to $\mathbb Q$ uses a projective-reduction lemma (M1): if the weighted homogenizations of $p$-integral generators define a zero-dimensional scheme modulo $p$, the ideal over $\mathbb Q$ has no zero. All these results are negative-only, scoped to the slice, and vacuous against Moh's degree bound: excluding termination up to $J_0$ excludes $\deg Q\le3J_0-34$, which is $26$ at $J_0=20$ and $38$ at $J_0=24$, while reaching Moh's bound of $100$ would need $J_0\approx45$ ($3\cdot45-34=101$).
 
@@ -3112,9 +3159,19 @@ while the support of $P$ has an edge of slope $1$ that the corollary excludes. T
 
 Theorem~R, and with it JC(2), is open; the equivalence itself is Proposition~\ref{td:prop:equiv} (grade B). Nothing in this part proves either. The settlement of (P2) on November 11, 2026 (Proposition~\ref{td:prop:P2}, grade B, I1) removes one premise from the bridge theorem of Part~III; the bridge still covers only two dicriticals over distinct free points of one $E_2$, and obligations O1, O3 and O4 are untouched by it.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures_jac/figJ2_status_map.pdf}
+\caption{None of the three routes to Theorem~R is closed: each ends in an open box or in an unverified premise. Each box is one result or obligation, and its fill is its grade in the project's verification log. Blue is a theorem checked by the Lean kernel on the standard axioms, green is grade B, yellow is C, vermillion is open, and grey is a premise taken from the literature and not verified; white boxes only group results. A K badge on a green box means that the formal statement is a kernel theorem, while the row or step it is read as stays at grade B, because the passage from the printed row to the formal statement is a reading and because the enumeration premise P1 is grade B. Each box also states its grade in words, so the figure reads correctly in greyscale. Dashed edges mark the passage from a corner of $(72,108)$ to its normal form, which is GGHV's. The colours record grades; they are not a proof. The snapshot is the state at the close of the 25 November 2026 work (14:05 CST); compare Table~\ref{rp:tab:status}. The $\kappa$-law box is conditional (Figure~\ref{rp:fig:kappa}); the windows result is negative only and finite in range; (F3) is a formalization of a classical result.}
+\label{rp:fig:status}
+\end{figure}
+
 The degree pair $(72,108)$ is eliminated only conditionally. Parts~I and~II eliminate the two cases of GGHV Proposition~4.3 in Lean, but the exclusion of $(72,108)$ rests on that proposition being correct and exhaustive (\cite{GGHV}, arXiv:2204.14178v1) and on the reduction chain, which is ledgered and not re-derived. The same holds for every row in this part: $C^*$, rows $168$, $175$ and the $193$ CN-only rows are eliminated in the kernel from their defining data, but their grade as eliminations of printed rows is B, because the enumeration premise is B and the R-def reading is B. Row~$120$ is half done. The layer-(i) normal-form theorem is a kernel theorem; the passage from it to the rows is a reading, and the covering statement of layer (ii) is an explicit Lean proposition that has not been proved.
 
 The sharpest open problems are the following. First, layer~(ii) of the enumeration premise: regular-corner conditions on aligned first-edge data and a degree bound, which would make \texttt{CoversAutAl} a bounded decidable check. Second, SP-W4 at $\gamma\ne0$, which is of the strength of JC(2). Third, the condition R$\infty$ of the slot. Fourth, the build that would discharge hgen for row~$168$. Fifth, the branch $f_5=0$ of row~$120$, where consistency must be decided at layer $13$ or beyond. Sixth, the wiring of the formalized (F3) into the reduction step that uses it, with a check that the field degree is the same object on both sides. To these we add an audit of earlier verdicts that relied on msolve alone, and the case $m\ge4$, $\alpha_1=0$ of the Rodríguez Díaz reduction.
+
+Figure~\ref{rp:fig:status} gathers these statuses into one map of the three routes; read each column from its heading down to the first vermillion or grey box, which is where that route stops.
+
 
 \begin{center}
 \refstepcounter{table}\label{rp:tab:status}%
