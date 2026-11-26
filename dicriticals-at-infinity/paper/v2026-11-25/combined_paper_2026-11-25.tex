@@ -1,25 +1,35 @@
+% !TEX program = lualatex
 \documentclass[a4paper,11pt]{article}
-\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage[a4paper,top=2.5cm,bottom=2.4cm,left=2.3cm,right=2.3cm]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{fontspec}
 \usepackage{unicode-math}
 \usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{hyperref}
-\usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{seqsplit}
 \usepackage{fvextra}
 \usepackage{etoolbox}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{hyperref}
+\newcommand{\JSshorttitle}{The GGHV Normal Forms at $(72,108)$ and Theorem~R}
+\newcommand{\JSauthor}{B.\ D.\ McCrary}
+\newcommand{\JSfootline}{Edition of November 25, 2026}
 % Allow long filenames to break across lines
 \newcommand{\filename}[1]{\texttt{\seqsplit{#1}}}
 % fvextra Verbatim for Lean listings (Unicode-safe, keeps characters in order)
 \newcounter{leanlisting}
 \newenvironment{leanlisting}[2]{%
   \refstepcounter{leanlisting}\label{#2}%
-  \begin{center}\textit{\small Listing \theleanlisting: #1}\end{center}%
-  \Verbatim[breaklines=true,breakanywhere=true,fontsize=\footnotesize,frame=single,framesep=4pt,rulecolor=\color{gray!50},fillcolor=\color{gray!5}]%
+  \begin{center}\textit{\small\color{inksecondary}Listing \theleanlisting: #1}\end{center}%
+  \Verbatim[breaklines=true,breakanywhere=true,fontsize=\footnotesize,frame=single,framesep=4pt,rulecolor=\color{borderstrong},fillcolor=\color{bgsubtle}]%
 }{%
   \endVerbatim%
 }
@@ -27,22 +37,177 @@
 \newcounter{codelisting}
 \newenvironment{codelisting}[2]{%
   \refstepcounter{codelisting}\label{#2}%
-  \begin{center}\textit{\small Listing \thecodelisting: #1}\end{center}%
-  \Verbatim[breaklines=true,breakanywhere=true,fontsize=\footnotesize,frame=single,framesep=4pt,rulecolor=\color{gray!50},fillcolor=\color{gray!5}]%
+  \begin{center}\textit{\small\color{inksecondary}Listing \thecodelisting: #1}\end{center}%
+  \Verbatim[breaklines=true,breakanywhere=true,fontsize=\footnotesize,frame=single,framesep=4pt,rulecolor=\color{borderstrong},fillcolor=\color{bgsubtle}]%
 }{%
   \endVerbatim%
 }
-% Fonts: Noto Sans (text), Noto Sans Mono (code) and Noto Sans Math (math)
-% are primary.  Glyphs missing from Noto Sans Math are taken from Fira Math
-% by explicit range assignments below the \setmathfont line; glyphs missing
-% from Noto Sans Mono in Lean listings are routed through active characters
-% to Noto Sans Math.
-\setmainfont{Noto Sans}[BoldFont={Noto Sans Bold},ItalicFont={Noto Sans Italic},BoldItalicFont={Noto Sans Bold Italic}]
-\setmonofont{Noto Sans Mono}[BoldFont={Noto Sans Mono Bold},ItalicFont={Noto Sans Mono},ItalicFeatures={FakeSlant=0.2},Scale=0.92]
-\setmathfont{Noto Sans Math}
-% FIRA_RANGE_SUBS
-\newfontfamily\notosans{Noto Sans}
-\newfontfamily\notosansmath{Noto Sans Math}
+% ==============================================================================
+% JOURNAL STYLE BLOCK (2026-11-26), built on the preamble of the corrected
+% topology report (main_corrected.tex, 2026-11-25): Noto Sans text with a
+% per-glyph Fira Sans fallback chain (luaotfload), Noto Sans Mono, Noto Sans
+% Math v3.000 (bundled in ./fonts, has the OpenType MATH table) with a Fira
+% Math range fallback; the report's light-mode palette; titlesec section
+% rules; fancyhdr hairline header/footer; caption setup; hyperref colour links.
+% Compile with LuaLaTeX.
+% ==============================================================================
+\directlua{
+  luaotfload.add_fallback("notoregfb",  {"FiraSans-Regular.otf:mode=harf;"})
+  luaotfload.add_fallback("notoboldfb", {"FiraSans-Bold.otf:mode=harf;"})
+  luaotfload.add_fallback("notoitfb",   {"FiraSans-Italic.otf:mode=harf;"})
+  luaotfload.add_fallback("notobifb",   {"FiraSans-BoldItalic.otf:mode=harf;"})
+}
+\setmainfont{NotoSans}[
+  Extension      = .ttf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+  UprightFeatures    = {RawFeature={fallback=notoregfb}},
+  BoldFeatures       = {RawFeature={fallback=notoboldfb}},
+  ItalicFeatures     = {RawFeature={fallback=notoitfb}},
+  BoldItalicFeatures = {RawFeature={fallback=notobifb}}
+]
+\setsansfont{NotoSans}[
+  Extension      = .ttf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+  UprightFeatures    = {RawFeature={fallback=notoregfb}},
+  BoldFeatures       = {RawFeature={fallback=notoboldfb}},
+  ItalicFeatures     = {RawFeature={fallback=notoitfb}},
+  BoldItalicFeatures = {RawFeature={fallback=notobifb}}
+]
+\setmonofont{NotoSansMono}[
+  Extension   = .ttf,
+  UprightFont = *-Regular,
+  BoldFont    = *-Bold,
+  ItalicFont  = *-Regular,
+  ItalicFeatures = {FakeSlant=0.2},
+  Scale       = 0.88
+]
+\setlength{\emergencystretch}{3em}
+\setmathfont{NotoSansMath-Regular.otf}[Path = ./fonts/, Scale = 1.0]
+\setmathfont{FiraMath-Regular.otf}[
+  Scale = MatchLowercase,
+  range = {"2011,"2012,"2013,"201A,"201E,"2030,"2039,"203A,"203F,"20B4,"20BA,"20BD,"2116,"2122,"212A,"212E,"2153,"2154,"2155,"2156,"2157,"2158,"2159,"215A,"215B,"215C,"215D,"215E,"215F,"2581,"2582,"2583,"2585,"2586,"2587,"2589,"258A,"258B,"258D,"258E,"258F,"2594,"2595,"2596,"2597,"2598,"2599,"259A,"259B,"259C,"259D,"259E,"259F,"2620,"2639,"263A,"FB00,"FB01,"FB02,"FB03,"FB04}
+]
+\tracinglostchars=2
+
+% ---- palette (exact light-mode palette of the topology report) -------------
+\definecolor{surface}{HTML}{FFFFFF}
+\definecolor{bgsubtle}{HTML}{F8F9FA}
+\definecolor{bgheader}{HTML}{F4F5F7}
+\definecolor{inkprimary}{HTML}{1B1C1D}
+\definecolor{inksecondary}{HTML}{575B5F}
+\definecolor{borderhairline}{HTML}{E0E0E0}
+\definecolor{borderstrong}{HTML}{C4C7C5}
+\definecolor{truebg}{HTML}{E8F0FE}
+\definecolor{trueborder}{HTML}{C6DAFC}
+\definecolor{trueaccent}{HTML}{1A73E8}
+\definecolor{truetext}{HTML}{174EA6}
+\definecolor{truesub}{HTML}{1967D2}
+\definecolor{openbg}{HTML}{FEF3E6}
+\definecolor{openborder}{HTML}{FAD7B4}
+\definecolor{openaccent}{HTML}{FA903E}
+\definecolor{opentext}{HTML}{B05B00}
+\definecolor{falsebg}{HTML}{FCE8E6}
+\definecolor{falseborder}{HTML}{F5C2BE}
+\definecolor{falseaccent}{HTML}{D93025}
+\definecolor{falsetext}{HTML}{A50E0E}
+\definecolor{badgebg}{HTML}{ECEFF1}
+\definecolor{badgetext}{HTML}{37474F}
+\definecolor{neonmagenta}{HTML}{FF10F0}
+
+% ---- status tags (used sparingly, only where the text already states the status)
+\newcommand{\sttag}[3]{{\setlength{\fboxsep}{1.2pt}\colorbox{#1}{\textcolor{#2}{\footnotesize #3}}}}
+\newcommand{\stproved}[1]{\sttag{truebg}{truetext}{#1}}
+\newcommand{\stopen}[1]{\sttag{openbg}{opentext}{#1}}
+\newcommand{\strefuted}[1]{\sttag{falsebg}{falsetext}{#1}}
+\newcommand{\stneutral}[1]{\sttag{badgebg}{badgetext}{#1}}
+
+% ---- tables: booktabs rules in palette grey, light header shading ----------
+\arrayrulecolor{borderstrong}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.22}
+\let\jsOldToprule\toprule
+\renewcommand{\toprule}{\jsOldToprule\rowcolor{bgheader}}
+
+% ---- headings ---------------------------------------------------------------
+\titleformat{\part}[display]
+  {\centering\Huge\bfseries\color{inkprimary}}
+  {\large\color{trueaccent}\MakeUppercase{\partname}~\thepart}{8pt}{}
+  [\vspace{6pt}{\color{trueaccent}\titlerule[1.2pt]}]
+\titleformat{\section}
+  {\large\bfseries\color{inkprimary}}
+  {\textcolor{trueaccent}{\thesection.}}{0.5em}{}
+  [\vspace{2pt}{\color{borderhairline}\titlerule[0.8pt]}]
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{inkprimary}}
+  {\textcolor{trueaccent}{\thesubsection}}{0.5em}{}
+\titleformat{\subsubsection}
+  {\normalsize\itshape\color{inkprimary}}
+  {\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{5pt}
+\titlespacing*{\subsubsection}{0pt}{10pt}{4pt}
+
+% ---- header / footer --------------------------------------------------------
+\setlength{\headheight}{21.3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\bfseries\color{inkprimary}\JSshorttitle}
+\fancyhead[R]{\footnotesize\color{inksecondary}\JSauthor}
+\fancyfoot[L]{\footnotesize\color{inksecondary}\JSfootline}
+\fancyfoot[R]{\footnotesize\bfseries\color{inkprimary}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{borderhairline}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{borderhairline}\leaders\hrule height \footrulewidth\hfill}}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[R]{\footnotesize\bfseries\color{inkprimary}\thepage}%
+  \fancyfoot[L]{\footnotesize\color{inksecondary}\JSfootline}}
+
+% ---- captions ---------------------------------------------------------------
+\captionsetup{
+  font={footnotesize},
+  labelfont={bf, color=truetext},
+  textfont={color=inksecondary},
+  justification=raggedright,
+  singlelinecheck=false,
+  skip=6pt
+}
+
+% ---- abstract in a light panel ---------------------------------------------
+\newtcolorbox{jsabstractbox}{enhanced, breakable, colback=bgsubtle,
+  colframe=bgsubtle, boxrule=0pt, arc=2pt, borderline west={2.2pt}{0pt}{trueaccent},
+  left=10pt, right=10pt, top=8pt, bottom=8pt}
+\renewenvironment{abstract}
+  {\begin{jsabstractbox}{\small\bfseries\color{truetext}\MakeUppercase{Abstract}\par}\vspace{3pt}\small}
+  {\end{jsabstractbox}}
+
+% ---- title block ------------------------------------------------------------
+\makeatletter
+\renewcommand{\@maketitle}{%
+  \newpage\null\vskip -1.2em
+  {\color{trueaccent}\hrule height 2.2pt}\vskip 0.3em
+  {\color{borderhairline}\hrule height 0.4pt}\vskip 1.6em
+  \begin{center}%
+    {\LARGE\bfseries\color{inkprimary}\@title\par}\vskip 1.4em
+    {\normalsize\color{inkprimary}\lineskip .5em\begin{tabular}[t]{c}\@author\end{tabular}\par}\vskip 1em
+    {\small\color{inksecondary}\@date\par}%
+  \end{center}\par\vskip 1.2em}
+\makeatother
+
+\makeatletter\renewcommand\@biblabel[1]{\textcolor{truetext}{[#1]}}\makeatother
+
+% ---- hyperref ---------------------------------------------------------------
+\hypersetup{colorlinks=true, linkcolor=trueaccent, urlcolor=trueaccent,
+  citecolor=truesub, filecolor=trueaccent, pdfauthor={Brandon D. McCrary}}
+\newfontfamily\notosans{NotoSans}[Extension=.ttf,UprightFont=*-Regular]
+\newfontfamily\notosansmath{NotoSansMath-Regular.otf}[Path=./fonts/]
 \catcode`\∈=\active
 \protected\def∈{\ifmmode\in\else{\notosansmath\char"2208}\fi}
 \catcode`\∃=\active
@@ -55,10 +220,10 @@
 \protected\def⊆{\ifmmode\subseteq\else{\notosansmath\char"2286}\fi}
 \catcode`\ₐ=\active
 \protected\defₐ{\ifmmode{}_{\mathrm{a}}\else{\notosans\char"2090}\fi}
-\hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
-\setlength{\parskip}{0.6em}
+\setlength{\parskip}{0.55em}
+\linespread{1.06}
 \setlength{\parindent}{0pt}
-\setlength{\emergencystretch}{2em}
+\setlength{\emergencystretch}{3em}
 
 % Section, equation, figure, table and listing numbering restarts in each
 % part, matching the standalone papers; hyperref anchors stay unique.
@@ -82,23 +247,27 @@
 \renewcommand{\theHleanlisting}{\thepart.\arabic{leanlisting}}
 \renewcommand{\theHcodelisting}{\thepart.\arabic{codelisting}}
 
-\theoremstyle{plain}
+\newtheoremstyle{jsplain}{8pt}{8pt}{\itshape}{}{\bfseries\color{truetext}}{.}{0.5em}{}
+\newtheoremstyle{jsdef}{8pt}{8pt}{\normalfont}{}{\bfseries\color{truetext}}{.}{0.5em}{}
+\newtheoremstyle{jsrem}{6pt}{6pt}{\normalfont}{}{\itshape\color{inksecondary}}{.}{0.5em}{}
+\theoremstyle{jsplain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 
-\theoremstyle{definition}
+\theoremstyle{jsdef}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
 
-\theoremstyle{remark}
+\theoremstyle{jsrem}
 \newtheorem{remark}[theorem]{Remark}
 \renewcommand{\theHtheorem}{\thepart.\thesection.\arabic{theorem}}
 
+
 \begin{document}
 
-\title{{\Large Elimination of the GGHV Normal Forms at Degree~Pair $(72,108)$, and Local Obstructions for Theorem~R}\\[0.6em]
+\title{{Elimination of the GGHV Normal Forms at Degree~Pair $(72,108)$, and Local Obstructions for Theorem~R}\\[0.6em]
 \large A certified computational study in four parts}
 \author{Brandon D. McCrary\\[0.25em]
 \textit{Independent Researcher}\\[0.25em]
@@ -115,9 +284,9 @@ A Keller map is a polynomial map $(P,Q)$ of the plane over a field of characteri
 Part~III studies the pencil $\lambda P+\mu Q$ of a Keller map and its dicritical divisors at infinity. An earlier claim that no Keller map has two dicritical divisors is false and is withdrawn. The corrected statement, Theorem~R, asserts at most one dicritical divisor at infinity; it is equivalent to the planar Jacobian conjecture and is open. We prove that the line at infinity and every first blow-up at infinity are not dicritical, so that a dicritical at infinity lies at depth at least $2$, and we record the remaining obligations. Part~IV reports work of November 2026 on those obligations: the elimination of degree $(56,84)$ in the kernel, a gap at $\lambda=0$ in a published argument at degree $84$ and its exclusion, kernel proofs of results of van den Essen's Chapter~10 including a refutation of one part as printed, the status of the remaining rows of the enumeration, a formal proof of the classical fact that proper Keller maps are automorphisms, and a reduction of the last configuration to a case left open by Wright. Every claim carries an evidence grade, explained in Appendix~\ref{app:methods}. Theorem~R, and with it the conjecture, remains open.
 \end{abstract}
 
-\vspace{0.8cm}
-\hrule
-\vspace{0.8cm}
+\vspace{0.6cm}
+{\color{borderhairline}\hrule height 0.6pt}
+\vspace{0.6cm}
 
 \tableofcontents
 \newpage
@@ -139,6 +308,7 @@ Part~III turns from fixed degrees to a structural statement. To a Keller map one
 Part~IV is new in this edition. It reports a sequence of investigations carried out in November 2026 on the obligations of Part~III and on the literature results they lean on. These include the elimination of the degree pair $(56,84)$ in the kernel, a gap found in a published Puiseux-free argument at degree $84$ together with the exclusion of the missing branch, kernel proofs of a number of results from Chapter~10 of van den Essen's book \cite{vdE2000} (one of which is false as printed), the status of the remaining rows of the enumeration, and a reduction of the hardest remaining configuration, which is a case Wright left open in 1997 \cite{Wright1997}. None of this proves Theorem~R. Part~IV ends with a plain list of what is and is not established.
 
 Every claim in this paper carries a grade. The grading scheme, the software and the verification procedures are described in Appendix~\ref{app:methods}, which a reader may want to consult before Part~I. Appendix~\ref{app:history} records how this edition differs from the earlier ones and which errors in them have been corrected. The three earlier parts are self-contained, and numbering of sections, theorems and equations restarts in each part. Cross-references to another part name the part.
+
 
 \part{\texorpdfstring{Elimination of the GGHV Branch-(a,b) Normal Form at Degree Pair (72,108)}{Elimination of the GGHV Branch-(a,b) Normal Form at Degree Pair (72,108)}}
 
@@ -594,7 +764,7 @@ theorem main_theorem_of_chart {L : Type*} [Field L] [CharZero L] (hc : ChartClas
 \end{leanlisting}
 % END-MECHANICAL:lst:chart
 
-The definitions on which \texttt{main\_\allowbreak{}theorem\_\allowbreak{}of\_\allowbreak{}chart} rests are printed in full. In \texttt{ChartClassification}, the variable $w$ is a root of $R$ and the long rational coefficients express the chart point in the basis $1,w,\dots,w^4$ of $K_5$.
+The definitions on which \texttt{main\_\allowbreak{}theorem\_\allowbreak{}of\_\allowbreak{}chart} rests are printed in full. In \texttt{Chart\allowbreak{}Classification}, the variable $w$ is a root of $R$ and the long rational coefficients express the chart point in the basis $1,w,\dots,w^4$ of $K_5$.
 % BEGIN-MECHANICAL:lst:def-mono
 \begin{leanlisting}{Mechanically extracted from \texttt{Jacobian/BranchAbNewton.lean} (sha256 \texttt{fda6fce4c16abbe8}); definition printed verbatim in full.}{ab:lst:def-mono}
 abbrev mono (i j : Nat) : Fin 2 →₀ Nat := Finsupp.single 0 i + Finsupp.single 1 j
@@ -1155,6 +1325,7 @@ We have eliminated branches~(a) and~(b) of the GGHV $(72,108)$ candidate, that i
 \begin{remark}[What remains]
 The application of Theorem~\ref{ab:thm:main} to the Jacobian conjecture, Corollary~\ref{ab:cor:gghv}, is conditional on~\cite[Proposition~4.3]{GGHV} (Remark~\ref{ab:rem:conditional}). Branch~(c), case~(1) of Proposition~\ref{ab:prop:gghv43}, is eliminated in Part~II (Theorem~\ref{bc:thm:unconditional}). What remains conditional, for any application to the Jacobian conjecture, is the correctness and exhaustiveness of~\cite[Proposition~4.3]{GGHV} itself, which this paper does not re-derive. In particular the degree pair $(72,108)$ is not excluded unconditionally here, and JC(2) remains open.
 \end{remark}
+
 \part{\texorpdfstring{Elimination of the GGHV Branch-(c) Normal Form at Degree Pair (72,108)}{Elimination of the GGHV Branch-(c) Normal Form at Degree Pair (72,108)}}
 
 \section{Introduction}
@@ -1701,6 +1872,7 @@ Branch~(c), the remaining configuration of \cite[Prop.~4.3]{GGHV} at degree pair
 \section{Prior work, attribution, and independence}\label{bc:sec:attribution}
 
 The classification of~\cite{GGHV} is the only external mathematical input, and it is used only in Corollary~\ref{bc:cor:gghv}. Precisely, we use \cite[Prop.~4.3, case~(1)]{GGHV}, whose vertex lists are at line~494 of the v1 text (arXiv:2204.14178v1), and the form of those lists after the morphism $\varphi$, at lines~617--618. The classification of the top layer over $K_5$ and the reflection library are taken from the branch-(a,b) formalization (Part~I and~\cite{BranchABv19}) without modification; step~0 of the verification script \filename{verify\_branch\_c\_lean.sh} checks these prerequisites by content fingerprint. The scripts of the earlier \filename{branch\_c/} pipeline were left unchanged throughout. That pipeline parametrizes the chart differently, and the proof given here uses only the conditions of \filename{lower\_c.py}, which are derived in Lean. The rank at $W=24$ modulo $1000003$ was known from an earlier measurement before the run of \filename{step3b\_rank\_lift.py}. The lemma, the second prime $32003$, the independent NumPy elimination and the controls were fixed in that script before it ran. That the second prime agreed is what one expects, since full row rank over $K_5$ implies full row rank modulo all but finitely many primes.
+
 \part{\texorpdfstring{Dicriticals at Infinity of Keller Maps: Theorem R and Local Obstructions}{Dicriticals at Infinity of Keller Maps: Theorem R and Local Obstructions}}
 
 \section{Introduction: setting, definitions, and the corrected statement}\label{td:sec:statement}
@@ -2884,6 +3056,7 @@ re-runs every script under the interpreter named by the environment variable \te
 archived one. Its header records that all $18$ outputs were identical under Python 3.11.15 with
 SymPy 1.14.0 on October 12, 2026. Passing shows that the computations reproduce. It does not show
 that Theorem~R is proved.
+
 \part{Progress toward Theorem R, November 2026}\label{rp:part}
 
 \section{Introduction}\label{rp:sec:intro}
@@ -3181,42 +3354,43 @@ Figure~\ref{rp:fig:status} gathers these statuses into one map of the three rout
 Result & Form of evidence & Grade\\
 \midrule
 (P2) at a free point of $E_2$ (Part~III), November 11 & proof by hand; SymPy check & B, I1\\
-$C^*$, degree $(56,84)$, from first edge and ratio & kernel (\texttt{cstar\_\allowbreak{}no\_\allowbreak{}pair\_\allowbreak{}firstEdge}) & 4K/I1; row B\\
+$C^*$, degree $(56,84)$, from first edge and ratio & kernel (\texttt{cstar\_\allowbreak{}no\_\allowbreak{}pair\_\allowbreak{}firstEdge}) & \stproved{4K/I1}; row B\\
 $C^*$ certificate, 55 generators & kernel & 4K statement; chain B\\
-Two encodings of $C^*$ agree & kernel (\texttt{span\_\allowbreak{}eq}) & 4K, I1\\
+Two encodings of $C^*$ agree & kernel (\texttt{span\_\allowbreak{}eq}) & \stproved{4K, I1}\\
 Gauge lemma G & kernel; reading & C$\to$4K; faithfulness B/I1\\
 GGHV \S5 needs $\lambda\ne0$; solutions at $\lambda=0$ & three tools & B (gap, not counterexample)\\
 $\lambda=0$ branch excluded & three tools; reduction in kernel & B, I2; overall B conditional\\
-Lemma B, residue-free form & kernel (\texttt{lemmaB\_\allowbreak{}every\_\allowbreak{}rf}) & 4K/I1\\
-Lemma S & kernel (\texttt{lemmaS}) & 4K/I1\\
+Lemma B, residue-free form & kernel (\texttt{lemmaB\_\allowbreak{}every\_\allowbreak{}rf}) & \stproved{4K/I1}\\
+Lemma S & kernel (\texttt{lemmaS}) & \stproved{4K/I1}\\
 Earlier ``Lemma B for all $m$'' is the weak form & reading, two-tool witness & B, I1 (correction E171)\\
-Orevkov \S4.2 system, all parameters & kernel (\texttt{orev42\_\allowbreak{}all}) & 4K/I1 as transcribed\\
+Orevkov \S4.2 system, all parameters & kernel (\texttt{orev42\_\allowbreak{}all}) & \stproved{4K/I1} as transcribed\\
 Transcription faithful to Orevkov 2001 & reading & B/I1\\
-vdE 10.2.4 corrected; printed (i) refuted & kernel & 4K/I1; reading B\\
-vdE 10.2.8, 10.2.13, 10.2.15, 10.2.18, 10.2.21 & kernel & 4K/I1\\
-GGV1 normal form (``primera'') & kernel (\texttt{primera\_\allowbreak{}ekua4}) & 4K/I1; enumeration premise B\\
+vdE 10.2.4 corrected; printed (i) refuted & kernel & \stproved{4K/I1}; reading B\\
+vdE 10.2.8, 10.2.13, 10.2.15, 10.2.18, 10.2.21 & kernel & \stproved{4K/I1}\\
+GGV1 normal form (``primera'') & kernel (\texttt{primera\_\allowbreak{}ekua4}) & \stproved{4K/I1}; enumeration premise B\\
 Row 175 & kernel; replay 1225/1225 & B\\
 Row 168 & kernel, conditional on hgen & B/I1\\
-Row 120, $f_5\ne0$ / $f_5=0$ & certificates & B/I1 / open\\
-CNAt, T26At & kernel (\texttt{cnat}, \texttt{t26at}) & 4K/I1\\
+Row 120, $f_5\ne0$ / $f_5=0$ & certificates & B/I1 / \stopen{open}\\
+CNAt, T26At & kernel (\texttt{cnat}, \texttt{t26at}) & \stproved{4K/I1}\\
 193 CN-only rows & kernel & rows B\\
-Cover interface & kernel (\texttt{jc2\_\allowbreak{}of\_\allowbreak{}coverCN}) & 4K/I1; layer (ii) B\\
-SP-W4 at $\gamma=0$ / $\gamma\ne0$ & kernel / none & 4K/I1 / open\\
-(F3) over any field of char.~0 & kernel (\texttt{F3\_\allowbreak{}field\_\allowbreak{}iff}) & 4K/I1; readings B\\
+Cover interface & kernel (\texttt{jc2\_\allowbreak{}of\_\allowbreak{}coverCN}) & \stproved{4K/I1}; layer (ii) B\\
+SP-W4 at $\gamma=0$ / $\gamma\ne0$ & kernel / none & \stproved{4K/I1} / \stopen{open}\\
+(F3) over any field of char.~0 & kernel (\texttt{F3\_\allowbreak{}field\_\allowbreak{}iff}) & \stproved{4K/I1}; readings B\\
 Slot: pivot forms, all $m\ge13$, run-A slice & hand lemmas, two tools & B/I1\\
 Slot: window termination, $J\le24$ & Singular, msolve & B/I1, negative only\\
-Slot R$\infty$ & none & open\\
+Slot R$\infty$ & none & \stopen{open}\\
 Rodríguez Díaz Thm 3.12 step & two tools & B/I1 (gap)\\
 GGV2 corollary false for Laurent pairs & two tools & B/I1\\
-Theorem R (equivalently JC(2)) & none & open\\
+Theorem R (equivalently JC(2)) & none & \stopen{open}\\
 \bottomrule
 \end{tabular}
 
 \smallskip
-Table~\thetable. Main results of November 22--25, 2026, with the (P2) settlement of November 11, and the grades assigned in the verification log. ``Kernel'' means accepted by the Lean kernel with only the three standard axioms.
+{\footnotesize\textcolor{truetext}{\bfseries Table~\thetable.} \textcolor{inksecondary}{Main results of November 22--25, 2026, with the (P2) settlement of November 11, and the grades assigned in the verification log. ``Kernel'' means accepted by the Lean kernel with only the three standard axioms.}}
 \end{center}
 
 The work of this period strengthened the instruments without changing the verdict. Its most useful product may be negative in the best sense: a list of residual statements, each now precise enough that a proof or a counterexample would be recognized as such.
+
 \appendix
 \renewcommand{\thesection}{\Alph{section}}
 \renewcommand{\theHsection}{app.\Alph{section}}
@@ -3247,6 +3421,7 @@ A second index records independence. I0 means the check used the same data that 
 A grade never rises by itself. When a result depends on a premise of lower grade, the result inherits the lower grade, and we say which premise is responsible. This is why, for example, several kernel theorems in Part~IV appear next to rows of the enumeration that remain at grade~B: the theorem is certain, but its application to the row passes through a step that is not.
 
 
+
 \section{Revision history and corrections}\label{app:history}
 
 Parts~I--III were drafted between September 28 and October 1, 2026, combined into one document on October 22, and revised on November 4 and November 22, 2026. Part~IV is new in the present edition. We record here what changed in this edition and which errors in the earlier ones it corrects, so that a reader who has the November 22 version can tell exactly what is different. Every correction listed below was first logged in the author's errata file (version 17, November 25, 2026, where items are numbered E1, E2, and so on), or in the audit of the journal galley proof of Part~II (November 13, 2026). We keep those numbers here so that each change can be traced to its source.
@@ -3261,9 +3436,10 @@ Parts~I--III were drafted between September 28 and October 1, 2026, combined int
 
 \paragraph{Validation of this edition.} Before this edition was assembled, every changed or new claim was checked against the research record and every new citation against the source it cites. A deliberately false claim was planted among the claims to be checked, and the check rejected it. The details are in the file \filename{VALIDATION.md} distributed with the source.
 
-\begin{thebibliography}{99}
 
-\bibitem{GGHV} J.~A.~Guccione, J.~J.~Guccione, R.~Horruitiner, C.~Valqui, \textit{Increasing the degree of a possible counterexample to the Jacobian conjecture from 100 to 108}, arXiv:2204.14178v1 (2022).
+\begin{thebibliography}{99}\urlstyle{same}
+
+\bibitem{GGHV} J.~A.~Guccione, J.~J.~Guccione, R.~Horruitiner, C.~Valqui, \textit{Increasing the degree of a possible counterexample to the Jacobian conjecture from 100 to 108}, \href{https://arxiv.org/abs/2204.14178v1}{arXiv:\nolinkurl{2204.14178v1}} (2022).
 
 \bibitem{Stothers} W.~W.~Stothers, \textit{Polynomial identities and Hauptmoduln}, Quart.\ J.\ Math.\ Oxford Ser.\ (2) \textbf{32} (1981), 349--370.
 
@@ -3273,59 +3449,61 @@ Parts~I--III were drafted between September 28 and October 1, 2026, combined int
 
 \bibitem{Santibanez} F.~Santiba\~nez-Leal, \textit{CAOS records EXP-061 and EXP-065}, GitHub repository \href{https://github.com/fsantibanezleal/CAOS_RESEARCH}{\filename{github.com/fsantibanezleal/CAOS\_RESEARCH}} (2026).
 
-\bibitem{SantibanezPaper} F.~Santiba\~nez-Leal, \textit{CAOS v0.34}, Zenodo \href{https://doi.org/10.5281/zenodo.22834215}{doi:10.5281/zenodo.22834215} (2026).
+\bibitem{SantibanezPaper} F.~Santiba\~nez-Leal, \textit{CAOS v0.34}, Zenodo \href{https://doi.org/10.5281/zenodo.22834215}{doi:\nolinkurl{10.5281/zenodo.22834215}} (2026).
 
-\bibitem{JC125note} B.~D.~McCrary et al., \textit{The $(72,108)$ candidate for the planar Jacobian conjecture: a containment note}, Zenodo \href{https://doi.org/10.5281/zenodo.22941057}{doi:10.5281/zenodo.22941057} (2026).
+\bibitem{JC125note} B.~D.~McCrary et al., \textit{The $(72,108)$ candidate for the planar Jacobian conjecture: a containment note}, Zenodo \href{https://doi.org/10.5281/zenodo.22941057}{doi:\nolinkurl{10.5281/zenodo.22941057}} (2026).
 
 \bibitem{ClaudeBlind} \textit{Independent blind replication: GGHV Proposition~4.3, normal form~(2)}, folder of the repository named on the title page (see the Note on assistance at the end of the paper), \href{https://github.com/brandonmccraryresearch-cloud/2D-Jacobian-Conjecture-Workspace/tree/main/tier1_blind_gghv43_nf2}{\textcolor{magenta}{\filename{tier1\_blind\_gghv43\_nf2/}}} in B.~D.~McCrary, \textit{2D-Jacobian-Conjecture-Workspace}, GitHub (2026), commit \texttt{37c73b67} (2026-09-25).
 
-\bibitem{BranchABv19} B.~D.~McCrary, \textit{Elimination of the GGHV branch-(a,b) normal form at degree pair $(72,108)$: a certified computational audit. Layer reduction, top-layer classification, and final obstruction}, Zenodo \href{https://doi.org/10.5281/zenodo.23023490}{doi:10.5281/zenodo.23023490} (2026).
+\bibitem{BranchABv19} B.~D.~McCrary, \textit{Elimination of the GGHV branch-(a,b) normal form at degree pair $(72,108)$: a certified computational audit. Layer reduction, top-layer classification, and final obstruction}, Zenodo \href{https://doi.org/10.5281/zenodo.23023490}{doi:\nolinkurl{10.5281/zenodo.23023490}} (2026).
 
-\bibitem{Helali} H.~Helali, \textit{Exact computer-assisted exclusion of the $(72,108)$ frontier in the two-dimensional Jacobian problem}, Zenodo \href{https://doi.org/10.5281/zenodo.21479814}{doi:10.5281/zenodo.21479814} (2026).
+\bibitem{Helali} H.~Helali, \textit{Exact computer-assisted exclusion of the $(72,108)$ frontier in the two-dimensional Jacobian problem}, Zenodo \href{https://doi.org/10.5281/zenodo.21479814}{doi:\nolinkurl{10.5281/zenodo.21479814}} (2026).
 
 \bibitem{wstrinz} wstrinz, \textit{Structural analysis of the plane Jacobian $(72,108)$ candidate}, GitHub repository \href{https://github.com/wstrinz/plane-jacobian-72-108}{\filename{github.com/wstrinz/plane-jacobian-72-108}} (2026).
 
-\bibitem{Jelonek1993} Jelonek, Z. \textit{The set of points at which a polynomial map is not proper.} Ann.\ Polon.\ Math.\ 58 (1993), no.~3, 259--266. doi:10.4064/ap-58-3-259-266.
+\bibitem{Jelonek1993} Jelonek, Z. \textit{The set of points at which a polynomial map is not proper.} Ann.\ Polon.\ Math.\ 58 (1993), no.~3, 259--266. \href{https://doi.org/10.4064/ap-58-3-259-266}{doi:\nolinkurl{10.4064/ap-58-3-259-266}}.
 
-\bibitem{Chau2009} Nguyen Van Chau. \textit{Pencil of irreducible rational curves and plane Jacobian conjecture.} arXiv:0905.3939.
+\bibitem{Chau2009} Nguyen Van Chau. \textit{Pencil of irreducible rational curves and plane Jacobian conjecture.} \href{https://arxiv.org/abs/0905.3939}{arXiv:\nolinkurl{0905.3939}}.
 
-\bibitem{AH2015} Abhyankar, S.~S., Heinzer, W.~J. \textit{Existence of dicritical divisors revisited.} arXiv:1508.06015.
+\bibitem{AH2015} Abhyankar, S.~S., Heinzer, W.~J. \textit{Existence of dicritical divisors revisited.} \href{https://arxiv.org/abs/1508.06015}{arXiv:\nolinkurl{1508.06015}}.
 
-\bibitem{AbhyankarSurvey} \textit{Abhyankar's work on dicritical divisors.} arXiv:1707.06733. A survey; it states no equivalence between dicriticals and the conjecture.
+\bibitem{AbhyankarSurvey} \textit{Abhyankar's work on dicritical divisors.} \href{https://arxiv.org/abs/1707.06733}{arXiv:\nolinkurl{1707.06733}}. A survey; it states no equivalence between dicriticals and the conjecture.
 
 \bibitem{BBR1962} Bia\l{}ynicki-Birula, A., Rosenlicht, M. \textit{Injective morphisms of real algebraic varieties.} Proc.\ Amer.\ Math.\ Soc.\ 13 (1962), 200--203.
 
 \bibitem{Restatement} McCrary, B.~D. \textit{The two-dicritical theorem, restated.} Unpublished working note, \filename{dicriticals-at-infinity/RESTATEMENT.md}, October 13, 2026. Not published or deposited.
 
-\bibitem{Borisov2009} A.~Borisov, \textit{A geometric approach to the two-dimensional Jacobian conjecture}, arXiv:0912.4803v1 (2009).
+\bibitem{Borisov2009} A.~Borisov, \textit{A geometric approach to the two-dimensional Jacobian conjecture}, \href{https://arxiv.org/abs/0912.4803v1}{arXiv:\nolinkurl{0912.4803v1}} (2009).
 
-\bibitem{Borisov2011} A.~Borisov, \textit{On resolution of compactifications of unramified planar self-maps}, arXiv:1110.5118 (2011; v4, 2012).
+\bibitem{Borisov2011} A.~Borisov, \textit{On resolution of compactifications of unramified planar self-maps}, \href{https://arxiv.org/abs/1110.5118}{arXiv:\nolinkurl{1110.5118}} (2011; v4, 2012).
 
 \bibitem{Borisov2015author} A.~Borisov, \textit{On the Stein factorization of resolutions of Jacobian self-maps of $\mathbb{P}^2$}, author's version of the paper in Beitr.\ Algebra Geom.\ \textbf{56} (2015), 299--312. The printed version has not been consulted.
 
-\bibitem{Chau2007} Nguyen Van Chau, \textit{A note on singularity and non-proper value set of polynomial maps of $\mathbb{C}^2$}, arXiv:0710.5212 (2007).
+\bibitem{Chau2007} Nguyen Van Chau, \textit{A note on singularity and non-proper value set of polynomial maps of $\mathbb{C}^2$}, \href{https://arxiv.org/abs/0710.5212}{arXiv:\nolinkurl{0710.5212}} (2007).
 
 \bibitem{Formanek1987} E.~Formanek, \textit{Two notes on the Jacobian conjecture}, Arch.\ Math.\ \textbf{49} (1987), 286--291.
 
-\bibitem{GGV1} J.~A.~Guccione, J.~J.~Guccione, C.~Valqui, \textit{On the shape of possible counterexamples to the Jacobian conjecture}, J.\ Algebra \textbf{471} (2017), 13--74; arXiv:1401.1784v3.
+\bibitem{GGV1} J.~A.~Guccione, J.~J.~Guccione, C.~Valqui, \textit{On the shape of possible counterexamples to the Jacobian conjecture}, J.\ Algebra \textbf{471} (2017), 13--74; \href{https://arxiv.org/abs/1401.1784v3}{arXiv:\nolinkurl{1401.1784v3}}.
 
-\bibitem{GGV2} J.~A.~Guccione, J.~J.~Guccione, C.~Valqui, \textit{The two-dimensional Jacobian conjecture and the lower side of the Newton polygon}, arXiv:1605.09430v2 (2017).
+\bibitem{GGV2} J.~A.~Guccione, J.~J.~Guccione, C.~Valqui, \textit{The two-dimensional Jacobian conjecture and the lower side of the Newton polygon}, \href{https://arxiv.org/abs/1605.09430v2}{arXiv:\nolinkurl{1605.09430v2}} (2017).
 
-\bibitem{Keller1939} O.-H.~Keller, \textit{Ganze Cremona-Transformationen}, Monatsh.\ Math.\ Phys.\ \textbf{47} (1939), 299--306, doi:10.1007/BF01695502. Cited for the birational case, from the 1939 reviews (Zbl 0021.15303, JFM 65.0713.02).
+\bibitem{Keller1939} O.-H.~Keller, \textit{Ganze Cremona-Transformationen}, Monatsh.\ Math.\ Phys.\ \textbf{47} (1939), 299--306, \href{https://doi.org/10.1007/BF01695502}{doi:\nolinkurl{10.1007/BF01695502}}. Cited for the birational case, from the 1939 reviews (\href{https://zbmath.org/?q=an:0021.15303}{Zbl 0021.15303}, \href{https://zbmath.org/?q=an:65.0713.02}{JFM 65.0713.02}).
 
 \bibitem{Orevkov2001} S.~Yu.~Orevkov, \textit{Counterexamples to the ``Jacobian conjecture at infinity''}, Proc.\ Steklov Inst.\ Math.\ \textbf{235} (2001), 173--201.
 
-\bibitem{RD2024} L.~O.~Rodr\'iguez D\'iaz, \textit{On the integrality of \'etale extensions of polynomial rings}, arXiv:2403.02219v2 (2024).
+\bibitem{RD2024} L.~O.~Rodr\'iguez D\'iaz, \textit{On the integrality of \'etale extensions of polynomial rings}, \href{https://arxiv.org/abs/2403.02219v2}{arXiv:\nolinkurl{2403.02219v2}} (2024).
 
 \bibitem{vdE2000} A.~van den Essen, \textit{Polynomial Automorphisms and the Jacobian Conjecture}, Progress in Mathematics \textbf{190}, Birkh\"auser, Basel, 2000.
 
-\bibitem{Wright1997} D.~Wright, \textit{Affine surfaces fibered by affine lines over the projective line}, Illinois J.\ Math.\ \textbf{41} (1997), no.~4, 589--605, doi:10.1215/ijm/1256068982.
+\bibitem{Wright1997} D.~Wright, \textit{Affine surfaces fibered by affine lines over the projective line}, Illinois J.\ Math.\ \textbf{41} (1997), no.~4, 589--605, \href{https://doi.org/10.1215/ijm/1256068982}{doi:\nolinkurl{10.1215/ijm/1256068982}}.
 
 \end{thebibliography}
+
 
 
 \section*{Note on assistance}\addcontentsline{toc}{section}{Note on assistance}
 
 The research reported here was carried out with agentic AI assistance, used for deep literature research and for writing Wolfram Language (Mathematica), Singular, Lean and SymPy code. This assistance cut the research time by roughly a thousandfold, from what would have been several years to a few months. Some of the cited records were produced in this way: the blind replication \cite{ClaudeBlind} and some independent re-derivations were made by separate AI systems, and the deposit \cite{JC125note} names the assistant as a co-author. Every result in the paper has been checked by the tools and procedures described in Appendix~\ref{app:methods}, and the author takes responsibility for all of it.
+
 
 \end{document}
