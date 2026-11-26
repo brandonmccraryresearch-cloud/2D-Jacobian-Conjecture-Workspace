@@ -31,3 +31,6 @@ The figure files were already in colour (measured: every figure has saturated pi
 - Build: `parts/*.tex` concatenated with a blank line between files (a `\part` needs a paragraph break before it under titlesec), then `lualatex` ×3 (`build/build_lua.sh`).
 - Bibliography entries left unlinked because the entry states no DOI, arXiv id or URL (none invented): Stothers, Davenport, Moh, BBR1962, Restatement, Borisov2015author, Formanek1987, Orevkov2001, vdE2000.
 - Checks: source diff of every part against the pre-style copy (only the items above); `notes/validation_b_checks.py` re-run, `fails: []`; every DOI target confirmed registered through the doi.org handle API (publishers' sites block scripted fetches with 403, which says nothing about the DOI).
+
+## 2026-11-26 — DOIs added (bibliography only)
+DOIs added to five references that had none: Stothers 1981 (10.1093/qmath/32.3.349), Moh 1983 (10.1515/crll.1983.340.140), Białynicki-Birula–Rosenlicht 1962 (10.1090/S0002-9939-1962-0140516-5), Formanek 1987 (10.1007/BF01210711), van den Essen 2000 (10.1007/978-3-0348-8440-2). Each resolves via the doi.org handle API and its Crossref title/author/year match the entry. Moh page range left as 140–212 (Crossref says 140–213; unverified against a scan). No text change; rebuilt clean, 109 pp., 0 errors/undefined/missing characters.
